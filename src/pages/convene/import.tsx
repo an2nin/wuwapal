@@ -1,6 +1,8 @@
 import CustomListItem from "@/components/convene/CustomListItem";
+import FilePathCard from "@/components/convene/FilePathCard";
 import ImportBtn from "@/components/convene/ImportBtn";
 import PowerShellCopyCard from "@/components/convene/PowerShellCopyCard";
+import URLViewer from "@/components/convene/URLViewer";
 import { Input } from "@/components/ui/input";
 import {
     Select,
@@ -58,26 +60,44 @@ export default function ConveneImport() {
                         >
                             <PowerShellCopyCard />
                         </CustomListItem>
+                    </>
+                ) : (
+                    <>
                         <CustomListItem
-                            title="Paste the text to the textbox below."
-                            index={5}
+                            title="Open File Explorer and find"
+                            index={4}
                         >
-                            <Input
-                                placeholder="Paste the text here"
-                                onChange={handleInputChange}
-                                value={inputValue}
+                            <FilePathCard />
+                        </CustomListItem>
+                        <CustomListItem
+                            title={`Right click "debug.log" file then click "Open with" then select Notepad (If you get error like "The process cannot access the file because it is being used by another process" please exit the game first)`}
+                            index={5}
+                        />
+                        <CustomListItem
+                            title={`Press CTRL+F then check "Wrap around" and select direction "Up" then in the input box search for "#url" (with the quote) then click Find Next`}
+                            index={6}
+                        />
+                        <CustomListItem
+                            title={`Copy all the link from https://aki-gm-resources-oversea.aki-game.net to the end. The url looks like this: `}
+                            index={7}
+                        >
+                            <URLViewer
+                                path={`https://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record?svr_id=84ab3961a34f52bd675c29d81e75d9b1&player_id=834729582&lang=en&gacha_id=7&gacha_type=3&svr_area=global&record_id=bb1384edd751652f7492952ce57086ef&resources_id=1fa3de8ab3467bdd8956129351fa7cb4`}
                             />
                         </CustomListItem>
                     </>
-                ) : (
-                    <CustomListItem
-                        title="Open Windows PowerShell and run the asd command."
-                        index={4}
-                    >
-                        <PowerShellCopyCard />
-                    </CustomListItem>
                 )}
-                <CustomListItem title="Import your convene record" index={6}>
+                <CustomListItem
+                    title="Paste the text to the textbox below."
+                    index={type == "manual" ? 8 : 5}
+                >
+                    <Input
+                        placeholder="Paste the text here"
+                        onChange={handleInputChange}
+                        value={inputValue}
+                    />
+                </CustomListItem>
+                <CustomListItem title="Import your convene record" index={type == "manual" ? 9 : 6}>
                     <ImportBtn historyUrl={inputValue} />
                 </CustomListItem>
             </div>

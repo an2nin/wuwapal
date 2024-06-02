@@ -12,9 +12,9 @@ export default function CustomListItem({ children, title, index }: Props) {
                 <Badge variant="secondary" className="p-3">
                     {index}
                 </Badge>
-                <h1 className="text-xl font">{title}</h1>
+                <h1 className="text-xl font break-all">{title}</h1>
             </div>
-            <div className="ml-14">{children}</div>
+            <div className="ml-14 mt-2">{children}</div>
         </div>
     );
 }

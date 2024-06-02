@@ -15,6 +15,29 @@ body {
     background-size: cover;
 }
 
+/* Total width of scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 7px;
+}
+
+/* Background of the scrollbar */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+/* Handle of the scrollbar */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 @layer base {
     :root {
         --background: 222 17% 24%;

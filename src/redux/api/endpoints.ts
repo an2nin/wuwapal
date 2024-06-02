@@ -1,0 +1,1 @@
+export const GM_SERVER_ENDPOINT = "https://gmserver-api.aki-game2.net/gacha/record/query";

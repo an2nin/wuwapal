@@ -1,15 +1,15 @@
-import { Diff, Home, Users } from "lucide-react";
+import { LayoutGrid, Sparkles, Users } from "lucide-react";
 
 export const navs = [
     {
         title: "Home",
         href: "/",
-        icon: <Home />,
+        icon: <LayoutGrid />,
     },
     {
         title: "Convene Tracker",
         href: "/convene",
-        icon: <Diff />,
+        icon: <Sparkles />,
     },
     {
         title: "Characters",

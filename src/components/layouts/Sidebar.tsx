@@ -1,9 +1,18 @@
 import Link from "next/link";
 import { navs } from "@/helpers/navs";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function Sidebar() {
     const router = useRouter();
+    const [currentActiveNav, setCurrentActiveNav] = useState("/");
+
+    useEffect(() => {
+        const activeNavItem = navs.findLast((nav) =>
+            router.pathname.startsWith(nav.href)
+        );
+        setCurrentActiveNav(activeNavItem?.href ?? "/");
+    }, [router]);
 
     return (
         <>
@@ -25,10 +34,10 @@ export default function Sidebar() {
                                 <Link
                                     key={idx}
                                     href={nav.href}
-                                    className={`flex justify-start items-center gap-3 rounded-lg p-3 text-muted-foreground transition-all hover:text-primary ${
-                                        router.pathname === nav.href
-                                            ? "bg-accent text-accent-foreground"
-                                            : ""
+                                    className={`flex justify-start items-center gap-3 rounded-lg p-3 transition-all hover:text-primary ${
+                                        currentActiveNav === nav.href
+                                            ? "bg-accent text-accent-foreground text-white"
+                                            : "text-muted-foreground"
                                     }`}
                                 >
                                     {nav.icon}

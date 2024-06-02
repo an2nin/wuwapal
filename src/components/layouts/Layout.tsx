@@ -1,8 +1,9 @@
 import Sidebar from "@/components/layouts/Sidebar";
 import Header from "./Header";
-import { Inter } from "next/font/google";
+import { Inter, VT323, Play } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
+
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
@@ -15,7 +16,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             {/* Right column */}
             <main className="flex flex-col justify-start">
                 <Header />
-                <div className="container mx-auto md:p-10">{children}</div>
+                <div className="container mx-auto md:p-10 sm:pt-10 pt-5">{children}</div>
             </main>
         </div>
     );

@@ -44,12 +44,17 @@ export default function BannerOverview({ bannerData }: Props) {
         setStar5AvgPity(averagePityStar5);
     }, [bannerData]);
 
-    const getAverage = (part: number, total: number) => {
+    const getPercentage = (part: number, total: number) => {
         return ((part / total) * 100).toFixed(1);
+    };
+
+    const getComplexAverage = (a: number, b: number) => {
+        const divider = a != 0 && b != 0 ? 2 : 1;
+        return ((a + b) / divider).toFixed(1);
     };
     return (
         <Card className="h-full">
-            <CardContent className="mt-5">
+            <CardContent className="pt-5 h-full">
                 <div className="flex flex-col gap-2 ">
                     <div className="flex justify-between border-b border-accent pb-1">
                         <div className="font-bold text-sm md:text-lg">
@@ -71,7 +76,7 @@ export default function BannerOverview({ bannerData }: Props) {
                                 {bannerData.star5s.length}
                             </div>
                             <div className="flex justify-end">
-                                {getAverage(
+                                {getPercentage(
                                     bannerData.star5s.length,
                                     bannerData.total
                                 )}
@@ -93,7 +98,7 @@ export default function BannerOverview({ bannerData }: Props) {
                                     bannerData.star4_weapons.length}
                             </div>
                             <div className="flex justify-end">
-                                {getAverage(
+                                {getPercentage(
                                     bannerData.star4_resonators.length +
                                         bannerData.star4_weapons.length,
                                     bannerData.total
@@ -101,10 +106,10 @@ export default function BannerOverview({ bannerData }: Props) {
                                 %
                             </div>
                             <div className="flex justify-end">
-                                {(
-                                    (star4ResAvgPity + star4WeapAvgPity) /
-                                    2
-                                ).toFixed(1)}
+                                {getComplexAverage(
+                                    star4ResAvgPity,
+                                    star4WeapAvgPity
+                                )}
                             </div>
                         </div>
                     </div>
@@ -119,7 +124,7 @@ export default function BannerOverview({ bannerData }: Props) {
                                 {bannerData.star4_resonators.length}
                             </div>
                             <div className="flex justify-end">
-                                {getAverage(
+                                {getPercentage(
                                     bannerData.star4_resonators.length,
                                     bannerData.total
                                 )}
@@ -141,7 +146,7 @@ export default function BannerOverview({ bannerData }: Props) {
                                 {bannerData.star4_weapons.length}
                             </div>
                             <div className="flex justify-end">
-                                {getAverage(
+                                {getPercentage(
                                     bannerData.star4_weapons.length,
                                     bannerData.total
                                 )}

@@ -22,10 +22,10 @@ export default function BannerStat({
 }: Props) {
     return (
         <Card>
-            <CardContent className="font-bold text-lg  h-full flex items-center">
-                <div className="flex flex-col items-center gap-2">
+            <CardContent className="py-3 px-5 font-bold">
+                <div className="flex justify-center items-center gap-4">
                     <div className="flex flex-col items-center">
-                        <div className="font-bold">Total</div>
+                        <div className="font-bold">Total pulls</div>
                         <div>{total}</div>
                     </div>
                     <div className="flex flex-col items-center">
@@ -58,6 +58,10 @@ export default function BannerStat({
                             4 <Star className="w-3 h-3 fill-foreground" /> Pity
                         </div>
                         <div className="text-purple-500">{star4_pity}</div>
+                    </div>
+                    <div className="flex flex-col items-center">
+                        <div className="font-bold">Astrites Spent</div>
+                        <div>{total * 160}</div>
                     </div>
                 </div>
             </CardContent>

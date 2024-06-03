@@ -50,12 +50,7 @@ export default function ConveneTracker() {
                 {bannerTypes.map((banner, idx) => (
                     <TabsContent key={idx} value={banner.store_id}>
                         <div className="col-span-12 sm:col-span-6 xl:col-span-4">
-                            <BannerView
-                                banner={{
-                                    title: banner.store_id,
-                                    items: banners[banner.store_id],
-                                }}
-                            />
+                            <BannerView banner={banners[banner.store_id]} />
                         </div>
                     </TabsContent>
                 ))}

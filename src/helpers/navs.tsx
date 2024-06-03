@@ -11,9 +11,9 @@ export const navs = [
         href: "/convene",
         icon: <Sparkles />,
     },
-    {
-        title: "Characters",
-        href: "/characters",
-        icon: <Users />,
-    },
+    // {
+    //     title: "Characters",
+    //     href: "/characters",
+    //     icon: <Users />,
+    // },
 ];

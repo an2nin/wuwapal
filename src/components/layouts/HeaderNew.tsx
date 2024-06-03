@@ -17,7 +17,6 @@ import { navs } from "@/helpers/navs";
 import { useRouter } from "next/router";
 
 export default function HeaderNew() {
-
     const router = useRouter();
     const [currentActiveNav, setCurrentActiveNav] = useState("/");
 
@@ -27,7 +26,7 @@ export default function HeaderNew() {
         );
         setCurrentActiveNav(activeNavItem?.href ?? "/");
     }, [router]);
-    
+
     return (
         <header className="flex flex-col bg-card">
             <div className="w-full text-center bg-black p-1 text-sm">
@@ -98,34 +97,38 @@ export default function HeaderNew() {
                         </nav>
                     </SheetContent>
                 </Sheet>
-                <div className="w-full flex items-center justify-between px-5">
-                    <div className="text-primary font-bold">WuWaPal</div>
-                    <div className="flex items-center gap-5 justify-center">
-                        {navs.map((nav, idx) => (
-                            <Link
-                                key={idx}
-                                href={nav.href}
-                                className={`flex justify-start items-center gap-3 rounded-lg p-3 transition-all ${
-                                    currentActiveNav === nav.href
-                                        ? "bg-accent text-accent-foreground "
-                                        : "text-muted-foreground hover:text-primary"
-                                }`}
+                <div className="hidden md:block">
+                    <div className="w-full flex items-center justify-between px-5">
+                        <div className="text-2xl text-primary font-bold">WuWaPal</div>
+                        <div className="flex items-center gap-5 justify-center">
+                            {navs.map((nav, idx) => (
+                                <Link
+                                    key={idx}
+                                    href={nav.href}
+                                    className={`flex justify-start items-center gap-3 rounded-lg p-3 transition-all ${
+                                        currentActiveNav === nav.href
+                                            ? "bg-accent text-accent-foreground "
+                                            : "text-muted-foreground hover:text-primary"
+                                    }`}
+                                >
+                                    {nav.icon}
+                                    {nav.title}
+                                </Link>
+                            ))}
+                        </div>
+                        <div>
+                            <Button
+                                variant="secondary"
+                                size="icon"
+                                className="rounded-full"
+                                disabled={true}
                             >
-                                {nav.icon}
-                                {nav.title}
-                            </Link>
-                        ))}
-                    </div>
-                    <div>
-                        <Button
-                            variant="secondary"
-                            size="icon"
-                            className="rounded-full"
-                            disabled={true}
-                        >
-                            <CircleUser className="h-5 w-5" />
-                            <span className="sr-only">Toggle user menu</span>
-                        </Button>
+                                <CircleUser className="h-5 w-5" />
+                                <span className="sr-only">
+                                    Toggle user menu
+                                </span>
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>

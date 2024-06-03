@@ -16,7 +16,7 @@ export default function Sidebar() {
 
     return (
         <>
-            <div className="hidden border-r bg-muted/40 md:block">
+            <div className="hidden border-r bg-card md:block w">
                 <div className="flex h-full max-h-screen flex-col">
                     <div className="flex justify-center h-14 items-center px-4 lg:h-[60px] lg:px-6 mt-4 mb-6">
                         <Link

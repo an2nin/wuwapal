@@ -145,7 +145,6 @@ export default function ImportBtn({ historyUrl }: Props) {
                     </DialogContent>
                     <DialogFooter>
                         <Button
-                            variant="secondary"
                             onClick={() => router.push("/convene")}
                         >
                             Go Back to Convene
@@ -153,7 +152,7 @@ export default function ImportBtn({ historyUrl }: Props) {
                     </DialogFooter>
                 </DialogContentWithoutClose>
             </Dialog>
-            <Button variant="secondary" onClick={handleImport}>
+            <Button onClick={handleImport}>
                 <span className="mr-2">
                     <ArrowRightToLine />
                 </span>

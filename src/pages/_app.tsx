@@ -17,8 +17,12 @@ export default function App({ Component, pageProps }: AppProps) {
         <Layout>
             <Provider store={store}>
                 <PersistGate loading={null} persistor={persistor}>
-                    <Toaster />
-                    <Component {...pageProps} />
+                    {() => (
+                        <>
+                            <Toaster />
+                            <Component {...pageProps} />
+                        </>
+                    )}
                 </PersistGate>
             </Provider>
         </Layout>

@@ -16,7 +16,7 @@ export default function BannerView({ banner }: Props) {
         <div>
             {banner ? (
                 <div className="flex flex-col gap-5">
-                    <div className="flex justify-center">
+                    <div className="flex justify-center items-center">
                         <BannerStat
                             total={banner.items.length}
                             star4_pity={banner?.star4_pity}
@@ -28,7 +28,7 @@ export default function BannerView({ banner }: Props) {
                             }
                         />
                     </div>
-                    <div className="flex flex-wrap gap-5">
+                    <div className="flex flex-wrap gap-5 justify-center">
                         <BannerPieChart
                             total={banner.items.length}
                             star4={

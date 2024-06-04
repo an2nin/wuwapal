@@ -22,7 +22,6 @@ export const conveneApis = api.injectEndpoints({
                     body: form,
                 };
             },
-            invalidatesTags: ["banners"],
         }),
     }),
 });

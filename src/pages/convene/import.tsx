@@ -31,7 +31,7 @@ export default function ConveneImport() {
                     Import Convene Record
                 </h1>
             </div>
-            <div className="flex flex-col gap-5 mt-10">
+            <ol className="relative border-s ms-3 mt-10">
                 <CustomListItem title="Open Wuthering Waves on PC." index={1} />
                 <CustomListItem
                     title="Open Convene Records from any banner."
@@ -97,9 +97,15 @@ export default function ConveneImport() {
                         value={inputValue}
                     />
                 </CustomListItem>
-                <CustomListItem title="Import your convene record" index={type == "manual" ? 9 : 6}>
-                    <ImportBtn historyUrl={inputValue} />
-                </CustomListItem>
+
+                <CustomListItem
+                    title="Click on the import button"
+                    index={type == "manual" ? 9 : 6}
+                    last={true}
+                />
+            </ol>
+            <div className="ml-12 mt-2">
+                <ImportBtn historyUrl={inputValue} />
             </div>
         </div>
     );

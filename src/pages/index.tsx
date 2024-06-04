@@ -8,8 +8,10 @@ import {
 } from "@/components/ui/card";
 
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 export default function Home() {
+    const router = useRouter();
     return (
         <>
             <Head>
@@ -39,7 +41,9 @@ export default function Home() {
                         </p>
                     </CardContent>
                     <CardFooter>
-                        <Button>Convene Tracker</Button>
+                        <Button onClick={() => router.push("/convene")}>
+                            Convene Tracker
+                        </Button>
                     </CardFooter>
                 </Card>
             </div>

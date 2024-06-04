@@ -1,18 +1,18 @@
-import { RootState } from "@/redux/store";
+// import { RootState } from "@/redux/store";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
-    prepareHeaders: (headers, { getState }) => {
-        const token = (getState() as RootState).persistedReducer.authReducer
-            .auth?.access;
-        if (token) {
-            headers.set("Authorization", `Bearer ${token}`);
-        }
-        headers.set("ngrok-skip-browser-warning", `true`);
-        return headers;
-    },
+    // prepareHeaders: (headers, { getState }) => {
+    //     const token = (getState() as RootState).persistedReducer.authReducer
+    //         .auth?.access;
+    //     if (token) {
+    //         headers.set("Authorization", `Bearer ${token}`);
+    //     }
+    //     headers.set("ngrok-skip-browser-warning", `true`);
+    //     return headers;
+    // },
     timeout: 500000,
 });
 
@@ -30,7 +30,7 @@ export const api = createApi({
      * Otherwise, a single API definition should be used in order to support tag invalidation,
      * among other features
      */
-    reducerPath: "splitApi",
+    // reducerPath: "splitApi",
     /**
      * A bare bones base query would just be `baseQuery: fetchBaseQuery({ baseUrl: '/' })`
      */
@@ -39,7 +39,7 @@ export const api = createApi({
      * Tag types must be defined in the original API definition
      * for any tags that would be provided by injected endpoints
      */
-    tagTypes: ["convenes", "banners"],
+    // tagTypes: ["convenes", "banners"],
     /**
      * This api has endpoints injected in adjacent files,
      * which is why no endpoints are shown below.

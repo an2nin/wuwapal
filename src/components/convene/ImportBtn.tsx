@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRightToLine, Loader2 } from "lucide-react";
+import { ArrowRightToLine } from "lucide-react";
 
 import {
     Dialog,
@@ -15,8 +15,8 @@ import { useToast } from "@/components/ui/use-toast";
 import { Progress } from "@/components/ui/progress";
 import { DialogContent } from "@radix-ui/react-dialog";
 import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
-import { addBanner } from "@/redux/slices/banner";
+import { useBannerStore } from "@/stores/banner";
+import { processBanner } from "@/helpers/processors";
 
 interface Props {
     historyUrl: string;
@@ -27,7 +27,8 @@ const total_banners = 6;
 export default function ImportBtn({ historyUrl }: Props) {
     const { toast } = useToast();
     const router = useRouter();
-    const dispatch = useDispatch();
+    const bannerStore = useBannerStore<any>((state: any) => state);
+    // const dispatch = useDispatch();
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [currentBanner, setCurrentBanner] = useState(0);
     const [processedURLBody, setProcessedURLBody] = useState<any>(null);
@@ -108,13 +109,9 @@ export default function ImportBtn({ historyUrl }: Props) {
                 banner_name = "beginner_choice";
             }
 
-            dispatch(
-                addBanner({
-                    items: bannerData.data,
-                    name: banner_name,
-                })
-            );
-
+            const processedBanner = processBanner(bannerData.data, banner_name);
+            bannerStore.addBanner(banner_name, processedBanner)
+           
             if (currentBanner < total_banners) {
                 setCurrentBanner(currentBanner + 1);
             }
@@ -144,9 +141,7 @@ export default function ImportBtn({ historyUrl }: Props) {
                         </div>
                     </DialogContent>
                     <DialogFooter>
-                        <Button
-                            onClick={() => router.push("/convene")}
-                        >
+                        <Button onClick={() => router.push("/convene")}>
                             Go Back to Convene
                         </Button>
                     </DialogFooter>

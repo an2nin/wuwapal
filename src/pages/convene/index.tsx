@@ -1,16 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
-import { RootState } from "@/redux/reducer";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import BannerView from "@/components/banner/BannerView";
 import { bannerTypes } from "@/helpers/constants";
+import { useBannerStore } from "@/stores/banner";
 export default function ConveneTracker() {
     const router = useRouter();
 
-    const banners: any = useSelector(
-        (state: RootState) => state.persistedReducer.bannerReducer
-    );
+    const bannerStore = useBannerStore<any>((state: any) => state)
 
     return (
         <div className="flex flex-col">
@@ -47,10 +44,10 @@ export default function ConveneTracker() {
                     </TabsList>
                 </div>
 
-                {bannerTypes.map((banner, idx) => (
+                {bannerStore.banners && bannerTypes.map((banner, idx) => (
                     <TabsContent key={idx} value={banner.store_id}>
                         <div className="col-span-12 sm:col-span-6 xl:col-span-4">
-                            <BannerView banner={banners[banner.store_id]} />
+                            <BannerView banner={bannerStore.banners[banner.store_id]} />
                         </div>
                     </TabsContent>
                 ))}

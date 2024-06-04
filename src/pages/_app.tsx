@@ -14,22 +14,14 @@ export default function App({ Component, pageProps }: AppProps) {
     const router = useRouter();
 
     if (router.pathname === "/_error") return <Component {...pageProps} />;
-    if (router.pathname.startsWith("/convene"))
-        return (
-            <Layout>
-                <Provider store={store}>
-                    <PersistGate loading={null} persistor={persistor}>
-                        <Toaster />
-                        <Component {...pageProps} />
-                    </PersistGate>
-                </Provider>
-            </Layout>
-        );
-
     return (
         <Layout>
-            <Toaster />
-            <Component {...pageProps} />
+            <Provider store={store}>
+                <PersistGate loading={null} persistor={persistor}>
+                    <Toaster />
+                    <Component {...pageProps} />
+                </PersistGate>
+            </Provider>
         </Layout>
     );
 }

@@ -23,6 +23,8 @@ export const useBannerStore = create(
     persist(
         (set: any, get: any) => ({
             banners: initialState,
+            banner_record_url: null,
+            addBannerRecordUrl: (url: string) => set({banner_record_url: url}),
             addBanner: (name: string, items: any) =>
                 set((state: any) => ({
                     banners: {

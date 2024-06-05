@@ -31,7 +31,7 @@ export default function BannerPullList({ banner }: Props) {
                 activeFilters.includes(obj.qualityLevel)
         );
 
-        console.log(filteredObjects)
+        console.log(filteredObjects);
 
         setFilteredItems(filteredObjects);
     }, [activeFilters]);
@@ -118,13 +118,26 @@ export default function BannerPullList({ banner }: Props) {
                                     className={`${
                                         item.qualityLevel != 3
                                             ? item.qualityLevel == 4
-                                                ? "bg-purple-500/40"
-                                                : "bg-yellow-500/40"
+                                                ? "bg-star-4"
+                                                : "bg-star-5"
                                             : ""
                                     }`}
                                 >
                                     <TableCell>{item.roll}</TableCell>
-                                    <TableCell>{item.name}</TableCell>
+                                    <TableCell>
+                                        <div className="flex items-center gap-3">
+                                        <img
+                                        className="w-10 h-10"
+                                            src={
+                                                process.env
+                                                    .NEXT_PUBLIC_IMAGE_URL +
+                                                item.image_path
+                                            }
+                                            alt={item.name}
+                                        />
+                                        {item.name}
+                                        </div>
+                                    </TableCell>
                                     <TableCell>{item.pity}</TableCell>
                                     <TableCell>{item.time}</TableCell>
                                 </TableRow>

@@ -1,22 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRightToLine } from "lucide-react";
-
+import { parseUrlParams, processBanner } from "@/helpers/processors";
+import { useFetchBannerMutation } from "@/redux/services/banner";
+import { toast } from "@/components/ui/use-toast";
+import { useBannerStore } from "@/stores/banner";
 import {
     Dialog,
-    DialogContentWithoutClose,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
     DialogTitle,
+    DialogDescription,
+    DialogContent,
+} from "@radix-ui/react-dialog";
+import { ArrowRightToLine } from "lucide-react";
+import {
+    DialogContentWithoutClose,
+    DialogHeader,
+    DialogFooter,
 } from "@/components/ui/dialog";
-import { useFetchBannerMutation } from "@/redux/services/banner";
-import { useToast } from "@/components/ui/use-toast";
 import { Progress } from "@/components/ui/progress";
-import { DialogContent } from "@radix-ui/react-dialog";
-import { useRouter } from "next/router";
-import { useBannerStore } from "@/stores/banner";
-import { parseUrlParams, processBanner } from "@/helpers/processors";
 
 interface Props {
     historyUrl: string;
@@ -24,11 +24,9 @@ interface Props {
 
 const total_banners = 6;
 
-export default function ImportBtn({ historyUrl }: Props) {
-    const { toast } = useToast();
-    const router = useRouter();
+export default function SyncBtn({ historyUrl }: Props) {
     const bannerStore = useBannerStore<any>((state: any) => state);
-    // const dispatch = useDispatch();
+
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [currentBanner, setCurrentBanner] = useState(0);
     const [processedURLBody, setProcessedURLBody] = useState<any>(null);
@@ -42,8 +40,6 @@ export default function ImportBtn({ historyUrl }: Props) {
             isError: isBannerError,
         },
     ] = useFetchBannerMutation();
-
-    
 
     const handleImport = () => {
         if (historyUrl == null || historyUrl == "") {
@@ -99,7 +95,6 @@ export default function ImportBtn({ historyUrl }: Props) {
             }
         }
     }, [isBannerSuccess, isBannerError]);
-
     return (
         <>
             <Dialog open={isDialogOpen}>
@@ -117,24 +112,22 @@ export default function ImportBtn({ historyUrl }: Props) {
                                 !isBannerLoading &&
                                 isBannerSuccess && (
                                     <div className="text-green-500 text-center">
-                                        All Banners imported successfully
+                                        All Banners synced successfully
                                     </div>
                                 )}
                         </div>
                     </DialogContent>
                     <DialogFooter>
-                        <Button onClick={() => router.push("/convene")} variant="secondary">
-                            Go Back to Convene
+                        <Button
+                            onClick={() => setIsDialogOpen(false)}
+                            variant="secondary"
+                        >
+                            Close
                         </Button>
                     </DialogFooter>
                 </DialogContentWithoutClose>
             </Dialog>
-            <Button onClick={handleImport}>
-                <span className="mr-2">
-                    <ArrowRightToLine />
-                </span>
-                Import
-            </Button>
+            <Button onClick={handleImport}>Sync</Button>
         </>
     );
 }

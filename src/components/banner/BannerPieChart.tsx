@@ -18,7 +18,7 @@ export default function BannerPieChart({ total, star4, star5 }: Props) {
                 <Pie
                     height={250}
                     width={250}
-                    options={{ maintainAspectRatio: false }}
+                    options={{ maintainAspectRatio: false, elements: {arc: {borderWidth: 0}}, }}
                     data={{
                         labels: ["Total Pulls", "Total 5*", "Total 4*"],
                         datasets: [

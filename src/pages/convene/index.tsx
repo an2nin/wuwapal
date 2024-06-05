@@ -4,10 +4,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import BannerView from "@/components/banner/BannerView";
 import { bannerTypes } from "@/helpers/constants";
 import { useBannerStore } from "@/stores/banner";
+import SyncBtn from "@/components/convene/SyncBtn";
 export default function ConveneTracker() {
     const router = useRouter();
 
-    const bannerStore = useBannerStore<any>((state: any) => state)
+    const bannerStore = useBannerStore<any>((state: any) => state);
 
     return (
         <div className="flex flex-col">
@@ -17,9 +18,16 @@ export default function ConveneTracker() {
                 </h1>
                 <div>
                     <Button onClick={() => router.push("/convene/import")}>
-                        Import Convene Record
+                        <div className="flex gap-3 items-center">
+                            Import Records
+                        </div>
                     </Button>
                 </div>
+                {bannerStore.banner_record_url && (
+                    <div>
+                        <SyncBtn historyUrl={bannerStore.banner_record_url} />
+                    </div>
+                )}
             </div>
 
             <Tabs defaultValue="featured_resonator">
@@ -44,13 +52,18 @@ export default function ConveneTracker() {
                     </TabsList>
                 </div>
 
-                {bannerStore.banners && bannerTypes.map((banner, idx) => (
-                    <TabsContent key={idx} value={banner.store_id}>
-                        <div className="col-span-12 sm:col-span-6 xl:col-span-4">
-                            <BannerView banner={bannerStore.banners[banner.store_id]} />
-                        </div>
-                    </TabsContent>
-                ))}
+                {bannerStore.banners &&
+                    bannerTypes.map((banner, idx) => (
+                        <TabsContent key={idx} value={banner.store_id}>
+                            <div className="col-span-12 sm:col-span-6 xl:col-span-4">
+                                <BannerView
+                                    banner={
+                                        bannerStore.banners[banner.store_id]
+                                    }
+                                />
+                            </div>
+                        </TabsContent>
+                    ))}
             </Tabs>
         </div>
     );

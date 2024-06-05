@@ -4,7 +4,7 @@ import { standard_resonators } from "@/helpers/constants";
 import BannerPieChart from "@/components/banner/BannerPieChart";
 import BannerOverview from "@/components/banner/BannerOverview";
 import BannerEmptyCard from "./BannerEmptyCard";
-import BannerPullList from "./BannerPullList";
+import BannerPullList from "./BannerTable";
 
 interface Props {
     banner: any;

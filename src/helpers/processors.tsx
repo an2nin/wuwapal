@@ -63,7 +63,7 @@ export function processBanner(payload: any, name: string) {
             }
             // Replace the original item with the new one
             newItem.image_path =
-                `/images/${item.resourceType.toLowerCase()}/` +
+                `/${item.resourceType.toLowerCase()}/` +
                 item.name
                     .toLowerCase() // Convert all characters to lowercase
                     .replace(/:/g, "") // Remove colons
@@ -92,4 +92,26 @@ export function processBanner(payload: any, name: string) {
         };
     }
     return returnObj;
+}
+
+export function parseUrlParams(url: string) {
+    // Find the index of `#`
+    const hashIndex = url.indexOf("#");
+    let queryString = url.substring(hashIndex + 1);
+
+    // Find the index of `?` after `#` and get the parameters
+    const queryIndex = queryString.indexOf("?");
+    if (queryIndex !== -1) {
+        queryString = queryString.substring(queryIndex + 1);
+    } else {
+        // If there's no `?`, return an empty object
+        return {};
+    }
+
+    const urlParams = new URLSearchParams(queryString);
+    const params: any = {};
+    urlParams.forEach((value, key) => {
+        params[key] = value;
+    });
+    return params;
 }

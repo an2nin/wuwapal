@@ -60,7 +60,7 @@ export default function BannerOverview({ bannerData }: Props) {
                         <div className="font-bold text-sm md:text-lg">
                             Character Event
                         </div>
-                        <div className="grid grid-cols-3 w-44 text-xs md:text-sm ">
+                        <div className="grid grid-cols-3 w-48 text-xs md:text-sm">
                             <div className="flex justify-end">Total</div>
                             <div className="flex justify-end">Percent</div>
                             <div className="flex justify-end">Pity AVG</div>

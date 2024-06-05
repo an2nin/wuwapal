@@ -1,18 +1,11 @@
 import {
     Menu,
-    Package2,
-    Home,
-    ShoppingCart,
-    Package,
-    Users,
-    LineChart,
     CircleUser,
 } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { navs } from "@/helpers/navs";
 import { useRouter } from "next/router";
 

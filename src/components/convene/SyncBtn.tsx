@@ -95,6 +95,18 @@ export default function SyncBtn({ historyUrl }: Props) {
             }
         }
     }, [isBannerSuccess, isBannerError]);
+
+    useEffect(() => {
+        if (isBannerError) {
+            setIsDialogOpen(false);
+            setCurrentBanner(0);
+            toast({
+                title: "Something went wrong",
+                variant: "destructive",
+            });
+        }
+    }, [isBannerError]);
+    
     return (
         <>
             <Dialog open={isDialogOpen}>
@@ -120,7 +132,7 @@ export default function SyncBtn({ historyUrl }: Props) {
                     <DialogFooter>
                         <Button
                             onClick={() => setIsDialogOpen(false)}
-                            variant="secondary"
+                            variant="outline"
                         >
                             Close
                         </Button>

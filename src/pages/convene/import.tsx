@@ -1,7 +1,8 @@
+import CopyCardSemiAutomatic from "@/components/convene/CopyCardSemiAutomatic";
 import CustomListItem from "@/components/convene/CustomListItem";
 import FilePathCard from "@/components/convene/FilePathCard";
 import ImportBtn from "@/components/convene/ImportBtn";
-import PowerShellCopyCard from "@/components/convene/PowerShellCopyCard";
+import CopyCardAutomatic from "@/components/convene/CopyCardAutomatic";
 import URLViewer from "@/components/convene/URLViewer";
 import { Input } from "@/components/ui/input";
 import {
@@ -13,9 +14,12 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { useState } from "react";
+import { useBannerStore } from "@/stores/banner";
 export default function ConveneImport() {
+    const bannerStore = useBannerStore<any>((state: any) => state);
     const [type, setType] = useState("automatic");
     const [inputValue, setInputValue] = useState("");
+    const [gamePath, setGamePath] = useState(bannerStore.game_path || "");
 
     const handleTypeChange = (value: string) => {
         setType(value);
@@ -23,6 +27,9 @@ export default function ConveneImport() {
 
     const handleInputChange = (event: any) => {
         setInputValue(event.target.value);
+    };
+    const handleGamePathChange = (event: any) => {
+        setGamePath(event.target.value);
     };
     return (
         <div className="flex flex-col">
@@ -47,21 +54,58 @@ export default function ConveneImport() {
                                 <SelectItem value="automatic">
                                     Automatic
                                 </SelectItem>
-                                <SelectItem value="manual">Manual</SelectItem>
+                                <SelectItem value="manual-less">
+                                    Semi Automatic
+                                </SelectItem>
+                                <SelectItem value="manual-more">
+                                    Manual
+                                </SelectItem>
                             </SelectGroup>
                         </SelectContent>
                     </Select>
                 </CustomListItem>
-                {type == "automatic" ? (
+                {type == "automatic" && (
                     <>
                         <CustomListItem
                             title="Open Windows PowerShell and run the following command."
                             index={4}
                         >
-                            <PowerShellCopyCard />
+                            <CopyCardAutomatic />
                         </CustomListItem>
                     </>
-                ) : (
+                )}
+                {type == "manual-less" && (
+                    <>
+                        <CustomListItem
+                            title="Enter your installation directory"
+                            index={4}
+                        >
+                            <p className="text-sm text-muted-foreground mb-1">
+                                Find the folder that contains
+                                <span className="font-bold text-primary mx-1">
+                                    Wuthering Waves.exe
+                                </span>
+                                and
+                                <span className="font-bold text-primary mx-1">
+                                    Client
+                                </span>
+                                folder.
+                            </p>
+                            <Input
+                                placeholder="E.g. D:\Wuthering Waves\Wuthering Waves Game"
+                                onChange={handleGamePathChange}
+                                value={gamePath}
+                            />
+                        </CustomListItem>
+                        <CustomListItem
+                            title={"Open Windows PowerShell and run the following command."}
+                            index={5}
+                        >
+                            <CopyCardSemiAutomatic text={gamePath} />
+                        </CustomListItem>
+                    </>
+                )}
+                {type == "manual-more" && (
                     <>
                         <CustomListItem
                             title="Open File Explorer and find"
@@ -97,7 +141,6 @@ export default function ConveneImport() {
                         value={inputValue}
                     />
                 </CustomListItem>
-
                 <CustomListItem
                     title="Click on the import button"
                     index={type == "manual" ? 9 : 6}
@@ -105,7 +148,7 @@ export default function ConveneImport() {
                 />
             </ol>
             <div className="ml-12 mt-2">
-                <ImportBtn historyUrl={inputValue} />
+                <ImportBtn historyUrl={inputValue} gamePath={gamePath} />
             </div>
         </div>
     );

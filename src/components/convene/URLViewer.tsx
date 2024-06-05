@@ -7,7 +7,7 @@ interface Props {
 export default function URLViewer({ path }: Props) {
     return (
         <>
-            <Card className="md:max-w-xl sm:max-w-72 max-w-72 lg:max-w-2xl xl:max-w-full">
+            <Card>
                 <CardContent className="p-5">
                     <div className="w-full whitespace-nowrap overflow-auto text-xs pb-2">
                         {path}

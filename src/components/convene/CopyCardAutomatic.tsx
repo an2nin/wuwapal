@@ -10,7 +10,7 @@ const scriptUrl =
 const copyText =
     '[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12; Invoke-Expression (New-Object Net.WebClient).DownloadString("https://gist.githubusercontent.com/antonin686/3dd396f472ab815c7a0d8041ef43d190/raw/80ae5fc5ccb4d48144316870d278a49e72b652a9/getWWConveneRecordUrl.ps1")';
 
-export default function PowerShellCopyCard() {
+export default function CopyCardAutomatic() {
     const { toast } = useToast();
     const handleCopy = () => {
         navigator.clipboard
@@ -32,11 +32,11 @@ export default function PowerShellCopyCard() {
                     <div className="flex items-center gap-5">
                         <div>
                             <Button
-                                variant="ghost"
+                                className="font-bol"
                                 size="icon"
                                 onClick={handleCopy}
                             >
-                                <Copy size="30px" />
+                                <Copy />
                             </Button>
                         </div>
                         <p className="break-all">{copyText}</p>
@@ -48,7 +48,7 @@ export default function PowerShellCopyCard() {
                 <a
                     target="_blank"
                     href={scriptUrl}
-                    className="text-blue-500 underline"
+                    className="text-accent font-bold underline"
                 >
                     here
                 </a>

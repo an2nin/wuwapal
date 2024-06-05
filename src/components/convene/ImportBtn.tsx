@@ -16,19 +16,23 @@ import { Progress } from "@/components/ui/progress";
 import { DialogContent } from "@radix-ui/react-dialog";
 import { useRouter } from "next/router";
 import { useBannerStore } from "@/stores/banner";
-import { parseUrlParams, processBanner } from "@/helpers/processors";
+import {
+    isConveneHistoryUrlValid,
+    parseUrlParams,
+    processBanner,
+} from "@/helpers/processors";
 
 interface Props {
     historyUrl: string;
+    gamePath?: string;
 }
 
 const total_banners = 6;
 
-export default function ImportBtn({ historyUrl }: Props) {
+export default function ImportBtn({ historyUrl, gamePath }: Props) {
     const { toast } = useToast();
     const router = useRouter();
     const bannerStore = useBannerStore<any>((state: any) => state);
-    // const dispatch = useDispatch();
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [currentBanner, setCurrentBanner] = useState(0);
     const [processedURLBody, setProcessedURLBody] = useState<any>(null);
@@ -43,16 +47,15 @@ export default function ImportBtn({ historyUrl }: Props) {
         },
     ] = useFetchBannerMutation();
 
-    
-
     const handleImport = () => {
-        if (historyUrl == null || historyUrl == "") {
+        if (!isConveneHistoryUrlValid(historyUrl)) {
             toast({
-                title: "Please paste the URL!!!",
+                title: "Please paste a valid Convene Record URL!!!",
                 variant: "destructive",
             });
             return;
         }
+
         const parsedBody = parseUrlParams(historyUrl);
         setProcessedURLBody(parsedBody);
         setIsDialogOpen(true);
@@ -89,6 +92,7 @@ export default function ImportBtn({ historyUrl }: Props) {
             } else if (currentBanner == 6) {
                 banner_name = "beginner_choice";
                 bannerStore.addBannerRecordUrl(historyUrl);
+                bannerStore.addGamePath(gamePath);
             }
 
             const processedBanner = processBanner(bannerData.data, banner_name);
@@ -98,7 +102,18 @@ export default function ImportBtn({ historyUrl }: Props) {
                 setCurrentBanner(currentBanner + 1);
             }
         }
-    }, [isBannerSuccess, isBannerError]);
+    }, [isBannerSuccess]);
+
+    useEffect(() => {
+        if (isBannerError) {
+            setIsDialogOpen(false);
+            setCurrentBanner(0);
+            toast({
+                title: "Something went wrong",
+                variant: "destructive",
+            });
+        }
+    }, [isBannerError]);
 
     return (
         <>
@@ -123,13 +138,16 @@ export default function ImportBtn({ historyUrl }: Props) {
                         </div>
                     </DialogContent>
                     <DialogFooter>
-                        <Button onClick={() => router.push("/convene")} variant="secondary">
+                        <Button
+                            onClick={() => router.push("/convene")}
+                            variant="outline"
+                        >
                             Go Back to Convene
                         </Button>
                     </DialogFooter>
                 </DialogContentWithoutClose>
             </Dialog>
-            <Button onClick={handleImport}>
+            <Button onClick={handleImport} disabled={!historyUrl}>
                 <span className="mr-2">
                     <ArrowRightToLine />
                 </span>

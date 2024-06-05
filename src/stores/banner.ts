@@ -24,7 +24,9 @@ export const useBannerStore = create(
         (set: any, get: any) => ({
             banners: initialState,
             banner_record_url: null,
+            game_path: null,
             addBannerRecordUrl: (url: string) => set({banner_record_url: url}),
+            addGamePath: (path: string) => set({game_path: path}),
             addBanner: (name: string, items: any) =>
                 set((state: any) => ({
                     banners: {

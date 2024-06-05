@@ -5,6 +5,7 @@ import BannerView from "@/components/banner/BannerView";
 import { bannerTypes } from "@/helpers/constants";
 import { useBannerStore } from "@/stores/banner";
 import SyncBtn from "@/components/convene/SyncBtn";
+import BackupCSV from "@/components/banner/BackupCSV";
 export default function ConveneTracker() {
     const router = useRouter();
 
@@ -12,21 +13,28 @@ export default function ConveneTracker() {
 
     return (
         <div className="flex flex-col">
-            <div className="flex gap-5 items-center mb-5">
-                <h1 className="text-xl font-semibold md:text-4xl">
-                    Convene Tracker
-                </h1>
-                <div>
-                    <Button onClick={() => router.push("/convene/import")}>
-                        <div className="flex gap-3 items-center">
-                            Import Records
-                        </div>
-                    </Button>
-                </div>
-                {bannerStore.banner_record_url && (
+            <div className="flex justify-between">
+                <div className="flex gap-5 items-center mb-5">
+                    <h1 className="text-xl font-semibold md:text-4xl">
+                        Convene Tracker
+                    </h1>
                     <div>
-                        <SyncBtn historyUrl={bannerStore.banner_record_url} />
+                        <Button onClick={() => router.push("/convene/import")}>
+                            <div className="flex gap-3 items-center">
+                                Import Records
+                            </div>
+                        </Button>
                     </div>
+                    {bannerStore.banner_record_url && (
+                        <div>
+                            <SyncBtn
+                                historyUrl={bannerStore.banner_record_url}
+                            />
+                        </div>
+                    )}
+                </div>
+                {bannerStore.banners.beginner && (
+                    <BackupCSV />
                 )}
             </div>
 

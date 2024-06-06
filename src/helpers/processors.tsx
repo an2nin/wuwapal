@@ -38,6 +38,7 @@ export function processBanner(payload: any, name: string) {
                 roll: idx + 1,
                 pity: 1,
                 image_path: "",
+                import_type: "automatic",
             };
             if (newItem.qualityLevel === 4) {
                 if (newItem.resourceType == "Resonators") {
@@ -106,7 +107,7 @@ export function processBanner(payload: any, name: string) {
             guaranteed,
             title: name,
             total: payload.length,
-            items: reversedItems.slice(0).reverse(),
+            items: reversedItems,
         };
     }
     return returnObj;
@@ -132,4 +133,36 @@ export function parseUrlParams(url: string) {
         params[key] = value;
     });
     return params;
+}
+
+export function processAddItemToBanner(banner: any, item: any) {
+    
+    banner.items.push(item);
+    banner.total = parseInt(banner.total) + parseInt(item.pity);
+
+    if (item.qualityLevel === 4) {
+        banner.star4_pity = 0;
+        if (item.resourceType === "Resonators") {
+            banner.star4_resonators.push({
+                name: item.name,
+                pity: item.pity,
+            });
+        } else {
+            banner.star4_weapons.push({
+                name: item.name,
+                pity: item.pity,
+            });
+        }
+    }
+
+    if (item.qualityLevel === 5) {
+        banner.star4_pity = 0;
+        banner.star5_pity = 0;
+        banner.star5s.push({
+            name: item.name,
+            pity: item.pity,
+        });
+    }
+
+    return banner;
 }

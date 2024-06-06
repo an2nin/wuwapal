@@ -11,9 +11,11 @@ export default function ConveneTracker() {
 
     const bannerStore = useBannerStore<any>((state: any) => state);
 
+    // console.log("banner Changed");
+
     return (
         <div className="flex flex-col">
-            <div className="flex justify-between">
+            <div className="flex flex-wrap justify-between">
                 <div className="flex gap-5 items-center mb-5">
                     <h1 className="text-xl font-semibold md:text-4xl">
                         Convene Tracker
@@ -33,9 +35,7 @@ export default function ConveneTracker() {
                         </div>
                     )}
                 </div>
-                {bannerStore.banners.beginner && (
-                    <BackupCSV />
-                )}
+                {bannerStore.banners.beginner && <BackupCSV />}
             </div>
 
             <Tabs defaultValue="featured_resonator">
@@ -65,6 +65,7 @@ export default function ConveneTracker() {
                         <TabsContent key={idx} value={banner.store_id}>
                             <div className="col-span-12 sm:col-span-6 xl:col-span-4">
                                 <BannerView
+                                    banner_store_id={banner.store_id}
                                     banner={
                                         bannerStore.banners[banner.store_id]
                                     }

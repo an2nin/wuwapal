@@ -5,16 +5,18 @@ import BannerPieChart from "@/components/banner/BannerPieChart";
 import BannerOverview from "@/components/banner/BannerOverview";
 import BannerEmptyCard from "./BannerEmptyCard";
 import BannerPullList from "./BannerTable";
+import AddManuallyBtn from "./add-manual/AddManuallyBtn";
 
 interface Props {
     banner: any;
+    banner_store_id: string;
 }
 
-export default function BannerView({ banner }: Props) {
-    console.log(banner);
+export default function BannerView({ banner, banner_store_id }: Props) {
+    // console.log(banner);
     return (
         <div>
-            {banner ? (
+            {banner && banner.items?.length > 0 ? (
                 <div className="flex flex-col gap-5">
                     <div className="flex justify-center items-center">
                         <BannerStat
@@ -47,7 +49,10 @@ export default function BannerView({ banner }: Props) {
                     </div>
                 </div>
             ) : (
-                <div className="flex justify-center">
+                <div className="flex md: flex-col justify-center gap-5">
+                    <div>
+                        <AddManuallyBtn banner_store_id={banner_store_id} />
+                    </div>
                     <BannerEmptyCard />
                 </div>
             )}

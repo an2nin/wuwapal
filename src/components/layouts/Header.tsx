@@ -1,4 +1,4 @@
-import { Menu, CircleUser } from "lucide-react";
+import { Menu, CircleUser, Settings } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
@@ -88,12 +88,11 @@ export default function Header() {
                         </div>
                         <div>
                             <Button
-                                variant="secondary"
+                                variant="outline"
                                 size="icon"
-                                className="rounded-full"
-                                disabled={true}
+                                onClick={() => router.push("/settings")}
                             >
-                                <CircleUser className="h-5 w-5" />
+                                <Settings className="h-5 w-5"/>
                                 <span className="sr-only">
                                     Toggle user menu
                                 </span>

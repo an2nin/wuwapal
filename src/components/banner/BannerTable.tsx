@@ -9,7 +9,8 @@ import {
 } from "@/components/ui/table";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
-import { Star } from "lucide-react";
+import { Delete, Star, Trash } from "lucide-react";
+import AddManuallyBtn from "./add-manual/AddManuallyBtn";
 interface Props {
     banner: any;
 }
@@ -31,74 +32,77 @@ export default function BannerPullList({ banner }: Props) {
                 activeFilters.includes(obj.qualityLevel)
         );
 
-        console.log(filteredObjects);
-
-        setFilteredItems(filteredObjects);
-    }, [activeFilters]);
+        setFilteredItems(filteredObjects.slice().reverse());
+    }, [activeFilters, banner]);
 
     return (
         <>
-            <div className="flex justify-end gap-3 mb-5">
-                <Button
-                    onClick={() => toggleFilter(5)}
-                    variant="ghost"
-                    className={`!hover:bg-transparent ${
-                        activeFilters.includes(5)
-                            ? "bg-yellow-500 text-accent-foreground"
-                            : "border-2 border-yellow-500 text-yellow-400"
-                    }`}
-                >
-                    <div className="flex items-center gap-1 text-lg">
-                        5
-                        <Star
-                            className={`w-4 h-4 ${
-                                activeFilters.includes(5)
-                                    ? "fill-accent-foreground"
-                                    : "fill-yellow-500"
-                            }`}
-                        />
-                    </div>
-                </Button>
-                <Button
-                    onClick={() => toggleFilter(4)}
-                    variant="ghost"
-                    className={`!hover:bg-transparent ${
-                        activeFilters.includes(4)
-                            ? "bg-purple-500 text-accent-foreground"
-                            : "border-2 border-purple-500 text-purple-400"
-                    }`}
-                >
-                    <div className="flex items-center gap-1 text-lg">
-                        4
-                        <Star
-                            className={`w-4 h-4 ${
-                                activeFilters.includes(4)
-                                    ? "fill-accent-foreground"
-                                    : "fill-purple-500"
-                            }`}
-                        />
-                    </div>
-                </Button>
-                <Button
-                    onClick={() => toggleFilter(3)}
-                    variant="ghost"
-                    className={`!hover:bg-transparent ${
-                        activeFilters.includes(3)
-                            ? "bg-cyan-500 text-accent-foreground"
-                            : "border-2 border-cyan-500 text-cyan-400"
-                    }`}
-                >
-                    <div className="flex items-center gap-1 text-lg">
-                        3
-                        <Star
-                            className={`w-4 h-4 ${
-                                activeFilters.includes(3)
-                                    ? "fill-accent-foreground"
-                                    : "fill-cyan-500"
-                            }`}
-                        />
-                    </div>
-                </Button>
+            <div className="flex flex-wrap gap-3 justify-between mb-5 items-center">
+                <div>
+                    <AddManuallyBtn banner_store_id={banner.title} />
+                </div>
+                <div className="flex gap-3 items-center">
+                    <Button
+                        onClick={() => toggleFilter(5)}
+                        variant="ghost"
+                        className={`!hover:bg-transparent ${
+                            activeFilters.includes(5)
+                                ? "bg-yellow-500 text-accent-foreground"
+                                : "border-2 border-yellow-500 text-yellow-400"
+                        }`}
+                    >
+                        <div className="flex items-center gap-1 text-lg">
+                            5
+                            <Star
+                                className={`w-4 h-4 ${
+                                    activeFilters.includes(5)
+                                        ? "fill-accent-foreground"
+                                        : "fill-yellow-500"
+                                }`}
+                            />
+                        </div>
+                    </Button>
+                    <Button
+                        onClick={() => toggleFilter(4)}
+                        variant="ghost"
+                        className={`!hover:bg-transparent ${
+                            activeFilters.includes(4)
+                                ? "bg-purple-500 text-accent-foreground"
+                                : "border-2 border-purple-500 text-purple-400"
+                        }`}
+                    >
+                        <div className="flex items-center gap-1 text-lg">
+                            4
+                            <Star
+                                className={`w-4 h-4 ${
+                                    activeFilters.includes(4)
+                                        ? "fill-accent-foreground"
+                                        : "fill-purple-500"
+                                }`}
+                            />
+                        </div>
+                    </Button>
+                    <Button
+                        onClick={() => toggleFilter(3)}
+                        variant="ghost"
+                        className={`!hover:bg-transparent ${
+                            activeFilters.includes(3)
+                                ? "bg-cyan-500 text-accent-foreground"
+                                : "border-2 border-cyan-500 text-cyan-400"
+                        }`}
+                    >
+                        <div className="flex items-center gap-1 text-lg">
+                            3
+                            <Star
+                                className={`w-4 h-4 ${
+                                    activeFilters.includes(3)
+                                        ? "fill-accent-foreground"
+                                        : "fill-cyan-500"
+                                }`}
+                            />
+                        </div>
+                    </Button>
+                </div>
             </div>
             <Card>
                 <CardContent className="h-full p-5">
@@ -107,8 +111,10 @@ export default function BannerPullList({ banner }: Props) {
                             <TableRow>
                                 <TableHead>Roll</TableHead>
                                 <TableHead>Name</TableHead>
+                                <TableHead></TableHead>
                                 <TableHead>Pity</TableHead>
                                 <TableHead>Time</TableHead>
+                                <TableHead>Actions</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -124,22 +130,35 @@ export default function BannerPullList({ banner }: Props) {
                                     }`}
                                 >
                                     <TableCell>{item.roll}</TableCell>
-                                    <TableCell>
+                                    <TableCell colSpan={2}>
                                         <div className="flex items-center gap-3">
-                                        <img
-                                        className="w-10 h-10"
-                                            src={
-                                                process.env
-                                                    .NEXT_PUBLIC_IMAGE_URL +
-                                                item.image_path
-                                            }
-                                            alt={item.name}
-                                        />
-                                        {item.name}
+                                            <img
+                                                className="w-10 h-10"
+                                                src={
+                                                    process.env
+                                                        .NEXT_PUBLIC_IMAGE_URL +
+                                                    item.image_path
+                                                }
+                                                alt={item.name}
+                                            />
+                                            {item.name}
                                         </div>
                                     </TableCell>
                                     <TableCell>{item.pity}</TableCell>
-                                    <TableCell>{item.time}</TableCell>
+                                    <TableCell>
+                                        {item.time} {filteredItems.length} {idx}
+                                    </TableCell>
+                                    <TableCell>
+                                        {item.import_type == "manual" &&
+                                            idx == 0 && (
+                                                <Button
+                                                    variant="destructive"
+                                                    size="icon"
+                                                >
+                                                    <Trash />
+                                                </Button>
+                                            )}
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

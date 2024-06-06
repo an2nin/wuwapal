@@ -53,6 +53,16 @@ export default function AddManuallyBtn({ banner_store_id }: Props) {
             });
             return;
         }
+        const shallowBanner = { ...bannerStore.banners[banner_store_id] };
+        shallowBanner.star5s = shallowBanner.star5s || [];
+        shallowBanner.star4_resonators = shallowBanner.star4_resonators || [];
+        shallowBanner.star4_weapons = shallowBanner.star4_weapons || [];
+        shallowBanner.total = shallowBanner.total || 0;
+        shallowBanner.items = shallowBanner.items || [];
+        shallowBanner.star5_pity = shallowBanner.star5_pity || 0;
+        shallowBanner.star4_pity = shallowBanner.star4_pity || 0;
+        shallowBanner.title = shallowBanner.title || banner_store_id;
+
         const itemData = {
             name: selectedResource?.name,
             count: 1,
@@ -61,14 +71,13 @@ export default function AddManuallyBtn({ banner_store_id }: Props) {
             pity: +pityInput,
             image_path: selectedResource?.image_path,
             import_type: "manual",
-            roll: bannerStore.banners[banner_store_id].total + parseInt(pityInput),
+            roll: shallowBanner.total + parseInt(pityInput),
             time: format(date as any, "yyyy-MM-dd HH:mm:ss"),
         };
 
-        const updatedBanner = processAddItemToBanner(
-            { ...bannerStore.banners[banner_store_id] },
-            itemData
-        );
+        const updatedBanner = processAddItemToBanner(shallowBanner, itemData);
+
+        console.log(banner_store_id);
 
         setSelectedResource(null);
         bannerStore.addBanner(banner_store_id, updatedBanner);
@@ -138,15 +147,15 @@ export default function AddManuallyBtn({ banner_store_id }: Props) {
                     </div>
                 </DialogContent>
             </Dialog>
-            <Button
-                variant="ghostOutline"
-                onClick={() => setIsAddModalOpen(true)}
-            >
-                <Plus />
-                Add Manually
-            </Button>
+            {banner_store_id && (
+                <Button
+                    variant="ghostOutline"
+                    onClick={() => setIsAddModalOpen(true)}
+                >
+                    <Plus />
+                    Add Manually
+                </Button>
+            )}
         </>
     );
 }
-
-

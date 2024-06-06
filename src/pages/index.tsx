@@ -15,12 +15,20 @@ export default function Home() {
     return (
         <>
             <Head>
-                <title>My page title</title>
-                <meta property="og:title" content=".moe" />
+                <title>WuWaPal - Your Ultimate Guide to Wuthering Waves</title>
+                <meta
+                    name="description"
+                    content="Discover everything about Wuthering Waves on WuWaPal! Get the latest news, guides, character reviews, and tips to excel in this exciting gacha game."
+                />
+                <meta
+                    name="keywords"
+                    content="Wuthering Waves, WuWaPal, gacha game guide, Wuthering Waves news, Wuthering Waves tips, Wuthering Waves characters"
+                />
+                <meta property="og:title" content="WuWaPal.com" />
                 <meta property="og:type" content="website" />
                 <meta
                     property="og:image"
-                    content="https://paimon.moe/paimon-og.png"
+                    content="https://wuwapal.com/wuwapal-og.png"
                 />
             </Head>
             <div

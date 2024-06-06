@@ -11,12 +11,16 @@ import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { Star, Trash } from "lucide-react";
 import AddManuallyBtn from "./add-manual/AddManuallyBtn";
+import { processDeleteLastItemFromBanner } from "@/helpers/processors";
+import { useBannerStore } from "@/stores/banner";
 interface Props {
     banner: any;
 }
 export default function BannerPullList({ banner }: Props) {
     const [filteredItems, setFilteredItems] = useState<any>([]);
     const [activeFilters, setActiveFilters] = useState<number[]>([4, 5]);
+    const bannerStore = useBannerStore<any>((state: any) => state);
+
     const toggleFilter = (quality: number) => {
         setActiveFilters((prevFilters) =>
             prevFilters.includes(quality)
@@ -34,6 +38,11 @@ export default function BannerPullList({ banner }: Props) {
 
         setFilteredItems(filteredObjects);
     }, [activeFilters, banner]);
+
+    const handleDelete = (item: any) => {
+        const updatedBanner = processDeleteLastItemFromBanner(banner, item);
+       bannerStore.addBanner(updatedBanner.store_id, updatedBanner);
+    };
 
     return (
         <>
@@ -145,15 +154,16 @@ export default function BannerPullList({ banner }: Props) {
                                         </div>
                                     </TableCell>
                                     <TableCell>{item.pity}</TableCell>
-                                    <TableCell>
-                                        {item.time} {filteredItems.length} {idx}
-                                    </TableCell>
+                                    <TableCell>{item.time}</TableCell>
                                     <TableCell>
                                         {item.import_type == "manual" &&
                                             idx == 0 && (
                                                 <Button
                                                     variant="destructive"
                                                     size="icon"
+                                                    onClick={() =>
+                                                        handleDelete(item)
+                                                    }
                                                 >
                                                     <Trash />
                                                 </Button>

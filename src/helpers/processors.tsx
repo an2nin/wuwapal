@@ -69,8 +69,8 @@ export function processBanner(banner: any) {
             let newItem = {
                 ...item,
                 image_path: "",
-                import_type: "automatic",
             };
+
             if (newItem.qualityLevel === 4) {
                 if (newItem.resourceType == "Resonators") {
                     star4_resonators.push({
@@ -154,6 +154,14 @@ export function processAddItemToBanner(banner: any, item: any) {
     const copyBanner = { ...banner };
     copyBanner.items.push(item);
     copyBanner.total = parseInt(banner.total) + parseInt(item.pity);
+
+    return copyBanner;
+}
+
+export function processDeleteLastItemFromBanner(banner: any, item: any) {
+    const copyBanner = { ...banner };
+    copyBanner.items.reverse().pop();
+    copyBanner.total = parseInt(copyBanner.total) - parseInt(item.pity);
 
     return copyBanner;
 }

@@ -18,10 +18,44 @@ export default function createImportScript(gamePath: string) {
     return `$gamePath="${gamePath}";$logFile="$gamePath\\Client\\Saved\\Logs\\Client.log";if(-not(Test-Path $logFile)){Write-Host "\`nThe file '$logFile' does not exist." -ForegroundColor Red;Write-Host "Did you set your Game Installation Path properly?" -ForegroundColor Magenta;Read-Host "Press any key to exit";exit}$latestUrlEntry=Get-Content $logFile | Select-String "https://aki-gm-resources-oversea.aki-game.net" | Select-Object -Last 1;if($null -ne $latestUrlEntry){$urlPattern='url":"(.*?)"';$url=[regex]::Match($latestUrlEntry.ToString(),$urlPattern).Groups[1].Value;if($url){Write-Host"";Write-Host "Convene Record URL: $url";Set-Clipboard $url;Write-Host"";Write-Host "URL copied to clipboard. Please paste to WuWaPal.com and click the Import button." -ForegroundColor Green}else{Write-Host "No URL found."}}else{Write-Host "\`nNo matching entries found in the log file. Please open your Convene History first!" -ForegroundColor Red}`;
 }
 
-export function processBanner(payload: any, name: string) {
+export function processBannerForStore(banner: any, store_id: string) {
+    const copyData = [...banner.data].slice().reverse();
+    let pity4_last_index = 0;
+    let pity5_last_index = 0;
+
+    copyData.forEach((data: any, idx) => {
+        const newItem = { ...data, roll: idx + 1, pity: 1 };
+        if (newItem.qualityLevel == 4) {
+            newItem.pity =
+                pity4_last_index == 0
+                    ? idx - pity4_last_index + 1
+                    : idx - pity4_last_index;
+            pity4_last_index = idx;
+        }
+
+        if (newItem.qualityLevel == 5) {
+            newItem.pity =
+                pity5_last_index == 0
+                    ? idx - pity5_last_index + 1
+                    : idx - pity5_last_index;
+            pity4_last_index = idx;
+            pity5_last_index = idx;
+        }
+
+        copyData[idx] = newItem;
+    });
+
+    return {
+        total: copyData.length,
+        store_id: store_id,
+        items: copyData,
+    };
+}
+
+export function processBanner(banner: any) {
     let returnObj = null;
-    if (payload && payload.length > 0) {
-        let reversedItems = [...payload].slice().reverse();
+    if (banner && banner.items.length > 0) {
+        let copyItems = [...banner.items];
         let star4_resonators: any = [];
         let star4_weapons: any = [];
         let star4_pity = 0;
@@ -31,12 +65,9 @@ export function processBanner(payload: any, name: string) {
         let pity4_last_index = 0;
         let pity5_last_index = 0;
 
-        reversedItems.forEach((item, idx) => {
-            // Create a shallow copy of the item to avoid modification issues
+        copyItems.forEach((item, idx) => {
             let newItem = {
                 ...item,
-                roll: idx + 1,
-                pity: 1,
                 image_path: "",
                 import_type: "automatic",
             };
@@ -44,41 +75,23 @@ export function processBanner(payload: any, name: string) {
                 if (newItem.resourceType == "Resonators") {
                     star4_resonators.push({
                         name: newItem.name,
-                        pity:
-                            pity4_last_index == 0
-                                ? idx - pity4_last_index + 1
-                                : idx - pity4_last_index,
+                        pity: newItem.pity,
                     });
                 } else {
                     star4_weapons.push({
                         name: newItem.name,
-                        pity:
-                            pity4_last_index == 0
-                                ? idx - pity4_last_index + 1
-                                : idx - pity4_last_index,
+                        pity: newItem.pity,
                     });
                 }
-                newItem.pity =
-                    pity4_last_index == 0
-                        ? idx - pity4_last_index + 1
-                        : idx - pity4_last_index;
-                pity4_last_index = idx;
+                pity4_last_index = newItem.roll;
             } else if (newItem.qualityLevel === 5) {
                 star5s.push({
                     name: newItem.name,
-                    pity:
-                        pity5_last_index == 0
-                            ? idx - pity5_last_index + 1
-                            : idx - pity5_last_index,
+                    pity: newItem.pity,
                 });
 
-                newItem.pity =
-                    pity5_last_index == 0
-                        ? idx - pity5_last_index + 1
-                        : idx - pity5_last_index;
-
-                pity4_last_index = idx;
-                pity5_last_index = idx;
+                pity4_last_index = newItem.roll;
+                pity5_last_index = newItem.roll;
             }
             // Replace the original item with the new one
             newItem.image_path =
@@ -88,28 +101,30 @@ export function processBanner(payload: any, name: string) {
                     .replace(/:/g, "") // Remove colons
                     .replace(/ /g, "_") +
                 ".webp";
-            reversedItems[idx] = newItem;
+            copyItems[idx] = newItem;
         });
 
-        guaranteed = standard_resonators.includes(
-            reversedItems[pity5_last_index].name
-        );
+        if (guaranteed) {
+            guaranteed = standard_resonators.includes(
+                star5s[star5s.length - 1].name
+            );
+        }
 
-        star4_pity = reversedItems.length - 1 - pity4_last_index;
-        star5_pity = reversedItems.length - 1 - pity5_last_index;
+        star4_pity = banner.total - pity4_last_index;
+        star5_pity = banner.total - pity5_last_index;
 
         returnObj = {
+            ...banner,
             star4_resonators,
             star4_weapons,
             star5s,
             star4_pity,
             star5_pity,
             guaranteed,
-            title: name,
-            total: payload.length,
-            items: reversedItems,
+            items: copyItems.slice().reverse(),
         };
     }
+
     return returnObj;
 }
 
@@ -136,33 +151,9 @@ export function parseUrlParams(url: string) {
 }
 
 export function processAddItemToBanner(banner: any, item: any) {
-    
-    banner.items.push(item);
-    banner.total = parseInt(banner.total) + parseInt(item.pity);
+    const copyBanner = { ...banner };
+    copyBanner.items.push(item);
+    copyBanner.total = parseInt(banner.total) + parseInt(item.pity);
 
-    if (item.qualityLevel === 4) {
-        banner.star4_pity = 0;
-        if (item.resourceType === "Resonators") {
-            banner.star4_resonators.push({
-                name: item.name,
-                pity: item.pity,
-            });
-        } else {
-            banner.star4_weapons.push({
-                name: item.name,
-                pity: item.pity,
-            });
-        }
-    }
-
-    if (item.qualityLevel === 5) {
-        banner.star4_pity = 0;
-        banner.star5_pity = 0;
-        banner.star5s.push({
-            name: item.name,
-            pity: item.pity,
-        });
-    }
-
-    return banner;
+    return copyBanner;
 }

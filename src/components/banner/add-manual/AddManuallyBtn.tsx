@@ -53,15 +53,12 @@ export default function AddManuallyBtn({ banner_store_id }: Props) {
             });
             return;
         }
-        const shallowBanner = { ...bannerStore.banners[banner_store_id] };
-        shallowBanner.star5s = shallowBanner.star5s || [];
-        shallowBanner.star4_resonators = shallowBanner.star4_resonators || [];
-        shallowBanner.star4_weapons = shallowBanner.star4_weapons || [];
-        shallowBanner.total = shallowBanner.total || 0;
-        shallowBanner.items = shallowBanner.items || [];
-        shallowBanner.star5_pity = shallowBanner.star5_pity || 0;
-        shallowBanner.star4_pity = shallowBanner.star4_pity || 0;
-        shallowBanner.title = shallowBanner.title || banner_store_id;
+        
+        const copyBanner = { ...bannerStore.banners[banner_store_id] };
+        copyBanner.total = copyBanner.total || 0;
+        copyBanner.items = copyBanner.items || [];
+        copyBanner.banner_store_id =
+            copyBanner.banner_store_id || banner_store_id;
 
         const itemData = {
             name: selectedResource?.name,
@@ -69,15 +66,13 @@ export default function AddManuallyBtn({ banner_store_id }: Props) {
             qualityLevel: rarity,
             resourceType: resourceType == 1 ? "Resonators" : "Weapons",
             pity: +pityInput,
-            image_path: selectedResource?.image_path,
             import_type: "manual",
-            roll: shallowBanner.total + parseInt(pityInput),
+            roll: copyBanner.total + parseInt(pityInput),
             time: format(date as any, "yyyy-MM-dd HH:mm:ss"),
         };
 
-        const updatedBanner = processAddItemToBanner(shallowBanner, itemData);
+        const updatedBanner = processAddItemToBanner(copyBanner, itemData);
 
-        console.log(banner_store_id);
 
         setSelectedResource(null);
         bannerStore.addBanner(banner_store_id, updatedBanner);

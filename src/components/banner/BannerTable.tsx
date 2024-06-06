@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/table";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
-import { Delete, Star, Trash } from "lucide-react";
+import { Star, Trash } from "lucide-react";
 import AddManuallyBtn from "./add-manual/AddManuallyBtn";
 interface Props {
     banner: any;
@@ -32,14 +32,14 @@ export default function BannerPullList({ banner }: Props) {
                 activeFilters.includes(obj.qualityLevel)
         );
 
-        setFilteredItems(filteredObjects.slice().reverse());
+        setFilteredItems(filteredObjects);
     }, [activeFilters, banner]);
 
     return (
         <>
             <div className="flex flex-wrap gap-3 justify-between mb-5 items-center">
                 <div>
-                    <AddManuallyBtn banner_store_id={banner.title} />
+                    <AddManuallyBtn banner_store_id={banner.store_id} />
                 </div>
                 <div className="flex gap-3 items-center">
                     <Button

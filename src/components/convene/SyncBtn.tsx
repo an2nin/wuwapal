@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { parseUrlParams, processBanner } from "@/helpers/processors";
+import {
+    parseUrlParams,
+    processBanner,
+    processBannerForStore,
+} from "@/helpers/processors";
 import { useFetchBannerMutation } from "@/redux/services/banner";
 import { toast } from "@/components/ui/use-toast";
 import { useBannerStore } from "@/stores/banner";
@@ -87,8 +91,12 @@ export default function SyncBtn({ historyUrl }: Props) {
                 bannerStore.addBannerRecordUrl(historyUrl);
             }
 
-            const processedBanner = processBanner(bannerData.data, banner_name);
-            bannerStore.addBanner(banner_name, processedBanner);
+            const processedBannerData = processBannerForStore(
+                bannerData,
+                banner_name
+            );
+
+            bannerStore.addBanner(banner_name, processedBannerData);
 
             if (currentBanner < total_banners) {
                 setCurrentBanner(currentBanner + 1);
@@ -106,7 +114,7 @@ export default function SyncBtn({ historyUrl }: Props) {
             });
         }
     }, [isBannerError]);
-    
+
     return (
         <>
             <Dialog open={isDialogOpen}>

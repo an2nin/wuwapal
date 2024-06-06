@@ -8,10 +8,7 @@ import SyncBtn from "@/components/convene/SyncBtn";
 import BackupCSV from "@/components/banner/BackupCSV";
 export default function ConveneTracker() {
     const router = useRouter();
-
     const bannerStore = useBannerStore<any>((state: any) => state);
-
-    // console.log("banner Changed");
 
     return (
         <div className="flex flex-col">

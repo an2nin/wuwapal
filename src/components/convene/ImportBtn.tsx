@@ -19,7 +19,7 @@ import { useBannerStore } from "@/stores/banner";
 import {
     isConveneHistoryUrlValid,
     parseUrlParams,
-    processBanner,
+    processBannerForStore,
 } from "@/helpers/processors";
 
 interface Props {
@@ -95,8 +95,12 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
                 bannerStore.addGamePath(gamePath);
             }
 
-            const processedBanner = processBanner(bannerData.data, banner_name);
-            bannerStore.addBanner(banner_name, processedBanner);
+            const processedBannerData = processBannerForStore(
+                bannerData,
+                banner_name
+            );
+
+            bannerStore.addBanner(banner_name, processedBannerData);
 
             if (currentBanner < total_banners) {
                 setCurrentBanner(currentBanner + 1);

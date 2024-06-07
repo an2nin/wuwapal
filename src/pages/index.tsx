@@ -32,7 +32,7 @@ export default function Home() {
                 />
             </Head>
             <div
-                className={`flex flex-col items-center justify-center w-full h-[80vh] `}
+                className={`flex flex-col gap-5 items-center justify-center w-full h-[80vh] `}
             >
                 <Card className="w-96">
                     <CardHeader>
@@ -53,6 +53,26 @@ export default function Home() {
                             Convene Tracker
                         </Button>
                     </CardFooter>
+                </Card>
+                <Card className="w-96">
+                    <CardHeader>
+                        <CardTitle>Currently Working on</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <ul className="list-disc list-inside">
+                            <li>Cloud Syncing of Convene Record</li>
+                        </ul>
+                    </CardContent>
+                </Card>
+                <Card className="w-96">
+                    <CardHeader>
+                        <CardTitle>Future Scope</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <ul className="list-disc list-inside">
+                            <li>Global Statistic</li>
+                        </ul>
+                    </CardContent>
                 </Card>
             </div>
         </>

@@ -5,6 +5,7 @@ import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import Link from "next/link";
 import { navs } from "@/helpers/navs";
 import { useRouter } from "next/router";
+import BrandLogo from "./BrandLogo";
 
 export default function Header() {
     const router = useRouter();
@@ -18,12 +19,18 @@ export default function Header() {
     }, [router]);
 
     return (
-        <header className="flex flex-col bg-card">
+        <header className="flex flex-col bg-card sticky top-0 z-10 ">
             <div className="w-full text-center bg-black p-1 text-sm">
-                This website is still under development. Join our Discord
-                community to share your feedback!
+                This website is still under development. Send me a
+                <a
+                    href="mailto:wuwapal@gmail.com?subject=Bug Report&body=Hello, I have found a bug in WuWaPal. Please describe the bug and any relevant information."
+                    className="text-primary font-bold  hover:text-primary/40 mx-1 underline"
+                >
+                    mail
+                </a>
+                to share your feedback!
             </div>
-            <div className="container mx-auto p-2">
+            <div className="container mx-auto p-3">
                 <Sheet>
                     <SheetTrigger asChild>
                         <Button
@@ -64,11 +71,13 @@ export default function Header() {
                 </Sheet>
                 <div className="hidden md:block">
                     <div className="w-full flex items-center justify-between px-5">
-                        <Link href="/">
+                        {/* <Link href="/">
                             <span className="text-2xl text-primary font-bold">
                                 {process.env.NEXT_PUBLIC_APP_NAME}
                             </span>
-                        </Link>
+                        </Link> */}
+
+                        <BrandLogo />
 
                         <div className="flex items-center gap-5 justify-center">
                             {navs.map((nav, idx) => (
@@ -92,7 +101,7 @@ export default function Header() {
                                 size="icon"
                                 onClick={() => router.push("/settings")}
                             >
-                                <Settings className="h-5 w-5"/>
+                                <Settings className="h-5 w-5" />
                                 <span className="sr-only">
                                     Toggle user menu
                                 </span>

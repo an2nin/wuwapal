@@ -104,7 +104,7 @@ export function processBanner(banner: any) {
             copyItems[idx] = newItem;
         });
 
-        if (guaranteed) {
+        if (star5s.length > 0) {
             guaranteed = standard_resonators.includes(
                 star5s[star5s.length - 1].name
             );

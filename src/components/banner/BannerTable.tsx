@@ -118,12 +118,13 @@ export default function BannerPullList({ banner }: Props) {
                     <Table>
                         <TableHeader>
                             <TableRow>
-                                <TableHead>Roll</TableHead>
+                                <TableHead className="md:w-[20%]">Roll</TableHead>
                                 <TableHead>Name</TableHead>
                                 <TableHead></TableHead>
-                                <TableHead>Pity</TableHead>
-                                <TableHead>Time</TableHead>
-                                <TableHead>Actions</TableHead>
+                                <TableHead></TableHead>
+                                <TableHead >Pity</TableHead>
+                                <TableHead className="w-[20%]">Time</TableHead>
+                                <TableHead className="w-[5%]">Actions</TableHead>
                             </TableRow>
                         </TableHeader>
                         <TableBody>
@@ -139,7 +140,7 @@ export default function BannerPullList({ banner }: Props) {
                                     }`}
                                 >
                                     <TableCell>{item.roll}</TableCell>
-                                    <TableCell colSpan={2}>
+                                    <TableCell colSpan={3}>
                                         <div className="flex items-center gap-3">
                                             <img
                                                 className="w-10 h-10"

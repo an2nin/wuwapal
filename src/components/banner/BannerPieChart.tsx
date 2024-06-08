@@ -6,12 +6,13 @@ Chart.register(ArcElement);
 Chart.register(Tooltip);
 
 interface Props {
-    star3: number;
+    total: number;
     star4: number;
     star5: number;
 }
 
-export default function BannerPieChart({ star3, star4, star5 }: Props) {
+export default function BannerPieChart({ total, star4, star5 }: Props) {
+    const star3 = total - star4 - star5;
     return (
         <Card>
             <CardContent className="h-full flex items-center justify-center py-0">

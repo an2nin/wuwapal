@@ -165,3 +165,4 @@ export function processDeleteLastItemFromBanner(banner: any, item: any) {
 
     return copyBanner;
 }
+

@@ -1,7 +1,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { CornerDownRight, Star } from "lucide-react";
 import { useEffect, useState } from "react";
-import { Badge } from "../ui/badge";
+import { Badge } from "@/components/ui/badge";
+import PitySeverityIndicator from "@/components/convene/PitySeverityIndicator";
 
 interface Props {
     bannerData?: any;
@@ -158,18 +159,19 @@ export default function BannerOverview({ bannerData }: Props) {
                         </div>
                     </div>
 
-                    <div className="mt-3">
+                    <div className="mt-3 flex gap-3">
                         {bannerData.star5s.map((item: any, idx: number) => (
                             <Badge
                                 key={idx}
                                 variant="outline"
                                 className="px-2 py-1"
                             >
-                                <div className="flex gap-3 w-full items-center font-bold text-base">
+                                <div className="flex gap-3 w-full items-center font-bold text-base px-2">
                                     <span>{item.name}</span>
-                                    <span className=" text-accent">
-                                        {item.pity}
-                                    </span>
+                                    <PitySeverityIndicator
+                                        pity={item.pity}
+                                        maxPulls={80}
+                                    />
                                 </div>
                             </Badge>
                         ))}

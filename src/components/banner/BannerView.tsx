@@ -41,11 +41,7 @@ export default function BannerView({ banner, banner_store_id }: Props) {
                         </div>
                         <div className="flex flex-wrap gap-5 justify-center">
                             <BannerPieChart
-                                star3={
-                                    processedBanner.total -
-                                    (processedBanner?.star4_resonators.length +
-                                        processedBanner?.star4_weapons.length)
-                                }
+                                total={processedBanner.total}
                                 star4={
                                     processedBanner?.star4_resonators.length +
                                     processedBanner?.star4_weapons.length

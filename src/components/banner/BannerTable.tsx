@@ -13,6 +13,7 @@ import { Star, Trash } from "lucide-react";
 import AddManuallyBtn from "./add-manual/AddManuallyBtn";
 import { processDeleteLastItemFromBanner } from "@/helpers/processors";
 import { useBannerStore } from "@/stores/banner";
+import PitySeverityIndicator from "../convene/PitySeverityIndicator";
 interface Props {
     banner: any;
 }
@@ -154,7 +155,9 @@ export default function BannerPullList({ banner }: Props) {
                                             {item.name}
                                         </div>
                                     </TableCell>
-                                    <TableCell>{item.pity}</TableCell>
+                                    <TableCell>
+                                        <PitySeverityIndicator pity={item.pity} maxPulls={item.qualityLevel == 5 ? 80 : 10} />
+                                    </TableCell>
                                     <TableCell>{item.time}</TableCell>
                                     <TableCell>
                                         {item.import_type == "manual" &&

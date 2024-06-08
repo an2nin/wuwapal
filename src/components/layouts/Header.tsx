@@ -71,7 +71,9 @@ export default function Header() {
                         </SheetContent>
                     </Sheet>
 
-                    <BrandLogo />
+                    <div className="md:hidden">
+                        <BrandLogo />
+                    </div>
                     <div></div>
                 </div>
 

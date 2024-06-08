@@ -19,11 +19,11 @@ export default function Header() {
     }, [router]);
 
     return (
-        <header className="flex flex-col bg-card sticky top-0 z-10 ">
+        <header className="flex flex-col bg-theme-glassy sticky top-0 z-10 ">
             <div className="w-full text-center bg-black p-1 text-sm">
                 This website is still under development. Send me a
                 <a
-                    href="mailto:wuwapal@gmail.com?subject=Bug Report&body=Hello, I have found a bug in WuWaPal. Please describe the bug and any relevant information."
+                    href="mailto:wuwapal@gmail.com?subject=Feedback for WuWaPal&body=Hello, My feedback: "
                     className="text-primary font-bold  hover:text-primary/40 mx-1 underline"
                 >
                     mail
@@ -57,9 +57,9 @@ export default function Header() {
                                     <Link
                                         key={idx}
                                         href={nav.href}
-                                        className={`flex justify-start items-center gap-3 rounded-lg p-3 transition-all ${
+                                        className={`flex justify-start items-center gap-3 rounded-lg p-3 hover:bg-primary/90 transition-all ${
                                             currentActiveNav === nav.href
-                                                ? "bg-accent text-accent-foreground "
+                                                ? "bg-primary text-accent-foreground "
                                                 : "text-muted-foreground hover:text-primary"
                                         }`}
                                     >
@@ -94,7 +94,7 @@ export default function Header() {
                                     href={nav.href}
                                     className={`flex justify-start items-center gap-3 rounded-lg p-3 transition-all ${
                                         currentActiveNav === nav.href
-                                            ? "bg-accent text-accent-foreground "
+                                            ? "bg-primary hover:bg-primary/90 text-accent-foreground "
                                             : "text-muted-foreground hover:text-primary"
                                     }`}
                                 >

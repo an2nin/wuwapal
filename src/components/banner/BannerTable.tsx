@@ -44,7 +44,6 @@ export default function BannerPullList({ banner }: Props) {
         const updatedBanner = processDeleteLastItemFromBanner(banner, item);
        bannerStore.addBanner(updatedBanner.store_id, updatedBanner);
     };
-    console.log(banner.store_id)
     return (
         <>
             <div className="flex flex-wrap gap-3 justify-between mb-5 items-center">

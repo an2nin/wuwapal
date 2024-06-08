@@ -145,6 +145,14 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
                         <Button
                             onClick={() => router.push("/convene")}
                             variant="outline"
+                            disabled={
+                                !(
+                                    currentBanner == 6 &&
+                                    !isBannerLoading &&
+                                    isBannerSuccess &&
+                                    !isBannerError
+                                )
+                            }
                         >
                             Go Back to Convene
                         </Button>

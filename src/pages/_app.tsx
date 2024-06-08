@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <ApiProvider api={api}>
                 <Toaster />
                 <Component {...pageProps} />
-                </ApiProvider>
+            </ApiProvider>
         </Layout>
     );
 }

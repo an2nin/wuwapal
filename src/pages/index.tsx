@@ -32,7 +32,7 @@ export default function Home() {
                 />
             </Head>
             <div
-                className={`flex flex-col gap-5 items-center justify-center w-full h-[80vh] `}
+                className={`flex flex-col gap-5 items-center justify-center w-full my-[12vh] `}
             >
                 <Card className="w-96">
                     <CardHeader>

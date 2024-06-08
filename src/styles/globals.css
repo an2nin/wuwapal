@@ -126,3 +126,22 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
+/* .bg-theme-glassy {
+    background-image: linear-gradient(to bottom right, #30455a, #1b2a3c);
+} */
+
+/* .bg-theme-glassy {
+    background-image: linear-gradient(to bottom right, #3d4c5c, #283341);
+} */
+
+.bg-theme-glassy {
+    background-image: linear-gradient(to bottom right, #405b78, #2b3a4c);
+}
+
+.bg-theme-glassy-dark {
+    background-image: linear-gradient(to bottom, #1b2a3c, #0d192b);
+}
+
+/* .bg-theme-accent-glassy {
+    background-image: linear-gradient(to bottom right, #a3c268, #e9ff8f);
+} */

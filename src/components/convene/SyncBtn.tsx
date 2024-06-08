@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import {
-    parseUrlParams,
-    processBanner,
-    processBannerForStore,
-} from "@/helpers/processors";
+import { parseUrlParams, processBannerForStore } from "@/helpers/processors";
 import { useFetchBannerMutation } from "@/redux/services/banner";
 import { toast } from "@/components/ui/use-toast";
 import { useBannerStore } from "@/stores/banner";
@@ -13,9 +9,6 @@ import {
     DialogTitle,
     DialogDescription,
     DialogContent,
-} from "@radix-ui/react-dialog";
-import { ArrowRightToLine } from "lucide-react";
-import {
     DialogContentWithoutClose,
     DialogHeader,
     DialogFooter,
@@ -32,6 +25,7 @@ export default function SyncBtn({ historyUrl }: Props) {
     const bannerStore = useBannerStore<any>((state: any) => state);
 
     const [isDialogOpen, setIsDialogOpen] = useState(false);
+    const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
     const [currentBanner, setCurrentBanner] = useState(0);
     const [processedURLBody, setProcessedURLBody] = useState<any>(null);
 
@@ -117,37 +111,89 @@ export default function SyncBtn({ historyUrl }: Props) {
 
     return (
         <>
+            <Dialog
+                open={isConfirmDialogOpen}
+                onOpenChange={setIsConfirmDialogOpen}
+            >
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Before you refresh</DialogTitle>
+                        <DialogDescription className="text-base text-card-foreground">
+                            <span className="mr-1">
+                                This action will fetch all your data and replace
+                                it with the latest data.
+                            </span>
+                            <span className="text-red-500">
+                                However, this process will
+                                <span className="font-bold mx-1">
+                                    overwrite
+                                </span>
+                                any manual changes you have made.
+                            </span>
+                        </DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                        <div className="flex md:justify-end justify-center gap-5">
+                            <Button
+                                onClick={() => setIsConfirmDialogOpen(false)}
+                                variant="outline"
+                            >
+                                Close
+                            </Button>
+                            <Button
+                                onClick={() => {
+                                    setIsConfirmDialogOpen(false);
+                                    handleImport();
+                                }}
+                            >
+                                Proceed
+                            </Button>
+                        </div>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
             <Dialog open={isDialogOpen}>
                 <DialogContentWithoutClose>
                     <DialogHeader>
                         <DialogTitle>Importing Banners</DialogTitle>
                         <DialogDescription></DialogDescription>
                     </DialogHeader>
-                    <DialogContent>
-                        <div className="flex flex-col gap-3 justify-center my-2">
-                            <Progress
-                                value={(currentBanner / total_banners) * 100}
-                            />
-                            {currentBanner == 6 &&
-                                !isBannerLoading &&
-                                isBannerSuccess && (
-                                    <div className="text-green-500 text-center">
-                                        All Banners synced successfully
-                                    </div>
-                                )}
-                        </div>
-                    </DialogContent>
+                    <div className="flex flex-col gap-3 justify-center my-2">
+                        <Progress
+                            value={(currentBanner / total_banners) * 100}
+                        />
+                        {currentBanner == 6 &&
+                            !isBannerLoading &&
+                            isBannerSuccess && (
+                                <div className="text-green-500 text-center">
+                                    All Banners synced successfully
+                                </div>
+                            )}
+                    </div>
                     <DialogFooter>
-                        <Button
-                            onClick={() => setIsDialogOpen(false)}
-                            variant="outline"
-                        >
-                            Close
-                        </Button>
+                        <div className="flex justify-end">
+                            <Button
+                                onClick={() => setIsDialogOpen(false)}
+                                variant="outline"
+                                disabled={
+                                    !(
+                                        currentBanner == 6 &&
+                                        !isBannerLoading &&
+                                        isBannerSuccess &&
+                                        !isBannerError
+                                    )
+                                }
+                            >
+                                Close
+                            </Button>
+                        </div>
                     </DialogFooter>
                 </DialogContentWithoutClose>
             </Dialog>
-            <Button onClick={handleImport}>Sync</Button>
+            {/* <Progress  value={75}/> */}
+            <Button onClick={() => setIsConfirmDialogOpen(true)}>
+                Refresh
+            </Button>
         </>
     );
 }

@@ -53,12 +53,11 @@ export default function AddManuallyBtn({ banner_store_id }: Props) {
             });
             return;
         }
-        
+
         const copyBanner = { ...bannerStore.banners[banner_store_id] };
         copyBanner.total = copyBanner.total || 0;
         copyBanner.items = copyBanner.items || [];
-        copyBanner.store_id =
-            copyBanner.store_id || banner_store_id;
+        copyBanner.store_id = copyBanner.store_id || banner_store_id;
 
         const itemData = {
             name: selectedResource?.name,
@@ -72,7 +71,6 @@ export default function AddManuallyBtn({ banner_store_id }: Props) {
         };
 
         const updatedBanner = processAddItemToBanner(copyBanner, itemData);
-
 
         setSelectedResource(null);
         bannerStore.addBanner(banner_store_id, updatedBanner);
@@ -101,8 +99,8 @@ export default function AddManuallyBtn({ banner_store_id }: Props) {
                     <DialogHeader>
                         <DialogTitle>Add Pulls Manually</DialogTitle>
                         <DialogDescription className="text-red-500 text-left">
-                            Automatic Import or Syncing will cause you ur manual
-                            pulls to be overridden.
+                            Automatic Import or Refresh will overwrite any
+                            manual changes you have made with official data.
                         </DialogDescription>
                     </DialogHeader>
                     <div className="flex flex-col gap-5">

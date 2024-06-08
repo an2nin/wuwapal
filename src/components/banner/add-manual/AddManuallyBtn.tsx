@@ -57,8 +57,8 @@ export default function AddManuallyBtn({ banner_store_id }: Props) {
         const copyBanner = { ...bannerStore.banners[banner_store_id] };
         copyBanner.total = copyBanner.total || 0;
         copyBanner.items = copyBanner.items || [];
-        copyBanner.banner_store_id =
-            copyBanner.banner_store_id || banner_store_id;
+        copyBanner.store_id =
+            copyBanner.store_id || banner_store_id;
 
         const itemData = {
             name: selectedResource?.name,

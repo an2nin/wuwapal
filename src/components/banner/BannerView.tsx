@@ -32,7 +32,8 @@ export default function BannerView({ banner, banner_store_id }: Props) {
                                 star4_pity={processedBanner?.star4_pity}
                                 star5_pity={processedBanner?.star5_pity}
                                 guaranteed={
-                                    processedBanner.store_id == "featured_resonator"
+                                    processedBanner.store_id ==
+                                    "featured_resonator"
                                         ? processedBanner?.guaranteed
                                         : false
                                 }
@@ -40,7 +41,11 @@ export default function BannerView({ banner, banner_store_id }: Props) {
                         </div>
                         <div className="flex flex-wrap gap-5 justify-center">
                             <BannerPieChart
-                                total={processedBanner.items.length}
+                                star3={
+                                    processedBanner.total -
+                                    (processedBanner?.star4_resonators.length +
+                                        processedBanner?.star4_weapons.length)
+                                }
                                 star4={
                                     processedBanner?.star4_resonators.length +
                                     processedBanner?.star4_weapons.length

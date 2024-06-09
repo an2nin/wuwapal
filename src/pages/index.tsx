@@ -60,17 +60,8 @@ export default function Home() {
                     </CardHeader>
                     <CardContent>
                         <ul className="list-disc list-inside">
-                            <li>Cloud Syncing of Convene Record</li>
-                        </ul>
-                    </CardContent>
-                </Card>
-                <Card className="w-96">
-                    <CardHeader>
-                        <CardTitle>Future Scope</CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <ul className="list-disc list-inside">
                             <li>Global Statistic</li>
+                            <li>Cloud Syncing of Convene Record</li>
                         </ul>
                     </CardContent>
                 </Card>

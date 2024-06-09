@@ -15,10 +15,13 @@ import {
 } from "@/components/ui/select";
 import { useState } from "react";
 import { useBannerStore } from "@/stores/banner";
+
 export default function ConveneImport() {
     const bannerStore = useBannerStore<any>((state: any) => state);
     const [type, setType] = useState("automatic");
-    const [inputValue, setInputValue] = useState(bannerStore.banner_record_url || "");
+    const [inputValue, setInputValue] = useState(
+        bannerStore.banner_record_url || ""
+    );
     const [gamePath, setGamePath] = useState(bannerStore.game_path || "");
 
     const handleTypeChange = (value: string) => {
@@ -98,7 +101,9 @@ export default function ConveneImport() {
                             />
                         </CustomListItem>
                         <CustomListItem
-                            title={"Open Windows PowerShell and run the following command."}
+                            title={
+                                "Open Windows PowerShell and run the following command."
+                            }
                             index={5}
                         >
                             <CopyCardSemiAutomatic text={gamePath} />

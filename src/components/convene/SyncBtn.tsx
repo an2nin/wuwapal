@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { parseUrlParams, processBannerForStore } from "@/helpers/processors";
 import { useFetchBannerMutation } from "@/redux/services/banner";
@@ -14,6 +14,8 @@ import {
     DialogFooter,
 } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
+import useSupabase from "@/hooks/useSupabase";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface Props {
     historyUrl: string;
@@ -28,6 +30,11 @@ export default function SyncBtn({ historyUrl }: Props) {
     const [isConfirmDialogOpen, setIsConfirmDialogOpen] = useState(false);
     const [currentBanner, setCurrentBanner] = useState(0);
     const [processedURLBody, setProcessedURLBody] = useState<any>(null);
+    const [bannersForGlobalStat, setBannersForGlobalStat] = useState<any>([]);
+    const [sentForGlobalStat, setSentForGlobalStat] = useState<boolean>(true);
+    const hasRunEffect = useRef(false);
+    const { loading: isGlobalPullLoading, upsertData: upsertGlobalData } =
+        useSupabase("global_pulls");
 
     const [
         fetchBanner,
@@ -85,12 +92,15 @@ export default function SyncBtn({ historyUrl }: Props) {
                 bannerStore.addBannerRecordUrl(historyUrl);
             }
 
-            const processedBannerData = processBannerForStore(
-                bannerData,
-                banner_name
-            );
+            const { bannerForStore, bannerForGlobalStat } =
+                processBannerForStore(bannerData, banner_name);
 
-            bannerStore.addBanner(banner_name, processedBannerData);
+            setBannersForGlobalStat([
+                ...bannersForGlobalStat,
+                bannerForGlobalStat,
+            ]);
+
+            bannerStore.addBanner(banner_name, bannerForStore);
 
             if (currentBanner < total_banners) {
                 setCurrentBanner(currentBanner + 1);
@@ -108,6 +118,30 @@ export default function SyncBtn({ historyUrl }: Props) {
             });
         }
     }, [isBannerError]);
+
+    useEffect(() => {
+        if (
+            currentBanner == 6 &&
+            !isBannerLoading &&
+            isBannerSuccess &&
+            !isBannerError &&
+            !hasRunEffect.current &&
+            sentForGlobalStat
+        ) {
+            upsertGlobalData(
+                {
+                    resources_id: processedURLBody.resources_id,
+                    player_id: processedURLBody.player_id,
+                    svr_id: processedURLBody.svr_id,
+                    lang: processedURLBody.lang,
+                    record_id: processedURLBody.record_id,
+                    pulls: bannersForGlobalStat,
+                },
+                ["svr_id", "player_id"]
+            );
+            hasRunEffect.current = true;
+        }
+    }, [currentBanner, isBannerLoading, isBannerSuccess, isBannerError]);
 
     return (
         <>
@@ -132,6 +166,19 @@ export default function SyncBtn({ historyUrl }: Props) {
                             </span>
                         </DialogDescription>
                     </DialogHeader>
+                    <div>
+                        <div className="flex gap-2 mb-4 items-center">
+                            <Checkbox
+                                checked={sentForGlobalStat}
+                                onCheckedChange={(e: boolean) =>
+                                    setSentForGlobalStat(e)
+                                }
+                            />
+                            <div className="text-xs">
+                                Submit pity for global pull stats
+                            </div>
+                        </div>
+                    </div>
                     <DialogFooter>
                         <div className="flex md:justify-end justify-center gap-5">
                             <Button

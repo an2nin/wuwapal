@@ -1,4 +1,4 @@
-import { standard_resonators } from "./constants";
+import { standard_resonators, star_4_resonators } from "./constants";
 
 export function isGamePathValid(path: string) {
     const gamePathRegex =
@@ -22,22 +22,62 @@ export function processBannerForStore(banner: any, store_id: string) {
     const copyData = [...banner.data].slice().reverse();
     let pity4_last_index = 0;
     let pity5_last_index = 0;
+    let last_star5_resonator = null;
+    const star4s: any = [];
+    const star5s: any = [];
 
     copyData.forEach((data: any, idx) => {
         const newItem = { ...data, roll: idx + 1, pity: 1 };
         if (newItem.qualityLevel == 4) {
-            newItem.pity =
+            const pity =
                 pity4_last_index == 0
                     ? idx - pity4_last_index + 1
                     : idx - pity4_last_index;
+
+            newItem.pity = pity;
+
+            star4s.push({
+                name: newItem.name,
+                pity: pity,
+                time: newItem.time,
+                type: newItem.resourceType.toLowerCase(),
+            });
+
             pity4_last_index = idx;
         }
 
         if (newItem.qualityLevel == 5) {
-            newItem.pity =
+            const pity =
                 pity5_last_index == 0
                     ? idx - pity5_last_index + 1
                     : idx - pity5_last_index;
+
+            newItem.pity = pity;
+
+            const star5_processed: any = {
+                name: newItem.name,
+                pity: pity,
+                time: newItem.time,
+                type: newItem.resourceType.toLowerCase(),
+            };
+
+            if (store_id == "featured_resonator") {
+                if (last_star5_resonator == null) {
+                    star5_processed.won = !standard_resonators.includes(
+                        newItem.name
+                    );
+                } else if (
+                    last_star5_resonator != null &&
+                    !standard_resonators.includes(last_star5_resonator)
+                ) {
+                    star5_processed.won = !standard_resonators.includes(
+                        newItem.name
+                    );
+                }
+            }
+
+            star5s.push(star5_processed);
+
             pity4_last_index = idx;
             pity5_last_index = idx;
         }
@@ -46,9 +86,17 @@ export function processBannerForStore(banner: any, store_id: string) {
     });
 
     return {
-        total: copyData.length,
-        store_id: store_id,
-        items: copyData,
+        bannerForStore: {
+            total: copyData.length,
+            store_id: store_id,
+            items: copyData,
+        },
+        bannerForGlobalStat: {
+            total: copyData.length,
+            banner_id: store_id,
+            star4s: star4s,
+            star5s: star5s,
+        },
     };
 }
 
@@ -165,4 +213,3 @@ export function processDeleteLastItemFromBanner(banner: any, item: any) {
 
     return copyBanner;
 }
-

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { navs } from "@/helpers/navs";
 import { useRouter } from "next/router";
 import BrandLogo from "./BrandLogo";
+import Announcement from "./Announcement";
 
 export default function Header() {
     const router = useRouter();
@@ -19,18 +20,9 @@ export default function Header() {
     }, [router]);
 
     return (
-        <header className="flex flex-col bg-theme-glassy sticky top-0 z-10 ">
-            <div className="w-full text-center bg-black p-1 text-sm">
-                This website is still under development. Send me a
-                <a
-                    href="mailto:wuwapal@gmail.com?subject=Feedback for WuWaPal&body=Hello, My feedback: "
-                    className="text-primary font-bold  hover:text-primary/40 mx-1 underline"
-                >
-                    mail
-                </a>
-                to share your feedback!
-            </div>
-            <div className="container mx-auto p-3">
+        <header className="flex flex-col container sticky top-0 z-10 px-4">
+            <Announcement />
+            <div className="w-full bg-theme-glassy  p-3 rounded-lg">
                 <div className="flex justify-between items-center">
                     <Sheet>
                         <SheetTrigger asChild>
@@ -79,12 +71,6 @@ export default function Header() {
 
                 <div className="hidden md:block">
                     <div className="w-full flex items-center justify-between px-5">
-                        {/* <Link href="/">
-                            <span className="text-2xl text-primary font-bold">
-                                {process.env.NEXT_PUBLIC_APP_NAME}
-                            </span>
-                        </Link> */}
-
                         <BrandLogo />
 
                         <div className="flex items-center gap-5 justify-center">

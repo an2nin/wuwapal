@@ -20,38 +20,68 @@ export default function Header() {
     }, [router]);
 
     return (
-        <header className="flex flex-col container sticky top-0 z-10 px-4">
+        <>
             <Announcement />
-            <div className="w-full bg-theme-glassy  p-3 rounded-lg">
-                <div className="flex justify-between items-center">
-                    <Sheet>
-                        <SheetTrigger asChild>
-                            <Button
-                                variant="outline"
-                                size="icon"
-                                className="shrink-0 md:hidden"
-                            >
-                                <Menu className="h-5 w-5" />
-                                <span className="sr-only">
-                                    Toggle navigation menu
-                                </span>
-                            </Button>
-                        </SheetTrigger>
-                        <SheetContent side="left" className="flex flex-col">
-                            <nav className="grid gap-2 text-lg font-medium">
-                                <Link href="/">
-                                    <span className="text-2xl text-primary font-bold">
-                                        {process.env.NEXT_PUBLIC_APP_NAME}
+            <header className="flex flex-col container sticky top-0 z-10 px-0 md:px-4">
+                <div className="w-full bg-theme-glassy p-3 rounded-lg">
+                    <div className="flex justify-between items-center">
+                        <Sheet>
+                            <SheetTrigger asChild>
+                                <Button
+                                    variant="outline"
+                                    size="icon"
+                                    className="shrink-0 md:hidden"
+                                >
+                                    <Menu className="h-5 w-5" />
+                                    <span className="sr-only">
+                                        Toggle navigation menu
                                     </span>
-                                </Link>
+                                </Button>
+                            </SheetTrigger>
+                            <SheetContent side="left" className="flex flex-col">
+                                <nav className="grid gap-2 text-lg font-medium">
+                                    <Link href="/">
+                                        <span className="text-2xl text-primary font-bold">
+                                            {process.env.NEXT_PUBLIC_APP_NAME}
+                                        </span>
+                                    </Link>
 
+                                    {navs.map((nav, idx) => (
+                                        <Link
+                                            key={idx}
+                                            href={nav.href}
+                                            className={`flex justify-start items-center gap-3 rounded-lg p-3 hover:bg-primary/90 transition-all ${
+                                                currentActiveNav === nav.href
+                                                    ? "bg-primary text-accent-foreground "
+                                                    : "text-muted-foreground hover:text-primary"
+                                            }`}
+                                        >
+                                            {nav.icon}
+                                            {nav.title}
+                                        </Link>
+                                    ))}
+                                </nav>
+                            </SheetContent>
+                        </Sheet>
+
+                        <div className="md:hidden">
+                            <BrandLogo />
+                        </div>
+                        <div></div>
+                    </div>
+
+                    <div className="hidden md:block">
+                        <div className="w-full flex items-center justify-between px-5">
+                            <BrandLogo />
+
+                            <div className="flex items-center gap-5 justify-center">
                                 {navs.map((nav, idx) => (
                                     <Link
                                         key={idx}
                                         href={nav.href}
-                                        className={`flex justify-start items-center gap-3 rounded-lg p-3 hover:bg-primary/90 transition-all ${
+                                        className={`flex justify-start items-center gap-3 rounded-lg p-3 transition-all ${
                                             currentActiveNav === nav.href
-                                                ? "bg-primary text-accent-foreground "
+                                                ? "bg-primary hover:bg-primary/90 text-accent-foreground "
                                                 : "text-muted-foreground hover:text-primary"
                                         }`}
                                     >
@@ -59,52 +89,24 @@ export default function Header() {
                                         {nav.title}
                                     </Link>
                                 ))}
-                            </nav>
-                        </SheetContent>
-                    </Sheet>
-
-                    <div className="md:hidden">
-                        <BrandLogo />
-                    </div>
-                    <div></div>
-                </div>
-
-                <div className="hidden md:block">
-                    <div className="w-full flex items-center justify-between px-5">
-                        <BrandLogo />
-
-                        <div className="flex items-center gap-5 justify-center">
-                            {navs.map((nav, idx) => (
-                                <Link
-                                    key={idx}
-                                    href={nav.href}
-                                    className={`flex justify-start items-center gap-3 rounded-lg p-3 transition-all ${
-                                        currentActiveNav === nav.href
-                                            ? "bg-primary hover:bg-primary/90 text-accent-foreground "
-                                            : "text-muted-foreground hover:text-primary"
-                                    }`}
+                            </div>
+                            <div>
+                                <Button
+                                    variant="outline"
+                                    size="icon"
+                                    onClick={() => router.push("/settings")}
+                                    disabled={true}
                                 >
-                                    {nav.icon}
-                                    {nav.title}
-                                </Link>
-                            ))}
-                        </div>
-                        <div>
-                            <Button
-                                variant="outline"
-                                size="icon"
-                                onClick={() => router.push("/settings")}
-                                disabled={true}
-                            >
-                                <Settings className="h-5 w-5" />
-                                <span className="sr-only">
-                                    Toggle user menu
-                                </span>
-                            </Button>
+                                    <Settings className="h-5 w-5" />
+                                    <span className="sr-only">
+                                        Toggle user menu
+                                    </span>
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </header>
+            </header>
+        </>
     );
 }

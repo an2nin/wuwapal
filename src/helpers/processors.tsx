@@ -37,10 +37,10 @@ export function processBannerForStore(banner: any, store_id: string) {
             newItem.pity = pity;
 
             star4s.push({
-                name: newItem.name,
-                pity: pity,
-                time: newItem.time,
-                type: newItem.resourceType.toLowerCase(),
+                n: newItem.name,
+                p: pity,
+                t: new Date(newItem.time).getTime(),
+                y: newItem.resourceType == "Weapons" ? "w" : "r",
             });
 
             pity4_last_index = idx;
@@ -55,22 +55,22 @@ export function processBannerForStore(banner: any, store_id: string) {
             newItem.pity = pity;
 
             const star5_processed: any = {
-                name: newItem.name,
-                pity: pity,
-                time: newItem.time,
-                type: newItem.resourceType.toLowerCase(),
+                n: newItem.name,
+                p: pity,
+                t: new Date(newItem.time).getTime(),
+                y: newItem.resourceType == "Weapons" ? "w" : "r",
             };
 
             if (store_id == "featured_resonator") {
                 if (last_star5_resonator == null) {
-                    star5_processed.won = !standard_resonators.includes(
+                    star5_processed.w = !standard_resonators.includes(
                         newItem.name
                     );
                 } else if (
                     last_star5_resonator != null &&
                     !standard_resonators.includes(last_star5_resonator)
                 ) {
-                    star5_processed.won = !standard_resonators.includes(
+                    star5_processed.w = !standard_resonators.includes(
                         newItem.name
                     );
                 }
@@ -92,10 +92,10 @@ export function processBannerForStore(banner: any, store_id: string) {
             items: copyData,
         },
         bannerForGlobalStat: {
-            total: copyData.length,
-            banner_id: store_id,
-            star4s: star4s,
-            star5s: star5s,
+            t: copyData.length,
+            b: store_id,
+            s4: star4s,
+            s5: star5s,
         },
     };
 }

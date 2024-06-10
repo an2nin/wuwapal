@@ -21,9 +21,9 @@ export default function ConveneTracker() {
                 />
                 <meta
                     name="keywords"
-                    content="Wuthering Waves Convene Tracker, Wuthering Waves Pull Tracker, Wuthering Waves Wish Tracker, gacha game tracker, Wuthering Waves statistics, Wuthering Waves pulls, WuWaPal tracker"
+                    content="Wuthering Waves Convene Tracker, Wuthering Waves Pull Tracker, Wuthering Waves Wish Tracker, gacha game tracker, Wuthering Waves statistics, Wuthering Waves pulls, WuWaPal tracker, wuwa tacker, wuwatracker, WuWaTracker"
                 />
-                <meta property="og:title" content="WuWaPal.com" />
+                <meta property="og:title" content="Convene Tracker" />
                 <meta property="og:type" content="website" />
                 <meta
                     property="og:image"

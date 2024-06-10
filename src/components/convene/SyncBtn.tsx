@@ -21,7 +21,7 @@ interface Props {
     historyUrl: string;
 }
 
-const total_banners = 6;
+const total_banners = 7;
 
 export default function SyncBtn({ historyUrl }: Props) {
     const bannerStore = useBannerStore<any>((state: any) => state);
@@ -33,8 +33,7 @@ export default function SyncBtn({ historyUrl }: Props) {
     const [bannersForGlobalStat, setBannersForGlobalStat] = useState<any>([]);
     const [sentForGlobalStat, setSentForGlobalStat] = useState<boolean>(true);
     const hasRunEffect = useRef(false);
-    const { loading: isGlobalPullLoading, upsertData: upsertGlobalData } =
-        useSupabase("global_pulls");
+    const { upsertData: upsertGlobalData } = useSupabase("global_pulls");
 
     const [
         fetchBanner,
@@ -61,7 +60,11 @@ export default function SyncBtn({ historyUrl }: Props) {
     };
 
     useEffect(() => {
-        if (currentBanner > 0 && processedURLBody != null) {
+        if (
+            currentBanner > 0 &&
+            processedURLBody != null &&
+            currentBanner <= total_banners
+        ) {
             fetchBanner({
                 cardPoolId: processedURLBody.resources_id,
                 cardPoolType: currentBanner,
@@ -89,20 +92,24 @@ export default function SyncBtn({ historyUrl }: Props) {
                 banner_name = "beginner";
             } else if (currentBanner == 6) {
                 banner_name = "beginner_choice";
+            } else if (currentBanner == 7) {
+                banner_name = "beginner_choice_convene";
                 bannerStore.addBannerRecordUrl(historyUrl);
             }
 
-            const { bannerForStore, bannerForGlobalStat } =
-                processBannerForStore(bannerData, banner_name);
+            if (currentBanner <= total_banners) {
+                const { bannerForStore, bannerForGlobalStat } =
+                    processBannerForStore(bannerData, banner_name);
 
-            setBannersForGlobalStat([
-                ...bannersForGlobalStat,
-                bannerForGlobalStat,
-            ]);
+                setBannersForGlobalStat((prev: any) => [
+                    ...prev,
+                    bannerForGlobalStat,
+                ]);
 
-            bannerStore.addBanner(banner_name, bannerForStore);
+                bannerStore.addBanner(banner_name, bannerForStore);
+            }
 
-            if (currentBanner < total_banners) {
+            if (currentBanner <= total_banners + 1) {
                 setCurrentBanner(currentBanner + 1);
             }
         }
@@ -121,12 +128,10 @@ export default function SyncBtn({ historyUrl }: Props) {
 
     useEffect(() => {
         if (
-            currentBanner == 6 &&
-            !isBannerLoading &&
-            isBannerSuccess &&
-            !isBannerError &&
+            currentBanner === total_banners + 1 &&
             !hasRunEffect.current &&
-            sentForGlobalStat
+            sentForGlobalStat &&
+            isBannerSuccess
         ) {
             upsertGlobalData(
                 {
@@ -141,7 +146,7 @@ export default function SyncBtn({ historyUrl }: Props) {
             );
             hasRunEffect.current = true;
         }
-    }, [currentBanner, isBannerLoading, isBannerSuccess, isBannerError]);
+    }, [currentBanner, isBannerSuccess, sentForGlobalStat]);
 
     return (
         <>
@@ -209,7 +214,7 @@ export default function SyncBtn({ historyUrl }: Props) {
                         <Progress
                             value={(currentBanner / total_banners) * 100}
                         />
-                        {currentBanner == 6 &&
+                        {currentBanner == total_banners + 1 &&
                             !isBannerLoading &&
                             isBannerSuccess && (
                                 <div className="text-green-500 text-center">
@@ -224,7 +229,7 @@ export default function SyncBtn({ historyUrl }: Props) {
                                 variant="outline"
                                 disabled={
                                     !(
-                                        currentBanner == 6 &&
+                                        currentBanner == total_banners + 1 &&
                                         !isBannerLoading &&
                                         isBannerSuccess &&
                                         !isBannerError

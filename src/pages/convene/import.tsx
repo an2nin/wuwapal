@@ -61,7 +61,7 @@ export default function ConveneImport() {
                                     Semi Automatic
                                 </SelectItem>
                                 <SelectItem value="manual-more">
-                                    Manual
+                                    Not Automatic
                                 </SelectItem>
                             </SelectGroup>
                         </SelectContent>

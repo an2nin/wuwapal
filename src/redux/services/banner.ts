@@ -1,6 +1,6 @@
 import { api } from "@/redux/api/base";
-import { GM_SERVER_ENDPOINT } from "@/redux/api/endpoints";
-import { FetchBannerPayload, FetchBannerResponse } from "@/redux/api/types";
+import { GM_SERVER_ENDPOINT, GLOBAL_STAT_GIST } from "@/redux/api/endpoints";
+import { FetchBannerPayload, FetchBannerResponse, GlobalStatResponse } from "@/redux/api/types";
 
 export const conveneApis = api.injectEndpoints({
     endpoints: (build) => ({
@@ -23,7 +23,15 @@ export const conveneApis = api.injectEndpoints({
                 };
             },
         }),
+        globalStats: build.query<any, void>({
+          query: () => {
+            return {
+              url: GLOBAL_STAT_GIST,
+              method: "GET",
+            };
+          },
+        }),
     }),
 });
 
-export const { useFetchBannerMutation } = conveneApis;
+export const { useFetchBannerMutation, useGlobalStatsQuery } = conveneApis;

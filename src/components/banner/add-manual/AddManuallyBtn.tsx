@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "../../ui/button";
+import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import {
     Dialog,
@@ -8,17 +8,17 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
-import AddManualFilters from "./AddManualFilters";
+import AddManualFilters from "@/components/banner/add-manual/AddManualFilters";
 import {
     star_4_resonators,
     star_4_weapons,
     star_5_resonators,
     star_5_weapons,
 } from "@/helpers/constants";
-import SelectFilteredResource from "./SelectFilteredResource";
-import PityInput from "./PityInput";
+import SelectFilteredResource from "@/components/banner/add-manual/SelectFilteredResource";
+import PityInput from "@/components/banner/add-manual/PityInput";
 import { useBannerStore } from "@/stores/banner";
-import { PullDateInput } from "./PullDateInput";
+import { PullDateInput } from "@/components/banner/add-manual/PullDateInput";
 import { format } from "date-fns";
 import { useToast } from "@/components/ui/use-toast";
 import { processAddItemToBanner } from "@/helpers/processors";

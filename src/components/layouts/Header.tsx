@@ -23,7 +23,7 @@ export default function Header() {
         <>
             <Announcement />
             <header className="flex flex-col container sticky top-0 z-10 px-0 md:px-4">
-                <div className="w-full bg-theme-glassy p-3 rounded-lg">
+                <div className="w-full bg-theme-glassy p-3 rounded-2xl">
                     <div className="flex justify-between items-center">
                         <Sheet>
                             <SheetTrigger asChild>

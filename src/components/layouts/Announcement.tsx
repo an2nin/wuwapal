@@ -15,7 +15,7 @@
 
 export default function Announcement() {
     return (
-        <div className="w-full bg-black container text-center p-1 text-sm ">
+        <div className="w-full bg-black container text-center p-1 text-sm">
             <p>
                 Global Statistics UI currently at development please provide pull data
                 by importing or refreshing the records. Ensure the

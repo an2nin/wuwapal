@@ -22,7 +22,7 @@ export default function Header() {
     return (
         <>
             <Announcement />
-            <header className="flex flex-col container sticky top-0 z-10 px-0 md:px-4">
+            <header className="flex flex-col container z-10 px-0 md:px-4">
                 <div className="w-full bg-theme-glassy p-3 rounded-2xl">
                     <div className="flex justify-between items-center">
                         <Sheet>
@@ -50,10 +50,10 @@ export default function Header() {
                                         <Link
                                             key={idx}
                                             href={nav.href}
-                                            className={`flex justify-start items-center gap-3 rounded-lg p-3 hover:bg-primary/90 transition-all ${
+                                            className={`flex justify-start items-center gap-3 rounded-3xl p-3 transition-all ${
                                                 currentActiveNav === nav.href
-                                                    ? "bg-primary text-accent-foreground "
-                                                    : "text-muted-foreground hover:text-primary"
+                                                    ? "bg-primary hover:bg-primary/90 text-accent-foreground "
+                                                    : "text-primary opacity-50 hover:opacity-100"
                                             }`}
                                         >
                                             {nav.icon}
@@ -79,10 +79,10 @@ export default function Header() {
                                     <Link
                                         key={idx}
                                         href={nav.href}
-                                        className={`flex justify-start items-center gap-3 rounded-lg p-3 transition-all ${
+                                        className={`flex justify-start items-center gap-3 rounded-3xl p-3 transition-all ${
                                             currentActiveNav === nav.href
                                                 ? "bg-primary hover:bg-primary/90 text-accent-foreground "
-                                                : "text-muted-foreground hover:text-primary"
+                                                : "text-primary opacity-50 hover:opacity-100"
                                         }`}
                                     >
                                         {nav.icon}

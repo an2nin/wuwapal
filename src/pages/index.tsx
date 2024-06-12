@@ -39,7 +39,7 @@ export default function Home() {
                     content="https://wuwapal.com/wuwapal-og.png"
                 />
             </Head>
-            <div className={`grid grid-cols-12 gap-5 justify-center w-full`}>
+            <div className={`grid grid-cols-12 gap-5 justify-center w-full md:my-[12vh]`}>
                 <div className="md:col-span-7 col-span-12 flex flex-col gap-5">
                     <Card>
                         <CardHeader>

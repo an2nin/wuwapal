@@ -40,59 +40,55 @@
 
 @layer base {
     :root {
-        --background: 213.3 16.1% 28%;
+        --background: 0 0% 13.3%;
         --foreground: 0 0% 96%;
 
         --card: 213.3 16.1% 28%;
         --card-foreground: 0 0% 96%;
 
-        --popover: 213.3 16.1% 28%;
+        --popover: 0 0% 30.3%;
 
         --popover-foreground: 210 40% 98%;
 
-        --primary: 72 100% 78%;
-        /* --primary: 0 0% 17%; */
+        --primary: 0 0% 96%;
         --primary-foreground: 0 0% 0%;
 
-        /* --secondary: 217.2 32.6% 17.5%; */
         --secondary: 213.3 16.1% 28%;
         --secondary-foreground: 0 0% 98%;
 
         --muted: 217.2 32.6% 17.5%;
         --muted-foreground: 215 20.2% 65.1%;
 
-        --accent: 72 100% 78%;
+        --accent: 0 0% 96%;
         --accent-foreground: 0 0% 0%;
 
         --destructive: 0 62.8% 30.6%;
         --destructive-foreground: 210 40% 98%;
 
-        --border: 72 100% 78%;
-        --input: 72 100% 78%;
+        --border: 0 0% 96%;
+        --input: 0 0% 96%;
         --ring: 212.7 26.8% 83.9%;
 
         --radius: 0.5rem;
 
         --token-5b9c8610-70d7-4211-b68f-b88f529f6ced: rgb(22, 22, 22);
         --token-54806cb2-05fb-4f34-b6e6-70551a794db0: rgb(3, 22, 3);
-        /* --token-5b9c8610-70d7-4211-b68f-b88f529f6ced: rgb(28, 28, 28);
-        --token-54806cb2-05fb-4f34-b6e6-70551a794db0: rgb(26, 26, 26); */
     }
 }
 
 body {
     width: 100%;
     height: 100%;
-    background-image: repeating-linear-gradient(
-        135deg,
-        var(--token-5b9c8610-70d7-4211-b68f-b88f529f6ced, rgb(248, 248, 248)),
-        var(--token-5b9c8610-70d7-4211-b68f-b88f529f6ced, rgb(248, 248, 248))
-            2.5px,
-        var(--token-54806cb2-05fb-4f34-b6e6-70551a794db0, rgb(242, 242, 242))
-            2.5px,
-        var(--token-54806cb2-05fb-4f34-b6e6-70551a794db0, rgb(242, 242, 242))
-            10px
-    );
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: -1;
 }
 
 .bg-star-4 {
@@ -126,25 +122,21 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
-/* .bg-theme-glassy {
-    background-image: linear-gradient(to bottom right, #30455a, #1b2a3c);
-} */
-
-/* .bg-theme-glassy {
-    background-image: linear-gradient(to bottom right, #3d4c5c, #283341);
-} */
-
 .bg-theme-glassy {
-    background-image: linear-gradient(to bottom right, #405b78, #2b3a4c);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.bg-theme-number {
+    background-color: rgba(255, 255, 255, .25);
+}
+
+.bg-theme-modal {
+    background-color: rgba(255, 255, 255, .25);
 }
 
 .bg-theme-glassy-dark {
     background-image: linear-gradient(to bottom, #1b2a3c, #0d192b);
 }
-
-/* .bg-theme-accent-glassy {
-    background-image: linear-gradient(to bottom right, #a3c268, #e9ff8f);
-} */
 
 .marquee {
     width: 100%;

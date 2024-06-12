@@ -5,9 +5,9 @@ export default function Announcement() {
                 Global Statistics UI is live. Please provide pull data by
                 importing or refreshing the records. Ensure the
                 <span className="font-bold mx-1">
-                    &quot;Submit pity for global pull stats&quot; is checked
+                    &quot;Submit pity for global pull stats&quot;
                 </span>
-                .
+                is checked.
             </p>
         </div>
     );

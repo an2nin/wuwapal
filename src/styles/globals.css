@@ -151,6 +151,12 @@ body {
     animation: marquee 30s linear infinite;
 }
 
+.text-glow {
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 60px #ff00ff, 0 0 70px #ff00ff;
+}
+
 @keyframes marquee {
     0% {
         transform: translateX(100%);

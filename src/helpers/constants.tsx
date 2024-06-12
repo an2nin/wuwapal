@@ -1,3 +1,4 @@
+const IMAGE_PATH = process.env.NEXT_PUBLIC_IMAGE_URL || "";
 export const bannerTypes = [
     {
         id: "5c13a63f85465e9fcc0f24d6efb15083",
@@ -279,5 +280,43 @@ export const star_5_weapons = [
         type: "Broadblade",
         image_path: "/weapons/verdant_summit.webp",
         qualityType: 5,
+    },
+];
+
+export const bannerTabs = [
+    {
+        name: "Featured Resonator",
+        store_id: "featured_resonator",
+        image_path: `${IMAGE_PATH}/resonators/yinlin.webp`,
+    },
+    {
+        name: "Featured Weapon",
+        store_id: "featured_weapon",
+        image_path: `${IMAGE_PATH}/weapons/stringmaster.webp`,
+    },
+    {
+        name: "Standard Resonator",
+        store_id: "standard_resonator",
+        image_path: `${IMAGE_PATH}/resonators/jianxin.webp`,
+    },
+    {
+        name: "Standard Weapon",
+        store_id: "standard_weapon",
+        image_path: `${IMAGE_PATH}/weapons/emerald_of_genesis.webp`,
+    },
+    {
+        name: "Beginner",
+        store_id: "beginner",
+        image_path: `${IMAGE_PATH}/resonators/calcharo.webp`,
+    },
+    {
+        name: "Beginner Choice",
+        store_id: "beginner_choice",
+        image_path: `${IMAGE_PATH}/resonators/encore.webp`,
+    },
+    {
+        name: "Beginner Choice Special",
+        store_id: "beginner_choice_convene",
+        image_path: `${IMAGE_PATH}/resonators/verina.webp`,
     },
 ];

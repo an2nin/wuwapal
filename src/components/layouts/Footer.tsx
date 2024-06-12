@@ -4,7 +4,7 @@ import BrandLogo from "./BrandLogo";
 export default function Footer() {
     return (
         <footer className=" text-white p-4">
-            <div className="bg-theme-glassy rounded-lg container mx-auto flex flex-col md:flex-row justify-between items-center p-5">
+            <div className="bg-theme-glassy rounded-2xl container mx-auto flex flex-col md:flex-row justify-between items-center p-5">
                 <div className="w-full flex flex-wrap gap-5 md:gap-10 justify-start md:justify-around md:items-center ">
                     {/* Left Column */}
                     <div className="flex flex-col gap-1">

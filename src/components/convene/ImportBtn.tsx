@@ -79,7 +79,7 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
                 cardPoolType: currentBanner,
                 playerId: processedURLBody.player_id,
                 serverId: processedURLBody.svr_id,
-                languageCode: processedURLBody.lang,
+                languageCode: "en",
                 recordId: processedURLBody.record_id,
             });
         }

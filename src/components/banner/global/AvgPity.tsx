@@ -4,11 +4,9 @@ import { useEffect, useState } from "react";
 
 interface Props {
     star: number;
-    total: number;
-    total_s: number;
+    avg_pity: number;
 }
-export default function AvgPity({ star, total, total_s }: Props) {
-
+export default function AvgPity({ avg_pity, star }: Props) {
     return (
         <Card>
             <CardContent className="p-4 flex flex-col items-center gap-2 font-bold text-lg">
@@ -21,7 +19,7 @@ export default function AvgPity({ star, total, total_s }: Props) {
                         Avg 4 <Star className="w-4 h-4 fill-purple-400" /> Pity
                     </div>
                 )}
-                <div>{Math.round(total / total_s)}</div>
+                <div>{avg_pity}</div>
             </CardContent>
         </Card>
     );

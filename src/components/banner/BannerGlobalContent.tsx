@@ -24,8 +24,8 @@ export default function BannerGlobalContent({ bannerInfo, activeTab }: Props) {
                         ff_won={bannerInfo.ff_won}
                     />
                     <div className="grid grid-cols-2 gap-5">
-                        <AvgPity star={5} total={bannerInfo.total} total_s={bannerInfo.total_s5}/>
-                        <AvgPity star={4} total={bannerInfo.total} total_s={bannerInfo.total_s4} />
+                        <AvgPity star={5} avg_pity={bannerInfo.avg_s5_pity}/>
+                        <AvgPity star={4} avg_pity={bannerInfo.avg_s4_pity} />
                     </div>
                 </div>
                 <div className="md:col-span-7 col-span-12">

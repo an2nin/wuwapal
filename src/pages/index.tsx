@@ -26,17 +26,67 @@ export default function Home() {
                 <title>WuWaPal - Your Ultimate Guide to Wuthering Waves</title>
                 <meta
                     name="description"
-                    content="Discover everything about Wuthering Waves on WuWaPal! Get the latest news, guides, character reviews, and tips to excel in this exciting gacha game."
+                    content="Discover everything about Wuthering Waves on WuWaPal! Get the latest news, guides, Pity tracker, and tools to make your life easy in this exciting gacha game."
                 />
+                <meta name="application-name" content="Wuwa Pal" />
+                <meta name="author" content="antoninislam" />
+                <meta name="generator" content="Next.js" />
                 <meta
                     name="keywords"
-                    content="Wuthering Waves, WuWaPal, gacha game guide, Wuthering Waves news, Wuthering Waves tips, Wuthering Waves characters"
+                    content="wuthering waves convene tracker, wuthering waves pull tracker, wuwa tracker, wuthering waves pity tracker, wuthering waves, convene tracker, wuwa pull tracker, wuwa convene tracker, wuwa pity tracker, wuwa wish tracker, wuthering waves, wuwapal, gacha game guide, wuthering waves news, wuthering waves tips, wuthering waves characters"
                 />
-                <meta property="og:title" content="WuWaPal.com" />
+                <meta name="referrer" content="origin-when-cross-origin" />
+                <meta name="creator" content="antoninislam" />
+                <meta name="publisher" content="antoninislam" />
+                <meta name="robots" content="index, follow" />
+                <meta
+                    name="googlebot"
+                    content="index, follow, noimageindex, max-video-preview:-1, max-image-preview:large, max-snippet:-1"
+                />
+                <meta name="category" content="Gaming" />
+                <meta name="classification" content="Wuthering Waves Tool" />
+                <meta
+                    name="format-detection"
+                    content="telephone=no, address=no, email=no"
+                />
+
+                <meta property="og:title" content="WuWa Pal" />
+                <meta
+                    property="og:description"
+                    content="A pity counter for Wuthering Waves, using the up-to-date data with global statistics and more."
+                />
+                <meta property="og:url" content="https://wuwapal.com" />
+                <meta property="og:image:type" content="image/png" />
                 <meta property="og:type" content="website" />
+                <meta property="og:image:width" content="1200" />
+                <meta property="og:image:height" content="630" />
+                <meta
+                    property="og:image:alt"
+                    content="Wuwa Pal: Track Your Convene History &amp; View Global Statistics"
+                />
                 <meta
                     property="og:image"
-                    content="https://wuwapal.com/wuwapal-og.png"
+                    content="https://wuwapal.com/wuwapal-og2.png"
+                />
+                <meta property="og:type" content="website" />
+
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:creator" content="@antoninislam" />
+                <meta name="twitter:title" content="Wuwa Pal" />
+                <meta
+                    name="twitter:description"
+                    content="Discover everything about Wuthering Waves on WuWaPal! Get the latest news, guides, Pity tracker, and tools to make your life easy in this exciting gacha game!"
+                />
+                <meta name="twitter:image:type" content="image/png" />
+                <meta name="twitter:image:width" content="1200" />
+                <meta name="twitter:image:height" content="630" />
+                <meta
+                    name="twitter:image:alt"
+                    content="Wuwa Pal: Track Your Convene History &amp; View Global Statistics"
+                />
+                <meta
+                    name="twitter:image"
+                    content="https://wuwapal.com/wuwapal-og2.png"
                 />
             </Head>
             <div className={`grid grid-cols-12 gap-5 justify-center w-full md:my-[12vh]`}>

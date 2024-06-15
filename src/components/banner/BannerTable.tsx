@@ -131,7 +131,7 @@ export default function BannerPullList({ banner }: Props) {
                             {filteredItems.map((item: any, idx: number) => (
                                 <TableRow
                                     key={idx}
-                                    className={`${
+                                    className={`border-b border-white/30 ${
                                         item.qualityLevel != 3
                                             ? item.qualityLevel == 4
                                                 ? "bg-star-4"

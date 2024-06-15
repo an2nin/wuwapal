@@ -3,6 +3,7 @@ import { createClient } from "@supabase/supabase-js";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import CloudSync from "@/components/setting/CloudSync";
+import LocalStorage from "@/components/setting/LocalStorage";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_PROJECT_URL || "";
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_API_KEY || "";
@@ -26,14 +27,18 @@ export default function Settings() {
         return () => subscription.unsubscribe();
     }, []);
 
-    console.log(session)
+    console.log(session);
 
-    return <div className="flex flex-col gap-5">
-      <CloudSync />
-      
-    </div>
+    return (
+        <div className="flex flex-col gap-5 md:px-20">
+            <div className="text-4xl font-bold">
+                <h1>Settings</h1>
+            </div>
+            <LocalStorage />
+            {/* <CloudSync /> */}
+        </div>
+    );
 }
-
 
 // if (!session) {
 //   return (

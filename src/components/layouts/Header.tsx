@@ -95,7 +95,6 @@ export default function Header() {
                                     variant="outline"
                                     size="icon"
                                     onClick={() => router.push("/settings")}
-                                    disabled={true}
                                 >
                                     <Settings className="h-5 w-5" />
                                     <span className="sr-only">

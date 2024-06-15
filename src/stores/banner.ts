@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-interface IInitialState {
+interface InitialBannersState {
     featured_resonator: any | null;
     featured_weapon: any | null;
     standard_resonator: any | null;
@@ -10,13 +10,24 @@ interface IInitialState {
     beginner_choice: any | null;
 }
 
-const initialState: IInitialState = {
+const initialState: InitialBannersState = {
     featured_resonator: null,
     featured_weapon: null,
     standard_resonator: null,
     standard_weapon: null,
     beginner: null,
     beginner_choice: null,
+};
+
+export type BannerState = {
+    banners: InitialBannersState;
+    banner_record_url: string | null;
+    game_path: string | null;
+    addBannerRecordUrl: (url: string) => void;
+    addGamePath: (path: string) => void;
+    addBanner: (name: string, items: any) => void;
+    updateBannerInfo: (banner_record_url: string, game_path: string) => void;
+    clearStore: () => void;
 };
 
 export const useBannerStore = create(
@@ -35,6 +46,16 @@ export const useBannerStore = create(
                         [name]: items,
                     },
                 })),
+            updateBannerInfo: (banner_record_url: string, game_path: string) =>
+                set({
+                    banner_record_url: banner_record_url,
+                    game_path: game_path,
+                }),
+            clearStore: () => set({
+                banners: initialState,
+                banner_record_url: null,
+                game_path: null,
+            }),
         }),
         {
             name: "banner-storage", // name of the item in the storage (must be unique)

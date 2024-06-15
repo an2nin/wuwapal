@@ -31,7 +31,7 @@ export function processBannerForStore(banner: any, store_id: string) {
     const star5s: any = [];
 
     copyData.forEach((data: any, idx) => {
-        const newItem = { ...data, roll: idx + 1, pity: 1 };
+        const newItem = { ...data, roll: idx + 1, pity: 1, import: "auto" };
         if (newItem.qualityLevel == 4) {
             const pity =
                 pity4_last_index == 0

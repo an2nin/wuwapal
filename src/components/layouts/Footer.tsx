@@ -1,5 +1,6 @@
 import React from "react";
 import BrandLogo from "./BrandLogo";
+import Link from "next/link";
 
 export default function Footer() {
     return (
@@ -7,12 +8,12 @@ export default function Footer() {
             <div className="bg-theme-glassy rounded-2xl container mx-auto flex flex-col md:flex-row justify-between items-center p-5">
                 <div className="w-full flex flex-wrap gap-5 md:gap-10 justify-start md:justify-around md:items-center ">
                     {/* Left Column */}
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-col gap-2">
                         <BrandLogo />
                         <div className="text-sm">Your WuWa Adventure Buddy</div>
                     </div>
                     {/* Mid Column */}
-                    <div className="flex flex-col gap-1 max-w-96">
+                    <div className="flex flex-col gap-2 max-w-96">
                         <div className="font-bold text-xl">Disclaimer</div>
                         <div className="text-sm">
                             WuWaPal.com is a fan made website that is not
@@ -23,15 +24,21 @@ export default function Footer() {
                     </div>
 
                     {/* Right Column */}
-                    <div className="flex flex-col gap-1">
+                    <div className="flex flex-col gap-2">
                         <div className="font-bold text-xl">Extra</div>
-                        <div className="text-sm">
+                        <div className="text-sm flex flex-col gap-1">
                             <a
                                 href="mailto:wuwapal@gmail.com?subject=Bug Report&body=Hello, I have found a bug in WuWaPal. Please describe the bug and any relevant information."
                                 className="text-white hover:text-gray-400 hover:underline"
                             >
                                 Report a Bug
                             </a>
+                            <Link
+                                href="/privacy-policy"
+                                className="text-white hover:text-gray-400 hover:underline"
+                            >
+                                Privacy Policy
+                            </Link>
                         </div>
                     </div>
                 </div>

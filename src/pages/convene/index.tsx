@@ -83,7 +83,7 @@ export default function ConveneTracker() {
             <div className="flex flex-col">
                 <div className="flex flex-wrap justify-between">
                     <div className="flex gap-5 items-center mb-5">
-                        <h1 className="text-xl font-semibold md:text-4xl">
+                        <h1 className="text-xl font-semibold md:text-4xl ">
                             Convene Tracker
                         </h1>
                         <div>

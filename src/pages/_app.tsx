@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { useRouter } from "next/router";
 import { ApiProvider } from "@reduxjs/toolkit/query/react";
 import { api } from "@/redux/api/base";
+import { CookiesProvider } from "react-cookie";
 
 export default function App({ Component, pageProps }: AppProps) {
     const router = useRouter();
@@ -13,8 +14,10 @@ export default function App({ Component, pageProps }: AppProps) {
     return (
         <Layout>
             <ApiProvider api={api}>
-                <Toaster />
-                <Component {...pageProps} />
+                <CookiesProvider defaultSetOptions={{ path: "/" }}>
+                    <Toaster />
+                    <Component {...pageProps} />
+                </CookiesProvider>
             </ApiProvider>
         </Layout>
     );

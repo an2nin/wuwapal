@@ -18,7 +18,7 @@ export default function createImportScript(gamePath: string) {
     return `$gamePath="${gamePath}";$logFile="$gamePath\\Client\\Saved\\Logs\\Client.log";if(-not(Test-Path $logFile)){Write-Host "\`nThe file '$logFile' does not exist." -ForegroundColor Red;Write-Host "Did you set your Game Installation Path properly?" -ForegroundColor Magenta;Read-Host "Press any key to exit";exit}$latestUrlEntry=Get-Content $logFile | Select-String "https://aki-gm-resources-oversea.aki-game.net" | Select-Object -Last 1;if($null -ne $latestUrlEntry){$urlPattern='url":"(.*?)"';$url=[regex]::Match($latestUrlEntry.ToString(),$urlPattern).Groups[1].Value;if($url){Write-Host"";Write-Host "Convene Record URL: $url";Set-Clipboard $url;Write-Host"";Write-Host "URL copied to clipboard. Please paste to WuWaPal.com and click the Import button." -ForegroundColor Green}else{Write-Host "No URL found."}}else{Write-Host "\`nNo matching entries found in the log file. Please open your Convene History first!" -ForegroundColor Red}`;
 }
 
-export function calculatePercentage (part: number, total: number) {
+export function calculatePercentage(part: number, total: number) {
     return ((part / total) * 100).toFixed(2);
 }
 
@@ -31,51 +31,59 @@ export function processBannerForStore(banner: any, store_id: string) {
     const star5s: any = [];
 
     copyData.forEach((data: any, idx) => {
-        const newItem = { ...data, roll: idx + 1, pity: 1, import: "auto" };
-        if (newItem.qualityLevel == 4) {
+        const newItem = {
+            q: data.qualityLevel,
+            r: idx + 1,
+            p: 1,
+            i: "a",
+            n: data.name,
+            t: data.time,
+            y: data.resourceType == "Weapons" ? "w" : "r",
+        };
+        if (data.qualityLevel == 4) {
             const pity =
                 pity4_last_index == 0
                     ? idx - pity4_last_index + 1
                     : idx - pity4_last_index;
 
-            newItem.pity = pity;
+            newItem.p = pity;
 
             star4s.push({
-                n: newItem.name,
+                n: data.name,
                 p: pity,
-                t: new Date(newItem.time).getTime(),
-                y: newItem.resourceType == "Weapons" ? "w" : "r",
+                t: new Date(data.time).getTime(),
+                y: data.resourceType == "Weapons" ? "w" : "r",
             });
 
             pity4_last_index = idx;
         }
 
-        if (newItem.qualityLevel == 5) {
+        if (data.qualityLevel == 5) {
             const pity =
                 pity5_last_index == 0
                     ? idx - pity5_last_index + 1
                     : idx - pity5_last_index;
 
-            newItem.pity = pity;
+            newItem.p = pity;
 
             const star5_processed: any = {
-                n: newItem.name,
+                n: data.name,
                 p: pity,
-                t: new Date(newItem.time).getTime(),
-                y: newItem.resourceType == "Weapons" ? "w" : "r",
+                t: new Date(data.time).getTime(),
+                y: data.resourceType == "Weapons" ? "w" : "r",
             };
 
             if (store_id == "featured_resonator") {
                 if (last_star5_resonator == null) {
                     star5_processed.w = !standard_resonators.includes(
-                        newItem.name
+                        data.name
                     );
                 } else if (
                     last_star5_resonator != null &&
                     !standard_resonators.includes(last_star5_resonator)
                 ) {
                     star5_processed.w = !standard_resonators.includes(
-                        newItem.name
+                        data.name
                     );
                 }
             }
@@ -104,6 +112,11 @@ export function processBannerForStore(banner: any, store_id: string) {
     };
 }
 
+function parseResourceType(type: string) {
+    if(type == "Weapons" || type == "w" || type == "weapons") return "weapons";
+    else return "resonators";
+}
+
 export function processBanner(banner: any) {
     let returnObj = null;
     if (banner && banner.items.length > 0) {
@@ -119,12 +132,18 @@ export function processBanner(banner: any) {
 
         copyItems.forEach((item, idx) => {
             let newItem = {
-                ...item,
                 image_path: "",
+                name: item.n || item.name,
+                resourceType: parseResourceType(item.y || item.resourceType),
+                roll: item.r || item.roll,
+                pity: item.p || item.pity,
+                time: item.t || item.time,
+                qualityLevel: item.q || item.qualityLevel,
+                import_type: item.i || item.import_type,
             };
 
             if (newItem.qualityLevel === 4) {
-                if (newItem.resourceType == "Resonators") {
+                if (newItem.resourceType == "resonators") {
                     star4_resonators.push({
                         name: newItem.name,
                         pity: newItem.pity,
@@ -147,8 +166,8 @@ export function processBanner(banner: any) {
             }
             // Replace the original item with the new one
             newItem.image_path =
-                `/${item.resourceType.toLowerCase()}/` +
-                item.name
+                `/${newItem.resourceType}/` +
+                newItem.name
                     .toLowerCase() // Convert all characters to lowercase
                     .replace(/:/g, "") // Remove colons
                     .replace(/ /g, "_") +

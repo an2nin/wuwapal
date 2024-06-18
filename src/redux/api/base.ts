@@ -1,12 +1,23 @@
 // import { RootState } from "@/redux/store";
+import { useBannerStore } from "@/stores/banner";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
+// function getCookieValue(cookieString: string, cookieName: string) {
+//     const cookies = cookieString.split("; ");
+//     for (let i = 0; i < cookies.length; i++) {
+//         const cookie = cookies[i].split("=");
+//         if (cookie[0] === cookieName) {
+//             return decodeURIComponent(cookie[1]);
+//         }
+//     }
+//     return null;
+// }
 
 // Create our baseQuery instance
 const baseQuery = fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_BASE_URL,
     // prepareHeaders: (headers, { getState }) => {
-    //     const token = (getState() as RootState).persistedReducer.authReducer
-    //         .auth?.access;
+    //     const token = getCookieValue(document.cookie, "token");
     //     if (token) {
     //         headers.set("Authorization", `Bearer ${token}`);
     //     }

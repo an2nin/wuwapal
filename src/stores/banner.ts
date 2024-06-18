@@ -39,6 +39,16 @@ export const useBannerStore = create(
             addBannerRecordUrl: (url: string) =>
                 set({ banner_record_url: url }),
             addGamePath: (path: string) => set({ game_path: path }),
+            addBannerStore: (
+                banners: any,
+                banner_record_url: string,
+                game_path: any
+            ) =>
+                set({
+                    banners: banners,
+                    banner_record_url: banner_record_url,
+                    game_path: game_path,
+                }),
             addBanner: (name: string, items: any) =>
                 set((state: any) => ({
                     banners: {
@@ -51,11 +61,12 @@ export const useBannerStore = create(
                     banner_record_url: banner_record_url,
                     game_path: game_path,
                 }),
-            clearStore: () => set({
-                banners: initialState,
-                banner_record_url: null,
-                game_path: null,
-            }),
+            clearStore: () =>
+                set({
+                    banners: initialState,
+                    banner_record_url: null,
+                    game_path: null,
+                }),
         }),
         {
             name: "banner-storage", // name of the item in the storage (must be unique)

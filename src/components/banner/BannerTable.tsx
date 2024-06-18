@@ -159,7 +159,7 @@ export default function BannerPullList({ banner }: Props) {
                                     </TableCell>
                                     <TableCell>{item.time}</TableCell>
                                     <TableCell>
-                                        {item.import_type == "manual" &&
+                                        {item.import_type == "manual" || item.import_type == "m" &&
                                             idx == 0 && (
                                                 <Button
                                                     variant="destructive"

@@ -25,6 +25,26 @@ const useSupabase = (tableName: string) => {
         }
     };
 
+    const fetchDataByUnique = async (col: string, val: any) => {
+        setLoading(true);
+        setError(null);
+        try {
+            const { data, error } = await supabase
+                .from(tableName)
+                .select("*")
+                .eq(col, val)
+                .limit(1)
+                .single();
+
+            if (error) throw error;
+            setData(data);
+        } catch (error: any) {
+            setError(error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const insertData = async (newData: any) => {
         setError(null);
         try {
@@ -92,6 +112,7 @@ const useSupabase = (tableName: string) => {
         deleteData,
         fetchData,
         upsertData,
+        fetchDataByUnique,
     };
 };
 

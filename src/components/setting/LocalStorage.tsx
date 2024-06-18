@@ -10,8 +10,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { BannerState, useBannerStore } from "@/stores/banner";
-import { useState } from "react";
-import { Trash, Trash2 } from "lucide-react";
+import { use, useEffect, useState } from "react";
+import { Trash2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
 export default function LocalStorage() {
@@ -50,6 +50,11 @@ export default function LocalStorage() {
             variant: "destructive",
         });
     }
+
+    useEffect(() => {
+        setRecordUrl(bannerStore.banner_record_url || "");
+        setGamePath(bannerStore.game_path || "");
+    }, [bannerStore]);
 
     return (
         <Card className="md:px-10 py-5">

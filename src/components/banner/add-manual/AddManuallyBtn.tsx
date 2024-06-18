@@ -60,14 +60,13 @@ export default function AddManuallyBtn({ banner_store_id }: Props) {
         copyBanner.store_id = copyBanner.store_id || banner_store_id;
 
         const itemData = {
-            name: selectedResource?.name,
-            count: 1,
-            qualityLevel: rarity,
-            resourceType: resourceType == 1 ? "Resonators" : "Weapons",
-            pity: +pityInput,
-            import_type: "manual",
-            roll: copyBanner.total + parseInt(pityInput),
-            time: format(date as any, "yyyy-MM-dd HH:mm:ss"),
+            n: selectedResource?.name,
+            q: rarity,
+            y: resourceType == 1 ? "Resonators" : "Weapons",
+            p: +pityInput,
+            i: "m",
+            r: copyBanner.total + parseInt(pityInput),
+            t: format(date as any, "yyyy-MM-dd HH:mm:ss"),
         };
 
         const updatedBanner = processAddItemToBanner(copyBanner, itemData);

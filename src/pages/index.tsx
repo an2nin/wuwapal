@@ -1,3 +1,4 @@
+import EventTracker from "@/components/events/EventTracker";
 import FrontPageCard from "@/components/global_stat/FrontPageCard";
 import { Button } from "@/components/ui/button";
 import {
@@ -89,7 +90,7 @@ export default function Home() {
                     content="https://wuwapal.com/wuwapal-og2.png"
                 />
             </Head>
-            <div className={`grid grid-cols-12 gap-5 justify-center w-full md:my-[12vh]`}>
+            <div className={`grid grid-cols-12 gap-5 justify-center w-full`}>
                 <div className="md:col-span-7 col-span-12 flex flex-col gap-5">
                     <Card>
                         <CardHeader>
@@ -119,14 +120,7 @@ export default function Home() {
                             </p>
                         </CardContent>
                     </Card>
-                    <Card className="flex-1">
-                        <CardContent className="p-5">
-                            <div className="flex flex-col gap-5">
-                                <div className="text-2xl">Event Tracker</div>
-                                <div>Coming Soon</div>
-                            </div>
-                        </CardContent>
-                    </Card>
+                    <EventTracker />
                 </div>
                 <div className="md:col-span-5 col-span-12 flex flex-col gap-5">
                     <Card>

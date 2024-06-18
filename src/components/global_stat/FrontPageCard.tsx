@@ -11,7 +11,7 @@ export default function FrontPageCard({ globalData }: Props) {
     const router = useRouter();
 
     return (
-        <Card className="w-full">
+        <Card className="w-full h-full flex flex-col justify-center">
             <CardContent>
                 <div className="flex flex-col gap-2">
                     <div className="flex w-full justify-center relative md:gap-16 gap-5">

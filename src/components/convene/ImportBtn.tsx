@@ -148,7 +148,7 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
                     resources_id: processedURLBody.resources_id,
                     player_id: processedURLBody.player_id,
                     svr_id: processedURLBody.svr_id,
-                    lang: processedURLBody.lang,
+                    lang: "en",
                     record_id: processedURLBody.record_id,
                     pulls: bannersForGlobalStat,
                 },

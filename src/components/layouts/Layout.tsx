@@ -3,13 +3,14 @@ import {
     Inter,
 } from "next/font/google";
 import Footer from "@/components/layouts/Footer";
+import ProgressBar from "@/components/layouts/ProgressBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <>
-        {/* <div className="overlay"></div> */}
+         <ProgressBar />
             <main
                 className={`flex flex-col min-h-screen justify-start ${inter.className}`}
             >

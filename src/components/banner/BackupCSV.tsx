@@ -12,23 +12,23 @@ export default function BackupCSV() {
         const fields = [
             {
                 label: "Roll",
-                value: "roll",
+                value: "r",
             },
             {
                 label: "Name",
-                value: "name",
+                value: "n",
             },
             {
                 label: "Quality",
-                value: "qualityLevel",
+                value: "q",
             },
             {
                 label: "Pity",
-                value: "pity",
+                value: "p",
             },
             {
                 label: "Time",
-                value: "time",
+                value: "t",
             },
         ];
 

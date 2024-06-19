@@ -70,7 +70,7 @@ export default function SyncBtn({ historyUrl }: Props) {
                 cardPoolType: currentBanner,
                 playerId: processedURLBody.player_id,
                 serverId: processedURLBody.svr_id,
-                languageCode: processedURLBody.lang,
+                languageCode: "en",
                 recordId: processedURLBody.record_id,
             });
         }
@@ -138,7 +138,7 @@ export default function SyncBtn({ historyUrl }: Props) {
                     resources_id: processedURLBody.resources_id,
                     player_id: processedURLBody.player_id,
                     svr_id: processedURLBody.svr_id,
-                    lang: processedURLBody.lang,
+                    lang: "en",
                     record_id: processedURLBody.record_id,
                     pulls: bannersForGlobalStat,
                 },

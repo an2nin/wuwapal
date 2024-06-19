@@ -1,5 +1,4 @@
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Star } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 
 interface Props {
     tabInfo: any;
@@ -18,7 +17,7 @@ export default function BannerTab({
         <Card
             className={`${
                 active && "border-2 border-primary"
-            } hover:cursor-pointer`}
+            } hover:cursor-pointer transition-transform transform hover:scale-105`}
             onClick={() => onClick(tabInfo.store_id)}
         >
             <CardContent className="p-2">

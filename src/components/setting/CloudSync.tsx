@@ -154,9 +154,7 @@ export default function CloudSync() {
                         >
                             <RefreshCcw
                                 className={`w-5 h-5 ${
-                                    isSyncDataLoading ||
-                                    isFetchCloudDataLoading ||
-                                    isTokenLoading
+                                    isSyncDataLoading || isFetchCloudDataLoading
                                         ? "animate-spin"
                                         : ""
                                 }`}
@@ -167,7 +165,11 @@ export default function CloudSync() {
                 ) : (
                     <Button onClick={() => login()}>
                         <div className="flex gap-2 items-center">
-                            <FcGoogle />
+                            <FcGoogle
+                                className={`w-5 h-5 ${
+                                    isTokenLoading ? "animate-spin" : ""
+                                }`}
+                            />
                             Sign in with Google
                         </div>
                     </Button>

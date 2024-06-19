@@ -1,13 +1,14 @@
+import Link from "next/link";
+
 export default function Announcement() {
     return (
         <div className="w-full container text-center p-1 text-sm">
             <p>
-                Global Statistics UI is live. Please provide pull data by
-                importing or refreshing the records. Ensure the
-                <span className="font-bold mx-1">
-                    &quot;Submit pity for global pull stats&quot;
-                </span>
-                is checked.
+                Cloud Sync functionality is now live. Please navigate to
+                <Link href="/settings">
+                    <span className="font-bold mx-1 underline">Settings</span>
+                    page to initiate the backup of your data to the cloud.
+                </Link>
             </p>
         </div>
     );

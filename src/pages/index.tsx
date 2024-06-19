@@ -67,7 +67,7 @@ export default function Home() {
                 />
                 <meta
                     property="og:image"
-                    content="https://wuwapal.com/wuwapal-og2.png"
+                    content="https://wuwapal.com/wuwapal-org3.jpeg"
                 />
                 <meta property="og:type" content="website" />
 
@@ -87,7 +87,7 @@ export default function Home() {
                 />
                 <meta
                     name="twitter:image"
-                    content="https://wuwapal.com/wuwapal-og2.png"
+                    content="https://wuwapal.com/wuwapal-org3.jpeg"
                 />
             </Head>
             <div className={`grid grid-cols-12 gap-5 justify-center w-full`}>

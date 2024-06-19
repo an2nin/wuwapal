@@ -13,6 +13,7 @@ import { BannerState, useBannerStore } from "@/stores/banner";
 import { use, useEffect, useState } from "react";
 import { Trash2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import BackupCSV from "@/components/banner/BackupCSV";
 
 export default function LocalStorage() {
     const bannerStore = useBannerStore<BannerState>(
@@ -49,7 +50,7 @@ export default function LocalStorage() {
             title: "Locale Storage Cleared",
             variant: "destructive",
         });
-    }
+    };
 
     useEffect(() => {
         setRecordUrl(bannerStore.banner_record_url || "");
@@ -64,12 +65,11 @@ export default function LocalStorage() {
                         <span>Locale Storage</span>
                         <div>
                             <Button
-                                className="hover:bg-red-500 "
-                                variant="ghost"
+                                variant="destructive"
                                 size="icon"
                                 onClick={handleStateClear}
                             >
-                                <Trash2 className="text-red-500 hover:text-white" />
+                                <Trash2 />
                             </Button>
                         </div>
                     </div>
@@ -103,7 +103,8 @@ export default function LocalStorage() {
                     </div>
                 </div>
             </CardContent>
-            <CardFooter className="flex justify-end">
+            <CardFooter className="flex justify-between">
+                {bannerStore.banners.beginner && <BackupCSV />}
                 <Button onClick={handleLocaleStorageSave}>Save</Button>
             </CardFooter>
         </Card>

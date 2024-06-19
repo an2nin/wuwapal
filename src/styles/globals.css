@@ -90,6 +90,10 @@ body {
     }
 }
 
+.recharts-layer {
+    outline: none !important;
+  }
+
 .overlay {
     position: absolute;
     top: 0;

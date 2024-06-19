@@ -64,7 +64,7 @@ export default function BackupCSV() {
         <Button variant="ghostOutline" onClick={handleDownload}>
             <div className="flex items-center gap-2">
                 <Download />
-                Backup (CSVs)
+                Backup Banners (CSVs)
             </div>
         </Button>
     );

@@ -21,8 +21,8 @@ export default function Header() {
 
     return (
         <>
-            <Announcement />
-            <header className="flex flex-col container z-10 px-0 md:px-4">
+            {/* <Announcement /> */}
+            <header className="flex flex-col container z-10 px-0 md:px-4 mt-2">
                 <div className="w-full bg-theme-glassy p-3 rounded-2xl">
                     <div className="flex justify-between items-center">
                         <Sheet>

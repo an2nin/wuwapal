@@ -15,6 +15,15 @@ export const userDataApis = api.injectEndpoints({
                 };
             },
         }),
+        fetchToken: build.mutation<any, any>({
+            query(form) {
+                return {
+                    url: `${API_SERVER_ENDPOINT}/auth/callback`,
+                    method: "POST",
+                    body: form,
+                };
+            },
+        }),
         fetchCloudData: build.query<any, void>({
             query() {
                 return {
@@ -27,4 +36,4 @@ export const userDataApis = api.injectEndpoints({
     }),
 });
 
-export const { useSyncDataMutation, useLazyFetchCloudDataQuery } = userDataApis;
+export const { useSyncDataMutation, useLazyFetchCloudDataQuery, useFetchTokenMutation } = userDataApis;

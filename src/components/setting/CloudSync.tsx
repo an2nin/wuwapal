@@ -13,40 +13,55 @@ import { useCookies } from "react-cookie";
 import { LogOut, RefreshCcw } from "lucide-react";
 import { useBannerStore } from "@/stores/banner";
 import {
+    useFetchTokenMutation,
     useLazyFetchCloudDataQuery,
     useSyncDataMutation,
 } from "@/redux/services/user";
 import { useToast } from "@/components/ui/use-toast";
-
-const url = `https://accounts.google.com/o/oauth2/auth?client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_AUTH_REDIRECT_URL}&scope=openid+profile+email&response_type=code`;
+import { useRouter } from "next/router";
+import { useGoogleLogin } from "@react-oauth/google";
 
 export default function CloudSync() {
+    const router = useRouter();
     const [cookies, setCookie, removeCookie] = useCookies(["token"]);
-
     const { toast } = useToast();
-
     const [
         syncData,
-        { isLoading: isSyncDataLoading, isSuccess: isSyncDataSuccess },
+        {
+            isLoading: isSyncDataLoading,
+            isSuccess: isSyncDataSuccess,
+            isError: isSyncDataError,
+        },
     ] = useSyncDataMutation();
     const [
         fetchCloudData,
         {
-            isLoading: isFetchCloudDataLoading,
+            isFetching: isFetchCloudDataLoading,
             isSuccess: isFetchCloudDataSuccess,
             data: cloudData,
         },
     ] = useLazyFetchCloudDataQuery<any>();
 
+    const [
+        fetchToken,
+        {
+            data: tokenRes,
+            isLoading: isTokenLoading,
+            isSuccess: isTokenSuccess,
+        },
+    ] = useFetchTokenMutation();
+
     const [ccuserInfo, setCCUserInfo] = useState<any>(null);
     const bannerStore = useBannerStore<any>((state: any) => state);
 
-    const handleRedirect = () => {
-        window.location.href = url;
-    };
     const handleLogout = () => {
         removeCookie("token");
     };
+
+    const login = useGoogleLogin({
+        onSuccess: (tokenResponse) =>
+            fetchToken({ code: tokenResponse.access_token }),
+    });
 
     const handleSyncData = () => {
         if (bannerStore.banner_record_url === null) {
@@ -61,6 +76,12 @@ export default function CloudSync() {
             });
         }
     };
+
+    useEffect(() => {
+        if (isTokenSuccess) {
+            setCookie("token", tokenRes.token);
+        }
+    }, [isTokenSuccess]);
 
     useEffect(() => {
         setCCUserInfo(cookies.token);
@@ -89,6 +110,17 @@ export default function CloudSync() {
             });
         }
     }, [isFetchCloudDataSuccess]);
+
+    useEffect(() => {
+        if (isSyncDataError) {
+            toast({
+                title: "Oops an error occurred when syncing!",
+                variant: "destructive",
+            });
+
+            removeCookie("token");
+        }
+    }, [isSyncDataError]);
 
     return (
         <Card className="md:px-10 py-5">
@@ -122,7 +154,9 @@ export default function CloudSync() {
                         >
                             <RefreshCcw
                                 className={`w-5 h-5 ${
-                                    isSyncDataLoading || isFetchCloudDataLoading
+                                    isSyncDataLoading ||
+                                    isFetchCloudDataLoading ||
+                                    isTokenLoading
                                         ? "animate-spin"
                                         : ""
                                 }`}
@@ -131,7 +165,7 @@ export default function CloudSync() {
                         </Button>
                     </div>
                 ) : (
-                    <Button onClick={handleRedirect}>
+                    <Button onClick={() => login()}>
                         <div className="flex gap-2 items-center">
                             <FcGoogle />
                             Sign in with Google

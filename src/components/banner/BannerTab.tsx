@@ -35,7 +35,7 @@ export default function BannerTab({
                             <p className="font-semibold flex items-center gap-1">
                                 Total Pulls
                             </p>
-                            <p>{bannerInfo.total.toLocaleString()}</p>
+                            <p>{bannerInfo && bannerInfo.total.toLocaleString()}</p>
                         </div>
                     </div>
                 </div>

@@ -10,8 +10,6 @@ export default function EventTracker() {
         setProcessedEvents(p_events);
     }, []);
 
-    console.log(processedEvents);
-
     return (
         <>
             {processedEvents && (

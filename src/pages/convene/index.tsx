@@ -110,7 +110,7 @@ export default function ConveneTracker() {
                 </div>
                 <div className="w-full grid grid-cols-12 gap-5">
                     <div className="md:col-span-4 col-span-12 flex flex-col gap-5">
-                        {bannerStore.banners.beginner != null && bannerTabs.map((tab, idx) => (
+                        {bannerStore.banners && bannerTabs.map((tab, idx) => (
                             <BannerTab
                                 key={idx}
                                 tabInfo={tab}
@@ -133,7 +133,7 @@ export default function ConveneTracker() {
                     </div>
                     <div className="md:col-span-8 col-span-12">
                         <div className="col-span-12 sm:col-span-6 xl:col-span-4">
-                            {bannerStore.banners.beginner != null && (
+                            {bannerStore.banners && (
                                 <BannerView
                                     banner_store_id={activeBannerTab}
                                     banner={

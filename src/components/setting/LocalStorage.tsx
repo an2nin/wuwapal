@@ -39,6 +39,7 @@ export default function LocalStorage() {
         bannerStore.updateBannerInfo(recordUrl, gamePath);
         toast({
             title: "Locale Storage Updated",
+            variant: "success",
         });
     };
 

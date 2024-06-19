@@ -224,7 +224,7 @@ export function parseUrlParams(url: string) {
 export function processAddItemToBanner(banner: any, item: any) {
     const copyBanner = { ...banner };
     copyBanner.items.push(item);
-    copyBanner.total = parseInt(banner.total) + parseInt(item.pity);
+    copyBanner.total = parseInt(banner.total) + parseInt(item.p);
 
     return copyBanner;
 }

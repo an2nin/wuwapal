@@ -21,6 +21,7 @@ export default function CopyCardSemiAutomatic({ text }: Props) {
                 toast({
                     title: "Text Copied to Clipboard",
                     description: "Now Paste it in Windows PowerShell",
+                    variant: "success",
                 });
             })
             .catch((err) => {

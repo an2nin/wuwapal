@@ -62,7 +62,7 @@ export default function AddManuallyBtn({ banner_store_id }: Props) {
         const itemData = {
             n: selectedResource?.name,
             q: rarity,
-            y: resourceType == 1 ? "Resonators" : "Weapons",
+            y: resourceType == 1 ? "r" : "w",
             p: +pityInput,
             i: "m",
             r: copyBanner.total + parseInt(pityInput),

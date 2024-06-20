@@ -30,6 +30,12 @@ export const events: any = [
         starts: "2024-06-28T20:00:00.000Z",
         image_path: event_url + "wuwa_patch_1_1.jpg",
     },
+    {
+        title: "Chord Cleansing",
+        expires: "2024-06-26T20:00:00.000Z",
+        starts: "2024-06-20T20:00:00.000Z",
+        image_path: event_url + "chord_cleansing.jpg",
+    },
 ];
 
 function calculateTimeLeft(endDate: any, startDate: any) {

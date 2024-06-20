@@ -2,15 +2,17 @@ import { Badge } from "@/components/ui/badge";
 
 interface Props {
     children?: React.ReactNode;
-    title: string;
-    index: number;
+    title: any;
+    index: number | string;
     last?: boolean;
+    img?: string;
 }
 export default function CustomListItem({
     children,
     title,
     index,
     last = false,
+    img,
 }: Props) {
     return (
         <li className={`ms-8  ${last ? "" : "mb-10"}`}>
@@ -21,7 +23,10 @@ export default function CustomListItem({
                 {title}
             </h3>
 
-            <div className={`${last ? "" : "mb-4 mt-2"}`}>{children}</div>
+            <div className={`${last ? "" : "mb-4 mt-2"}`}>
+                {children}
+                {img && <img className="h-96 w-64" src={img} alt={title} />}
+            </div>
         </li>
     );
 }

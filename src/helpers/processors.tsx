@@ -113,7 +113,7 @@ export function processBannerForStore(banner: any, store_id: string) {
 }
 
 function parseResourceType(type: string) {
-    if(type == "Weapons" || type == "w" || type == "weapons") return "weapons";
+    if (type == "Weapons" || type == "w" || type == "weapons") return "weapons";
     else return "resonators";
 }
 
@@ -235,4 +235,38 @@ export function processDeleteLastItemFromBanner(banner: any, item: any) {
     copyBanner.total = parseInt(copyBanner.total) - parseInt(item.pity);
 
     return copyBanner;
+}
+
+export function convertJsonToUrl(jsonInput: string) {
+    try {
+        // Parse the JSON input
+        const data = JSON.parse(jsonInput);
+
+        // Construct the base URL
+        const baseUrl =
+            "https://aki-gm-resources-oversea.aki-game.net/aki/gacha/index.html#/record";
+
+        // Create an object with the query parameters
+        const queryParams = {
+            svr_id: data.serverId,
+            player_id: data.playerId,
+            lang: data.languageCode,
+            resources_id: data.cardPoolId,
+            record_id: data.recordId,
+        };
+
+        // Convert the query parameters object to a URL-encoded string
+        const queryString = Object.entries(queryParams)
+            .map(
+                ([key, value]) =>
+                    `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
+            )
+            .join("&");
+
+        // Combine the base URL and query string
+        return `${baseUrl}?${queryString}`;
+    } catch (error) {
+        console.error("Error parsing JSON or creating URL:", error);
+        return null;
+    }
 }

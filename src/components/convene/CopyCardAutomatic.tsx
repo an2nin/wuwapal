@@ -5,10 +5,10 @@ import { Button } from "../ui/button";
 import { useToast } from "@/components/ui/use-toast";
 
 const scriptUrl =
-    "https://gist.githubusercontent.com/antonin686/3dd396f472ab815c7a0d8041ef43d190/raw/80ae5fc5ccb4d48144316870d278a49e72b652a9/getWWConveneRecordUrl.ps1";
+    "https://gist.githubusercontent.com/antonin686/3dd396f472ab815c7a0d8041ef43d190/raw/getWWConveneRecordUrl.ps1";
 
 const copyText =
-    '[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12; Invoke-Expression (New-Object Net.WebClient).DownloadString("https://gist.githubusercontent.com/antonin686/3dd396f472ab815c7a0d8041ef43d190/raw/80ae5fc5ccb4d48144316870d278a49e72b652a9/getWWConveneRecordUrl.ps1")';
+    '[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12; Invoke-Expression (New-Object Net.WebClient).DownloadString("https://gist.githubusercontent.com/antonin686/3dd396f472ab815c7a0d8041ef43d190/raw/getWWConveneRecordUrl.ps1")';
 
 export default function CopyCardAutomatic() {
     const { toast } = useToast();

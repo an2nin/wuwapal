@@ -76,6 +76,7 @@ export default function AddManuallyBtn({ banner_store_id }: Props) {
 
         toast({
             title: "Pull Added",
+            variant: "success",
         });
     };
 

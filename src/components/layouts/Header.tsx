@@ -67,7 +67,19 @@ export default function Header() {
                         <div className="md:hidden">
                             <BrandLogo />
                         </div>
-                        <div></div>
+                        <div>
+                            <Button
+                                variant="outline"
+                                size="icon"
+                                className="md:hidden"
+                                onClick={() => router.push("/settings")}
+                            >
+                                <Settings className="h-5 w-5" />
+                                <span className="sr-only">
+                                    Toggle user menu
+                                </span>
+                            </Button>
+                        </div>
                     </div>
 
                     <div className="hidden md:block">

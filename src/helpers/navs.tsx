@@ -1,5 +1,5 @@
-import { LayoutGrid, Sparkles, Users } from "lucide-react";
-
+import { LayoutGrid, Sparkles } from "lucide-react";
+import { GiSwordTie } from "react-icons/gi";
 export const navs = [
     {
         title: "Home",
@@ -11,9 +11,9 @@ export const navs = [
         href: "/convene",
         icon: <Sparkles />,
     },
-    // {
-    //     title: "Characters",
-    //     href: "/characters",
-    //     icon: <Users />,
-    // },
+    {
+        title: "My Collections",
+        href: "/my-collections",
+        icon: <GiSwordTie />,
+    },
 ];

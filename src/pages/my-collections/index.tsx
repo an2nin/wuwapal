@@ -1,9 +1,20 @@
 import CollectionList from "@/components/collection/CollectionList";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useState } from "react";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { processBannersForCollection } from "@/helpers/processors";
+import { useBannerStore } from "@/stores/banner";
+import { useEffect, useState } from "react";
 
 export default function MyCollections() {
     const [currentTab, setCurrentTab] = useState("resonator");
+    const [processedCollection, setProcessedCollection] = useState<any>(null);
+    const bannerStore = useBannerStore<any>((state: any) => state);
+
+    useEffect(() => {
+        const processed = processBannersForCollection(bannerStore.banners);
+        setProcessedCollection(processed);
+    }, [bannerStore]);
+
+    console.log(processedCollection);
 
     return (
         <Tabs value={currentTab} onValueChange={setCurrentTab}>
@@ -23,8 +34,20 @@ export default function MyCollections() {
                 records. However, you can manually add for the sequences and
                 ascension obtained without pulling.
             </h3>
-            
-            <CollectionList type={currentTab} />
+
+            {currentTab == "resonator" ? (
+                <CollectionList
+                    type={currentTab}
+                    star4s={processedCollection?.star4_resonators}
+                    star5s={processedCollection?.star5_resonators}
+                />
+            ) : (
+                <CollectionList
+                    type={currentTab}
+                    star4s={processedCollection?.star4_weapons}
+                    star5s={processedCollection?.star5_weapons}
+                />
+            )}
         </Tabs>
     );
 }

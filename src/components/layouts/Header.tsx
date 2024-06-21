@@ -91,7 +91,7 @@ export default function Header() {
                                     <Link
                                         key={idx}
                                         href={nav.href}
-                                        className={`flex justify-start items-center gap-3 rounded-3xl p-3 transition-all ${
+                                        className={`flex justify-start items-center gap-2 rounded-3xl p-3 transition-all ${
                                             currentActiveNav === nav.href
                                                 ? "bg-primary hover:bg-primary/90 text-accent-foreground "
                                                 : "text-primary opacity-50 hover:opacity-100"

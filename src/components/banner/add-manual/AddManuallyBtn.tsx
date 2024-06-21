@@ -20,7 +20,7 @@ import PityInput from "@/components/banner/add-manual/PityInput";
 import { useBannerStore } from "@/stores/banner";
 import { PullDateInput } from "@/components/banner/add-manual/PullDateInput";
 import { format } from "date-fns";
-import { useToast } from "@/components/ui/use-toast";
+import { toast } from "sonner"
 import { processAddItemToBanner } from "@/helpers/processors";
 
 interface Props {
@@ -42,15 +42,9 @@ export default function AddManuallyBtn({ banner_store_id }: Props) {
         setSelectedResource(value);
     };
 
-    const { toast } = useToast();
-
     const handleAddBtn = () => {
         if (!selectedResource) {
-            toast({
-                title: "Error",
-                description: "Please select a resource",
-                variant: "destructive",
-            });
+            toast.error("Please select a resource!");
             return;
         }
 
@@ -74,10 +68,7 @@ export default function AddManuallyBtn({ banner_store_id }: Props) {
         setSelectedResource(null);
         bannerStore.addBanner(banner_store_id, updatedBanner);
 
-        toast({
-            title: "Pull Added",
-            variant: "success",
-        });
+        toast.success("Pull Added")
     };
 
     useEffect(() => {

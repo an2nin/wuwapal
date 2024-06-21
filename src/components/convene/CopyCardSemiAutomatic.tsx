@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Copy } from "lucide-react";
 import createImportScript, { isGamePathValid } from "@/helpers/processors";
-import { useToast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 
 interface Props {
     text: string;
@@ -12,20 +12,16 @@ interface Props {
 export default function CopyCardSemiAutomatic({ text }: Props) {
     const [processedText, setProcessedText] = useState<string | null>(null);
 
-    const { toast } = useToast();
     const handleCopy = () => {
         if(processedText) {
             navigator.clipboard
             .writeText(processedText)
             .then(() => {
-                toast({
-                    title: "Text Copied to Clipboard",
-                    description: "Now Paste it in Windows PowerShell",
-                    variant: "success",
-                });
+                toast.success("Text Copied to Clipboard, now paste it on Windows PowerShell");
             })
             .catch((err) => {
                 console.error("Error copying text: ", err);
+                toast.error("Error copying text");
             });
         }
     };

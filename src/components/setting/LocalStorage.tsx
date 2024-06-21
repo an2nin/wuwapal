@@ -10,17 +10,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { BannerState, useBannerStore } from "@/stores/banner";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Trash2 } from "lucide-react";
-import { useToast } from "@/components/ui/use-toast";
 import BackupCSV from "@/components/banner/BackupCSV";
+import { toast } from "sonner";
 
 export default function LocalStorage() {
     const bannerStore = useBannerStore<BannerState>(
         (state: BannerState) => state
     );
-
-    const { toast } = useToast();
 
     const [recordUrl, setRecordUrl] = useState(
         bannerStore.banner_record_url || ""
@@ -37,20 +35,14 @@ export default function LocalStorage() {
 
     const handleLocaleStorageSave = () => {
         bannerStore.updateBannerInfo(recordUrl, gamePath);
-        toast({
-            title: "Locale Storage Updated",
-            variant: "success",
-        });
+        toast.success("Locale Storage Updated");
     };
 
     const handleStateClear = () => {
         bannerStore.clearStore();
         setRecordUrl("");
         setGamePath("");
-        toast({
-            title: "Locale Storage Cleared",
-            variant: "destructive",
-        });
+        toast.error("Locale Storage Cleared");
     };
 
     useEffect(() => {

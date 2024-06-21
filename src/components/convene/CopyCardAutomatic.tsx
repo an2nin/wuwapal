@@ -2,7 +2,7 @@ import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Copy } from "lucide-react";
 import { Button } from "../ui/button";
-import { useToast } from "@/components/ui/use-toast";
+import { toast } from "sonner";
 
 const scriptUrl =
     "https://gist.githubusercontent.com/antonin686/3dd396f472ab815c7a0d8041ef43d190/raw/getWWConveneRecordUrl.ps1";
@@ -11,19 +11,15 @@ const copyText =
     '[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12; Invoke-Expression (New-Object Net.WebClient).DownloadString("https://gist.githubusercontent.com/antonin686/3dd396f472ab815c7a0d8041ef43d190/raw/getWWConveneRecordUrl.ps1")';
 
 export default function CopyCardAutomatic() {
-    const { toast } = useToast();
     const handleCopy = () => {
         navigator.clipboard
             .writeText(copyText)
             .then(() => {
-                toast({
-                    title: "Text Copied to Clipboard",
-                    description: "Now Paste it in Windows PowerShell",
-                    variant: "success",
-                });
+                toast.success("Text Copied to Clipboard, now paste it on Windows PowerShell");
             })
             .catch((err) => {
                 console.error("Error copying text: ", err);
+                toast.error("Error copying text");
             });
     };
     return (

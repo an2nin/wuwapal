@@ -17,14 +17,13 @@ import {
     useLazyFetchCloudDataQuery,
     useSyncDataMutation,
 } from "@/redux/services/user";
-import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/router";
 import { useGoogleLogin } from "@react-oauth/google";
+import { toast } from "sonner";
 
 export default function CloudSync() {
     const router = useRouter();
     const [cookies, setCookie, removeCookie] = useCookies(["token"]);
-    const { toast } = useToast();
     const [
         syncData,
         {
@@ -89,10 +88,7 @@ export default function CloudSync() {
 
     useEffect(() => {
         if (isSyncDataSuccess) {
-            toast({
-                title: "Data Synced Successfully with Cloud",
-                variant: "success",
-            });
+            toast.success("Data Synced Successfully with Cloud");
         }
     }, [isSyncDataSuccess]);
 
@@ -104,19 +100,13 @@ export default function CloudSync() {
                 cloudData.data.game_path
             );
 
-            toast({
-                title: "Data Synced Successfully with Cloud",
-                variant: "success",
-            });
+           toast.success("Data Synced Successfully with Cloud");
         }
     }, [isFetchCloudDataSuccess]);
 
     useEffect(() => {
         if (isSyncDataError) {
-            toast({
-                title: "Oops an error occurred when syncing!",
-                variant: "destructive",
-            });
+            toast.error("Error Syncing Data with Cloud");
 
             removeCookie("token");
         }

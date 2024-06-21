@@ -102,7 +102,7 @@ export default function Home() {
                             </CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <p className="max-w-4xl md:px-5 text-center">
+                            <p className="max-w-4xl md:px-5 text-center typo-p">
                                 Hello fellow Rovers, this website is dedicated
                                 to enhancing your experience in Wuthering Waves.
                                 Currently, we offer a Convene (Pull) Tracker and
@@ -125,10 +125,10 @@ export default function Home() {
                 <div className="md:col-span-5 col-span-12 flex flex-col gap-5">
                     <Card>
                         <CardContent className="p-5">
-                            <div>
+                            <p className="typo-p">
                                 View and Analyze you convene record using
                                 Convene Tracker.
-                            </div>
+                            </p>
                         </CardContent>
                         <CardFooter>
                             <Button onClick={() => router.push("/convene")}>

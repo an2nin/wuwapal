@@ -11,7 +11,6 @@ import {
     DialogTitle,
 } from "@/components/ui/dialog";
 import { useFetchBannerMutation } from "@/redux/services/banner";
-import { useToast } from "@/components/ui/use-toast";
 import { Progress } from "@/components/ui/progress";
 import { DialogContent } from "@radix-ui/react-dialog";
 import { useRouter } from "next/router";
@@ -23,6 +22,7 @@ import {
 } from "@/helpers/processors";
 import useSupabase from "@/hooks/useSupabase";
 import { Checkbox } from "@/components/ui/checkbox";
+import { toast } from "sonner";
 
 interface Props {
     historyUrl: string;
@@ -32,7 +32,6 @@ interface Props {
 const total_banners = 7;
 
 export default function ImportBtn({ historyUrl, gamePath }: Props) {
-    const { toast } = useToast();
     const router = useRouter();
     const bannerStore = useBannerStore<any>((state: any) => state);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -55,10 +54,7 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
 
     const handleImport = () => {
         if (!isConveneHistoryUrlValid(historyUrl)) {
-            toast({
-                title: "Please paste a valid Convene Record URL!!!",
-                variant: "destructive",
-            });
+            toast.error("Please paste a valid Convene Record URL!!");
             return;
         }
 
@@ -129,10 +125,7 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
         if (isBannerError) {
             setIsDialogOpen(false);
             setCurrentBanner(0);
-            toast({
-                title: "Something went wrong",
-                variant: "destructive",
-            });
+            toast.error("Error fetching banners");
         }
     }, [isBannerError]);
 

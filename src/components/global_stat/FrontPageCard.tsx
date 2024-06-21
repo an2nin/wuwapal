@@ -53,7 +53,7 @@ export default function FrontPageCard({ globalData }: Props) {
                             </div>
                         </div>
                     </div>
-                    <div className="flex justify-s mt-2">
+                    <div className="flex justify-s mt-2 type-p">
                         <div className="flex items-center">
                             Total 50/50 Wins:
                             <span className="text-primary mx-1 flex items-center font-bold">
@@ -69,9 +69,9 @@ export default function FrontPageCard({ globalData }: Props) {
                             </span>
                         </div>
                     </div>
-                    <div className="text-base">
+                    <div className="type-p">
                         Calculated from data submitted by
-                        <span className="font-bold text-primary mx-1 text-lg">
+                        <span className="font-bold text-primary mx-1 type-p">
                             {globalData.total_records}
                         </span>
                         wuwapal.com users.

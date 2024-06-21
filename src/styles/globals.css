@@ -92,7 +92,7 @@ body {
 
 .recharts-layer {
     outline: none !important;
-  }
+}
 
 .overlay {
     position: absolute;
@@ -184,4 +184,16 @@ body {
     100% {
         transform: translateX(-100%);
     }
+}
+
+.typo-h1 {
+    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+}
+
+.typo-h2 {
+    @apply scroll-m-20 text-3xl font-semibold tracking-tight transition-colors;
+}
+
+.typo-p {
+    @apply leading-7;
 }

@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { parseUrlParams, processBannerForStore } from "@/helpers/processors";
 import { useFetchBannerMutation } from "@/redux/services/banner";
-import { toast } from "@/components/ui/use-toast";
 import { useBannerStore } from "@/stores/banner";
 import {
     Dialog,
@@ -16,6 +15,7 @@ import {
 import { Progress } from "@/components/ui/progress";
 import useSupabase from "@/hooks/useSupabase";
 import { Checkbox } from "@/components/ui/checkbox";
+import { toast } from "sonner";
 
 interface Props {
     historyUrl: string;
@@ -47,10 +47,7 @@ export default function SyncBtn({ historyUrl }: Props) {
 
     const handleImport = () => {
         if (historyUrl == null || historyUrl == "") {
-            toast({
-                title: "Please paste the URL!!!",
-                variant: "destructive",
-            });
+            toast.error("Please paste a valid Convene Record URL!!");
             return;
         }
         const parsedBody = parseUrlParams(historyUrl);
@@ -119,10 +116,7 @@ export default function SyncBtn({ historyUrl }: Props) {
         if (isBannerError) {
             setIsDialogOpen(false);
             setCurrentBanner(0);
-            toast({
-                title: "Something went wrong",
-                variant: "destructive",
-            });
+            toast.error("Something went wrong!!");
         }
     }, [isBannerError]);
 

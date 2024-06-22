@@ -86,7 +86,7 @@ export default function Header() {
                         <div className="w-full flex items-center justify-between px-5">
                             <BrandLogo />
 
-                            <div className="flex items-center gap-5 justify-center">
+                            <div className="flex items-center justify-center">
                                 {navs.map((nav, idx) => (
                                     <Link
                                         key={idx}

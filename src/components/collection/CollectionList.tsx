@@ -2,28 +2,21 @@ import CollectionItem from "./CollectionItem";
 
 interface Props {
     type: string;
-    star4s: any;
-    star5s: any;
+    resources: any;
+    collected: any;
 }
-export default function CollectionList({ type, star4s, star5s }: Props) {
+export default function CollectionList({ type, resources, collected }: Props) {
     return (
         <div className="flex flex-wrap gap-5">
-            {star5s &&
-                Object.keys(star5s).map((key) => (
+            {resources &&
+                collected &&
+                Object.keys(resources).map((resourceName, idx) => (
                     <CollectionItem
-                        key={key}
+                        key={idx}
                         type={type}
-                        name={key}
-                        count={star5s[key]}
-                    />
-                ))}
-            {star4s &&
-                Object.keys(star4s).map((key) => (
-                    <CollectionItem
-                        key={key}
-                        type={type}
-                        name={key}
-                        count={star4s[key]}
+                        name={resourceName}
+                        resource={resources[resourceName]}
+                        count={collected[resourceName]}
                     />
                 ))}
         </div>

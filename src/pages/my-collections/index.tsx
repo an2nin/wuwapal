@@ -1,5 +1,6 @@
 import CollectionList from "@/components/collection/CollectionList";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { RESONATORS, WEAPONS } from "@/helpers/constants";
 import { processBannersForCollection } from "@/helpers/processors";
 import { useBannerStore } from "@/stores/banner";
 import { useEffect, useState } from "react";
@@ -31,23 +32,28 @@ export default function MyCollections() {
 
             <h3 className="text-base my-2 text-muted-foreground max-w-5xl">
                 Note: Initially, the data is collected from the imported convene
-                records. However, you can manually add for the sequences and
-                ascension obtained without pulling.
+                records. However, you will be able to manually add for the sequences and
+                ranks obtained through rewards (not yet implemented).
             </h3>
 
-            {currentTab == "resonator" ? (
+            <div className="my-5"></div>
+
+            <div
+                className={`${currentTab === "resonator" ? "block" : "hidden"}`}
+            >
                 <CollectionList
                     type={currentTab}
-                    star4s={processedCollection?.star4_resonators}
-                    star5s={processedCollection?.star5_resonators}
+                    resources={RESONATORS}
+                    collected={processedCollection?.resonators}
                 />
-            ) : (
+            </div>
+            <div className={`${currentTab === "weapon" ? "block" : "hidden"}`}>
                 <CollectionList
                     type={currentTab}
-                    star4s={processedCollection?.star4_weapons}
-                    star5s={processedCollection?.star5_weapons}
+                    resources={WEAPONS}
+                    collected={processedCollection?.weapons}
                 />
-            )}
+            </div>
         </Tabs>
     );
 }

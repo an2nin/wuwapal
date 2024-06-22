@@ -4,16 +4,16 @@ export const navs = [
     {
         title: "Home",
         href: "/",
-        icon: <LayoutGrid />,
+        icon: <LayoutGrid className="h-5 w-5" />,
     },
     {
         title: "Convene Tracker",
         href: "/convene",
-        icon: <Sparkles />,
+        icon: <Sparkles className="h-5 w-5" />,
     },
     {
         title: "My Collections",
         href: "/my-collections",
-        icon: <GiSwordTie />,
+        icon: <GiSwordTie className="h-5 w-5" />,
     },
 ];

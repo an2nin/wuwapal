@@ -17,12 +17,10 @@ import {
     useLazyFetchCloudDataQuery,
     useSyncDataMutation,
 } from "@/redux/services/user";
-import { useRouter } from "next/router";
 import { useGoogleLogin } from "@react-oauth/google";
 import { toast } from "sonner";
 
 export default function CloudSync() {
-    const router = useRouter();
     const [cookies, setCookie, removeCookie] = useCookies(["token"]);
     const [
         syncData,
@@ -47,6 +45,7 @@ export default function CloudSync() {
             data: tokenRes,
             isLoading: isTokenLoading,
             isSuccess: isTokenSuccess,
+            isError: isTokenError,
         },
     ] = useFetchTokenMutation();
 
@@ -110,7 +109,12 @@ export default function CloudSync() {
 
             removeCookie("token");
         }
-    }, [isSyncDataError]);
+        if (isTokenError) {
+            toast.error("Error Signing you in, Please try again later");
+
+            removeCookie("token");
+        }
+    }, [isSyncDataError, isTokenError]);
 
     return (
         <Card className="md:px-10 py-5">

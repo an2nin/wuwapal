@@ -42,7 +42,7 @@ export default function LocalStorage() {
         bannerStore.clearStore();
         setRecordUrl("");
         setGamePath("");
-        toast.error("Locale Storage Cleared");
+        toast.warning("Locale Storage Cleared");
     };
 
     useEffect(() => {

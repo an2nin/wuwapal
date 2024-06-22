@@ -321,96 +321,133 @@ export const bannerTabs = [
     },
 ];
 
-export const resonator_image_path = `${IMAGE_PATH}/resonators`;
+export const RESONATOR_IMAGE_PATH = `${IMAGE_PATH}/portraits-short`;
 export const WEAPON_IMAGE_PATH = `${IMAGE_PATH}/weapons`;
 
 export const RESONATORS = {
     // 5 Star Resonators
-    calcharo: {
+    Calcharo: {
         element: "electro",
         weapon: "broadblade",
+        image: `${RESONATOR_IMAGE_PATH}/calcharo.webp`,
+        quality: 5,
     },
-    encore: {
+    Encore: {
         element: "fusion",
         weapon: "rectifier",
+        image: `${RESONATOR_IMAGE_PATH}/encore.webp`,
+        quality: 5,
     },
-    jianxin: {
+    Jianxin: {
         element: "aero",
         weapon: "gauntlet",
+        image: `${RESONATOR_IMAGE_PATH}/jianxin.webp`,
+        quality: 5,
     },
-    jiyan: {
+    Jiyan: {
         element: "aero",
         weapon: "broadblade",
+        image: `${RESONATOR_IMAGE_PATH}/jiyan.webp`,
+        quality: 5,
     },
-    lingyang: {
+    Lingyang: {
         element: "glacio",
         weapon: "gauntlet",
+        image: `${RESONATOR_IMAGE_PATH}/lingyang.webp`,
+        quality: 5,
     },
-    "rover (havoc)": {
+    "Rover (havoc)": {
         element: "havoc",
         weapon: "sword",
+        image: `${RESONATOR_IMAGE_PATH}/rover.webp`,
+        quality: 5,
     },
-    "rover (spectro)": {
+    "Rover (spectro)": {
         element: "spectro",
         weapon: "sword",
+        image: `${RESONATOR_IMAGE_PATH}/rover.webp`,
+        quality: 5,
     },
-    verina: {
+    Verina: {
         element: "spectro",
         weapon: "rectifier",
+        image: `${RESONATOR_IMAGE_PATH}/verina.webp`,
+        quality: 5,
     },
-    yinlin: {
+    Yinlin: {
         element: "electro",
         weapon: "rectifier",
+        image: `${RESONATOR_IMAGE_PATH}/yinlin.webp`,
+        quality: 5,
     },
 
     // 4 Star Resonators
 
-    aalto: {
+    Aalto: {
         element: "aero",
         weapon: "pistol",
+        image: `${RESONATOR_IMAGE_PATH}/aalto.webp`,
+        quality: 4,
     },
-    baizhi: {
+    Baizhi: {
         element: "glacio",
         weapon: "rectifier",
+        image: `${RESONATOR_IMAGE_PATH}/baizhi.webp`,
+        quality: 4,
     },
-    chixia: {
+    Chixia: {
         element: "fusion",
         weapon: "pistol",
+        image: `${RESONATOR_IMAGE_PATH}/chixia.webp`,
+        quality: 4,
     },
-    danjin: {
+    Danjin: {
         element: "havoc",
         weapon: "sword",
+        image: `${RESONATOR_IMAGE_PATH}/danjin.webp`,
+        quality: 4,
     },
-    mortefi: {
+    Mortefi: {
         element: "fusion",
         weapon: "pistol",
+        image: `${RESONATOR_IMAGE_PATH}/mortefi.webp`,
+        quality: 4,
     },
-    sanhua: {
+    Sanhua: {
         element: "glacio",
         weapon: "sword",
+        image: `${RESONATOR_IMAGE_PATH}/sanhua.webp`,
+        quality: 4,
     },
-    taoqi: {
+    Taoqi: {
         element: "havoc",
         weapon: "broadblade",
+        image: `${RESONATOR_IMAGE_PATH}/taoqi.webp`,
+        quality: 4,
     },
-    yangyang: {
+    Yangyang: {
         element: "aero",
         weapon: "sword",
+        image: `${RESONATOR_IMAGE_PATH}/yangyang.webp`,
+        quality: 4,
     },
-    yuanwu: {
+    Yuanwu: {
         element: "electro",
         weapon: "gauntlet",
+        image: `${RESONATOR_IMAGE_PATH}/yuanwu.webp`,
+        quality: 4,
     },
 };
 
-const WEAPONS = {
+export const WEAPONS = {
     // 5 Star Weapon
-    
+
     "Abyss Surges": {
         type: "Gauntlet",
         base_atk: 47,
         stat_name: "ATK",
         stat_amount: "8.10%",
+        quality: 5,
         skill_desc:
             "Stormy Resolution: Increases Energy Regen by 12.8%. When hitting a target with Resonance Skill, increases Basic Attack DMG Bonus by 10%, lasting for 8s. When hitting a target with Basic Attacks, increases Resonance Skill DMG Bonus by 10%, lasting for 8s.",
         image: `${WEAPON_IMAGE_PATH}/abyss_surges.webp`,
@@ -420,6 +457,7 @@ const WEAPONS = {
         base_atk: 40,
         stat_name: "ATK",
         stat_amount: "11.90%",
+        quality: 5,
         skill_desc:
             "Stormy Resolution: Increases Energy Regen by 12.8%. When hitting a target with Basic Attack, increases Basic Attack DMG Bonus by 3.2%, stacking up to 5 time(s). This effect lasts for 8s and can be triggered 1 time(s) every 0.5s.",
         image: `${WEAPON_IMAGE_PATH}/cosmic_ripples.webp`,
@@ -429,6 +467,7 @@ const WEAPONS = {
         base_atk: 47,
         stat_name: "Crit Rate",
         stat_amount: "5.40%",
+        quality: 5,
         skill_desc:
             "Stormy Resolution: Increases Energy Regen by 12.8%. When Resonance Skill is released, increases ATK by 6%, stacking up to 2 time(s). This effect lasts for 10s.",
         image: `${WEAPON_IMAGE_PATH}/emerald_of_genesis.webp`,
@@ -438,6 +477,7 @@ const WEAPONS = {
         base_atk: 47,
         stat_name: "ATK",
         stat_amount: "8.10%",
+        quality: 5,
         skill_desc:
             "Incision: Increases Energy Regen by 12.8%. When Resonance Skill is released, increases Resonance Liberation DMG by 7%, stacking up to 2 times. This effect lasts for 12s.",
         image: `${WEAPON_IMAGE_PATH}/lustrous_razor.webp`,
@@ -447,6 +487,7 @@ const WEAPONS = {
         base_atk: 47,
         stat_name: "Crit Rate",
         stat_amount: "5.40%",
+        quality: 5,
         skill_desc:
             "Stormy Resolution: Increases Energy Regen by 12.8%. When Outro Skill is released, increases the switched-in Resonator's ATK by 10%, stacking up to 1 time(s). This effect lasts for 14s.",
         image: `${WEAPON_IMAGE_PATH}/static_mist.webp`,
@@ -456,6 +497,7 @@ const WEAPONS = {
         base_atk: 40,
         stat_name: "Crit Rate",
         stat_amount: "8.00%",
+        quality: 5,
         skill_desc:
             "Electric Amplification: Increases the DMG Bonus by 12%. When dealing Resonance Skill DMG, increases ATK by 12%, stacking up to 2. This effect lasts for 5s. When the equipped Resonator is not on the field, increases their ATK by an additional 12%.",
         image: `${WEAPON_IMAGE_PATH}/stringmaster.webp`,
@@ -465,6 +507,7 @@ const WEAPONS = {
         base_atk: 47,
         stat_name: "Crit DMG",
         stat_amount: "10.80%",
+        quality: 5,
         skill_desc:
             "Swordsworn: Increases the DMG Bonus of all Resonance Attributes by 12%. Every time Intro Skill or Resonance Liberation is cast, increases Heavy Attack DMG Bonus by 24%, stacking up to 2 time(s). This effect lasts for 14s.",
         image: `${WEAPON_IMAGE_PATH}/verdant_summit.webp`,
@@ -478,6 +521,7 @@ const WEAPONS = {
         stat_name: "DEF",
         stat_amount: "13.60%",
         skill_name: "Camaraderie",
+        quality: 4,
         skill_desc:
             "When Intro Skill is released, increases Resonance Liberation DMG Bonus by 20%, lasting for 15s.",
         image: `${WEAPON_IMAGE_PATH}/amity_accord.webp`,
@@ -487,6 +531,7 @@ const WEAPONS = {
         baseATK: 33,
         stat_name: "Crit Rate",
         stat_amount: "4.50%",
+        quality: 4,
         skill_name: "Forgiving Resilience",
         skill_desc:
             "When Resonance Liberation is released, increases the caster's ATK by 15%, lasting for 15s.",
@@ -497,6 +542,7 @@ const WEAPONS = {
         baseATK: 33,
         stat_name: "Crit Rate",
         stat_amount: "4.50%",
+        quality: 4,
         skill_name: "Edge Direction",
         skill_desc:
             "Increases ATK by 4% upon dealing Basic Attack DMG or Heavy Attack DMG, stacking up to 5 time(s). This effect lasts for 7s and can be triggered 1 time(s) every 1s.",
@@ -507,16 +553,18 @@ const WEAPONS = {
         baseATK: 33,
         stat_name: "Energy Regen",
         stat_amount: "7.20%",
+        quality: 4,
         skill_name: "Veteran",
         skill_desc:
             "When the Resonator's HP is above 80%, increases ATK by 12%. When the Resonator's HP is below 40%, restores theri HP by 5% for dealing Basic Attack DMG or Heavy Attack DMG. This effect can be triggered 1 time(s) every 8s.",
-        image: `${WEAPON_IMAGE_PATH}/broadblade_41.webp`,
+        image: `${WEAPON_IMAGE_PATH}/broadblade41.webp`,
     },
     Cadenza: {
         type: "Pistol",
         baseATK: 27,
         stat_name: "Energy Regen",
         stat_amount: "11.50%",
+        quality: 4,
         skill_name: "Ceaseless Aria",
         skill_desc:
             "When Resonance Skill is released, restores Resonance Energy by 8. This effect can be triggered 1 time(s) every 20s.",
@@ -527,6 +575,7 @@ const WEAPONS = {
         baseATK: 33,
         stat_name: "ATK",
         stat_amount: "6.70%",
+        quality: 4,
         skill_name: "Unyielding",
         skill_desc:
             "When Intro Skill is released, increases ATK by 15%, lasting for 15s.",
@@ -537,6 +586,7 @@ const WEAPONS = {
         baseATK: 33,
         stat_name: "HP",
         stat_amount: "6.70%",
+        quality: 4,
         skill_name: "Luminous Protection",
         skill_desc:
             "When hitting a target with Basic Attacks or Heavy Attacks, increases Healing Bonus by 3%, stacking up to 3 time(s). This effect lasts for 8s and can be triggered 1 time(s) every 0.6s.",
@@ -547,56 +597,40 @@ const WEAPONS = {
         baseATK: 27,
         stat_name: "DEF",
         stat_amount: "13.60%",
+        quality: 4,
         skill_name: "Battlebound",
         skill_desc:
             "When Intro Skill is released, increases ATK by 8% and DEF by 15%, lasting for 15s.",
         image: `${WEAPON_IMAGE_PATH}/dauntless_evernight.webp`,
-    },
-    Decimator: {
-        type: "Rectifier",
-        baseATK: 33,
-        stat_name: "Crit Rate",
-        stat_amount: "4.50%",
-        skill_name: "Frenzied",
-        skill_desc:
-            "When Resonance Skill is released, increases the caster's ATK by 12%, lasting for 15s.",
-        image: `${WEAPON_IMAGE_PATH}/decimator.webp`,
     },
     Discord: {
         type: "Broadblade",
         baseATK: 27,
         stat_name: "Energy Regen",
         stat_amount: "11.50%",
+        quality: 4,
         skill_name: "Ceaseless Aria",
         skill_desc:
             "When Resonance Skill is released, restore Concerto Energy by 8. This effect can be triggered 1 time every 20s.",
         image: `${WEAPON_IMAGE_PATH}/discord.webp`,
-    },
-    Echo: {
-        type: "Rectifier",
-        baseATK: 33,
-        stat_name: "ATK",
-        stat_amount: "6.70%",
-        skill_name: "Destruction",
-        skill_desc:
-            "When Resonance Liberation is released, deals additional 20% DMG.",
-        image: `${WEAPON_IMAGE_PATH}/echo.webp`,
     },
     "Gauntlets#21D": {
         type: "Gauntlet",
         baseATK: 31,
         stat_name: "Energy Regen",
         stat_amount: "8.60%",
+        quality: 4,
         skill_name: "Mastermind",
         skill_desc:
             "When the Resonator dashes or dodges, increases ATK by 8%. Increases Counter Attack DMG by 50%, lasting for 8s. When Counter Attack is performed, restores the Resonator's HP by 5%. This effect can be triggered 1 time(s) every 6s.",
-        image: `${WEAPON_IMAGE_PATH}/gauntlets_21d.webp`,
+        image: `${WEAPON_IMAGE_PATH}/gauntlets21d.webp`,
     },
     "Helios Cleaver": {
         type: "Broadblade",
         baseATK: 33,
         stat_name: "ATK",
         stat_amount: "6.70%",
+        quality: 4,
         skill_name: "Plasma Recoiler",
         skill_desc:
             "Within 12s after Resonance Skill is released, increases ATK by 3% every 2s stacking up to 4 time(s). When the number of stacks reaches 12, all stacks will be reset within 1s.",
@@ -607,6 +641,7 @@ const WEAPONS = {
         baseATK: 33,
         stat_name: "ATK",
         stat_amount: "6.70%",
+        quality: 4,
         skill_name: "Celestial Being",
         skill_desc:
             "When Resonance Liberation is released, grants 3 stack(s) of Iron Armor. Each stack increases ATK and DEF by 3%, stacking up to 3 time(s). When the Resonator takes damage, reduces the number of stacks by 1.",
@@ -617,6 +652,7 @@ const WEAPONS = {
         baseATK: 31,
         stat_name: "ATK",
         stat_amount: "8.10%",
+        quality: 4,
         skill_name: "Guardian",
         skill_desc:
             "When Intro Skill is released, increases the caster's ATK by 8% and HP by 10%, lasting 15s.",
@@ -627,6 +663,7 @@ const WEAPONS = {
         baseATK: 31,
         stat_name: "ATK",
         stat_amount: "8.10%",
+        quality: 4,
         skill_name: "Pale Gale",
         skill_desc:
             "When Resonance Skill is released, increases Basic Attack DMG and Heavy Attack DMG by 20%, stacking up to 1 time(s). This effect lasts for 10s and can be triggered 1 time(s) every 1s.",
@@ -637,6 +674,7 @@ const WEAPONS = {
         baseATK: 33,
         stat_name: "ATK",
         stat_amount: "6.70%",
+        quality: 4,
         skill_name: "Preordained",
         skill_desc:
             "Equipped Resonator gains 6 stack(s) of Oath upon entering the battlefield. Each stack icnreases ATK by 2%, up to 6 stacks. This effect can be triggered 1 time(s) every 12s. Oath reduces by 1 stack(s) every 2s. Equipped Resonator gains another 6 stack(s) of Oath upon defeating an enemy.",
@@ -647,6 +685,7 @@ const WEAPONS = {
         baseATK: 27,
         stat_name: "Energy Regen",
         stat_amount: "11.50%",
+        quality: 4,
         skill_name: "Ceaseless Aria",
         skill_desc:
             "When Resonance Skill is released, restores Resonance Energy by 8. This effect can be triggered 1 time(s) every 20s.",
@@ -657,6 +696,7 @@ const WEAPONS = {
         baseATK: 33,
         stat_name: "ATK",
         stat_amount: "6.75%",
+        quality: 4,
         skill_name: "Ever-Changing",
         skill_desc:
             "When the Resonator dashes or dodges, increases ATK by 4%, stacking up to 3 time(s). This effect lasts for 8s.",
@@ -667,26 +707,29 @@ const WEAPONS = {
         baseATK: 31,
         stat_name: "ATK",
         stat_amount: "8.10%",
+        quality: 4,
         skill_name: "Omniscient",
         skill_desc:
             "When the Resonator takes no damage, increases ATK by 6% every 5s, stacking up to 2 time(s). This effect lasts for 8s. When the Resonator takes damage, reduces the number of stacks by 1 and restores their HP by 5%.",
-        image: `${WEAPON_IMAGE_PATH}/pistols_26.webp`,
+        image: `${WEAPON_IMAGE_PATH}/pistols26.webp`,
     },
     "Rectifier#25": {
         type: "Rectifier",
         baseATK: 27,
         stat_name: "Energy Regen",
         stat_amount: "11.50%",
+        quality: 4,
         skill_name: "Dawnbringer",
         skill_desc:
             "When Resonance Skill is released, if the Resonator's HP is below 60%, restores their HP by 5%. This effect can be triggered 1 time(s) every 8s; if the Resonator's HP is above 60%.",
-        image: `${WEAPON_IMAGE_PATH}/rectifier_25.webp`,
+        image: `${WEAPON_IMAGE_PATH}/rectifier25.webp`,
     },
     "Scale: Slasher": {
         type: "Sword",
         baseATK: 27,
         stat_name: "Energy Regen",
         stat_amount: "11.50%",
+        quality: 4,
         skill_name: "Ceaseless Aria",
         skill_desc:
             "When Resonance Skill is released, restores Resonance Energy by 8. This effect can be triggered 1 time(s) every 20s.",
@@ -697,6 +740,7 @@ const WEAPONS = {
         baseATK: 33,
         stat_name: "Crit Rate",
         stat_amount: "4.50%",
+        quality: 4,
         skill_name: "Wallbreaker",
         skill_desc:
             "When Resonance Skill is released, increases the caster's Resonance Liberation DMG Bonus by 18%, lasting for 15s.",
@@ -707,16 +751,18 @@ const WEAPONS = {
         baseATK: 31,
         stat_name: "ATK",
         stat_amount: "8.10%",
+        quality: 4,
         skill_name: "Daybreak",
         skill_desc:
             "When Equipped Resonator's HP drops below 40%, increases Heavy Attack DMG by 18% and restores HP by 5% upon dealing Heavy Attack DMG. This effect can be triggered 1 time(s) every 8s.",
-        image: `${WEAPON_IMAGE_PATH}/sword_18.webp`,
+        image: `${WEAPON_IMAGE_PATH}/sword18.webp`,
     },
     Thunderbolt: {
         type: "Pistol",
         baseATK: 31,
         stat_name: "ATK",
         stat_amount: "8.10%",
+        quality: 4,
         skill_name: "Unstoppable",
         skill_desc:
             "When hitting a target with Basic Attacks or Heavy Attacks, increases Resonance Skill DMG Bonus by 7%, stacking up to 3 time(s). This effect lasts for 10s and can be triggered 1 time(s) every 1s.",
@@ -727,6 +773,7 @@ const WEAPONS = {
         baseATK: 33,
         stat_name: "ATK",
         stat_amount: "6.70%",
+        quality: 4,
         skill_name: "Loyalty",
         skill_desc:
             "When Intro Skill is released, increases Resonance Skill DMG Bonus by 20% for 15s.",
@@ -737,6 +784,7 @@ const WEAPONS = {
         baseATK: 27,
         stat_name: "Energy Regen",
         stat_amount: "11.50%",
+        quality: 4,
         skill_name: "Ceaseless Aria",
         skill_desc:
             "When Resonance Skill is released, restores Resonance Energy by 8. This effect can be triggered 1 time(s) every 20s.",

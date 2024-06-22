@@ -272,45 +272,26 @@ export function convertJsonToUrl(jsonInput: string) {
 }
 
 export function processBannersForCollection(banners: any) {
-    const star4_weapons: any = [];
-    const star5_weapons: any = [];
-    const star4_resonators: any = [];
-    const star5_resonators: any = [];
+    const weapons: any = [];
+    const resonators: any = [];
 
     Object.keys(banners).forEach((keyOfBanner: any) => {
-        banners[keyOfBanner].items.forEach((item: any) => {
+        banners[keyOfBanner]?.items.forEach((item: any) => {
             if (
                 (item.y == "w" || item.resourceType == "Weapons") &&
-                (item.q == 4 || item.qualityLevel == 4)
+                (item.q > 3 || item.qualityLevel > 3)
             ) {
-                star4_weapons[item.n || item.name] =
-                    (star4_weapons[item.n || item.name] || 0) + 1;
-            } else if (
-                (item.y == "w" || item.resourceType == "Weapons") &&
-                (item.q == 5 || item.qualityLevel == 5)
-            ) {
-                star5_weapons[item.n || item.name] =
-                    (star5_weapons[item.n || item.name] || 0) + 1;
-            } else if (
-                (item.y == "r" || item.resourceType == "Resonators") &&
-                (item.q == 4 || item.qualityLevel == 4)
-            ) {
-                star4_resonators[item.n || item.name] =
-                    (star4_resonators[item.n || item.name] || 0) + 1;
-            } else if (
-                (item.y == "r" || item.resourceType == "Resonators") &&
-                (item.q == 5 || item.qualityLevel == 5)
-            ) {
-                star5_resonators[item.n || item.name] =
-                    (star5_resonators[item.n || item.name] || 0) + 1;
+                weapons[item.n || item.name] =
+                    (weapons[item.n || item.name] || 0) + 1;
+            } else if (item.y == "r" || item.resourceType == "Resonators") {
+                resonators[item.n || item.name] =
+                    (resonators[item.n || item.name] || 0) + 1;
             }
         });
     });
 
     return {
-        star4_weapons,
-        star5_weapons,
-        star4_resonators,
-        star5_resonators,
+        weapons,
+        resonators,
     };
 }

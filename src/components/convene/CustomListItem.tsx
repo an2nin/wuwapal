@@ -1,5 +1,3 @@
-import { Badge } from "@/components/ui/badge";
-
 interface Props {
     children?: React.ReactNode;
     title: any;

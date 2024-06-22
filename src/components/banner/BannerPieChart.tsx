@@ -1,13 +1,7 @@
-// import { Pie } from "react-chartjs-2";
-// import { Chart, ArcElement, Tooltip, Legend } from "chart.js";
 import { Card, CardContent } from "@/components/ui/card";
 import { useState } from "react";
 
-// Chart.register(ArcElement);
-// Chart.register(Tooltip);
-// Chart.register(Legend);
-
-import { PieChart, Pie, Sector, ResponsiveContainer, Cell } from "recharts";
+import { PieChart, Pie, Sector, Cell } from "recharts";
 
 const RADIAN = Math.PI / 180;
 const renderActiveShape = (props: any) => {
@@ -20,8 +14,6 @@ const renderActiveShape = (props: any) => {
         startAngle,
         endAngle,
         fill,
-        payload,
-        percent,
         value,
     } = props;
     const sin = Math.sin(-RADIAN * midAngle);
@@ -121,29 +113,29 @@ export default function BannerPieChart({ total, star4, star5 }: Props) {
     return (
         <Card>
             <CardContent className="h-full flex items-center justify-center p-0">
-                    <PieChart width={350} height={270} >
-                        <Pie
-                            activeIndex={activeIndex}
-                            activeShape={renderActiveShape}
-                            data={data}
-                            cx="50%"
-                            cy="50%"
-                            outerRadius={80}
-                            fill="#8884d8"
-                            dataKey="value"
-                            label={renderCustomizedLabel}
-                            labelLine={false}
-                            onMouseEnter={onPieEnter}
-                            stroke="none"
-                        >
-                            {data.map((entry, index) => (
-                                <Cell
-                                    key={`cell-${index}`}
-                                    fill={COLORS[index % COLORS.length]}
-                                />
-                            ))}
-                        </Pie>
-                    </PieChart>
+                <PieChart width={350} height={270}>
+                    <Pie
+                        activeIndex={activeIndex}
+                        activeShape={renderActiveShape}
+                        data={data}
+                        cx="50%"
+                        cy="50%"
+                        outerRadius={80}
+                        fill="#8884d8"
+                        dataKey="value"
+                        label={renderCustomizedLabel}
+                        labelLine={false}
+                        onMouseEnter={onPieEnter}
+                        stroke="none"
+                    >
+                        {data.map((_, index) => (
+                            <Cell
+                                key={`cell-${index}`}
+                                fill={COLORS[index % COLORS.length]}
+                            />
+                        ))}
+                    </Pie>
+                </PieChart>
             </CardContent>
         </Card>
     );

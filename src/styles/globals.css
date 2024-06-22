@@ -197,3 +197,13 @@ body {
 .typo-p {
     @apply leading-7;
 }
+
+.bg-star4-collection{
+    background-image: url(/bg-star4.webp) ;
+    background-size: contain;
+}
+
+.bg-star5-collection{
+    background-image: url(/bg-star5.webp) ;
+    background-size: contain;
+}

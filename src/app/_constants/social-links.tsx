@@ -1,0 +1,76 @@
+import {
+    Discord,
+    Github,
+    Reddit,
+    Twitter,
+} from "@/app/_components/ui/custom-icons";
+
+interface SocialLink {
+    icon: JSX.Element;
+    icon_big: JSX.Element;
+    title: string;
+    path: string;
+    srOnly: string;
+}
+
+export const SOCIAL_LINKS: SocialLink[] = [
+    {
+        title: "Discord",
+        path: "https://discord.com/invite/ShFMBxYSmU",
+        icon: <Discord className="w-5 h-5" />,
+        icon_big: <Discord className="w-10 h-10" />,
+        srOnly: "Discord community",
+    },
+    {
+        title: "Twitter",
+        path: "https://x.com/zzztracker",
+        icon: <Twitter className="w-5 h-5" />,
+        icon_big: <Twitter className="w-10 h-10" />,
+        srOnly: "Twitter page",
+    },
+    {
+        title: "Reddit",
+        path: "https://www.reddit.com/r/zzztracker/",
+        icon: <Reddit className="w-5 h-5" />,
+        icon_big: <Reddit className="w-10 h-10" />,
+        srOnly: "Reddit page",
+    },
+    {
+        title: "Github",
+        path: "https://github.com/antonin686/zzztracker",
+        icon: <Github className="w-5 h-5" />,
+        icon_big: <Github className="w-10 h-10" />,
+        srOnly: "GitHub",
+    },
+];
+
+export const SOCIAL_LINKS_OBJ: any = {
+    discord: {
+        title: "Discord",
+        path: "https://discord.com/invite/ShFMBxYSmU",
+        icon: <Discord className="w-5 h-5" />,
+        icon_big: <Discord className="w-10 h-10" />,
+        srOnly: "Discord community",
+    },
+    twitter: {
+        title: "Twitter",
+        path: "https://x.com/zzztracker",
+        icon: <Twitter className="w-5 h-5" />,
+        icon_big: <Twitter className="w-10 h-10" />,
+        srOnly: "Twitter page",
+    },
+    reddit: {
+        title: "Reddit",
+        path: "https://www.reddit.com/r/zzztracker/",
+        icon: <Reddit className="w-5 h-5" />,
+        icon_big: <Reddit className="w-10 h-10" />,
+        srOnly: "Reddit page",
+    },
+    github: {
+        title: "Github",
+        path: "https://github.com/antonin686/zzztracker",
+        icon: <Github className="w-5 h-5" />,
+        icon_big: <Github className="w-10 h-10" />,
+        srOnly: "GitHub",
+    },
+};

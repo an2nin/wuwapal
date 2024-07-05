@@ -1,35 +1,26 @@
 export interface BannerItem {
-    uid: string;
-    gacha_id: number;
-    gacha_type: number;
-    item_id: string;
-    count: string;
-    time: number;
+    cardPoolType: string;
+    resourceId: number;
+    qualityLevel: number;
+    resourceType: string;
     name: string;
-    lang: string;
-    item_type: string;
-    rank_type: string;
-    id: string;
+    count: number;
+    time: string;
 }
 
 export type FetchBannerResponse = {
-    retcode: number;
+    code: number;
     message: string;
-    data: {
-        list: BannerItem[];
-        page: string;
-        size: string;
-    };
+    data: BannerItem[];
 };
 
 export type FetchBannerPayload = {
-    authkey_ver: string;
-    sign_type: string;
-    authkey: string;
-    lang: string;
-    game_biz: string;
-    end_id?: number;
-    gacha_type?: string;
+    playerId: string;
+    cardPoolId: string;
+    cardPoolType: number;
+    serverId: string;
+    languageCode: string;
+    recordId: string;
 }
 
 interface ItemDetails {

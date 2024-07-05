@@ -77,7 +77,7 @@ export default function RootLayout({
                 />
             </head>
             <body className={"bg-grid-small-white/[0.1]  " + inter.className}>
-                <TopProgressBar color="hsl(var(--primary))" />
+                <TopProgressBar color="hsl(var(--primary))" options={{ showSpinner: false }} />
                 <Sidebar
                     isSidebarOpen={isSidebarOpen}
                     setIsSidebarOpen={setIsSidebarOpen}

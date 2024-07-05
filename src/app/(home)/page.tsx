@@ -1,11 +1,12 @@
 import BasicIntro from "@/app/(home)/_components/BasicIntro";
-import Guide from "@/app/(home)/_components/Guide";
 import { Metadata } from "next";
 import LinkCard from "./_components/LinkCard";
 import { Combine, Globe } from "lucide-react";
 import PageHeader from "@/app/_components/layout/PageHeader";
 import SocialLinks from "./_components/SocialLinks";
 import Changelogs from "./_components/Changelogs";
+import ResonatorBattle from "./_components/ResonatorBattle";
+import { useGlobalStatsQuery } from "@/redux/services/banner";
 
 export const metadata: Metadata = {
     // Basic Meta Tags
@@ -57,28 +58,25 @@ export default function Home() {
                 </div>
             </div>
             <div className="grid lg:grid-cols-2 grid-col-1 gap-5">
-                <Guide />
-                {/* */}
                 <div className="grid grid-cols-1 gap-5">
                     <LinkCard
-                        title="Collector's Hub"
-                        href="/collectors-hub"
-                        icon={<Combine className="w-4 h-4" />}
-                        isDisabled={true}
-                    >
-                        Are you a collector extraordinaire? Curious to see your
-                        fabulous collection in one exciting glance?
-                    </LinkCard>
-                    <LinkCard
-                        title="Global Stats"
-                        href="/global-stats"
+                        title="Convene Tracker"
+                        href="/convene/tracker"
                         icon={<Globe className="w-4 h-4" />}
-                        isDisabled={true}
                     >
                         Wanna See how your fellow Proxies are doing in their
                         pulling journey?
                     </LinkCard>
+                    <LinkCard
+                        title="Collector's Hub"
+                        href="/collectors-hub"
+                        icon={<Combine className="w-4 h-4" />}
+                    >
+                        Are you a collector extraordinaire? Curious to see your
+                        fabulous collection in one exciting glance?
+                    </LinkCard>
                 </div>
+                <ResonatorBattle />
             </div>
             <div className="grid grid-cols-1 gap-5">
                 <Changelogs />

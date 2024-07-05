@@ -2,14 +2,14 @@ import { api } from "@/redux/api/base";
 import { GM_SERVER_ENDPOINT, GLOBAL_STAT_GIST } from "@/redux/api/endpoints";
 import { FetchBannerPayload, FetchBannerResponse } from "@/redux/api/types";
 
-export const bannerApis = api.injectEndpoints({
+export const conveneApis = api.injectEndpoints({
     endpoints: (build) => ({
         fetchBanner: build.mutation<FetchBannerResponse, FetchBannerPayload>({
-            query(params) {
+            query(form) {
                 return {
                     url: GM_SERVER_ENDPOINT,
-                    method: "GET",
-                    params: params,
+                    method: "POST",
+                    body: form,
                 };
             },
         }),
@@ -24,4 +24,4 @@ export const bannerApis = api.injectEndpoints({
     }),
 });
 
-export const { useFetchBannerMutation, useGlobalStatsQuery } = bannerApis;
+export const { useFetchBannerMutation, useGlobalStatsQuery } = conveneApis;

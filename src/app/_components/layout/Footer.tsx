@@ -37,13 +37,13 @@ export default function Footer() {
                             >
                                 Privacy Policy
                             </Link>
-                            <span className="hidden xl:inline-block">|</span>
+                            {/* <span className="hidden xl:inline-block">|</span>
                             <Link
                                 className="dark:hover:text-muted-foreground hover:text-muted-foreground transition-all"
                                 href="/terms-and-conditions"
                             >
                                 Terms &amp; Conditions
-                            </Link>
+                            </Link> */}
                         </div>
                     </div>
                 </div>

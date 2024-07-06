@@ -33,16 +33,20 @@ export default function RootLayout({
 
     useEffect(() => {
         const getActiveNavItem = () => {
+            let bestMatch = null;
+            let bestMatchLength = 0;
+        
             for (const key of Object.keys(NAVS)) {
                 const items = NAVS[key];
                 for (const navItem of items) {
-                    if (pathname == navItem.path) {
-                        return navItem;
+                    if (pathname.startsWith(navItem.path) && navItem.path.length > bestMatchLength) {
+                        bestMatch = navItem;
+                        bestMatchLength = navItem.path.length;
                     }
                 }
             }
-
-            return null;
+        
+            return bestMatch;
         };
 
         const activeNavItem = getActiveNavItem();

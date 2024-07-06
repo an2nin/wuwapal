@@ -38,8 +38,9 @@ export function processBannerForStore(banner: any, store_id: string) {
             i: "a",
             n: data.name,
             t: data.time,
-            y: data.resourceType == "Weapons" ? "w" : "r",
+            y: data.resourceType == "Weapon" ? "w" : "r",
         };
+
         if (data.qualityLevel == 4) {
             const pity =
                 pity4_last_index == 0
@@ -52,7 +53,7 @@ export function processBannerForStore(banner: any, store_id: string) {
                 n: data.name,
                 p: pity,
                 t: new Date(data.time).getTime(),
-                y: data.resourceType == "Weapons" ? "w" : "r",
+                y: data.resourceType == "Weapon" ? "w" : "r",
             });
 
             pity4_last_index = idx;
@@ -70,7 +71,7 @@ export function processBannerForStore(banner: any, store_id: string) {
                 n: data.name,
                 p: pity,
                 t: new Date(data.time).getTime(),
-                y: data.resourceType == "Weapons" ? "w" : "r",
+                y: data.resourceType == "Weapon" ? "w" : "r",
             };
 
             if (store_id == "featured_resonator") {

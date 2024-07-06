@@ -29,8 +29,8 @@ export default function BannerItemBadge({ item, maxPity, rarity }: Props) {
                 }`}
                 src={
                     item.type == "resonators"
-                        ? RESONATORS[item.name].icon
-                        : WEAPONS[item.name].image
+                        ? RESONATORS[item.name]?.icon
+                        : WEAPONS[item.name]?.image
                 }
                 alt={item.name}
             />{" "}

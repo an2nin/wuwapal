@@ -31,10 +31,10 @@ const config = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        grade: {
-          3: "hsl(var(--grade3))",
-          4: "hsl(var(--grade4))",
-          5: "hsl(var(--grade5))",
+        quality: {
+          3: "hsl(var(--quality3))",
+          4: "hsl(var(--quality4))",
+          5: "hsl(var(--quality5))",
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",

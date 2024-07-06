@@ -1,4 +1,4 @@
-import { standard_resonators } from "@/shared/resonators";
+import { STANDARD_RESONATORS } from "@/shared/resonators";
 
 export function isGamePathValid(path: string) {
     const gamePathRegex =
@@ -75,14 +75,14 @@ export function processBannerForStore(banner: any, store_id: string) {
 
             if (store_id == "featured_resonator") {
                 if (last_star5_resonator == null) {
-                    star5_processed.w = !standard_resonators.includes(
+                    star5_processed.w = !STANDARD_RESONATORS.includes(
                         data.name
                     );
                 } else if (
                     last_star5_resonator != null &&
-                    !standard_resonators.includes(last_star5_resonator)
+                    !STANDARD_RESONATORS.includes(last_star5_resonator)
                 ) {
-                    star5_processed.w = !standard_resonators.includes(
+                    star5_processed.w = !STANDARD_RESONATORS.includes(
                         data.name
                     );
                 }
@@ -147,11 +147,13 @@ export function processBanner(banner: any) {
                     star4_resonators.push({
                         name: newItem.name,
                         pity: newItem.pity,
+                        type: newItem.resourceType
                     });
                 } else {
                     star4_weapons.push({
                         name: newItem.name,
                         pity: newItem.pity,
+                        type: newItem.resourceType
                     });
                 }
                 pity4_last_index = newItem.roll;
@@ -159,6 +161,7 @@ export function processBanner(banner: any) {
                 star5s.push({
                     name: newItem.name,
                     pity: newItem.pity,
+                    type: newItem.resourceType
                 });
 
                 pity4_last_index = newItem.roll;
@@ -176,7 +179,7 @@ export function processBanner(banner: any) {
         });
 
         if (star5s.length > 0) {
-            guaranteed = standard_resonators.includes(
+            guaranteed = STANDARD_RESONATORS.includes(
                 star5s[star5s.length - 1].name
             );
         }

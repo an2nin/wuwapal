@@ -10,7 +10,6 @@ export default function ResonatorBattle() {
     const router = useRouter();
     const {
         data: globalData,
-        isSuccess: isGlobalStatsSuccess,
         isLoading: isGlobalStatsLoading,
     } = useGlobalStatsQuery<any>();
     return (

@@ -115,7 +115,7 @@ export default function Sidebar({
                                                                     }`}
                                                                 >
                                                                     <Link
-                                                                        className="inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 px-4 py-2 w-full justify-start h-10"
+                                                                        className="inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 px-[.60rem] py-2 w-full justify-start h-10"
                                                                         data-state="closed"
                                                                         href={
                                                                             item.path

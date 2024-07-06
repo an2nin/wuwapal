@@ -1,4 +1,4 @@
-import { BoomBox, Calendar, Combine, Globe, LayoutGrid } from "lucide-react";
+import { Calendar, Combine, Globe, Home, Sparkles } from "lucide-react";
 
 interface NavItem {
     title: string;
@@ -17,33 +17,33 @@ export const NAVS: Navs = {
             title: "Home",
             path: "/",
             match: "/",
-            icon: <LayoutGrid className="w-5 h-5" />,
+            icon: <Home className="w-7 h-7" />,
         },
     ],
-    // Tools: [
-    //     {
-    //         title: "Pull Tracker",
-    //         path: "/pull",
-    //         match: "/pull",
-    //         icon: <BoomBox className="w-5 h-5" />,
-    //     },
-    //     {
-    //         title: "Collector's Hub",
-    //         path: "/collectors-hub",
-    //         match: "/collectors-hub",
-    //         icon: <Combine className="w-5 h-5" />,
-    //     },
-    //     {
-    //         title: "Global Stats",
-    //         path: "/pull/global",
-    //         match: "/pull/global",
-    //         icon: <Globe className="w-5 h-5" />,
-    //     },
-    //     {
-    //         title: "Timeline",
-    //         path: "/timeline",
-    //         match: "/timeline",
-    //         icon: <Calendar className="w-5 h-5" />,
-    //     },
-    // ],
+    Tools: [
+        {
+            title: "Convene Tracker",
+            path: "/convene",
+            match: "/convene",
+            icon: <Sparkles className="w-7 h-7" />,
+        },
+        // {
+        //     title: "Collector's Hub",
+        //     path: "/collectors-hub",
+        //     match: "/collectors-hub",
+        //     icon: <Combine className="w-7 h-7" />,
+        // },
+        // {
+        //     title: "Global Stats",
+        //     path: "/pull/global",
+        //     match: "/pull/global",
+        //     icon: <Globe className="w-7 h-7" />,
+        // },
+        // {
+        //     title: "Timeline",
+        //     path: "/timeline",
+        //     match: "/timeline",
+        //     icon: <Calendar className="w-7 h-7" />,
+        // },
+    ],
 };

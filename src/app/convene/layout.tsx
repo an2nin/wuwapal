@@ -1,4 +1,6 @@
+import { Import, RefreshCcw } from "lucide-react";
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
     // Basic Meta Tags
@@ -35,5 +37,24 @@ export default function ConveneLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
-    return <>{children}</>;
+    return (
+        <>
+            <div className="grid grid-cols-1 gap-5 lg:mt-10">
+                <div className="flex gap-5 lg:justify-end justify-center">
+                    <Link href={"/import"}>
+                        <div className="flex gap-2 items-center text-primary border-2 border-primary bg-background rounded-full px-3 py-2 hover:bg-primary hover:text-primary-foreground">
+                            <Import /> Import History
+                        </div>
+                    </Link>
+                    <Link href={"/import"}>
+                        <div className="flex gap-2 items-center text-primary border-2 border-primary bg-background rounded-full px-3 py-2 hover:bg-primary hover:text-primary-foreground">
+                            <RefreshCcw />
+                            Refresh
+                        </div>
+                    </Link>
+                </div>
+                {children}
+            </div>
+        </>
+    );
 }

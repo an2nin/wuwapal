@@ -3,8 +3,8 @@ import { SOCIAL_LINKS } from "@/app/_constants/social-links";
 
 export default function Footer() {
     return (
-        <footer className="transition-[margin-left] ease-in-out duration-300 bg-card">
-            <div className="z-20 w-full bg-background dark:shadow-none shadow border mb-3 backdrop-blur rounded-2xl supports-[backdrop-filter]:bg-background/60">
+        <footer className="transition-[margin-left] ease-in-out duration-300">
+            <div className="z-20 w-full bg-card dark:shadow-none shadow border mb-3 backdrop-blur rounded-2xl supports-[backdrop-filter]:bg-background/60">
                 <div className="mx-4 md:mx-8 flex-col flex lg:flex-row py-4 items-end lg:items-center justify-between gap-4">
                     <p className="text-xs md:text-sm leading-loose text-muted-foreground text-left">
                         © {new Date().getFullYear()} WuWa Pal

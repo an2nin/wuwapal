@@ -147,13 +147,13 @@ export function processBanner(banner: any) {
                     star4_resonators.push({
                         name: newItem.name,
                         pity: newItem.pity,
-                        type: newItem.resourceType
+                        type: newItem.resourceType,
                     });
                 } else {
                     star4_weapons.push({
                         name: newItem.name,
                         pity: newItem.pity,
-                        type: newItem.resourceType
+                        type: newItem.resourceType,
                     });
                 }
                 pity4_last_index = newItem.roll;
@@ -161,7 +161,7 @@ export function processBanner(banner: any) {
                 star5s.push({
                     name: newItem.name,
                     pity: newItem.pity,
-                    type: newItem.resourceType
+                    type: newItem.resourceType,
                 });
 
                 pity4_last_index = newItem.roll;
@@ -187,6 +187,16 @@ export function processBanner(banner: any) {
         star4_pity = banner.total - pity4_last_index;
         star5_pity = banner.total - pity5_last_index;
 
+        const star5_avg_pity =
+            star5s.reduce((sum: number, obj: any) => sum + obj.pity, 0) /
+            star5s.length;
+        const star4_avg_pity =
+            [...star4_resonators, ...star4_weapons].reduce(
+                (sum: number, obj: any) => sum + obj.pity,
+                0
+            ) /
+            (star4_resonators.length + star4_weapons.length);
+
         returnObj = {
             ...banner,
             star4_resonators,
@@ -195,6 +205,8 @@ export function processBanner(banner: any) {
             star4_pity,
             star5_pity,
             guaranteed,
+            star4_avg_pity,
+            star5_avg_pity,
             items: copyItems.slice().reverse(),
         };
     }

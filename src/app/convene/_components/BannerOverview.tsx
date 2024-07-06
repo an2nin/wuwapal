@@ -49,14 +49,14 @@ export default function BannerOverview({ bannerData, bannerInfo }: Props) {
                                     alt={bannerInfo.currency}
                                     className="w-8 h-8"
                                 />
-                                <p className="text-foreground">{10}</p>
+                                <p className="text-foreground">{bannerData?.total}</p>
                             </div>
                             <div className="flex gap-1 items-center">
                                 <div className="bg-quality-5 text-black px-2 rounded-full">
                                     P
                                 </div>
                                 <p className="text-quality-5">
-                                    {processedBanner?.star5_pity} / 80
+                                    {processedBanner?.star5_pity || 0} / 80
                                 </p>
                             </div>
                             <div className="flex gap-1 items-center">
@@ -64,7 +64,7 @@ export default function BannerOverview({ bannerData, bannerInfo }: Props) {
                                     P
                                 </div>
                                 <p className="text-quality-4">
-                                    {processedBanner?.star4_pity} / 10
+                                    {processedBanner?.star4_pity || 0} / 10
                                 </p>
                             </div>
                         </div>
@@ -76,13 +76,12 @@ export default function BannerOverview({ bannerData, bannerInfo }: Props) {
                         {processedBanner?.star5s.length > 0 ? (
                             processedBanner.star5s.map(
                                 (item: any, idx: number) => (
-                                    <>
                                         <BannerItemBadge
+                                            key={idx}
                                             item={item}
                                             maxPity={80}
                                             rarity={5}
                                         />
-                                    </>
                                 )
                             )
                         ) : (

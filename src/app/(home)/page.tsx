@@ -1,12 +1,11 @@
 import BasicIntro from "@/app/(home)/_components/BasicIntro";
 import { Metadata } from "next";
 import LinkCard from "./_components/LinkCard";
-import { Combine, Globe } from "lucide-react";
+import { Combine, Globe, Sparkles } from "lucide-react";
 import PageHeader from "@/app/_components/layout/PageHeader";
 import SocialLinks from "./_components/SocialLinks";
 import Changelogs from "./_components/Changelogs";
 import ResonatorBattle from "./_components/ResonatorBattle";
-import { useGlobalStatsQuery } from "@/redux/services/banner";
 
 export const metadata: Metadata = {
     // Basic Meta Tags
@@ -60,16 +59,15 @@ export default function Home() {
                 <div className="grid grid-cols-1 gap-5">
                     <LinkCard
                         title="Convene Tracker"
-                        href="/convene/tracker"
-                        icon={<Globe className="w-4 h-4" />}
+                        href="/convene"
+                        icon={<Sparkles className="w-5 h-5" />}
                     >
-                        Wanna See how your fellow Proxies are doing in their
-                        pulling journey?
+                        Wanna See how your are doing in your pulling journey?
                     </LinkCard>
                     <LinkCard
                         title="Collector's Hub"
                         href="/collectors-hub"
-                        icon={<Combine className="w-4 h-4" />}
+                        icon={<Combine className="w-5 h-5" />}
                     >
                         Are you a collector extraordinaire? Curious to see your
                         fabulous collection in one exciting glance?

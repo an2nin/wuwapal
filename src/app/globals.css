@@ -128,20 +128,12 @@
     pointer-events: auto;
 }
 
-.glass {
-    /* From https://css.glass */
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+.bg-pattern-stripped {
+    background: repeating-linear-gradient(
+        145deg,
+        hsl(var(--background)),
+        hsl(var(--background)) 5px,
+        hsl(var(--card)) 5px,
+        hsl(var(--card)) 10px
+    );
 }
-
-.gradient-text {
-    
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-  }

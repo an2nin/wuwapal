@@ -2,9 +2,9 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
     // Basic Meta Tags
-    title: "Wuwa Pal - Convene Tracker",
+    title: "Global Stats - Wuwa Pal",
     description:
-        "A pity counter for Wuthering Waves, using the up-to-date data with global statistics and more. Synchronize your data across devices and share your pulls with your friends and track your account easily!",
+        "View global pull statistics for the Thawborn Renewal banner, featuring Jinhsi! Use screenshot-ready dashboards to brag to your friends! Wuwa Tracker pity counter for Wuthering Waves with up-to-date data and global statistics. Share your pulls and track your account!",
     applicationName: "Wuwa Pal",
     authors: [{ name: "antonin686", url: "https://github.com/antonin686" }],
     generator: "Next.js",
@@ -27,6 +27,39 @@ export const metadata: Metadata = {
         telephone: true,
         address: true,
         email: true,
+    },
+    openGraph: {
+        title: "Wuwa Pal",
+        description:
+            "View global pull statistics for the Thawborn Renewal banner, featuring Jinhsi! Use screenshot-ready dashboards to brag to your friends! Wuwa Tracker pity counter for Wuthering Waves with up-to-date data and global statistics. Share your pulls and track your account!",
+        url: "https://wuwapal.com",
+        siteName: "Wuwa Pal",
+        images: [
+            {
+                url: "https://wuwapal.com/og.png",
+                width: 1200,
+                height: 630,
+                alt: "Wuwa Pal: Track Your Convene History & View Global Statistics",
+            },
+        ],
+        locale: "en-US",
+        type: "website",
+    },
+    twitter: {
+        title: "Wuwa Pal",
+        card: "summary_large_image",
+        site: "@antonin686",
+        creator: "@antonin686",
+        images: [
+            {
+                url: "https://wuwapal.com/og.png",
+                width: 1200,
+                height: 630,
+                alt: "Wuwa Pal: Track Your Convene History & View Global Statistics",
+            },
+        ],
+        description:
+            "View global pull statistics for the Thawborn Renewal banner, featuring Jinhsi! Use screenshot-ready dashboards to brag to your friends! Wuwa Tracker pity counter for Wuthering Waves with up-to-date data and global statistics. Share your pulls and track your account!",
     },
 };
 

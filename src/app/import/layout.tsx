@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
     // Basic Meta Tags
-    title: "Settings - Wuwa Pal",
+    title: "Import - Convene Tracker - Wuwa Pal",
     description:
         "View your updated Wuthering Waves pull statistics and recent convenes. Use screenshot-ready dashboards to brag to your friends! Wuwa Tracker pity counter for Wuthering Waves with up-to-date data and global statistics. Share your pulls and track your account!",
     applicationName: "Wuwa Pal",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     },
 };
 
-export default function GlobalStatLayout({
+export default function ImportLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;

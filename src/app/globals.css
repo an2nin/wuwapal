@@ -139,3 +139,13 @@
         hsl(var(--card)) 10px
     );
 }
+
+.bg-star4-collection {
+    background-image: url(/images/backgrounds/bg-star4.webp);
+    background-size: contain;
+}
+
+.bg-star5-collection {
+    background-image: url(/images/backgrounds/bg-star5.webp);
+    background-size: contain;
+}

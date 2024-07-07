@@ -26,7 +26,7 @@ export default function Sidebar({
                         isSidebarOpen ? "w-60" : "w-[90px]"
                     }`}
                 >
-                    <div className="invisible lg:visible absolute top-[17px] -right-[16px] z-20">
+                    <div className="invisible lg:visible absolute top-[17px] -right-[20px] z-20">
                         <div className="absolute right-1 top-36">
                             <Button
                                 className="z-50 p-1 m-0 bg-background rounded-xl"
@@ -64,7 +64,7 @@ export default function Sidebar({
                                                         href="/"
                                                     >
                                                         <img
-                                                            alt="Bangboo Logo"
+                                                            alt="Brand Logo"
                                                             loading="lazy"
                                                             decoding="async"
                                                             className="object-cover absolute h-12 w-12"
@@ -91,15 +91,15 @@ export default function Sidebar({
                                                     className="w-full pt-3"
                                                 >
                                                     {isSidebarOpen ? (
-                                                        <p className="text-sm px-4 pb-2 max-w-[248px] truncate text-gray-400 font-semibold">
+                                                        <p className="text-sm text-accent px-4 pb-2 max-w-[248px] truncate font-semibold">
                                                             {key}
                                                         </p>
                                                     ) : (
                                                         <div className="flex w-full justify-center">
-                                                            <Ellipsis className="h-5 w-5" />
+                                                            <Ellipsis className="h-5 w-5 text-accent" />
                                                         </div>
                                                     )}
-                                                    <div className="flex flex-col gap-1">
+                                                    <div className="flex flex-col gap-3">
                                                         {NAVS[key].map(
                                                             (
                                                                 item: any,
@@ -121,7 +121,7 @@ export default function Sidebar({
                                                                             item.path
                                                                         }
                                                                     >
-                                                                        <span className="mr-4">
+                                                                        <span className="ml-[.33rem] mr-4">
                                                                             {
                                                                                 item.icon
                                                                             }

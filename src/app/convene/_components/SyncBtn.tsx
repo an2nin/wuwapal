@@ -16,7 +16,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/app/_components/ui/dialog";
-import { Progress } from "@radix-ui/react-progress";
+import { Progress } from "@/app/_components/ui/progress";
 import { RefreshCcw } from "lucide-react";
 
 interface Props {
@@ -62,14 +62,19 @@ export default function SyncBtn() {
             processedURLBody != null &&
             currentBanner <= total_banners
         ) {
-            fetchBanner({
-                cardPoolId: processedURLBody.resources_id,
-                cardPoolType: currentBanner,
-                playerId: processedURLBody.player_id,
-                serverId: processedURLBody.svr_id,
-                languageCode: "en",
-                recordId: processedURLBody.record_id,
-            });
+            const timer = setTimeout(() => {
+                fetchBanner({
+                    cardPoolId: processedURLBody.resources_id,
+                    cardPoolType: currentBanner,
+                    playerId: processedURLBody.player_id,
+                    serverId: processedURLBody.svr_id,
+                    languageCode: "en",
+                    recordId: processedURLBody.record_id,
+                });
+            }, 500);
+
+            // Clean up the timer if the effect re-runs or component unmounts
+            return () => clearTimeout(timer);
         }
     }, [currentBanner, processedURLBody]);
 
@@ -157,7 +162,11 @@ export default function SyncBtn() {
                     </DialogHeader>
                     <div className="flex flex-col gap-3 justify-center my-2">
                         <Progress
-                            value={(currentBanner / total_banners) * 100}
+                            value={
+                                (currentBanner / total_banners) * 100 > 100
+                                    ? 100
+                                    : (currentBanner / total_banners) * 100
+                            }
                         />
                         {currentBanner == total_banners + 1 &&
                             !isBannerLoading &&

@@ -12,27 +12,20 @@ interface Navs {
 }
 
 export const NAVS: Navs = {
-    "": [
-        {
-            title: "Home",
-            path: "/",
-            match: "/",
-            icon: <Home className="w-7 h-7" />,
-        },
-    ],
-    Tools: [
+   
+    Convene: [
         {
             title: "Convene Tracker",
             path: "/convene",
             match: "/convene",
-            icon: <Sparkles className="w-7 h-7" />,
+            icon: <Sparkles className="size-5" />,
         },
-        // {
-        //     title: "Collector's Hub",
-        //     path: "/collectors-hub",
-        //     match: "/collectors-hub",
-        //     icon: <Combine className="w-7 h-7" />,
-        // },
+        {
+            title: "Collector's Hub",
+            path: "/collectors-hub",
+            match: "/collectors-hub",
+            icon: <Combine className="size-5" />,
+        },
         // {
         //     title: "Global Stats",
         //     path: "/pull/global",

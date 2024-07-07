@@ -8,6 +8,7 @@ import PullBreakdown from "./PullBreakdown";
 import BannerTable from "./BannerTable";
 import { useGlobalStatsQuery } from "@/redux/services/banner";
 import LuckPercentile from "./LuckPercentile";
+import { BannerPieChart } from "@/app/_components/banner/BannerPieChart";
 interface Props {
     params: { store_id: string };
 }
@@ -15,8 +16,8 @@ export default function DetailedBanner({ params }: Props) {
     const bannerStore = useBannerStore<any>((state: any) => state);
     const [processedBanner, setProcessedBanner] = useState<any>(null);
     const [bannerData, setBannerData] = useState<any>(null);
-    const { data: globalData, isLoading: isGlobalStatsLoading } =
-        useGlobalStatsQuery<any>();
+    // const { data: globalData, isLoading: isGlobalStatsLoading } =
+    //     useGlobalStatsQuery<any>();
 
     useEffect(() => {
         setBannerData(bannerStore.banners[params.store_id]);
@@ -28,6 +29,7 @@ export default function DetailedBanner({ params }: Props) {
             setProcessedBanner(processed);
         }
     }, [bannerData]);
+
     return (
         <div className="flex flex-col gap-5">
             <BannerStrippedOverview
@@ -48,6 +50,11 @@ export default function DetailedBanner({ params }: Props) {
                         <PullBreakdown
                             bannerData={processedBanner}
                             bannerInfo={BANNERS[params.store_id]}
+                        />
+                        <BannerPieChart
+                            total={processedBanner?.total}
+                            star4={processedBanner?.star4_resonators.length}
+                            star5={processedBanner?.star5s.length}
                         />
                     </div>
                 </div>

@@ -35,17 +35,20 @@ export default function RootLayout({
         const getActiveNavItem = () => {
             let bestMatch = null;
             let bestMatchLength = 0;
-        
+
             for (const key of Object.keys(NAVS)) {
                 const items = NAVS[key];
                 for (const navItem of items) {
-                    if (pathname.startsWith(navItem.path) && navItem.path.length > bestMatchLength) {
+                    if (
+                        pathname.startsWith(navItem.path) &&
+                        navItem.path.length > bestMatchLength
+                    ) {
                         bestMatch = navItem;
                         bestMatchLength = navItem.path.length;
                     }
                 }
             }
-        
+
             return bestMatch;
         };
 
@@ -80,8 +83,11 @@ export default function RootLayout({
                     color="#5bbad5"
                 />
             </head>
-            <body className={"bg-grid-small-white/[0.1]  " + inter.className}>
-                <TopProgressBar color="hsl(var(--primary))" options={{ showSpinner: false }} />
+            <body className={"bg-grid-small-white/[0.2]  " + inter.className}>
+                <TopProgressBar
+                    color="hsl(var(--primary))"
+                    options={{ showSpinner: false }}
+                />
                 <Sidebar
                     isSidebarOpen={isSidebarOpen}
                     setIsSidebarOpen={setIsSidebarOpen}

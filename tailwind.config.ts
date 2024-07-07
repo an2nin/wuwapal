@@ -32,9 +32,9 @@ const config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         quality: {
-          3: "hsl(var(--quality3))",
-          4: "hsl(var(--quality4))",
-          5: "hsl(var(--quality5))",
+          3: "hsl(var(--quality-3))",
+          4: "hsl(var(--quality-4))",
+          5: "hsl(var(--quality-5))",
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",

@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     },
 };
 
-export default function CollectorsHubLayout({
+export default function GlobalStatLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;

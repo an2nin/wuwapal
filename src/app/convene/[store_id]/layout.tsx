@@ -28,7 +28,7 @@ export default function BannerLayout({
     return (
         <>
             <div className="mb-10">
-                <div className="flex justify-between items-center lg:mt-10">
+                <div className="flex flex-wrap-reverse gap-5 justify-between items-center lg:mt-10">
                     <div className="flex items-center gap-2">
                         <Button
                             onClick={() => router.push("/convene")}
@@ -38,7 +38,7 @@ export default function BannerLayout({
                         </Button>
                         <DropdownMenu>
                             <DropdownMenuTrigger
-                                className="capitalize text-3xl font-bold border-b border-accent hover:opacity-70"
+                                className="capitalize lg:text-3xl text-2xl font-bold border-b border-accent hover:opacity-70"
                                 style={{
                                     background:
                                         "linear-gradient(to right, hsl(var(--accent)), #fff)",

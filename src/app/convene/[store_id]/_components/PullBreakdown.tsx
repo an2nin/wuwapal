@@ -68,7 +68,7 @@ export default function PullBreakdown({ bannerData, bannerInfo }: Props) {
         <Card>
             <CardContent className="pt-5">
                 <div className="flex flex-col gap-2 ">
-                    <div className="flex justify-between items-center border-b border-accent pb-1">
+                    <div className="flex justify-between items-center border-b border-white pb-1">
                         <div className="font-bold text-sm md:text-lg">
                             Pull Breakdown
                         </div>
@@ -79,7 +79,7 @@ export default function PullBreakdown({ bannerData, bannerInfo }: Props) {
                         </div>
                     </div>
 
-                    <div className="flex justify-between border-b border-accent pb-1">
+                    <div className="flex justify-between border-b pb-1">
                         <div className="text-sm md:text-base flex items-center gap-1 text-yellow-500">
                             5 <Star className="w-4 h-4 fill-yellow-500" />
                         </div>
@@ -100,7 +100,7 @@ export default function PullBreakdown({ bannerData, bannerInfo }: Props) {
                         </div>
                     </div>
 
-                    <div className="flex justify-between border-b border-accent pb-1">
+                    <div className="flex justify-between border-b  pb-1">
                         <div className="text-sm md:text-base flex items-center gap-1 text-purple-500">
                             4 <Star className="w-4 h-4 fill-purple-500" />
                         </div>
@@ -130,7 +130,7 @@ export default function PullBreakdown({ bannerData, bannerInfo }: Props) {
                         </div>
                     </div>
 
-                    <div className="flex justify-between border-b border-accent pb-1">
+                    <div className="flex justify-between border-b pb-1">
                         <div className="text-sm md:text-base flex items-center gap-1 text-purple-500 pl-1">
                             <CornerDownRight className="h-4 w-4" />
                             Resonator
@@ -152,7 +152,7 @@ export default function PullBreakdown({ bannerData, bannerInfo }: Props) {
                         </div>
                     </div>
 
-                    <div className="flex justify-between border-b border-accent pb-1">
+                    <div className="flex justify-between border-b  pb-1">
                         <div className="text-sm md:text-base flex items-center gap-1 text-purple-500 pl-1">
                             <CornerDownRight className="h-4 w-4" />
                             Weapon

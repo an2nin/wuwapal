@@ -13,7 +13,7 @@ export default function ConvenePage() {
     const router = useRouter();
     return (
         <>
-            <div className="flex justify-between items-center lg:mt-10">
+            <div className="flex flex-wrap-reverse gap-5 justify-between items-center lg:mt-10">
                 <PageHeader title="Your Pull Journey" />
                 <div className="grid grid-cols-1 gap-5">
                     <div className="flex gap-5 lg:justify-end justify-center">

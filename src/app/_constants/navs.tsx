@@ -1,4 +1,4 @@
-import { Calendar, Combine, Globe, Home, Sparkles } from "lucide-react";
+import { Combine, Globe, Sparkles } from "lucide-react";
 
 interface NavItem {
     title: string;
@@ -12,7 +12,6 @@ interface Navs {
 }
 
 export const NAVS: Navs = {
-   
     Convene: [
         {
             title: "Convene Tracker",
@@ -26,12 +25,12 @@ export const NAVS: Navs = {
             match: "/collectors-hub",
             icon: <Combine className="size-5" />,
         },
-        // {
-        //     title: "Global Stats",
-        //     path: "/pull/global",
-        //     match: "/pull/global",
-        //     icon: <Globe className="w-7 h-7" />,
-        // },
+        {
+            title: "Global Stats",
+            path: "/global-stats",
+            match: "/global-stats",
+            icon: <Globe className="size-5" />,
+        },
         // {
         //     title: "Timeline",
         //     path: "/timeline",

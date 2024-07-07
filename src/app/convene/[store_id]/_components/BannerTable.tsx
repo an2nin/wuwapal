@@ -91,14 +91,14 @@ export default function BannerTable({ bannerData }: Props) {
                     </div>
                     <Table>
                         <TableHeader>
-                            <TableRow>
-                                <TableHead className="md:w-[20%]">
+                            <TableRow className="border-b border-white">
+                                <TableHead className="md:w-[15%]">
                                     Roll
                                 </TableHead>
-                                <TableHead>Name</TableHead>
+                                <TableHead className="w-[35%]">Name</TableHead>
                                 <TableHead></TableHead>
                                 <TableHead></TableHead>
-                                <TableHead>Pity</TableHead>
+                                <TableHead className="w-[25%]">Pity</TableHead>
                                 <TableHead className="w-[25%]">Time</TableHead>
                             </TableRow>
                         </TableHeader>

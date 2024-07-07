@@ -44,11 +44,11 @@ export default function SheetBar({ currentActiveNav }: Props) {
                                                         href="/"
                                                     >
                                                         <img
-                                                            alt="Bangboo Logo"
+                                                            alt="Wuwapal Logo"
                                                             loading="lazy"
                                                             decoding="async"
                                                             className="object-cover absolute h-12 w-12"
-                                                            src="/bangboo.png"
+                                                            src="/android-chrome-192x192.png"
                                                         />
                                                     </Link>
                                                     <h1
@@ -132,7 +132,7 @@ export default function SheetBar({ currentActiveNav }: Props) {
                                                     Support Us
                                                 </p>
                                             </a> */}
-                                                <span>
+                                                {/* <span>
                                                     <button className="inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 px-4 py-2 w-full justify-center gap-2 h-10 border border-input bg-white hover:bg-accent text-black hover:text-accent-foreground">
                                                         <svg
                                                             className="h-6 w-6"
@@ -168,7 +168,7 @@ export default function SheetBar({ currentActiveNav }: Props) {
                                                             Sign In to Google
                                                         </span>
                                                     </button>
-                                                </span>
+                                                </span> */}
                                             </li>
                                         </ul>
                                     </nav>

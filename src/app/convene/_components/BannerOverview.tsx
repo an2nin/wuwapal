@@ -41,7 +41,7 @@ export default function BannerOverview({ bannerData, bannerInfo }: Props) {
                         alt="banner"
                         className="w-full h-28 object-cover rounded-t-xl"
                     />
-                    <div className="absolute bottom-0 right-0 bg-background p-3 rounded-xl mb-4 mr-4 font-bold text-lg">
+                    <div className="absolute bottom-0 left-0 bg-background p-3 rounded-xl mb-4 ml-4 font-bold text-lg">
                         <div className="flex gap-3">
                             <div className="flex gap-1 items-center">
                                 <img

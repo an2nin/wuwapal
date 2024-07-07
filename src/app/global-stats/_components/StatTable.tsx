@@ -33,8 +33,7 @@ export default function StatTable({ items, total, star }: Props) {
                 <Table>
                     <TableHeader>
                         <TableRow className="border-b border-white">
-                            <TableHead className="w-[25%]"></TableHead>
-                            <TableHead className="w-[25%]">Name</TableHead>
+                            <TableHead className="w-[50%]">Name</TableHead>
                             <TableHead className="w-[25%]">Total</TableHead>
                             <TableHead className="w-[25%]">
                                 <Percent />
@@ -46,20 +45,20 @@ export default function StatTable({ items, total, star }: Props) {
                             <React.Fragment key={key}>
                                 <TableRow>
                                     <TableCell>
-                                        <img
-                                            className="size-10"
-                                            src={`${
-                                                process.env
-                                                    .NEXT_PUBLIC_IMAGE_URL
-                                            }/combined/${key
-                                                .toLowerCase()
-                                                .replace(/:/g, "")
-                                                .replace(/ /g, "_")}.webp`}
-                                            alt={key}
-                                        />
-                                    </TableCell>
-                                    <TableCell className="capitalize">
-                                        {key}
+                                        <div className="flex items-center gap-3 capitalize">
+                                            <img
+                                                className="size-10"
+                                                src={`${
+                                                    process.env
+                                                        .NEXT_PUBLIC_IMAGE_URL
+                                                }/combined/${key
+                                                    .toLowerCase()
+                                                    .replace(/:/g, "")
+                                                    .replace(/ /g, "_")}.webp`}
+                                                alt={key}
+                                            />
+                                            {key}
+                                        </div>
                                     </TableCell>
                                     <TableCell>{value.c}</TableCell>
                                     <TableCell>{value.p}</TableCell>

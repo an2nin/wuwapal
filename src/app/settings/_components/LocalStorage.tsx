@@ -1,0 +1,105 @@
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/app/_components/ui/card";
+import { Input } from "@/app/_components/ui/input";
+import { Label } from "@/app/_components/ui/label";
+import { Button } from "@/app/_components/ui/button";
+import { BannerState, useBannerStore } from "@/stores/banner";
+import { useEffect, useState } from "react";
+import { Trash2 } from "lucide-react";
+import BackupCSV from "./BackupCSV";
+import { toast } from "sonner";
+
+export default function LocalStorage() {
+    const bannerStore = useBannerStore<BannerState>(
+        (state: BannerState) => state
+    );
+
+    const [recordUrl, setRecordUrl] = useState(
+        bannerStore.banner_record_url || ""
+    );
+    const [gamePath, setGamePath] = useState(bannerStore.game_path || "");
+
+    const handleRecordUrlChange = (e: any) => {
+        setRecordUrl(e.target.value);
+    };
+
+    const handleGamePathChange = (e: any) => {
+        setGamePath(e.target.value);
+    };
+
+    const handleLocaleStorageSave = () => {
+        bannerStore.updateBannerInfo(recordUrl, gamePath);
+        toast.success("Locale Storage Updated");
+    };
+
+    const handleStateClear = () => {
+        bannerStore.clearStore();
+        setRecordUrl("");
+        setGamePath("");
+        toast.warning("Locale Storage Cleared");
+    };
+
+    useEffect(() => {
+        setRecordUrl(bannerStore.banner_record_url || "");
+        setGamePath(bannerStore.game_path || "");
+    }, [bannerStore]);
+
+    return (
+        <Card className="md:px-10 py-5">
+            <CardHeader>
+                <CardTitle>
+                    <div className="flex justify-between">
+                        <span>Locale Storage</span>
+                        <div>
+                            <Button
+                                variant="destructive"
+                                size="icon"
+                                onClick={handleStateClear}
+                            >
+                                <Trash2 />
+                            </Button>
+                        </div>
+                    </div>
+                </CardTitle>
+                <CardDescription className="max-w-2xl mt-2">
+                    Locale storage consists of all the data stored on your
+                    browser.
+                </CardDescription>
+            </CardHeader>
+            <CardContent>
+                <div className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-3">
+                        <Label htmlFor="convene-record-url">
+                            Convene Record URL
+                        </Label>
+                        <Input
+                            id="convene-record-url"
+                            value={recordUrl}
+                            onChange={handleRecordUrlChange}
+                        />
+                    </div>
+                    <div className="flex flex-col gap-3">
+                        <Label htmlFor="game-path">
+                            Game Installation Path
+                        </Label>
+                        <Input
+                            id="game-path"
+                            value={gamePath}
+                            onChange={handleGamePathChange}
+                        />
+                    </div>
+                </div>
+            </CardContent>
+            <CardFooter className="flex justify-between">
+                {bannerStore.banners.beginner && <BackupCSV />}
+                <Button onClick={handleLocaleStorageSave}>Save</Button>
+            </CardFooter>
+        </Card>
+    );
+}

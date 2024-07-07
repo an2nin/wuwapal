@@ -70,7 +70,7 @@ export default function Global() {
                                 <CarouselNext />
                             </Carousel>
                         </div>
-                        <div className="md:col-span-8 col-span-12">
+                        <div className="md:col-span-8 col-span-12 w-full">
                             {current > 0 && (
                                 <BannerGlobalContent
                                     bannerInfo={

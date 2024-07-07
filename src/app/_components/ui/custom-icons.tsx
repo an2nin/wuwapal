@@ -36,10 +36,10 @@ export function Github({ className }: Props) {
     );
 }
 
-export function Google() {
+export function Google({ className }: Props) {
     return (
         <svg
-            className="h-6 w-6"
+            className={cn("h-6 w-6", className)}
             xmlns="http://www.w3.org/2000/svg"
             height="24"
             viewBox="0 0 24 24"

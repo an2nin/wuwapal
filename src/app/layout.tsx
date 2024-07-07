@@ -11,13 +11,20 @@ import { Toaster } from "@/app/_components/ui/sonner";
 import { AppProgressBar as TopProgressBar } from "next-nprogress-bar";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
 function HOC({ children }: any) {
     return (
         <>
-            <Provider store={store}>{children}</Provider>
+            <Provider store={store}>
+                <GoogleOAuthProvider
+                    clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ""}
+                >
+                    {children}
+                </GoogleOAuthProvider>
+            </Provider>
         </>
     );
 }

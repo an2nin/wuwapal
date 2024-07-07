@@ -36,16 +36,18 @@ export default function BasicIntro() {
                     <a
                         className="underline text-primary hover:text-primary/70"
                         href={SOCIAL_LINKS_OBJ["discord"].path}
+                        target="_blank"
                     >
                         Discord
                     </a>{" "}
-                    &{" "}
+                    {/* &{" "}
                     <a
                         className="underline text-primary hover:text-primary/70"
-                        href={SOCIAL_LINKS_OBJ["discord"].path}
+                        href={SOCIAL_LINKS_OBJ["github"].path}
+                        target="_blank"
                     >
                         Github Issue
-                    </a>
+                    </a> */}
                     .
                 </p>
             </CardContent>

@@ -60,14 +60,14 @@ export default function Home() {
                     <LinkCard
                         title="Convene Tracker"
                         href="/convene"
-                        icon={<Sparkles className="w-5 h-5" />}
+                        icon={<Sparkles className="size-5" />}
                     >
                         Wanna See how your are doing in your pulling journey?
                     </LinkCard>
                     <LinkCard
                         title="Collector's Hub"
                         href="/collectors-hub"
-                        icon={<Combine className="w-5 h-5" />}
+                        icon={<Combine className="size-5" />}
                     >
                         Are you a collector extraordinaire? Curious to see your
                         fabulous collection in one exciting glance?

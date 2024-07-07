@@ -39,22 +39,7 @@ export default function ConveneLayout({
 }>) {
     return (
         <>
-            <div className="grid grid-cols-1 gap-5 lg:mt-10">
-                <div className="flex gap-5 lg:justify-end justify-center">
-                    <Link href={"/import"}>
-                        <div className="flex gap-2 items-center text-primary border-2 border-primary bg-background rounded-full px-3 py-2 hover:bg-primary hover:text-primary-foreground">
-                            <Import /> Import History
-                        </div>
-                    </Link>
-                    <Link href={"/import"}>
-                        <div className="flex gap-2 items-center text-primary border-2 border-primary bg-background rounded-full px-3 py-2 hover:bg-primary hover:text-primary-foreground">
-                            <RefreshCcw />
-                            Refresh
-                        </div>
-                    </Link>
-                </div>
-                {children}
-            </div>
+            {children}
         </>
     );
 }

@@ -1,9 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useRouter } from "next-nprogress-bar";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/app/_components/ui/button";
-import { ArrowRightToLine, Divide } from "lucide-react";
-import { Progress } from "@/app/_components/ui/progress";
-import { Checkbox } from "@/app/_components/ui/checkbox";
+import {
+    parseUrlParams,
+    processBannerForStore,
+} from "@/app/_helpers/processors";
+import { useFetchBannerMutation } from "@/redux/services/banner";
+import { useBannerStore } from "@/stores/banner";
+import useSupabase from "@/app/_hooks/useSupabase";
 import { toast } from "sonner";
 import {
     Dialog,
@@ -13,30 +16,22 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/app/_components/ui/dialog";
-import { useFetchBannerMutation } from "@/redux/services/banner";
-import { useBannerStore } from "@/stores/banner";
-import useSupabase from "@/app/_hooks/useSupabase";
-import {
-    isConveneHistoryUrlValid,
-    parseUrlParams,
-    processBannerForStore,
-} from "@/app/_helpers/processors";
-
-const TOTAL_BANNERS = 7;
+import { Progress } from "@radix-ui/react-progress";
+import { RefreshCcw } from "lucide-react";
 
 interface Props {
     historyUrl: string;
-    gamePath: string;
 }
 
-export default function ImportBtn({ historyUrl, gamePath }: Props) {
-    const router = useRouter();
+const total_banners = 7;
+
+export default function SyncBtn() {
     const bannerStore = useBannerStore<any>((state: any) => state);
+    const [historyUrl, setHistoryUrl] = useState<any>(null);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [currentBanner, setCurrentBanner] = useState(0);
     const [processedURLBody, setProcessedURLBody] = useState<any>(null);
     const [bannersForGlobalStat, setBannersForGlobalStat] = useState<any>([]);
-    const [sentForGlobalStat, setSentForGlobalStat] = useState<boolean>(true);
     const hasRunEffect = useRef(false);
     const { upsertData: upsertGlobalData } = useSupabase("global_pulls");
 
@@ -51,11 +46,10 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
     ] = useFetchBannerMutation();
 
     const handleImport = () => {
-        if (!isConveneHistoryUrlValid(historyUrl)) {
+        if (historyUrl == null || historyUrl == "") {
             toast.error("Please paste a valid Convene Record URL!!");
             return;
         }
-
         const parsedBody = parseUrlParams(historyUrl);
         setProcessedURLBody(parsedBody);
         setIsDialogOpen(true);
@@ -66,7 +60,7 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
         if (
             currentBanner > 0 &&
             processedURLBody != null &&
-            currentBanner <= TOTAL_BANNERS
+            currentBanner <= total_banners
         ) {
             fetchBanner({
                 cardPoolId: processedURLBody.resources_id,
@@ -98,10 +92,9 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
             } else if (currentBanner == 7) {
                 banner_name = "beginner_choice_convene";
                 bannerStore.addBannerRecordUrl(historyUrl);
-                bannerStore.addGamePath(gamePath);
             }
 
-            if (currentBanner <= TOTAL_BANNERS) {
+            if (currentBanner <= total_banners) {
                 const { bannerForStore, bannerForGlobalStat } =
                     processBannerForStore(bannerData, banner_name);
 
@@ -113,25 +106,24 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
                 bannerStore.addBanner(banner_name, bannerForStore);
             }
 
-            if (currentBanner <= TOTAL_BANNERS + 1) {
+            if (currentBanner <= total_banners + 1) {
                 setCurrentBanner(currentBanner + 1);
             }
         }
-    }, [isBannerSuccess]);
+    }, [isBannerSuccess, isBannerError]);
 
     useEffect(() => {
         if (isBannerError) {
             setIsDialogOpen(false);
             setCurrentBanner(0);
-            toast.error("Error fetching banners");
+            toast.error("Something went wrong!!");
         }
     }, [isBannerError]);
 
     useEffect(() => {
         if (
-            currentBanner === TOTAL_BANNERS + 1 &&
+            currentBanner === total_banners + 1 &&
             !hasRunEffect.current &&
-            sentForGlobalStat &&
             isBannerSuccess
         ) {
             upsertGlobalData(
@@ -147,7 +139,13 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
             );
             hasRunEffect.current = true;
         }
-    }, [currentBanner, isBannerSuccess, sentForGlobalStat]);
+    }, [currentBanner, isBannerSuccess]);
+
+    useEffect(() => {
+        if (bannerStore) {
+            setHistoryUrl(bannerStore.banner_record_url);
+        }
+    }, [bannerStore]);
 
     return (
         <>
@@ -159,44 +157,43 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
                     </DialogHeader>
                     <div className="flex flex-col gap-3 justify-center my-2">
                         <Progress
-                            value={(currentBanner / TOTAL_BANNERS) * 100}
+                            value={(currentBanner / total_banners) * 100}
                         />
-                        {currentBanner === TOTAL_BANNERS + 1 &&
+                        {currentBanner == total_banners + 1 &&
                             !isBannerLoading &&
                             isBannerSuccess && (
                                 <div className="text-green-500 text-center">
-                                    All Banners imported successfully
+                                    All Banners synced successfully
                                 </div>
                             )}
                     </div>
                     <DialogFooter>
-                        <Button
-                            onClick={() => router.push("/convene")}
-                            variant="outline"
-                            disabled={
-                                !(
-                                    currentBanner == TOTAL_BANNERS + 1 &&
-                                    !isBannerLoading &&
-                                    isBannerSuccess
-                                )
-                            }
-                        >
-                            Go Back to Convene
-                        </Button>
+                        <div className="flex justify-end">
+                            <Button
+                                onClick={() => setIsDialogOpen(false)}
+                                variant="outline"
+                                disabled={
+                                    !(
+                                        currentBanner == total_banners + 1 &&
+                                        !isBannerLoading &&
+                                        isBannerSuccess &&
+                                        !isBannerError
+                                    )
+                                }
+                            >
+                                Close
+                            </Button>
+                        </div>
                     </DialogFooter>
                 </DialogContentWithoutClose>
             </Dialog>
-            <Button onClick={handleImport} disabled={!historyUrl}>
-                <ArrowRightToLine />
-                Import
+            <Button
+                className="flex gap-2 items-center text-primary border-2 border-primary bg-background rounded-full px-3 py-2 hover:bg-primary hover:text-primary-foreground"
+                variant={"outline"}
+                onClick={() => handleImport()}
+            >
+                <RefreshCcw className="size-6" /> Fetch Updated Pulls
             </Button>
-            <div className="flex gap-2 mt-4 items-center">
-                <Checkbox
-                    checked={sentForGlobalStat}
-                    onCheckedChange={(e: boolean) => setSentForGlobalStat(e)}
-                />
-                <div className="text-xs">Submit pity for global pull stats</div>
-            </div>
         </>
     );
 }

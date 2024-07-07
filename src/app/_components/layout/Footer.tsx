@@ -7,7 +7,7 @@ export default function Footer() {
             <div className="z-20 w-full bg-card dark:shadow-none shadow border mb-3 backdrop-blur rounded-2xl supports-[backdrop-filter]:bg-background/60">
                 <div className="mx-4 md:mx-8 flex-col flex lg:flex-row py-4 items-end lg:items-center justify-between gap-4">
                     <p className="text-xs md:text-sm leading-loose text-muted-foreground text-left">
-                        © {new Date().getFullYear()} WuWa Pal
+                        © {new Date().getFullYear()} {process.env.NEXT_PUBLIC_APP_NAME}<span></span>
                         <br />
                         {process.env.NEXT_PUBLIC_APP_NAME} is not affiliated
                         with Kuro Games. <br />

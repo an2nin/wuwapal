@@ -11,13 +11,13 @@
         --card-light: 213 15% 15%;
         --popover: 0 0% 9%;
         --popover-foreground: 0 0% 95%;
-        --primary: 54.9 100% 74.3%;
-        --primary-foreground: 144.9 80.4% 10%;
+        --primary: 3 90% 62%;
+        --primary-foreground: 220 60% 15%;
         --secondary: 240 3.7% 15.9%;
         --secondary-foreground: 0 0% 98%;
         --muted: 0 0% 15%;
         --muted-foreground: 240 5% 64.9%;
-        --accent: 54.9 100% 74.3%;
+        --accent: 3 90% 62%;
         --accent-foreground: 0 0% 9%;
         --destructive: 0 62.8% 30.6%;
         --destructive-foreground: 0 85.7% 97.3%;
@@ -30,6 +30,8 @@
         --quality5: 54.9 100% 74.3%;
 
         --radius: 0.5rem;
+
+        
     }
 }
 

@@ -38,8 +38,8 @@ export default function ResonatorBattle() {
                                         />
 
                                         <div className="absolute bottom-0 left-0 w-full flex justify-between">
-                                            <div className="bg-primary/30 py-2 px-4 rounded-2xl w-30 text-center">
-                                                <div className="text-3xl font-bold">
+                                            <div className="lg:bg-primary/50 bg-primary py-2 px-4 rounded-2xl w-30 text-center">
+                                                <div className="lg:text-3xl font-bold">
                                                     {
                                                         globalData.items
                                                             .featured_resonator
@@ -48,8 +48,8 @@ export default function ResonatorBattle() {
                                                 </div>
                                                 <div>Yinlin</div>
                                             </div>
-                                            <div className="bg-primary/30 py-2 px-4 rounded-2xl w-30 text-center">
-                                                <div className="text-3xl font-bold">
+                                            <div className="lg:bg-primary/50 bg-primary py-2 px-4 rounded-2xl w-30 text-center">
+                                                <div className="lg:text-3xl font-bold">
                                                     {
                                                         globalData.items
                                                             .featured_resonator
@@ -58,8 +58,8 @@ export default function ResonatorBattle() {
                                                 </div>
                                                 <div>Total</div>
                                             </div>
-                                            <div className="bg-primary/30 py-2 px-4 rounded-2xl w-30 text-center">
-                                                <div className="text-3xl font-bold">
+                                            <div className="lg:bg-primary/50 bg-primary py-2 px-4 rounded-2xl w-30 text-center">
+                                                <div className="lg:text-3xl font-bold">
                                                     {
                                                         globalData.items
                                                             .featured_resonator

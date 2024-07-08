@@ -1,6 +1,7 @@
 import {
     Card,
     CardContent,
+    CardDescription,
     CardHeader,
     CardTitle,
 } from "@/app/_components/ui/card";
@@ -13,16 +14,7 @@ export default function BasicIntro() {
         <Card>
             <CardHeader>
                 <CardTitle>
-                    <div className="flex items-center gap-1">
-                        <div className="text-2xl font-bold">
-                            WuWaPal helps you track{" "}
-                            <FlipWords
-                                words={["pulls", "stats", "pity", "luck"]}
-                                className="text-primary"
-                            />{" "}
-                            with style.
-                        </div>
-                    </div>
+                    Hey fellow <span className="text-accent">Rover</span>, 
                 </CardTitle>
             </CardHeader>
             <CardContent>

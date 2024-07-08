@@ -1,15 +1,24 @@
 "use client";
-import { Card, CardContent, CardHeader, CardTitle } from "@/app/_components/ui/card";
+import {
+    Card,
+    CardContent,
+    CardHeader,
+    CardTitle,
+} from "@/app/_components/ui/card";
 import { SOCIAL_LINKS } from "@/app/_constants/social-links";
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 
 export default function SocialLinks() {
     return (
-        <Card className="h-full flex flex-col">
-            <CardHeader>
-                <CardTitle>Connect With Us</CardTitle>
-            </CardHeader>
-            <CardContent className="flex-grow flex items-center">
-                <div className="flex gap-3">
+        <Card className="h-full flex flex-col items-center justify-center">
+            <VisuallyHidden.Root>
+                <CardHeader>
+                    <CardTitle>Connect With Us</CardTitle>
+                </CardHeader>
+            </VisuallyHidden.Root>
+
+            <CardContent className="px-6 py-2">
+                <div className="flex lg:flex-col gap-3">
                     {SOCIAL_LINKS.map(({ path, icon_big, srOnly }, idx) => (
                         <a
                             key={idx}

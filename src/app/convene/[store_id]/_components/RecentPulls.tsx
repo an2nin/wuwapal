@@ -12,7 +12,7 @@ export default function RecentPulls({ bannerData, bannerInfo }: Props) {
                 Recent 5 ✦ Pulls
             </div>
             <div className="flex">
-                <div className="flex  gap-3 flex-row-reverse">
+                <div className="flex flex-wrap lg:justify-end justify-center gap-3 flex-row-reverse">
                     {bannerData?.star5s.length > 0 ? (
                         bannerData.star5s.map((item: any, idx: number) => (
                             <BannerItemBadge

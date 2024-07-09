@@ -2,23 +2,21 @@
 import {
     Card,
     CardContent,
+    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/app/_components/ui/card";
 import { SOCIAL_LINKS } from "@/app/_constants/social-links";
-import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 
 export default function SocialLinks() {
     return (
-        <Card className="h-full flex flex-col items-center justify-center">
-            <VisuallyHidden.Root>
-                <CardHeader>
-                    <CardTitle>Connect With Us</CardTitle>
-                </CardHeader>
-            </VisuallyHidden.Root>
+        <Card className="h-full flex flex-col justify-between">
+            <CardHeader>
+                <CardTitle>Social Links</CardTitle>
+            </CardHeader>
 
-            <CardContent className="px-6 py-2">
-                <div className="flex lg:flex-col gap-3">
+            <CardContent>
+                <div className="flex gap-3">
                     {SOCIAL_LINKS.map(({ path, icon_big, srOnly }, idx) => (
                         <a
                             key={idx}
@@ -32,6 +30,7 @@ export default function SocialLinks() {
                     ))}
                 </div>
             </CardContent>
+            <CardFooter></CardFooter>
         </Card>
     );
 }

@@ -3,6 +3,7 @@ import AvgPity from "./AvgPity";
 import StatTable from "./StatTable";
 import PercentageStat from "@/app/_components/banner/PercentageStat";
 import PageHeader from "@/app/_components/layout/PageHeader";
+import { BannerPityBarChart } from "@/app/_components/banner/BannerPityBarChart";
 
 interface Props {
     bannerInfo: any;
@@ -36,6 +37,18 @@ export default function BannerGlobalContent({ bannerInfo, activeTab }: Props) {
                     />
                 </div>
             </div>
+            {/* <div className="grid grid-cols-12 gap-5 w-full">
+                <div className="md:col-span-6 col-span-12">
+                    <BannerPityBarChart />
+                </div>
+                <div className="md:col-span-6 col-span-12">
+                    <StatTable
+                        star={4}
+                        total={bannerInfo.total_s4}
+                        items={bannerInfo.s4s}
+                    />
+                </div>
+            </div> */}
             <div className="grid grid-cols-12 gap-5 w-full">
                 <div className="md:col-span-6 col-span-12">
                     <StatTable

@@ -1,6 +1,7 @@
 import {
     Card,
     CardContent,
+    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/app/_components/ui/card";
@@ -9,6 +10,7 @@ import { CURRENCIES } from "@/shared/currencies";
 import { useEffect, useState } from "react";
 import BannerItemBadge from "./BannerItemBadge";
 import { useRouter } from "next-nprogress-bar";
+import { Button } from "@/app/_components/ui/button";
 
 interface Props {
     bannerData: any;
@@ -28,7 +30,7 @@ export default function BannerOverview({ bannerData, bannerInfo }: Props) {
 
     return (
         <Card
-            className="p-0 hover:border hover:border-accent cursor-pointer"
+            className="p-0 hover:border hover:border-accent cursor-pointer flex flex-col justify-between"
             onClick={() => router.push(`/convene/${bannerInfo.store_id}`)}
         >
             <CardHeader className="hidden">
@@ -49,7 +51,9 @@ export default function BannerOverview({ bannerData, bannerInfo }: Props) {
                                     alt={bannerInfo.currency}
                                     className="w-8 h-8"
                                 />
-                                <p className="text-foreground">{bannerData?.total}</p>
+                                <p className="text-foreground">
+                                    {bannerData?.total}
+                                </p>
                             </div>
                             <div className="flex gap-1 items-center">
                                 <div className="bg-quality-5 text-black px-2 rounded-full">
@@ -76,12 +80,12 @@ export default function BannerOverview({ bannerData, bannerInfo }: Props) {
                         {processedBanner?.star5s.length > 0 ? (
                             processedBanner.star5s.map(
                                 (item: any, idx: number) => (
-                                        <BannerItemBadge
-                                            key={idx}
-                                            item={item}
-                                            maxPity={80}
-                                            rarity={5}
-                                        />
+                                    <BannerItemBadge
+                                        key={idx}
+                                        item={item}
+                                        maxPity={80}
+                                        rarity={5}
+                                    />
                                 )
                             )
                         ) : (
@@ -90,6 +94,9 @@ export default function BannerOverview({ bannerData, bannerInfo }: Props) {
                     </div>
                 </div>
             </CardContent>
+            <CardFooter className="flex justify-center animate-pulse p-0 pb-2">
+                <div className="text-sm text-accent">{"<< "}click to view details{" >>"}</div>
+            </CardFooter>
         </Card>
     );
 }

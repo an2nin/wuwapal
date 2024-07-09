@@ -12,6 +12,7 @@ import { AppProgressBar as TopProgressBar } from "next-nprogress-bar";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -89,6 +90,17 @@ export default function RootLayout({
                     href="/safari-pinned-tab.svg"
                     color="#5bbad5"
                 />
+                <Script
+                    async
+                    src="https://www.googletagmanager.com/gtag/js?id=G-7NLQRZE5QL"
+                />
+                <Script id="google-analytics">
+                    {`  window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                  
+                    gtag('config', 'G-7NLQRZE5QL');`}
+                </Script>
             </head>
             <body className={"bg-grid-small-white/[0.2]  " + inter.className}>
                 <TopProgressBar

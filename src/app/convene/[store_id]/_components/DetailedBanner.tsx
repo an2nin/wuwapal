@@ -37,7 +37,7 @@ export default function DetailedBanner({ params }: Props) {
                 bannerInfo={BANNERS[params.store_id]}
             />
             <div className="grid lg:grid-cols-12 grid-cols-1 gap-5">
-                <div className="lg:col-span-5 ">
+                <div className="lg:col-span-6 ">
                     <div className="grid grid-cols-1 gap-5">
                         {/* {isGlobalStatsLoading ? (
                             <div>Loading...</div>
@@ -58,7 +58,7 @@ export default function DetailedBanner({ params }: Props) {
                         />
                     </div>
                 </div>
-                <div className="lg:col-span-7">
+                <div className="lg:col-span-6">
                     <BannerTable bannerData={processedBanner} />
                 </div>
             </div>

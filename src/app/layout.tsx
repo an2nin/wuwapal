@@ -118,10 +118,10 @@ export default function RootLayout({
                     }`}
                 >
                     <Header currentActiveNav={currentActiveNav} />
-                    <div className="flex-1 container my-10 lg:mt-0 ">
+                    <div className="flex-1 container lg:px-20 my-10 lg:mt-0 ">
                         <HOC>{children}</HOC>
                     </div>
-                    <div className="container">
+                    <div className="container lg:px-20">
                         <Footer />
                     </div>
                     <Toaster richColors />

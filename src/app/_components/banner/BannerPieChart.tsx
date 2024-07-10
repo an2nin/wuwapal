@@ -44,19 +44,27 @@ interface Props {
 }
 
 export function BannerPieChart({ total, star4, star5 }: Props) {
-
     const chartData = [
-        { quality: "star3", value: total - (star4 + star5), fill: "var(--color-star3)" },
+        {
+            quality: "star3",
+            value: total - (star4 + star5),
+            fill: "var(--color-star3)",
+        },
         { quality: "star4", value: star4, fill: "var(--color-star4)" },
         { quality: "star5", value: star5, fill: "var(--color-star5)" },
     ];
 
     return (
         <Card className="flex flex-col">
-            <CardContent className="flex-1 pb-0">
+            <CardHeader className="pb-0">
+                <CardTitle className="text-lg ">
+                    Pie Chart - Donut with Text
+                </CardTitle>
+            </CardHeader>
+            <CardContent className="flex-1 py-0">
                 <ChartContainer
                     config={chartConfig}
-                    className="mx-auto aspect-square max-h-[250px]"
+                    className="mx-auto aspect-square max-h-[250px] "
                 >
                     <PieChart>
                         <ChartTooltip

@@ -43,7 +43,7 @@ export default function TimelineViewer({
        
                 <div
                     ref={scrollContainerRef}
-                    className="scrollbar scrollbar-thumb-rounded-lg scrollbar-thumb-neutral-800 scrollbar-track-subitem scrollbar-h-2 h-[60rem] w-full overflow-auto overscroll-none pl-5 "
+                    className="scrollbar scrollbar-thumb-rounded-lg scrollbar-thumb-neutral-800 scrollbar-track-subitem scrollbar-h-2 h-[58rem] w-full overflow-x-auto overflow-y-hidden overscroll-none pl-5 "
                 >
                     <div className="timeline h-full content relative flex w-max flex-col">
                         <DayRow

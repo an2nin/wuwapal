@@ -1,16 +1,27 @@
-import { differenceInDays, format, parseISO } from "date-fns";
+import { differenceInHours, format, parseISO } from "date-fns";
 
 interface Props {
     event: any;
 }
 
 export default function EventItem({ event }: Props) {
-    const totalHoursDifference = differenceInDays(
+    const totalHoursDifference = differenceInHours(
         parseISO(event.info.endDate),
-        parseISO(event.info.startDate)
+        new Date()
     );
     const days = Math.floor(totalHoursDifference / 24);
     const hours = totalHoursDifference % 24;
+
+    console.log(
+        "today ",
+        new Date(),
+        " endDate ",
+        parseISO(event.info.endDate),
+        " days ",
+        days,
+        " hours ",
+        hours
+    );
 
     return (
         <div
@@ -24,7 +35,7 @@ export default function EventItem({ event }: Props) {
             <div className="h-16 w-full bg-background border rounded-2xl flex items-center justify-between px-2 relative overflow-clip">
                 <div className="sticky -left-3 px-2 truncate flex flex-col gap-1 text-sm font-medium drop-shadow-lg text-white">
                     <div>{event.info?.name}</div>
-                    <div className="flex gap-1 text-xs text-accent">
+                    <div className="flex items-center gap-2 text-xs text-accent">
                         {format(
                             parseISO(event.info?.startDate),
                             "MMMM dd, h:mm a"
@@ -34,8 +45,15 @@ export default function EventItem({ event }: Props) {
                             parseISO(event.info?.endDate),
                             "MMMM dd, h:mm a"
                         )}
-                        <div>
-                            {days}d {hours}h
+
+                        <div className="text-accent-foreground p-1 rounded-full bg-accent">
+                            {days < 0 || hours < 0 ? (
+                                "Ended"
+                            ) : (
+                                <span>
+                                    {days}d {hours}h
+                                </span>
+                            )}
                         </div>
                     </div>
                 </div>

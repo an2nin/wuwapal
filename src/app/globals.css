@@ -153,3 +153,30 @@
     background-image: url(/images/backgrounds/bg-star5.webp);
     background-size: contain;
 }
+
+/* Style for the scrollbar track */
+::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+    border-radius: 10px;
+}
+
+/* Style for the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+    background: hsl(var(--accent));
+    border-radius: 10px;
+}
+
+/* Style for the scrollbar corner (for both horizontal and vertical scrollbars) */
+::-webkit-scrollbar-corner {
+    background: #f1f1f1;
+}
+
+/* Width of the vertical scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Height of the horizontal scrollbar */
+::-webkit-scrollbar {
+    height: 10px;
+}

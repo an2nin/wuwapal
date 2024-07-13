@@ -23,7 +23,7 @@ export default function BannerGlobalContent({ bannerInfo, activeTab }: Props) {
                         <AvgPity star={4} avg_pity={bannerInfo.avg_s4_pity} />
                         <div className="col-span-2">
                             <PercentageStat
-                                ff_won={bannerInfo.ff_won}
+                                ff_win={bannerInfo.ff_win}
                                 ff_lose={bannerInfo.ff_lose}
                             />
                         </div>

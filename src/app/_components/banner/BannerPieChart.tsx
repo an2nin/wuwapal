@@ -58,7 +58,7 @@ export function BannerPieChart({ total, star4, star5 }: Props) {
         <Card className="flex flex-col">
             <CardHeader className="pb-0">
                 <CardTitle className="text-lg ">
-                    Pie Chart - Donut with Text
+                    Pull Pie by Rarity
                 </CardTitle>
             </CardHeader>
             <CardContent className="flex-1 py-0">

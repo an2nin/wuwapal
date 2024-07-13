@@ -43,7 +43,7 @@ export default function ResonatorBattle() {
                                                     {
                                                         globalData.items
                                                             .featured_resonator
-                                                            .s5s.yinlin.c
+                                                            .s5s.Yinlin.c
                                                     }
                                                 </div>
                                                 <div>Yinlin</div>
@@ -63,7 +63,7 @@ export default function ResonatorBattle() {
                                                     {
                                                         globalData.items
                                                             .featured_resonator
-                                                            .s5s.jinhsi.c
+                                                            .s5s.Jinhsi.c
                                                     }
                                                 </div>
                                                 <div>Jinhsi</div>
@@ -77,20 +77,20 @@ export default function ResonatorBattle() {
                                                 {calculatePercentage(
                                                     globalData.items
                                                         .featured_resonator
-                                                        .ff_won,
+                                                        .ff_win,
                                                     globalData.items
                                                         .featured_resonator
-                                                        .ff_won +
+                                                        .ff_win +
                                                         globalData.items
                                                             .featured_resonator
                                                             .ff_lose
                                                 )}
-                                                <Percent className="w-4 mx-1" />{" "}
+                                                <Percent className="w-4 mr-1" />
                                                 (
                                                 {
                                                     globalData.items
                                                         .featured_resonator
-                                                        .ff_won
+                                                        .ff_win
                                                 }
                                                 W<span className="mx-1">-</span>
                                                 {

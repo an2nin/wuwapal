@@ -3,13 +3,15 @@ import { ArrowDownWideNarrow, ArrowUpNarrowWide } from "lucide-react";
 
 interface Props {
     percentile: number;
-    betterThanAverage: boolean;
+    isTop: boolean;
+    comparisonPercent: number;
     quality: number;
 }
 export default function LuckStatCard({
     percentile,
-    betterThanAverage,
+    isTop,
     quality,
+    comparisonPercent
 }: Props) {
     return (
         <Card>
@@ -23,7 +25,7 @@ export default function LuckStatCard({
                             quality == 5 ? "text-quality-5" : "text-quality-4"
                         }`}
                     >
-                        {betterThanAverage ? (
+                        {isTop ? (
                             <>
                                 <div>Top</div>
                                 <ArrowUpNarrowWide className="size-5" />
@@ -43,8 +45,8 @@ export default function LuckStatCard({
                         {percentile}%
                     </div>
                     <div className="text-xs">
-                        {betterThanAverage ? "Luckier" : "Unluckier"} than{" "}
-                        {100 - percentile}% of rovers
+                        {isTop ? "Luckier" : "Unluckier"} than{" "}
+                        {comparisonPercent}% of rovers
                     </div>
                 </div>
             </CardContent>

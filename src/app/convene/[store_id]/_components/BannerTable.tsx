@@ -42,7 +42,7 @@ export default function BannerTable({ bannerData }: Props) {
     return (
         <>
             <Card>
-                <CardContent className="h-full p-5">
+                <CardContent className="p-5">
                     <div className="hidden bg-quality-5"></div>
                     <div className="flex flex-wrap gap-3 justify-between mb-5 items-center">
                         <div className="flex gap-3 items-center justify-end w-full">

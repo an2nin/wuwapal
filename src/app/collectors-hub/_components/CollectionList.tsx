@@ -23,7 +23,7 @@ export default function CollectionList({ type, resources, collected }: Props) {
                 onDialogChange={setIsDialogOpen}
                 resource={selectedResource}
             />
-            <div className="flex flex-wrap gap-5 justify-center md:justify-start">
+            <div className="flex flex-wrap gap-5 justify-center md:justify-start bg-pattern-stripped p-5 rounded-xl">
                 {resources &&
                     collected &&
                     Object.keys(resources).map((resourceName, idx) => (

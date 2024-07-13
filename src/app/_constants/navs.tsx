@@ -25,12 +25,12 @@ export const NAVS: Navs = {
             match: "/collectors-hub",
             icon: <Combine className="size-5" />,
         },
-        {
-            title: "Global Stats",
-            path: "/global-stats",
-            match: "/global-stats",
-            icon: <Globe className="size-5" />,
-        },
+        // {
+        //     title: "Global Stats",
+        //     path: "/global-stats",
+        //     match: "/global-stats",
+        //     icon: <Globe className="size-5" />,
+        // },
     ],
     Planner: [
         {

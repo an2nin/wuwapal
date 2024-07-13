@@ -201,7 +201,7 @@ export default function SyncBtn() {
                 variant={"outline"}
                 onClick={() => handleImport()}
             >
-                <RefreshCcw className="size-6" /> Fetch Updated Pulls
+                <RefreshCcw className="size-6" /> Refresh Pulls
             </Button>
         </>
     );

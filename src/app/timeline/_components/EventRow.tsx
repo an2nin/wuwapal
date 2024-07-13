@@ -114,7 +114,6 @@ export default function EventRow({ timelineStartDate, timelineData }: Props) {
         setEvents(generateEvents());
     }, []);
 
-    console.log(events);
     return (
         <>
             {events.map((event, idx) => (

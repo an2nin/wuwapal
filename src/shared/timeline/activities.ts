@@ -31,7 +31,8 @@ const PATCH_1_0 = [
 
 const PATCH_1_1 = [
     {
-        name: "[Traces of Mt. Firmament] Photo Collection Event",
+        name: "Traces of Mt. Firmament",
+        desc: "Photo Collection Event",
         img: "https://snipboard.io/VA7tnJ.jpg",
         color: "#7a4738",
         description:
@@ -61,7 +62,8 @@ const PATCH_1_1 = [
         url: "https://wutheringwaves.kurogames.com/en/main/news/detail/975",
     },
     {
-        name: "[Bountiful Crescendo] Leveling Material Double Drop Event",
+        name: "Bountiful Crescendo",
+        desc: "Leveling Material Double Drop Event",
         img: "https://snipboard.io/Ngs67D.jpg",
         color: "#7a768d",
         description:
@@ -90,7 +92,8 @@ const PATCH_1_1 = [
         url: "https://wutheringwaves.kurogames.com/en/main/news/detail/975",
     },
     {
-        name: "[Chord Cleansing] Echo Double Drop Event",
+        name: "Chord Cleansing",
+        desc: "Echo Double Drop Event",
         img: "https://snipboard.io/7lzZ6x.jpg",
         color: "#1d3d50",
         description:

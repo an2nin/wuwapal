@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/app/_components/ui/button";
-import { ChevronsLeft, Import } from "lucide-react";
+import { ChevronsLeft, Globe, Import } from "lucide-react";
 import { useRouter } from "next-nprogress-bar";
 import SyncBtn from "../_components/SyncBtn";
 import {
@@ -52,7 +52,12 @@ export default function BannerLayout({
                             </DropdownMenuTrigger>
                             <DropdownMenuContent>
                                 {Object.keys(BANNERS).map((banner, idx) => (
-                                    <DropdownMenuItem key={idx} onClick={() => router.push(`/convene/${banner}`)}>
+                                    <DropdownMenuItem
+                                        key={idx}
+                                        onClick={() =>
+                                            router.push(`/convene/${banner}`)
+                                        }
+                                    >
                                         {BANNERS[banner].name}
                                     </DropdownMenuItem>
                                 ))}
@@ -60,7 +65,7 @@ export default function BannerLayout({
                         </DropdownMenu>
                     </div>
                     <div className="grid grid-cols-1 gap-5">
-                        <div className="flex gap-5 lg:justify-end justify-center">
+                        <div className="flex flex-wrap gap-5 lg:justify-end justify-center">
                             <Button
                                 onClick={() => router.push("/import")}
                                 className="flex gap-2 items-center text-primary border-2 border-primary bg-background rounded-full px-3 py-2 hover:bg-primary hover:text-primary-foreground"
@@ -69,6 +74,14 @@ export default function BannerLayout({
                             </Button>
                             <div>
                                 <SyncBtn />
+                            </div>
+                            <div>
+                                <Button
+                                    onClick={() => router.push("/global-stats")}
+                                    className="flex gap-2 items-center text-primary border-2 border-primary bg-background rounded-full px-3 py-2 hover:bg-primary hover:text-primary-foreground"
+                                >
+                                    <Globe className="size-6" /> Global Stats
+                                </Button>
                             </div>
                         </div>
                     </div>

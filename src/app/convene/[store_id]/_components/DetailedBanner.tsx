@@ -16,8 +16,8 @@ export default function DetailedBanner({ params }: Props) {
     const bannerStore = useBannerStore<any>((state: any) => state);
     const [processedBanner, setProcessedBanner] = useState<any>(null);
     const [bannerData, setBannerData] = useState<any>(null);
-    // const { data: globalData, isLoading: isGlobalStatsLoading } =
-    //     useGlobalStatsQuery<any>();
+    const { data: globalData, isLoading: isGlobalStatsLoading } =
+        useGlobalStatsQuery<any>();
 
     useEffect(() => {
         setBannerData(bannerStore.banners[params.store_id]);
@@ -29,7 +29,6 @@ export default function DetailedBanner({ params }: Props) {
             setProcessedBanner(processed);
         }
     }, [bannerData]);
-
     return (
         <div className="flex flex-col gap-5">
             <BannerStrippedOverview
@@ -39,14 +38,14 @@ export default function DetailedBanner({ params }: Props) {
             <div className="grid lg:grid-cols-12 grid-cols-1 gap-5">
                 <div className="lg:col-span-6 ">
                     <div className="grid grid-cols-1 gap-5">
-                        {/* {isGlobalStatsLoading ? (
+                        {isGlobalStatsLoading ? (
                             <div>Loading...</div>
                         ) : (
                             <LuckPercentile
                                 bannerData={processedBanner}
                                 globalData={globalData}
                             />
-                        )} */}
+                        )}
                         <PullBreakdown
                             bannerData={processedBanner}
                             bannerInfo={BANNERS[params.store_id]}

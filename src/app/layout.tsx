@@ -107,18 +107,18 @@ export default function RootLayout({
                     color="hsl(var(--primary))"
                     options={{ showSpinner: false }}
                 />
-                <Sidebar
+                {/* <Sidebar
                     isSidebarOpen={isSidebarOpen}
                     setIsSidebarOpen={setIsSidebarOpen}
                     currentActiveNav={currentActiveNav}
-                />
+                /> */}
                 <div
-                    className={`min-h-screen flex flex-col  justify-start transition-[margin-left] ease-in-out duration-300 ${
-                        isSidebarOpen ? "lg:ml-60" : "lg:ml-[90px]"
+                    className={`min-h-screen flex flex-col justify-start transition-[margin-left] ease-in-out duration-300 ${
+                        isSidebarOpen ? "lg:ml-0" : "lg:ml-[90px]"
                     }`}
                 >
                     <Header currentActiveNav={currentActiveNav} />
-                    <div className="flex-1 container my-10 lg:mt-0 ">
+                    <div className="flex-1 container my-10">
                         <HOC>{children}</HOC>
                     </div>
                     <div className="container">

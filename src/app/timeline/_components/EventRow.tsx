@@ -30,8 +30,8 @@ export default function EventRow({ timelineStartDate, timelineData }: Props) {
 
                 const processedEvent = {
                     info: { ...item },
-                    left: diffForLeft * 40,
-                    width: diffForWidth * 40,
+                    left: diffForLeft * 60,
+                    width: diffForWidth * 60,
                 };
                 if (idx % 2 === 0) {
                     eventList.push({
@@ -65,9 +65,9 @@ export default function EventRow({ timelineStartDate, timelineData }: Props) {
 
                     const processedEvent = {
                         info: { ...item },
-                        left: diffForLeft * 40,
+                        left: diffForLeft * 60,
                         top: currTop,
-                        width: diffForWidth * 40,
+                        width: diffForWidth * 60,
                     };
 
                     eventList.push({
@@ -96,9 +96,9 @@ export default function EventRow({ timelineStartDate, timelineData }: Props) {
 
                     const processedEvent = {
                         info: { ...item },
-                        left: diffForLeft * 40,
+                        left: diffForLeft * 60,
                         top: currTop,
-                        width: diffForWidth * 40,
+                        width: diffForWidth * 60,
                     };
 
                     eventList.push({

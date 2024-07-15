@@ -1,3 +1,5 @@
+import { convertDatesToServerTime } from '@/shared/helpers/time';
+
 const TOWER_OF_ADVERSITY = [
     {
         name: "Tower of Adversity: Hazard Zone",
@@ -52,7 +54,7 @@ const PIONEER_PODCAST = [
 ];
 
 export const COMMONS = [
-    TOWER_OF_ADVERSITY,
-    DEPTHS_OF_ILLUSIVE_REALM,
-    PIONEER_PODCAST,
+    convertDatesToServerTime(TOWER_OF_ADVERSITY),
+    convertDatesToServerTime(DEPTHS_OF_ILLUSIVE_REALM),
+    convertDatesToServerTime(PIONEER_PODCAST),
 ];

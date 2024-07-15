@@ -24,7 +24,7 @@ export default function EventItem({ event }: Props) {
             <div className="h-16 w-full z-10 bg-background border rounded-2xl flex items-center justify-between px-2 relative overflow-clip">
                 <div className="sticky -left-3 px-2 truncate flex flex-col gap-1 text-sm font-medium drop-shadow-lg text-white">
                     <div>{event.info?.name}</div>
-                    <div className="flex items-center gap-2 text-xs text-accent">
+                    <div className="flex items-center gap-2 text-xs text-primary">
                         {format(
                             parseISO(event.info?.startDate),
                             "MMMM dd, h:mm a"
@@ -34,8 +34,7 @@ export default function EventItem({ event }: Props) {
                             parseISO(event.info?.endDate),
                             "MMMM dd, h:mm a"
                         )}
-
-                        <div className="text-accent-foreground p-1 rounded-full bg-accent">
+                        <div className="text-primary-foreground px-2 py-1 rounded-full bg-primary">
                             {days < 0 || hours < 0 ? (
                                 "Ended"
                             ) : (

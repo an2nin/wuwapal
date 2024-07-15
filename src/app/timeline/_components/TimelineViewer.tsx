@@ -29,7 +29,7 @@ export default function TimelineViewer({
 
     useEffect(() => {
         const pos =
-            differenceInDays(new Date(), new Date(timelineStartDate)) * 40;
+            differenceInDays(new Date(), new Date(timelineStartDate)) * 60;
         setCurrentDateRowPos(pos);
     }, []);
 
@@ -60,7 +60,7 @@ export default function TimelineViewer({
                         />
 
                         <div
-                            className="absolute z-20 mt-16 h-full w-0.5 bg-accent opacity-75"
+                            className="absolute z-20 mt-16 h-full w-0.5 bg-primary opacity-75"
                             style={{ left: currentDateRowPos + "px" }}
                         ></div>
                     </div>

@@ -12,6 +12,7 @@ import {
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BANNERS } from "@/shared/banners";
+import ConveneNavigation from "../_components/ConveneNavigation";
 
 export default function BannerLayout({
     children,
@@ -28,20 +29,20 @@ export default function BannerLayout({
     return (
         <>
             <div className="mb-10">
-                <div className="flex flex-wrap-reverse gap-5 justify-between items-center lg:mt-10">
+                <div className="flex flex-wrap-reverse gap-5 justify-between items-center">
                     <div className="flex items-center gap-2">
                         <Button
                             onClick={() => router.push("/convene")}
                             variant="ghost"
                         >
-                            <ChevronsLeft className="text-accent size-12 font-bold" />
+                            <ChevronsLeft className="text-primary size-12 font-bold" />
                         </Button>
                         <DropdownMenu>
                             <DropdownMenuTrigger
-                                className="capitalize lg:text-3xl text-2xl font-bold border-b border-accent hover:opacity-70"
+                                className="capitalize lg:text-3xl text-2xl font-bold border-b border-primary hover:opacity-70"
                                 style={{
                                     background:
-                                        "linear-gradient(to right, hsl(var(--accent)), #fff)",
+                                        "linear-gradient(to right, hsl(var(--primary)), #fff)",
                                     backgroundClip: "text",
                                     WebkitBackgroundClip: "text",
                                     WebkitTextFillColor: "transparent",
@@ -64,27 +65,7 @@ export default function BannerLayout({
                             </DropdownMenuContent>
                         </DropdownMenu>
                     </div>
-                    <div className="grid grid-cols-1 gap-5">
-                        <div className="flex flex-wrap gap-5 lg:justify-end justify-center">
-                            <Button
-                                onClick={() => router.push("/import")}
-                                className="flex gap-2 items-center text-primary border-2 border-primary bg-background rounded-full px-3 py-2 hover:bg-primary hover:text-primary-foreground"
-                            >
-                                <Import className="size-6" /> Import History
-                            </Button>
-                            <div>
-                                <SyncBtn />
-                            </div>
-                            <div>
-                                <Button
-                                    onClick={() => router.push("/global-stats")}
-                                    className="flex gap-2 items-center text-primary border-2 border-primary bg-background rounded-full px-3 py-2 hover:bg-primary hover:text-primary-foreground"
-                                >
-                                    <Globe className="size-6" /> Global Stats
-                                </Button>
-                            </div>
-                        </div>
-                    </div>
+                    <ConveneNavigation />
                 </div>
             </div>
             {children}

@@ -80,6 +80,7 @@ export default function Home() {
                 </h1>
             </PageHeader>
 
+
             <div className="grid lg:grid-cols-12 grid-cols-1 gap-5">
                 <div className="lg:col-span-9">
                     <BasicIntro />

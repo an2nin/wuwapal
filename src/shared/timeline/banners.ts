@@ -1,4 +1,6 @@
-export const BANNERS = [
+import { convertDatesToServerTime } from "@/shared/helpers/time";
+
+const ALL_BANNERS = [
     {
         name: "When Thunder Pours - Yinlin Banner",
         description:
@@ -51,3 +53,5 @@ export const BANNERS = [
         url: "https://wutheringwaves.kurogames.com/en/main/news/detail/975",
     },
 ];
+
+export const BANNERS = convertDatesToServerTime(ALL_BANNERS);

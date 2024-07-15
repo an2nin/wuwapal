@@ -4,10 +4,18 @@ interface Props {
     className?: string;
 }
 
+export function Bangaldesh({ className }: Props) {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6" className={cn("size-6", className)}>
+            <rect width="10" height="6" fill="#006a4e" />
+            <circle cx="5" cy="3" r="1.8" fill="#f42a41" />
+        </svg>
+    );
+}
 export function Discord({ className }: Props) {
     return (
         <svg
-            className={cn("h-6 w-6", className)}
+            className={cn("size-6", className)}
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
@@ -21,7 +29,7 @@ export function Discord({ className }: Props) {
 export function Github({ className }: Props) {
     return (
         <svg
-            className={cn("h-6 w-6", className)}
+            className={cn("size-6", className)}
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
@@ -39,7 +47,7 @@ export function Github({ className }: Props) {
 export function Google({ className }: Props) {
     return (
         <svg
-            className={cn("h-6 w-6", className)}
+            className={cn("size-6", className)}
             xmlns="http://www.w3.org/2000/svg"
             height="24"
             viewBox="0 0 24 24"
@@ -85,7 +93,7 @@ export function KoFi() {
 export function Reddit({ className }: Props) {
     return (
         <svg
-            className={cn("h-6 w-6", className)}
+            className={cn("size-6", className)}
             fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -100,7 +108,7 @@ export function Reddit({ className }: Props) {
 export function Twitter({ className }: Props) {
     return (
         <svg
-            className={cn("h-6 w-6", className)}
+            className={cn("size-6", className)}
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"

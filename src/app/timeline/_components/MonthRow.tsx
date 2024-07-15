@@ -35,10 +35,10 @@ export default function MonthRow({ timelineStartDate, endDateDiff }: Props) {
                 if (!existingMonth) {
                     months.push({
                         name: monthName,
-                        width: daysInMonth * 40,
+                        width: daysInMonth * 60,
                         left: lastLeft,
                     });
-                    lastLeft += daysInMonth * 40;
+                    lastLeft += daysInMonth * 60;
                 }
 
                 currentDate.setMonth(month + 1);

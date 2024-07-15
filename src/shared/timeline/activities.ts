@@ -1,3 +1,5 @@
+import { convertDatesToServerTime } from '@/shared/helpers/time';
+
 const PATCH_1_0 = [
     {
         name: "Alloy Smelt Limited Time Battle Event",
@@ -104,4 +106,7 @@ const PATCH_1_1 = [
     },
 ];
 
-export const ACTIVITIES = [PATCH_1_0, PATCH_1_1];
+export const ACTIVITIES = [
+    convertDatesToServerTime(PATCH_1_0),
+    convertDatesToServerTime(PATCH_1_1),
+];

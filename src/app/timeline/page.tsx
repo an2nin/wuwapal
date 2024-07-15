@@ -8,17 +8,35 @@ import {
     CardTitle,
 } from "@/app/_components/ui/card";
 import PageHeader from "../_components/layout/PageHeader";
+import MovingBorder from "../_components/ui/moving-border";
+import DailyResetTimer from "./_components/DailyResetTimer";
+import WeeklyResetTimer from "./_components/WeeklyResetTimer";
+import { Info } from "lucide-react";
 export default function Timeline() {
     const startDate = "2024-05-1";
 
     return (
         <div className="flex flex-col gap-5">
-            <PageHeader title="WuWa Timeline" />
-            <Card className="bg-pattern-stripped">
-                <CardHeader>
-                    <CardTitle>WuWa Timeline</CardTitle>
+            <div className="flex flex-wrap justify-between gap-5">
+                <PageHeader title="WuWa Timeline" />
+                <div className="flex flex-wrap justify-center lg:justify-end gap-5">
+                    <MovingBorder>
+                        <DailyResetTimer />
+                    </MovingBorder>
+                    <MovingBorder>
+                        <WeeklyResetTimer />
+                    </MovingBorder>
+                </div>
+            </div>
+
+            <Card>
+                <CardHeader className="pb-6">
+                    <CardTitle className="text-lg flex flex-row items-center gap-2">
+                        <Info className="size-6 text-primary" /> Times are shown in your
+                        local time
+                    </CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="pt-6 bg-pattern-stripped rounded-xl">
                     <TimelineViewer
                         timelineStartDate={startDate}
                         endDateDiff={4}

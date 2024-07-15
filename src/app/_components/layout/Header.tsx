@@ -13,14 +13,14 @@ interface Props {
 export default function Header({ currentActiveNav }: Props) {
     const router = useRouter();
     return (
-        <header className="flex w bg-card-light sticky z-10 container">
-            <div className="w-full py-2 flex bg-card-light justify-between items-center px-4">
+        <header className="flex sticky top-0 z-10 container">
+            <div className="w-full  py-2 flex bg-card-light border rounded-b-xl justify-between items-center px-4">
                 <div className="lg:hidden block">
                     <SheetBar currentActiveNav={currentActiveNav} />
                 </div>
                 <div>
                     <Link
-                        className="flex gap-1 items-center w-12 hover:scale-110 transition-transform"
+                        className="flex gap-1 items-center hover:scale-110 transition-transform"
                         href="/"
                     >
                         <img
@@ -30,7 +30,7 @@ export default function Header({ currentActiveNav }: Props) {
                             className="h-10 w-10"
                             src="/android-chrome-192x192.png"
                         />
-                        <h1 className="font-bold">{process.env.NEXT_PUBLIC_APP_NAME}<span className="text-accent text-xs">.com</span></h1>
+                        <h1 className="font-bold">{process.env.NEXT_PUBLIC_APP_NAME}<span className="text-primary text-xs">.com</span></h1>
                     </Link>
                 </div>
                 <div className="hidden lg:flex gap-2">
@@ -40,11 +40,11 @@ export default function Header({ currentActiveNav }: Props) {
                                 {NAVS[key].map((item: any, idx: number) => (
                                     <div
                                         key={idx}
-                                        className={`w-full border-b-2 hover:text-white hover:border-accent  ${
+                                        className={`w-full border-b-2 hover:text-white hover:border-primary  ${
                                             currentActiveNav?.match ===
                                             item.path
-                                                ? "text-white border-accent"
-                                                : "text-muted-foreground border-card"
+                                                ? "text-white border-primary"
+                                                : "text-muted-foreground border-card-light"
                                         }`}
                                     >
                                         <Link
@@ -68,6 +68,7 @@ export default function Header({ currentActiveNav }: Props) {
                         size="icon"
                         variant="outline"
                         className="bg-background"
+                        aria-label="Settings"
                     >
                         <Settings />
                     </Button>

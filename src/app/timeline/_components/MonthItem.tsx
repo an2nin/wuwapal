@@ -9,7 +9,7 @@ export default function MonthItem({ width, left, name }: Props) {
             className="absolute pr-4"
             style={{ width: width + "px", left: left + "px" }}
         >
-            <span className="month sticky left-0 bg-gradient-to-r from-transparent via-black px-4 font-bold text-neutral-100">
+            <span className="text-primary sticky left-0 bg-gradient-to-r from-transparent via-black px-4 font-bold text-neutral-100">
                 {name}
             </span>
         </div>

@@ -197,7 +197,6 @@ export default function SyncBtn() {
                 </DialogContentWithoutClose>
             </Dialog>
             <Button
-                className="flex gap-2 items-center text-primary border-2 border-primary bg-background rounded-full px-3 py-2 hover:bg-primary hover:text-primary-foreground"
                 variant={"outline"}
                 onClick={() => handleImport()}
             >

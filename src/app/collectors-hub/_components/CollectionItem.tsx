@@ -19,21 +19,17 @@ export default function CollectionItem({
 }: Props) {
     return (
         <Card
-            className={`w-28 h-44 p-0 m-0 flex flex-col justify-between overflow-hidden group cursor-pointer hover:border ${
+            className={`w-28 h-48 p-0 m-0 flex flex-col justify-between overflow-hidden group cursor-pointer hover:border ${
                 resource.quality == 4
                     ? "bg-star4-collection"
                     : "bg-star5-collection"
-            }`}
+            } ${!count || count == 0 ? "grayscale" : ""}`}
             onClick={clickHandler}
         >
             <CardContent className="overflow-hidden relative h-full p-2">
                 {count && (
                     <Badge
-                        className={`absolute top-0 right-0 z-30 shadow-2xl shadow-white text-black font-bold rounded-tr-xl rounded-bl-xl rounded-tl-none rounded-br-none py-1 px-2 ${
-                            resource.quality == 4
-                                ? "bg-quality-4"
-                                : "bg-quality-5"
-                        }`}
+                        className={`absolute top-0 right-0 z-30 shadow-2xl shadow-white font-bold rounded-tr-xl rounded-bl-xl rounded-tl-none rounded-br-none py-1 px-2 bg-background text-white border`}
                     >
                         {`${type == "weapon" ? "R" : "S"}${count - 1}`}
                     </Badge>
@@ -75,7 +71,7 @@ export default function CollectionItem({
                 )}
             </CardContent>
             <CardFooter className="m-0 p-0 z-20">
-                <div className="w-full text-xs bg-card-light rounded-b-lg text-center p-1 font-bold">
+                <div className="w-full text-xs bg-card-light rounded-b-lg text-center py-2 font-bold">
                     {name}
                 </div>
             </CardFooter>

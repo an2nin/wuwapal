@@ -38,7 +38,7 @@ export default function DayRow({ timelineStartDate, endDateDiff }: Props) {
             {dates.map((date: any, idx: number) => (
                 <DayItem
                     key={`${idx}-${idx}`}
-                    leftValue={idx * 40}
+                    leftValue={idx * 60}
                     date={date}
                 />
             ))}

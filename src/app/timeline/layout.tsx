@@ -2,7 +2,7 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
     // Basic Meta Tags
-    title: "Settings - Wuwa Pal",
+    title: "Timeline - Wuwa Pal",
     description:
         "Track Wuthering Wave Events using our Event Timeline. View all the events at a glace",
     applicationName: "Wuwa Pal",

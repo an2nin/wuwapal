@@ -9,7 +9,7 @@ export default function ConveneNavigation() {
     return (
         <div className="grid grid-cols-1 gap-5">
             <div className="flex flex-wrap gap-5 lg:justify-end justify-center">
-                <button onClick={() => router.push("/global-stats")}>
+                <button onClick={() => router.push("/convene/global")}>
                     <MovingBorder isHoverable>
                         <div className="flex items-center gap-2 px-2">
                             <Globe className="size-6" /> Global Stats
@@ -18,7 +18,7 @@ export default function ConveneNavigation() {
                 </button>
 
                 <Button
-                    onClick={() => router.push("/import")}
+                    onClick={() => router.push("/convene/import")}
                     variant="outline"
                 >
                     <Import className="size-6" /> Import History

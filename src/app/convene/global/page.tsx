@@ -12,8 +12,8 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/app/_components/ui/carousel";
-import PageHeader from "../_components/layout/PageHeader";
 import BannerGlobalContent from "./_components/BannerGlobalContent";
+import PageHeader from "@/app/_components/layout/PageHeader";
 
 const BANNERS_ARRAY = [
     "featured_resonator",

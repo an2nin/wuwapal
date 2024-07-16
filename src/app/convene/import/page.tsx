@@ -1,8 +1,8 @@
 "use client";
-import ImportBtn from "@/app/import/_components/ImportBtn";
-import AndroidMethodList from "@/app/import/_components/AndroidMethodList";
-import IOSMethodList from "@/app/import/_components/IOSMethodList";
-import PCMethodList from "@/app/import/_components/PCMethodLIst";
+import ImportBtn from "./_components/ImportBtn";
+import AndroidMethodList from "./_components/AndroidMethodList";
+import IOSMethodList from "./_components/IOSMethodList";
+import PCMethodList from "./_components/PCMethodLIst";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/_components/ui/tabs";
 import { useBannerStore } from "@/stores/banner";
 import { useState } from "react";

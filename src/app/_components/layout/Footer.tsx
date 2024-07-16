@@ -9,7 +9,7 @@ export default function Footer() {
             <div className="z-20 w-full bg-card-light shadow border mb-3 backdrop-blur rounded-2xl">
                 <div className="mx-4 md:mx-8 flex-col flex lg:flex-row py-4 items-end lg:items-center justify-between gap-4">
                     <p className="text-xs md:text-sm leading-loose text-muted-foreground text-left">
-                        {process.env.NEXT_PUBLIC_APP_NAME}
+                        {process.env.NEXT_PUBLIC_APP_NAME}{" "}
                         is a Fan-made website. Game content is property of Kuro
                         Games.
                         <br />

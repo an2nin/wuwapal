@@ -10,7 +10,6 @@ import { CURRENCIES } from "@/shared/currencies";
 import { useEffect, useState } from "react";
 import BannerItemBadge from "./BannerItemBadge";
 import { useRouter } from "next-nprogress-bar";
-import { Button } from "@/app/_components/ui/button";
 
 interface Props {
     bannerData: any;

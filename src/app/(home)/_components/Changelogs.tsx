@@ -8,7 +8,7 @@ export default function Changelogs() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Release Notes</CardTitle>
+                <CardTitle>Site Updates</CardTitle>
             </CardHeader>
             <CardContent className="mt-4">
                 <ScrollArea className="max-h-36 rounded-md">

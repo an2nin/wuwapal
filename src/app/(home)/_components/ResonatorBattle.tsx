@@ -5,6 +5,7 @@ import { Button } from "@/app/_components/ui/button";
 import { calculatePercentage } from "@/app/_helpers/processors";
 import { useRouter } from "next-nprogress-bar";
 import { useGlobalStatsQuery } from "@/redux/services/banner";
+import MovingBorder from "@/app/_components/ui/moving-border";
 
 export default function ResonatorBattle() {
     const router = useRouter();
@@ -112,13 +113,18 @@ export default function ResonatorBattle() {
                                 </div>
                             </CardContent>
                             <CardFooter>
-                                <Button
-                                    className="flex gap-1"
-                                    onClick={() => router.push("/global-stats")}
+                                <button
+                                    onClick={() =>
+                                        router.push("/convene/global")
+                                    }
                                 >
-                                    <Globe />
-                                    Global Convene Stats
-                                </Button>
+                                    <MovingBorder isHoverable>
+                                        <div className="flex items-center gap-2 px-2">
+                                            <Globe className="size-6" /> Global Convene
+                                            Stats
+                                        </div>
+                                    </MovingBorder>
+                                </button>
                             </CardFooter>
                         </>
                     ) : (

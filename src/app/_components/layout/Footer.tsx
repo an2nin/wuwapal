@@ -16,7 +16,7 @@ export default function Footer() {
                         <span className="flex items-center gap-1">
                             Made with{" "}
                             <Heart className="size-4 text-primary fill-primary" />{" "}
-                            by Antonin from <Bangaldesh className="size-5" />.
+                            by Antonin from <Bangaldesh className="size-5 rounded-lg" />.
                         </span>
                     </p>
                     <div className="flex gap-2 flex-col">

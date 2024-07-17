@@ -9,8 +9,8 @@ import {
 } from "@/app/_components/ui/card";
 import PageHeader from "../_components/layout/PageHeader";
 import MovingBorder from "../_components/ui/moving-border";
-import DailyResetTimer from "./_components/DailyResetTimer";
-import WeeklyResetTimer from "./_components/WeeklyResetTimer";
+import DailyResetTimer from "../_components/timers/DailyResetTimer";
+import WeeklyResetTimer from "../_components/timers/WeeklyResetTimer";
 import { Info } from "lucide-react";
 export default function Timeline() {
     const startDate = "2024-05-1";

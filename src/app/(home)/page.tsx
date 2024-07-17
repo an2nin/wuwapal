@@ -6,6 +6,7 @@ import PageHeader from "@/app/_components/layout/PageHeader";
 import SocialLinks from "./_components/SocialLinks";
 import Changelogs from "./_components/Changelogs";
 import ResonatorBattle from "./_components/ResonatorBattle";
+import BannerShowcase from "./_components/BannerShowcase";
 
 export const metadata: Metadata = {
     // Basic Meta Tags
@@ -90,7 +91,7 @@ export default function Home() {
                 </div>
             </div>
             <div className="grid lg:grid-cols-2 grid-col-1 gap-5">
-                <div className="grid grid-cols-1 gap-5">
+                {/* <div className="grid grid-cols-1 gap-5">
                     <LinkCard
                         title="Convene Tracker"
                         href="/convene"
@@ -106,7 +107,8 @@ export default function Home() {
                         Are you a collector extraordinaire? Curious to see your
                         fabulous collection in one exciting glance?
                     </LinkCard>
-                </div>
+                </div> */}
+                <BannerShowcase />
                 <ResonatorBattle />
             </div>
             <div className="grid grid-cols-1 gap-5">

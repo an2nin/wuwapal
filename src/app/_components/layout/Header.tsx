@@ -13,7 +13,7 @@ interface Props {
 export default function Header({ currentActiveNav }: Props) {
     const router = useRouter();
     return (
-        <header className="flex sticky top-0 z-10 container">
+        <header className="flex sticky top-0 z-10 lg:container w-full">
             <div className="w-full  py-2 flex bg-card-light border rounded-b-xl justify-between items-center px-4">
                 <div className="lg:hidden block">
                     <SheetBar currentActiveNav={currentActiveNav} />

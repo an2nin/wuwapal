@@ -97,7 +97,7 @@ export default function LocalStorage() {
                 </div>
             </CardContent>
             <CardFooter className="flex justify-between">
-                {bannerStore.banners.beginner && <BackupCSV />}
+                {bannerStore.banners && <BackupCSV />}
                 <Button onClick={handleLocaleStorageSave}>Save</Button>
             </CardFooter>
         </Card>

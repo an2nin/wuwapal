@@ -23,7 +23,7 @@ export default function BannerShowcase() {
     return (
         <Card className="flex flex-col justify-between">
             <CardHeader>
-                <CardTitle>Running Banner</CardTitle>
+                <CardTitle>Ongoing Banner</CardTitle>
             </CardHeader>
             <CardContent className="mt-10 min-h-44">
                 <div className="rounded-2xl relative">

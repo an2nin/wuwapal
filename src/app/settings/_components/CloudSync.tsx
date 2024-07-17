@@ -158,9 +158,13 @@ export default function CloudSync() {
                         </Button>
                     </div>
                 ) : (
-                    <Button variant={"outline"} onClick={() => login()}>
+                    <Button
+                        variant={"outline"}
+                        className="hover:bg-transparent hover:scale-105"
+                        onClick={() => login()}
+                    >
                         <div className="flex gap-2 items-center">
-                            <Google 
+                            <Google
                                 className={`w-5 h-5 ${
                                     isTokenLoading ? "animate-spin" : ""
                                 }`}

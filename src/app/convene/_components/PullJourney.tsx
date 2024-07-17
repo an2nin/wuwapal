@@ -17,7 +17,11 @@ export default function ConvenePage() {
                 {Object.keys(BANNERS).map((banner, idx) => (
                     <BannerOverview
                         key={idx}
-                        bannerData={bannerStore.banners[banner]}
+                        bannerData={
+                            bannerStore.banners
+                                ? bannerStore.banners[banner]
+                                : null
+                        }
                         bannerInfo={BANNERS[banner]}
                     />
                 ))}

@@ -20,7 +20,7 @@ export default function DetailedBanner({ params }: Props) {
         useGlobalStatsQuery<any>();
 
     useEffect(() => {
-        setBannerData(bannerStore.banners[params.store_id]);
+        setBannerData(bannerStore.banners ? bannerStore.banners[params.store_id] : null);
     }, [bannerStore]);
 
     useEffect(() => {

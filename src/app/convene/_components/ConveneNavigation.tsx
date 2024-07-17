@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/app/_components/ui/button";
 import { Globe, Import } from "lucide-react";
 import SyncBtn from "./SyncBtn";
@@ -6,6 +7,7 @@ import MovingBorder from "@/app/_components/ui/moving-border";
 
 export default function ConveneNavigation() {
     const router = useRouter();
+
     return (
         <div className="grid grid-cols-1 gap-5">
             <div className="flex flex-wrap gap-5 lg:justify-end justify-center">
@@ -16,7 +18,6 @@ export default function ConveneNavigation() {
                         </div>
                     </MovingBorder>
                 </button>
-
                 <Button
                     onClick={() => router.push("/convene/import")}
                     variant="outline"

@@ -4,7 +4,8 @@ import StatTable from "./StatTable";
 import PercentageStat from "@/app/_components/banner/PercentageStat";
 import PageHeader from "@/app/_components/layout/PageHeader";
 import { BannerPityBarChart } from "@/app/_components/banner/BannerPityBarChart";
-
+import { ScrollArea } from "@/app/_components/ui/scroll-area";
+import { BannerBarChart } from "@/app/_components/banner/BannerBarChart";
 interface Props {
     bannerInfo: any;
     activeTab: string;
@@ -37,33 +38,37 @@ export default function BannerGlobalContent({ bannerInfo, activeTab }: Props) {
                     />
                 </div>
             </div>
-            {/* <div className="grid grid-cols-12 gap-5 w-full">
-                <div className="md:col-span-6 col-span-12">
-                    <BannerPityBarChart />
-                </div>
-                <div className="md:col-span-6 col-span-12">
-                    <StatTable
-                        star={4}
-                        total={bannerInfo.total_s4}
-                        items={bannerInfo.s4s}
-                    />
-                </div>
-            </div> */}
+            <div>
+                <BannerBarChart
+                    title="5 ✦ Pulls By Roll"
+                    data={bannerInfo.s5_pity_distribution}
+                    config={{
+                        c: {
+                            label: " ",
+                            color: "hsl(var(--quality-5))",
+                        },
+                    }}
+                />
+            </div>
             <div className="grid grid-cols-12 gap-5 w-full">
                 <div className="md:col-span-6 col-span-12">
-                    <StatTable
-                        star={5}
-                        total={bannerInfo.total_s5}
-                        items={bannerInfo.s5s}
-                    />
+                    <StatTable star={5} items={bannerInfo.s5s} />
                 </div>
                 <div className="md:col-span-6 col-span-12">
-                    <StatTable
-                        star={4}
-                        total={bannerInfo.total_s4}
-                        items={bannerInfo.s4s}
-                    />
+                    <StatTable star={4} items={bannerInfo.s4s} />
                 </div>
+            </div>
+            <div>
+                <BannerBarChart
+                    title="4 ✦ Pulls By Roll"
+                    data={bannerInfo.s4_pity_distribution}
+                    config={{
+                        c: {
+                            label: " ",
+                            color: "hsl(var(--quality-4))",
+                        },
+                    }}
+                />
             </div>
         </div>
     );

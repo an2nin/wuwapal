@@ -1,6 +1,7 @@
 "use client";
 
 import { useBannerStore } from "@/stores/banner";
+import { Profile, ProfileStoreState, useProfileStore } from "@/stores/profile";
 import { useEffect } from "react";
 
 export default function ConveneLayout({
@@ -9,28 +10,26 @@ export default function ConveneLayout({
     children: React.ReactNode;
 }>) {
     const bannerStore = useBannerStore<any>((state: any) => state);
+    const profileStore = useProfileStore<ProfileStoreState>(
+        (state: ProfileStoreState) => state
+    );
 
     useEffect(() => {
         if (
-            bannerStore.banners &&
-            (bannerStore.profiles == null || bannerStore.profiles?.length == 0)
+            bannerStore.banners ||
+            bannerStore.banner_record_url ||
+            bannerStore.game_path
         ) {
-            bannerStore.addProfile(
-                "default",
-                bannerStore.banners,
-                bannerStore.banner_record_url,
-                bannerStore.game_path
-            );
-
-            console.log(">>>>>>>>>>>>>>>>>>>> first")
-        }
-
-        if (bannerStore.profiles != null && bannerStore.banners != null) {
+            const newProfile: Profile = {
+                display_name: "default",
+                banner_record_url: bannerStore.banner_record_url,
+                game_path: bannerStore.game_path,
+                banners: bannerStore.banners,
+            };
+            profileStore.addProfile("default", newProfile);
             bannerStore.clearPrevStore();
-            console.log(">>>>>>>>>>>>>>>>>>>> second")
-
+            location.reload();
         }
-        console.log(">>>>>>>>>>>>>>>>>>>> third")
     }, [bannerStore]);
 
     return <>{children}</>;

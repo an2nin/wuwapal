@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next-nprogress-bar";
 import { Button } from "@/app/_components/ui/button";
-import { ArrowRightToLine, Divide } from "lucide-react";
+import { ArrowRightToLine  } from "lucide-react";
 import { Progress } from "@/app/_components/ui/progress";
 import { Checkbox } from "@/app/_components/ui/checkbox";
 import { toast } from "sonner";
@@ -14,13 +14,13 @@ import {
     DialogTitle,
 } from "@/app/_components/ui/dialog";
 import { useFetchBannerMutation } from "@/redux/services/banner";
-import { useBannerStore } from "@/stores/banner";
 import useSupabase from "@/app/_hooks/useSupabase";
 import {
     isConveneHistoryUrlValid,
     parseUrlParams,
     processBannerForStore,
 } from "@/app/_helpers/processors";
+import { useProfileStore, ProfileStoreState } from "@/stores/profile";
 
 const TOTAL_BANNERS = 7;
 
@@ -31,7 +31,9 @@ interface Props {
 
 export default function ImportBtn({ historyUrl, gamePath }: Props) {
     const router = useRouter();
-    const bannerStore = useBannerStore<any>((state: any) => state);
+    const profileStore = useProfileStore<ProfileStoreState>(
+        (state: ProfileStoreState) => state
+    );
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [currentBanner, setCurrentBanner] = useState(0);
     const [processedURLBody, setProcessedURLBody] = useState<any>(null);
@@ -97,8 +99,8 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
                 banner_name = "beginner_choice";
             } else if (currentBanner == 7) {
                 banner_name = "beginner_choice_convene";
-                bannerStore.addBannerRecordUrl(historyUrl);
-                bannerStore.addGamePath(gamePath);
+                profileStore.addBannerRecordUrl(historyUrl);
+                profileStore.addGamePath(gamePath);
             }
 
             if (currentBanner <= TOTAL_BANNERS) {
@@ -110,7 +112,7 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
                     bannerForGlobalStat,
                 ]);
 
-                bannerStore.addBanner(banner_name, bannerForStore);
+                profileStore.addBanner(banner_name, bannerForStore);
             }
 
             if (currentBanner <= TOTAL_BANNERS + 1) {

@@ -5,7 +5,6 @@ import {
     processBannerForStore,
 } from "@/app/_helpers/processors";
 import { useFetchBannerMutation } from "@/redux/services/banner";
-import { useBannerStore } from "@/stores/banner";
 import useSupabase from "@/app/_hooks/useSupabase";
 import { toast } from "sonner";
 import {
@@ -18,6 +17,7 @@ import {
 } from "@/app/_components/ui/dialog";
 import { Progress } from "@/app/_components/ui/progress";
 import { RefreshCcw } from "lucide-react";
+import { useProfileStore, ProfileStoreState } from "@/stores/profile";
 
 interface Props {
     historyUrl: string;
@@ -26,7 +26,9 @@ interface Props {
 const total_banners = 7;
 
 export default function SyncBtn() {
-    const bannerStore = useBannerStore<any>((state: any) => state);
+    const profileStore = useProfileStore<ProfileStoreState>(
+        (state: ProfileStoreState) => state
+    );
     const [historyUrl, setHistoryUrl] = useState<any>(null);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [currentBanner, setCurrentBanner] = useState(0);
@@ -96,7 +98,7 @@ export default function SyncBtn() {
                 banner_name = "beginner_choice";
             } else if (currentBanner == 7) {
                 banner_name = "beginner_choice_convene";
-                bannerStore.addBannerRecordUrl(historyUrl);
+                profileStore.addBannerRecordUrl(historyUrl);
             }
 
             if (currentBanner <= total_banners) {
@@ -108,7 +110,7 @@ export default function SyncBtn() {
                     bannerForGlobalStat,
                 ]);
 
-                bannerStore.addBanner(banner_name, bannerForStore);
+                profileStore.addBanner(banner_name, bannerForStore);
             }
 
             if (currentBanner <= total_banners + 1) {
@@ -147,10 +149,10 @@ export default function SyncBtn() {
     }, [currentBanner, isBannerSuccess]);
 
     useEffect(() => {
-        if (bannerStore) {
-            setHistoryUrl(bannerStore.banner_record_url);
+        if (profileStore) {
+            setHistoryUrl(profileStore.getBannerRecordUrl());
         }
-    }, [bannerStore]);
+    }, [profileStore]);
 
     return (
         <>

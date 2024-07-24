@@ -118,7 +118,7 @@ export default function CloudSync() {
     }, [isSyncDataError, isTokenError]);
 
     return (
-        <Card className="md:px-10 py-5">
+        <Card>
             <CardHeader>
                 <CardTitle>Cloud Sync</CardTitle>
             </CardHeader>

@@ -9,19 +9,30 @@ import BannerTable from "./BannerTable";
 import { useGlobalStatsQuery } from "@/redux/services/banner";
 import LuckPercentile from "./LuckPercentile";
 import { BannerPieChart } from "@/app/_components/banner/BannerPieChart";
+import { useProfileStore, ProfileStoreState } from "@/stores/profile";
 interface Props {
     params: { store_id: string };
 }
 export default function DetailedBanner({ params }: Props) {
-    const bannerStore = useBannerStore<any>((state: any) => state);
+    const profileStore = useProfileStore<ProfileStoreState>(
+        (state: ProfileStoreState) => state
+    );
+    const [banners, setBanners] = useState<any>(null);
+
+    useEffect(() => {
+        const currentProfilesBanner =
+            profileStore.profiles[profileStore.active].banners;
+        setBanners(currentProfilesBanner);
+    }, [profileStore]);
+
     const [processedBanner, setProcessedBanner] = useState<any>(null);
     const [bannerData, setBannerData] = useState<any>(null);
     const { data: globalData, isLoading: isGlobalStatsLoading } =
         useGlobalStatsQuery<any>();
 
     useEffect(() => {
-        setBannerData(bannerStore.banners ? bannerStore.banners[params.store_id] : null);
-    }, [bannerStore]);
+        setBannerData(banners ? banners[params.store_id] : null);
+    }, [banners]);
 
     useEffect(() => {
         if (bannerData) {

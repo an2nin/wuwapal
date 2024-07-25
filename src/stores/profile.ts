@@ -37,6 +37,7 @@ export type ProfileStoreState = {
     addBanner: (name: string, banner: any) => void;
     getGamePath: () => string | null;
     getBannerRecordUrl: () => string | null;
+    getBanners : () => any;
     deleteProfile: (name: string) => void;
     clearStore: () => void;
 };
@@ -101,6 +102,12 @@ export const useProfileStore = create(
                 const currentProfile = state.profiles[state.active];
 
                 return currentProfile.banner_record_url || null;
+            },
+            getBanners: () => {
+                const state = get();
+                const currentProfile = state.profiles[state.active];
+
+                return currentProfile.banners || null;
             },
             deleteProfile: (name: string) =>
                 set((state: any) => {

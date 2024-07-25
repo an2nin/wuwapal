@@ -10,8 +10,8 @@ export default function Settings() {
         <div className="flex flex-col gap-5 ">
             <PageHeader title="Settings" />
             <Profile />
-            <BackupManager />
             <CloudSync />
+            <BackupManager />
         </div>
     );
 }

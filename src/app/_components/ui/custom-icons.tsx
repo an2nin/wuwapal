@@ -4,11 +4,11 @@ interface Props {
     className?: string;
 }
 
-export function Bangaldesh({ className }: Props) {
+export function Bangladesh({ className }: Props) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6" className={cn("size-6", className)}>
             <rect width="10" height="6" fill="#006a4e" />
-            <circle cx="5" cy="3" r="1.8" fill="#f42a41" />
+            <circle cx="5" cy="3" r="1.7" fill="#f42a41" />
         </svg>
     );
 }

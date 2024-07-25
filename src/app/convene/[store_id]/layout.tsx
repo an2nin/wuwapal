@@ -39,7 +39,7 @@ export default function BannerLayout({
                         </Button>
                         <DropdownMenu>
                             <DropdownMenuTrigger
-                                className="capitalize lg:text-3xl text-2xl font-bold border-b border-primary hover:opacity-70"
+                                className="capitalize animate-pulse hover:animate-none lg:text-3xl text-2xl font-bold hover:border-b border-primary"
                                 style={{
                                     background:
                                         "linear-gradient(to right, hsl(var(--primary)), #fff)",

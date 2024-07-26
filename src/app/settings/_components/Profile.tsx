@@ -22,6 +22,10 @@ export default function Profile() {
     const [selectedProfile, setSelectedProfile] = useState<string | null>(null);
 
     function profileClickHandler(profile: string) {
+        if(profileStore.active == profile) {
+            return;
+        }
+
         setSelectedProfile(profile);
         setIsEditProfileOpen(true);
     }
@@ -59,7 +63,7 @@ export default function Profile() {
                                             className={`ms-5 w-fit ${
                                                 profileStore.active != profile
                                                     ? "hover:underline cursor-pointer"
-                                                    : " "
+                                                    : "cursor-default"
                                             }`}
                                             key={idx}
                                             onClick={() =>

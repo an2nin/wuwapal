@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next-nprogress-bar";
 import { Button } from "@/app/_components/ui/button";
-import { ArrowRightToLine  } from "lucide-react";
+import { ArrowRightToLine } from "lucide-react";
 import { Progress } from "@/app/_components/ui/progress";
 import { Checkbox } from "@/app/_components/ui/checkbox";
 import { toast } from "sonner";
@@ -59,6 +59,8 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
         }
 
         const parsedBody = parseUrlParams(historyUrl);
+        profileStore.addBannerRecordUrl(historyUrl);
+        profileStore.addGamePath(gamePath);
         setProcessedURLBody(parsedBody);
         setIsDialogOpen(true);
         setCurrentBanner(1);
@@ -99,8 +101,6 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
                 banner_name = "beginner_choice";
             } else if (currentBanner == 7) {
                 banner_name = "beginner_choice_convene";
-                profileStore.addBannerRecordUrl(historyUrl);
-                profileStore.addGamePath(gamePath);
             }
 
             if (currentBanner <= TOTAL_BANNERS) {

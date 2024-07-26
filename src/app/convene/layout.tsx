@@ -26,7 +26,7 @@ export default function ConveneLayout({
                 game_path: bannerStore.game_path,
                 banners: bannerStore.banners,
             };
-            profileStore.addProfile("default", newProfile);
+            profileStore.addProfile("Default", newProfile);
             bannerStore.clearPrevStore();
             location.reload();
         }

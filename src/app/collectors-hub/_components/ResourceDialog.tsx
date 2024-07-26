@@ -13,7 +13,6 @@ interface Props {
 }
 
 export default function ResourceDialog({ isOpen, onDialogChange, resource }: Props) {
-    console.log(resource)
     return (
         <>
             <Dialog open={isOpen} onOpenChange={onDialogChange}>

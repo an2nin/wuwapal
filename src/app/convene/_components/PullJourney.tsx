@@ -5,6 +5,7 @@ import ConveneNavigation from "./ConveneNavigation";
 import PageHeader from "@/app/_components/layout/PageHeader";
 import { useProfileStore, ProfileStoreState } from "@/stores/profile";
 import { useEffect, useState } from "react";
+import NoPullFound from "./NoPullFound";
 
 export default function ConvenePage() {
     const profileStore = useProfileStore<ProfileStoreState>(
@@ -24,14 +25,21 @@ export default function ConvenePage() {
                 <PageHeader title="Your Pull Journey" />
                 <ConveneNavigation />
             </div>
-            <div className="grid lg:grid-cols-2 gap-5 mt-5">
-                {banners && Object.keys(BANNERS).map((banner, idx) => (
-                    <BannerOverview
-                        key={idx}
-                        bannerData={banners[banner]}
-                        bannerInfo={BANNERS[banner]}
-                    />
-                ))}
+            <div>
+                {!banners && (
+                    <div className="overlay-no-pull-found">
+                        <NoPullFound />
+                    </div>
+                )}
+                <div className="grid lg:grid-cols-2 gap-5 mt-5">
+                    {Object.keys(BANNERS).map((banner, idx) => (
+                        <BannerOverview
+                            key={idx}
+                            bannerData={banners ? banners[banner] : null}
+                            bannerInfo={BANNERS[banner]}
+                        />
+                    ))}
+                </div>
             </div>
         </>
     );

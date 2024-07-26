@@ -30,6 +30,7 @@ export type ProfileStoreState = {
     active: string;
     profiles: Profiles;
     version: string;
+    addProfile: (name: string, profile: Profile) => void;
     addNewProfile: (name: string) => void;
     setProfileAsActive: (name: string) => void;
     addGamePath: (path: string) => void;
@@ -37,7 +38,7 @@ export type ProfileStoreState = {
     addBanner: (name: string, banner: any) => void;
     getGamePath: () => string | null;
     getBannerRecordUrl: () => string | null;
-    getBanners : () => any;
+    getBanners: () => any;
     deleteProfile: (name: string) => void;
     clearStore: () => void;
 };
@@ -48,6 +49,15 @@ export const useProfileStore = create(
             active: "default",
             profiles: initialProfilesState,
             version: "1.0",
+            addProfile: (name: string, profile: Profile) =>
+                set((state: any) => {
+                    const copy = { ...state };
+
+                    const profileKey = convertToProfileKey(name);
+                    copy.profiles[profileKey] = profile;
+
+                    return copy;
+                }),
             addNewProfile: (name: string) =>
                 set((state: any) => {
                     const copy = { ...state };
@@ -73,20 +83,26 @@ export const useProfileStore = create(
                     const copy = { ...state };
                     const currentProfile = copy.profiles[state.active];
                     currentProfile.game_path = path;
+                    console.log("path ",copy);
+
                     return copy;
                 }),
             addBannerRecordUrl: (url: string) =>
                 set((state: any) => {
                     const copy = { ...state };
                     const currentProfile = copy.profiles[state.active];
+                   
                     currentProfile.banner_record_url = url;
-
                     return copy;
                 }),
             addBanner: (name: string, banner: any) =>
                 set((state: any) => {
                     const copy = { ...state };
                     const currentProfile = copy.profiles[state.active];
+
+                    if (currentProfile.banners == null) {
+                        currentProfile.banners = {};
+                    }
                     currentProfile.banners[name] = banner;
 
                     return copy;

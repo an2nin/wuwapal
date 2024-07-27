@@ -1,3 +1,4 @@
+import { Button } from "@/app/_components/ui/button";
 import {
     Card,
     CardContent,
@@ -6,119 +7,23 @@ import {
     CardHeader,
     CardTitle,
 } from "@/app/_components/ui/card";
-import { useEffect, useState } from "react";
-import { Button } from "@/app/_components/ui/button";
-import { useCookies } from "react-cookie";
-import { LogOut, RefreshCcw } from "lucide-react";
-import { useBannerStore } from "@/stores/banner";
-import {
-    useFetchTokenMutation,
-    useLazyFetchCloudDataQuery,
-    useSyncDataMutation,
-} from "@/redux/services/user";
-import { useGoogleLogin } from "@react-oauth/google";
-import { toast } from "sonner";
 import { Google } from "@/app/_components/ui/custom-icons";
+import { useGoogleLogin } from "@react-oauth/google";
 
 export default function CloudSync() {
-    const [cookies, setCookie, removeCookie] = useCookies(["token"]);
-    const [
-        syncData,
-        {
-            isLoading: isSyncDataLoading,
-            isSuccess: isSyncDataSuccess,
-            isError: isSyncDataError,
-        },
-    ] = useSyncDataMutation();
-    const [
-        fetchCloudData,
-        {
-            isFetching: isFetchCloudDataLoading,
-            isSuccess: isFetchCloudDataSuccess,
-            data: cloudData,
-        },
-    ] = useLazyFetchCloudDataQuery<any>();
-
-    const [
-        fetchToken,
-        {
-            data: tokenRes,
-            isLoading: isTokenLoading,
-            isSuccess: isTokenSuccess,
-            isError: isTokenError,
-        },
-    ] = useFetchTokenMutation();
-
-    const [ccuserInfo, setCCUserInfo] = useState<any>(null);
-    const bannerStore = useBannerStore<any>((state: any) => state);
-
-    const handleLogout = () => {
-        removeCookie("token");
-    };
-
     const login = useGoogleLogin({
-        onSuccess: (tokenResponse) =>
-            fetchToken({ code: tokenResponse.access_token }),
+        onSuccess: (tokenResponse) => {
+            console.log(tokenResponse.access_token);
+            // fetchToken({ code: tokenResponse.access_token });
+        },
+        scope: [
+            "https://www.googleapis.com/auth/userinfo.profile",
+            "https://www.googleapis.com/auth/userinfo.email",
+            "https://www.googleapis.com/auth/drive.appdata",
+        ].join(" "),
     });
-
-    const handleSyncData = () => {
-        if (bannerStore.banner_record_url === null) {
-            fetchCloudData();
-        } else {
-            syncData({
-                data: {
-                    banners: bannerStore.banners,
-                    banner_record_url: bannerStore.banner_record_url,
-                    game_path: bannerStore.game_path,
-                },
-            });
-        }
-    };
-
-    useEffect(() => {
-        if (isTokenSuccess) {
-            setCookie("token", tokenRes.token);
-            handleSyncData();
-        }
-    }, [isTokenSuccess]);
-
-    useEffect(() => {
-        setCCUserInfo(cookies.token);
-    }, [cookies]);
-
-    useEffect(() => {
-        if (isSyncDataSuccess) {
-            toast.success("Data Synced Successfully with Cloud");
-        }
-    }, [isSyncDataSuccess]);
-
-    useEffect(() => {
-        if (isFetchCloudDataSuccess) {
-            bannerStore.addBannerStore(
-                cloudData.data.banners,
-                cloudData.data.banner_record_url,
-                cloudData.data.game_path
-            );
-
-            toast.success("Data Synced Successfully with Cloud");
-        }
-    }, [isFetchCloudDataSuccess]);
-
-    useEffect(() => {
-        if (isSyncDataError) {
-            toast.error("Error Syncing Data with Cloud");
-
-            removeCookie("token");
-        }
-        if (isTokenError) {
-            toast.error("Error Signing you in, Please try again later");
-
-            removeCookie("token");
-        }
-    }, [isSyncDataError, isTokenError]);
-
     return (
-        <Card className="md:px-10 py-5">
+        <Card>
             <CardHeader>
                 <CardTitle>Cloud Sync</CardTitle>
             </CardHeader>
@@ -133,41 +38,25 @@ export default function CloudSync() {
                 </CardDescription>
             </CardContent>
             <CardFooter className="flex justify-end">
-                {ccuserInfo ? (
-                    <div className="flex gap-2">
-                        <Button
-                            variant="destructive"
-                            size="icon"
-                            onClick={handleLogout}
-                        >
-                            <LogOut className="w-5 h-5" />
-                        </Button>
-
-                        <Button
-                            className="flex gap-2 items-center"
-                            onClick={handleSyncData}
-                        >
-                            <RefreshCcw
-                                className={`w-5 h-5 ${
-                                    isSyncDataLoading || isFetchCloudDataLoading
-                                        ? "animate-spin"
-                                        : ""
-                                }`}
-                            />
-                            Sync Data
-                        </Button>
-                    </div>
-                ) : (
-                    <Button variant={"outline"} onClick={() => login()}>
+                {false ? (
+                    <Button
+                        variant={"outline"}
+                        className="hover:bg-transparent hover:scale-105"
+                        onClick={() => login()}
+                    >
                         <div className="flex gap-2 items-center">
-                            <Google 
+                            <Google
                                 className={`w-5 h-5 ${
-                                    isTokenLoading ? "animate-spin" : ""
+                                    false ? "animate-spin" : ""
                                 }`}
                             />
                             Sign in with Google
                         </div>
                     </Button>
+                ) : (
+                    <div className="text-red-500 font-bold">
+                        Will be back very soon!!!
+                    </div>
                 )}
             </CardFooter>
         </Card>

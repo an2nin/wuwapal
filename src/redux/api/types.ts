@@ -42,7 +42,7 @@ interface FeaturedResonator {
     total_s5: number;
     s4s: S4s;
     s5s: S5s;
-    ff_won: number;
+    ff_win: number;
     ff_lose: number;
 }
 

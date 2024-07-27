@@ -14,7 +14,7 @@ export default function BasicIntro() {
         <Card>
             <CardHeader>
                 <CardTitle>
-                    Hey fellow <span className="text-accent">Rover</span>, 
+                    Hey fellow <span className="text-primary">Rover</span>, 
                 </CardTitle>
             </CardHeader>
             <CardContent>
@@ -26,7 +26,7 @@ export default function BasicIntro() {
                     pipeline that will be available soon. We highly value your
                     feedback, which you can provide via{" "}
                     <a
-                        className="underline text-primary hover:text-primary/70"
+                        className="underline text-primary hover:text-primary font-bold"
                         href={SOCIAL_LINKS_OBJ["discord"].path}
                         target="_blank"
                     >

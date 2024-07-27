@@ -11,6 +11,13 @@ export const FIVE_STAR_RESONATORS: any = {
         icon: `${RESONATOR_ICON_PATH}/calcharo.webp`,
         quality: 5,
     },
+    Changli: {
+        element: "fusion",
+        weapon: "sword",
+        image: `${RESONATOR_IMAGE_PATH}/changli.webp`,
+        icon: `${RESONATOR_ICON_PATH}/changli.webp`,
+        quality: 5,
+    },
     Encore: {
         element: "fusion",
         weapon: "rectifier",

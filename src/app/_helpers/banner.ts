@@ -1,11 +1,38 @@
-export function calculateLuck(averageValue: any, yourValue: any, totalPeople: any) {
-    const betterThanAverage = averageValue > yourValue;
+interface Roll {
+    r: number;
+    c: number;
+    p: string;
+}
+
+interface LuckResult {
+    percentile: string;
+    isTop: boolean;
+    comparisonPercent: string;
+}
+
+export function calculateLuck(rolls: Roll[], yourRoll: number): LuckResult {
+    const totalPeople = rolls.reduce((sum, roll) => sum + roll.c, 0);
+
+    let peopleBeforeYou = 0;
+    let peopleAtYourRoll = 0;
+
+    rolls.forEach((roll) => {
+        if (roll.r < yourRoll) {
+            peopleBeforeYou += roll.c;
+        } else if (roll.r === yourRoll) {
+            peopleAtYourRoll += roll.c;
+        }
+    });
+
     const percentile =
-        ((betterThanAverage ? totalPeople - yourValue : yourValue) /
-            totalPeople) *
-        100;
+        ((peopleBeforeYou + peopleAtYourRoll / 2) / totalPeople) * 100;
+    const isTop = percentile <= 50;
+    const comparisonPercent = isTop ? 100 - percentile : percentile;
+    const percentileN = isTop ? percentile : 100 - percentile
+
     return {
-        betterThanAverage,
-        percentile: percentile.toFixed(2),
+        percentile: percentileN.toFixed(2),
+        isTop,
+        comparisonPercent: comparisonPercent.toFixed(2),
     };
 }

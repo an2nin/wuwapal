@@ -4,19 +4,22 @@ import { Tabs, TabsList, TabsTrigger } from "@/app/_components/ui/tabs";
 import { processBannersForCollection } from "@/app/_helpers/processors";
 import { RESONATORS } from "@/shared/resonators";
 import { WEAPONS } from "@/shared/weapons";
-import { useBannerStore } from "@/stores/banner";
 import { useEffect, useState } from "react";
-import PageHeader from "../_components/layout/PageHeader";
+import PageHeader from "@/app/_components/layout/PageHeader";
+import { useProfileStore, ProfileStoreState } from "@/stores/profile";
 
 export default function CollectorsHub() {
     const [currentTab, setCurrentTab] = useState("resonator");
     const [processedCollection, setProcessedCollection] = useState<any>(null);
-    const bannerStore = useBannerStore<any>((state: any) => state);
+    const profileStore = useProfileStore<ProfileStoreState>(
+        (state: ProfileStoreState) => state
+    );
 
     useEffect(() => {
-        const processed = processBannersForCollection(bannerStore.banners);
+        const banners = profileStore.getBanners();
+        const processed = processBannersForCollection(banners);
         setProcessedCollection(processed);
-    }, [bannerStore]);
+    }, [profileStore]);
 
     return (
         <Tabs value={currentTab} onValueChange={setCurrentTab}>

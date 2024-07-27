@@ -5,6 +5,7 @@ import { Button } from "@/app/_components/ui/button";
 import { calculatePercentage } from "@/app/_helpers/processors";
 import { useRouter } from "next-nprogress-bar";
 import { useGlobalStatsQuery } from "@/redux/services/banner";
+import MovingBorder from "@/app/_components/ui/moving-border";
 
 export default function ResonatorBattle() {
     const router = useRouter();
@@ -28,7 +29,7 @@ export default function ResonatorBattle() {
                                     <div className="flex w-full justify-center relative md:gap-16 gap-5">
                                         <img
                                             className="h-56 w-auto"
-                                            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/portraits/yinlin.webp`}
+                                            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/portraits-short/changli.webp`}
                                             alt="Yinlin"
                                         />
                                         <img
@@ -43,7 +44,7 @@ export default function ResonatorBattle() {
                                                     {
                                                         globalData.items
                                                             .featured_resonator
-                                                            .s5s.yinlin.c
+                                                            .s5s.Changli.c
                                                     }
                                                 </div>
                                                 <div>Yinlin</div>
@@ -63,7 +64,7 @@ export default function ResonatorBattle() {
                                                     {
                                                         globalData.items
                                                             .featured_resonator
-                                                            .s5s.jinhsi.c
+                                                            .s5s.Jinhsi.c
                                                     }
                                                 </div>
                                                 <div>Jinhsi</div>
@@ -77,20 +78,20 @@ export default function ResonatorBattle() {
                                                 {calculatePercentage(
                                                     globalData.items
                                                         .featured_resonator
-                                                        .ff_won,
+                                                        .ff_win,
                                                     globalData.items
                                                         .featured_resonator
-                                                        .ff_won +
+                                                        .ff_win +
                                                         globalData.items
                                                             .featured_resonator
                                                             .ff_lose
                                                 )}
-                                                <Percent className="w-4 mx-1" />{" "}
+                                                <Percent className="w-4 mr-1" />
                                                 (
                                                 {
                                                     globalData.items
                                                         .featured_resonator
-                                                        .ff_won
+                                                        .ff_win
                                                 }
                                                 W<span className="mx-1">-</span>
                                                 {
@@ -112,13 +113,18 @@ export default function ResonatorBattle() {
                                 </div>
                             </CardContent>
                             <CardFooter>
-                                <Button
-                                    className="flex gap-1"
-                                    onClick={() => router.push("/global-stats")}
+                                <button
+                                    onClick={() =>
+                                        router.push("/convene/global")
+                                    }
                                 >
-                                    <Globe />
-                                    Global Convene Stats
-                                </Button>
+                                    <MovingBorder isHoverable>
+                                        <div className="flex items-center gap-2 px-2">
+                                            <Globe className="size-6" /> Global Convene
+                                            Stats
+                                        </div>
+                                    </MovingBorder>
+                                </button>
                             </CardFooter>
                         </>
                     ) : (

@@ -8,7 +8,7 @@ interface Props {
 export default function RecentPulls({ bannerData, bannerInfo }: Props) {
     return (
         <div className="flex flex-col gap-3 my-5">
-            <div className="text-2xl font-bold text-accent">
+            <div className="text-2xl font-bold text-primary">
                 Recent 5 ✦ Pulls
             </div>
             <div className="flex">

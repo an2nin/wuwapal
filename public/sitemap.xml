@@ -19,7 +19,12 @@
     <priority>0.80</priority>
   </url>
   <url>
-    <loc>https://www.wuwapal.com/global-stats</loc>
+    <loc>https://www.wuwapal.com/convene/import</loc>
+    <lastmod>2024-07-08T17:29:38+00:00</lastmod>
+    <priority>0.80</priority>
+  </url>
+  <url>
+    <loc>https://www.wuwapal.com/convene/global</loc>
     <lastmod>2024-07-08T17:29:38+00:00</lastmod>
     <priority>0.80</priority>
   </url>

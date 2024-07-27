@@ -1,7 +1,6 @@
 "use client";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/app/_components/layout/Sidebar";
 import Header from "@/app/_components/layout/Header";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
@@ -102,23 +101,23 @@ export default function RootLayout({
                     gtag('config', 'G-7NLQRZE5QL');`}
                 </Script>
             </head>
-            <body className={"bg-grid-small-white/[0.2]  " + inter.className}>
+            <body className={"  " + inter.className}>
                 <TopProgressBar
                     color="hsl(var(--primary))"
                     options={{ showSpinner: false }}
                 />
-                <Sidebar
+                {/* <Sidebar
                     isSidebarOpen={isSidebarOpen}
                     setIsSidebarOpen={setIsSidebarOpen}
                     currentActiveNav={currentActiveNav}
-                />
+                /> */}
                 <div
-                    className={`min-h-screen flex flex-col  justify-start transition-[margin-left] ease-in-out duration-300 ${
-                        isSidebarOpen ? "lg:ml-60" : "lg:ml-[90px]"
+                    className={`min-h-screen flex flex-col justify-start transition-[margin-left] ease-in-out duration-300 ${
+                        isSidebarOpen ? "lg:ml-0" : "lg:ml-[90px]"
                     }`}
                 >
                     <Header currentActiveNav={currentActiveNav} />
-                    <div className="flex-1 container my-10 lg:mt-0 ">
+                    <div className="flex-1 container my-10">
                         <HOC>{children}</HOC>
                     </div>
                     <div className="container">

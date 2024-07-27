@@ -95,8 +95,8 @@ export default function Sidebar({
                                                             {key}
                                                         </p>
                                                     ) : (
-                                                        <div className="flex w-full justify-center">
-                                                            <Ellipsis className="h-5 w-5 text-accent" />
+                                                        <div className="flex w-full justify-center pb-2 text-accent">
+                                                            -{key.charAt(0)}-
                                                         </div>
                                                     )}
                                                     <div className="flex flex-col gap-3">

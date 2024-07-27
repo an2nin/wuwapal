@@ -10,7 +10,6 @@ import { CURRENCIES } from "@/shared/currencies";
 import { useEffect, useState } from "react";
 import BannerItemBadge from "./BannerItemBadge";
 import { useRouter } from "next-nprogress-bar";
-import { Button } from "@/app/_components/ui/button";
 
 interface Props {
     bannerData: any;
@@ -76,9 +75,9 @@ export default function BannerOverview({ bannerData, bannerInfo }: Props) {
                 </div>
                 <div className="flex flex-col items-center gap-3 my-4">
                     <div className="text-2xl font-bold">{bannerInfo.name}</div>
-                    <div className="flex flex-wrap justify-center gap-3">
+                    <div className="flex flex-wrap justify-center gap-3 p-3">
                         {processedBanner?.star5s.length > 0 ? (
-                            processedBanner.star5s.map(
+                            processedBanner.star5s.slice().reverse().map(
                                 (item: any, idx: number) => (
                                     <BannerItemBadge
                                         key={idx}
@@ -95,7 +94,7 @@ export default function BannerOverview({ bannerData, bannerInfo }: Props) {
                 </div>
             </CardContent>
             <CardFooter className="flex justify-center animate-pulse p-0 pb-2">
-                <div className="text-sm text-accent">{"<< "}click to view details{" >>"}</div>
+                <div className="text-sm text-primary">{"<< "}click to view details{" >>"}</div>
             </CardFooter>
         </Card>
     );

@@ -1,4 +1,5 @@
 import { Card, CardContent } from "@/app/_components/ui/card";
+import { ScrollArea } from "@/app/_components/ui/scroll-area";
 import {
     Table,
     TableBody,
@@ -8,15 +9,14 @@ import {
     TableHeader,
     TableRow,
 } from "@/app/_components/ui/table";
-import { Percent, Star } from "lucide-react";
+import { Percent } from "lucide-react";
 import React from "react";
 
 interface Props {
     items: any;
-    total: number;
     star: number;
 }
-export default function StatTable({ items, total, star }: Props) {
+export default function StatTable({ items, star }: Props) {
     return (
         <Card>
             <CardContent className="p-5">
@@ -29,22 +29,21 @@ export default function StatTable({ items, total, star }: Props) {
                         4 ✦ List
                     </div>
                 )}
-
-                <Table>
-                    <TableHeader>
-                        <TableRow className="border-b border-white">
-                            <TableHead className="w-[50%]">Name</TableHead>
-                            <TableHead className="w-[25%]">Total</TableHead>
-                            <TableHead className="w-[25%]">
-                                <Percent />
-                            </TableHead>
-                        </TableRow>
-                    </TableHeader>
-                    <TableBody>
+                <div className="flex flex-col">
+                    <div className="grid grid-cols-4 border-b border-white p-4 text-muted-foreground">
+                        <div className="col-span-2 flex justify-start">
+                            Name
+                        </div>
+                        <div className="col-span-1 flex justify-end">Total</div>
+                        <div className="col-span-1 flex justify-end">
+                            <Percent />
+                        </div>
+                    </div>
+                    <ScrollArea className="h-96 w-full z-0">
                         {Object.entries(items).map(([key, value]: any) => (
                             <React.Fragment key={key}>
-                                <TableRow>
-                                    <TableCell>
+                                <div className="grid grid-cols-4 p-4">
+                                    <div className="col-span-2 flex justify-start">
                                         <div className="flex items-center gap-3 capitalize">
                                             <img
                                                 className="size-10"
@@ -59,12 +58,12 @@ export default function StatTable({ items, total, star }: Props) {
                                             />
                                             {key}
                                         </div>
-                                    </TableCell>
-                                    <TableCell>{value.c}</TableCell>
-                                    <TableCell>{value.p}</TableCell>
-                                </TableRow>
-                                <tr>
-                                    <td colSpan={4}>
+                                    </div>
+                                    <div className="col-span-1 flex justify-end">{value.c}</div>
+                                    <div className="col-span-1 flex justify-end">{value.p}</div>
+                                </div>
+                                <div>
+                                    <div>
                                         <span
                                             className={` h-[2px] block ${
                                                 star == 5
@@ -75,12 +74,12 @@ export default function StatTable({ items, total, star }: Props) {
                                                 width: `${value.p}%`,
                                             }}
                                         ></span>
-                                    </td>
-                                </tr>
+                                    </div>
+                                </div>
                             </React.Fragment>
                         ))}
-                    </TableBody>
-                </Table>
+                    </ScrollArea>
+                </div>
             </CardContent>
         </Card>
     );

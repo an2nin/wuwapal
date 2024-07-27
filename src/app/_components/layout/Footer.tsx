@@ -1,18 +1,23 @@
 import Link from "next/link";
 import { SOCIAL_LINKS } from "@/app/_constants/social-links";
+import { Heart } from "lucide-react";
+import { Bangladesh } from "../ui/custom-icons";
 
 export default function Footer() {
     return (
         <footer className="transition-[margin-left] ease-in-out duration-300">
-            <div className="z-20 w-full bg-card dark:shadow-none shadow border mb-3 backdrop-blur rounded-2xl supports-[backdrop-filter]:bg-card">
-                <div className="mx-4 md:mx-8 flex-col flex lg:flex-row py-4 items-end lg:items-center justify-between gap-4">
+            <div className="z-20 w-full bg-card-light shadow border mb-3 backdrop-blur rounded-2xl">
+                <div className="mx-4 md:mx-6 flex-col flex lg:flex-row py-4 items-end lg:items-center justify-between gap-4">
                     <p className="text-xs md:text-sm leading-loose text-muted-foreground text-left">
-                        © {new Date().getFullYear()} {process.env.NEXT_PUBLIC_APP_NAME}<span></span>
+                        {process.env.NEXT_PUBLIC_APP_NAME}{" "}
+                        is a Fan-made website. Game content is property of Kuro
+                        Games.
                         <br />
-                        {process.env.NEXT_PUBLIC_APP_NAME} is not affiliated
-                        with Kuro Games. <br />
-                        Wuthering Waves, game content and materials are
-                        trademarks and copyrights of Kuro Games.
+                        <span className="flex items-center gap-1">
+                            Made with{" "}
+                            <Heart className="size-4 text-primary fill-primary" />{" "}
+                            by Antonin from <Bangladesh className="size-5 rounded-lg" />.
+                        </span>
                     </p>
                     <div className="flex gap-2 flex-col">
                         <div className="flex gap-3 items-center justify-end">
@@ -30,9 +35,9 @@ export default function Footer() {
                                 </a>
                             ))}
                         </div>
-                        <div className="text-muted-foreground/60 dark:text-muted-foreground/30 flex gap-1 xl:gap-0 flex-col items-end xl:flex-row xl:items-center justify-end xl:space-x-2 my-0.5 text-xs">
+                        <div className="flex gap-1 items-center justify-end text-primary text-xs">
                             <Link
-                                className="dark:hover:text-muted-foreground hover:text-muted-foreground transition-all"
+                                className="transition-all hover:underline"
                                 href="/privacy-policy"
                             >
                                 Privacy Policy

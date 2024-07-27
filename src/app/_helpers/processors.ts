@@ -291,6 +291,10 @@ export function processBannersForCollection(banners: any) {
     const weapons: any = [];
     const resonators: any = [];
 
+    if(!banners){
+        return { weapons, resonators };
+    }
+
     Object.keys(banners).forEach((keyOfBanner: any) => {
         banners[keyOfBanner]?.items.forEach((item: any) => {
             if (

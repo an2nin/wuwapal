@@ -2,6 +2,7 @@ import { Card, CardContent, CardFooter } from "@/app/_components/ui/card";
 import { Badge } from "@/app/_components/ui/badge";
 import { WEAPON_TYPES } from "@/shared/weapons";
 import { ELEMENTS } from "@/shared/resonators";
+import { useEffect, useState } from "react";
 
 interface Props {
     type: string;
@@ -17,25 +18,32 @@ export default function CollectionItem({
     count,
     clickHandler,
 }: Props) {
+    const [showCount, setShowCount] = useState("0");
+
+    useEffect(() => {
+        const actualCount = count - 1;
+        if (actualCount > 6) {
+            setShowCount(`6 + ${actualCount - 6}`);
+        } else {
+            setShowCount(`${actualCount}`);
+        }
+    }, [count]);
+
     return (
         <Card
-            className={`w-28 h-44 p-0 m-0 flex flex-col justify-between overflow-hidden group cursor-pointer hover:border ${
+            className={`w-36 h-48 p-0 m-0 flex flex-col justify-between overflow-hidden group cursor-pointer hover:border ${
                 resource.quality == 4
-                    ? "bg-star4-collection"
-                    : "bg-star5-collection"
-            }`}
+                    ? "bg-gradient-to-t to-purple-900 from-purple-400"
+                    : "bg-gradient-to-t to-yellow-900 from-yellow-400"
+            } ${!count || count == 0 ? "grayscale" : ""}`}
             onClick={clickHandler}
         >
             <CardContent className="overflow-hidden relative h-full p-2">
                 {count && (
                     <Badge
-                        className={`absolute top-0 right-0 z-30 shadow-2xl shadow-white text-black font-bold rounded-tr-xl rounded-bl-xl rounded-tl-none rounded-br-none py-1 px-2 ${
-                            resource.quality == 4
-                                ? "bg-quality-4"
-                                : "bg-quality-5"
-                        }`}
+                        className={`absolute top-0 right-0 z-30 shadow-2xl hover:bg-black cursor-default shadow-white font-bold rounded-tr-xl rounded-bl-xl rounded-tl-none rounded-br-none py-1 px-2 bg-background text-white border`}
                     >
-                        {`${type == "weapon" ? "R" : "S"}${count - 1}`}
+                        {`${type == "weapon" ? "R" : "S"}${showCount}`}
                     </Badge>
                 )}
                 <div className="h-full flex justify-center items-center pt-3">
@@ -51,14 +59,14 @@ export default function CollectionItem({
                             <img
                                 className="w-8 h-8"
                                 src={WEAPON_TYPES[resource.weapon]?.image}
-                                alt={name}
+                                alt={resource.weapon}
                             />
                         </div>
                         <div>
                             <img
                                 className="w-8 h-8"
                                 src={ELEMENTS[resource.element]?.image}
-                                alt={name}
+                                alt={resource.element}
                             />
                         </div>
                     </div>
@@ -68,14 +76,14 @@ export default function CollectionItem({
                             <img
                                 className="w-8 h-8"
                                 src={WEAPON_TYPES[resource.type]?.image}
-                                alt={name}
+                                alt={resource.type}
                             />
                         </div>
                     </div>
                 )}
             </CardContent>
             <CardFooter className="m-0 p-0 z-20">
-                <div className="w-full text-xs bg-card-light rounded-b-lg text-center p-1 font-bold">
+                <div className="w-full text-xs bg-card-light rounded-b-lg text-center py-2 font-bold">
                     {name}
                 </div>
             </CardFooter>

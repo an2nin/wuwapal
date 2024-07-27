@@ -1,40 +1,71 @@
-"use client";
-import BannerOverview from "./_components/BannerOverview";
-import { BANNERS } from "@/shared/banners";
-import { useBannerStore } from "@/stores/banner";
-import PageHeader from "../_components/layout/PageHeader";
-import { Import } from "lucide-react";
-import SyncBtn from "./_components/SyncBtn";
-import { Button } from "../_components/ui/button";
-import { useRouter } from "next-nprogress-bar";
+import PullJourney from "./_components/PullJourney";
+import { Metadata } from "next";
 
-export default function ConvenePage() {
-    const bannerStore = useBannerStore<any>((state: any) => state);
-    const router = useRouter();
-    return (
-        <>
-            <div className="flex flex-wrap-reverse gap-5 justify-between items-center lg:mt-10">
-                <PageHeader title="Your Pull Journey" />
-                <div className="grid grid-cols-1 gap-5">
-                    <div className="flex gap-5 lg:justify-end justify-center">
-                        <Button onClick={() => router.push("/import")} className="flex gap-2 items-center text-primary border-2 border-primary bg-background rounded-full px-3 py-2 hover:bg-primary hover:text-primary-foreground">
-                            <Import className="size-6" /> Import History
-                        </Button>
-                        <div>
-                            <SyncBtn />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="grid lg:grid-cols-2 gap-5 mt-5">
-                {Object.keys(BANNERS).map((banner, idx) => (
-                    <BannerOverview
-                        key={idx}
-                        bannerData={bannerStore.banners[banner]}
-                        bannerInfo={BANNERS[banner]}
-                    />
-                ))}
-            </div>
-        </>
-    );
+export const metadata: Metadata = {
+    // Basic Meta Tags
+    title: "Convene Tracker - Wuwa Pal",
+    description:
+        "View your updated Wuthering Waves pull statistics and recent convenes. Use screenshot-ready dashboards to brag to your friends! Wuwa Tracker pity counter for Wuthering Waves with up-to-date data and global statistics. Share your pulls and track your account!",
+    applicationName: "Wuwa Pal",
+    authors: [{ name: "antonin686", url: "https://github.com/antonin686" }],
+    generator: "Next.js",
+    keywords: [
+        "wuthering wave convene tracker",
+        "wuthering wave pull tracker",
+        "wuwa tracker",
+        "wuthering wave pity tracker",
+        "wuthering wave",
+        "wuwa pull tracker",
+        "wuwa convene tracker",
+        "wuwa pity tracker",
+        "wuwa wish tracker",
+    ],
+    referrer: "origin-when-cross-origin",
+    creator: "antonin686",
+    publisher: "antonin686",
+    robots: "index, follow",
+    formatDetection: {
+        telephone: true,
+        address: true,
+        email: true,
+    },
+    openGraph: {
+        title: "Wuwa Pal",
+        description:
+            "View your updated Wuthering Waves pull statistics and recent convenes. Use screenshot-ready dashboards to brag to your friends! Wuwa Tracker pity counter for Wuthering Waves with up-to-date data and global statistics. Share your pulls and track your account!",
+        url: "https://wuwapal.com",
+        siteName: "Wuwa Pal",
+        images: [
+            {
+                url: "https://wuwapal.com/og.png",
+                width: 1200,
+                height: 630,
+                alt: "Wuwa Pal: Track Your Convene History & View Global Statistics",
+            },
+        ],
+        locale: "en-US",
+        type: "website",
+    },
+    twitter: {
+        title: "Wuwa Pal",
+        card: "summary_large_image",
+        site: "@antonin686",
+        creator: "@antonin686",
+        images: [
+            {
+                url: "https://wuwapal.com/og.png",
+                width: 1200,
+                height: 630,
+                alt: "Wuwa Pal: Track Your Convene History & View Global Statistics",
+            },
+        ],
+        description:
+            "View your updated Wuthering Waves pull statistics and recent convenes. Use screenshot-ready dashboards to brag to your friends! Wuwa Tracker pity counter for Wuthering Waves with up-to-date data and global statistics. Share your pulls and track your account!",
+    },
+};
+
+export default function page() {
+  return (
+    <PullJourney />
+  )
 }

@@ -1,18 +1,24 @@
 "use client";
-import ImportBtn from "@/app/import/_components/ImportBtn";
-import AndroidMethodList from "@/app/import/_components/AndroidMethodList";
-import IOSMethodList from "@/app/import/_components/IOSMethodList";
-import PCMethodList from "@/app/import/_components/PCMethodLIst";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/app/_components/ui/tabs";
+import ImportBtn from "./_components/ImportBtn";
+import AndroidMethodList from "./_components/AndroidMethodList";
+import IOSMethodList from "./_components/IOSMethodList";
+import PCMethodList from "./_components/PCMethodLIst";
+import {
+    Tabs,
+    TabsContent,
+    TabsList,
+    TabsTrigger,
+} from "@/app/_components/ui/tabs";
 import { useBannerStore } from "@/stores/banner";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useProfileStore, ProfileStoreState } from "@/stores/profile";
 
 export default function Import() {
-    const bannerStore = useBannerStore<any>((state: any) => state);
-    const [conveneRecordURL, setConveneRecordURL] = useState(
-        bannerStore.banner_record_url || ""
+    const profileStore = useProfileStore<ProfileStoreState>(
+        (state: ProfileStoreState) => state
     );
-    const [gamePath, setGamePath] = useState(bannerStore.game_path || "");
+    const [conveneRecordURL, setConveneRecordURL] = useState("");
+    const [gamePath, setGamePath] = useState("");
 
     const handleRecordURLChange = (event: any) => {
         setConveneRecordURL(event.target.value);
@@ -20,6 +26,12 @@ export default function Import() {
     const handleGamePathChange = (event: any) => {
         setGamePath(event.target.value);
     };
+
+    useEffect(() => {
+        setConveneRecordURL(profileStore.getBannerRecordUrl() || "");
+        setGamePath(profileStore.getGamePath() || "");
+    }, [profileStore]);
+
     return (
         <div className="md:mx-10 mx-0">
             <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
@@ -50,9 +62,7 @@ export default function Import() {
                     />
                 </TabsContent>
                 <TabsContent value="ios">
-                    <IOSMethodList
-                        setConveneRecordURL={setConveneRecordURL}
-                    />
+                    <IOSMethodList setConveneRecordURL={setConveneRecordURL} />
                 </TabsContent>
             </Tabs>
             <div className="md:ml-28 ml-12 mt-4">

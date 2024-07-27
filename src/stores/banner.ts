@@ -20,7 +20,7 @@ const initialState: InitialBannersState = {
 };
 
 export type BannerState = {
-    banners: InitialBannersState;
+    banners: any;
     banner_record_url: string | null;
     game_path: string | null;
     addBannerRecordUrl: (url: string) => void;
@@ -33,9 +33,10 @@ export type BannerState = {
 export const useBannerStore = create(
     persist(
         (set: any, get: any) => ({
-            banners: initialState,
+            banners: null,
             banner_record_url: null,
             game_path: null,
+            profiles: null,
             addBannerRecordUrl: (url: string) =>
                 set({ banner_record_url: url }),
             addGamePath: (path: string) => set({ game_path: path }),
@@ -49,6 +50,22 @@ export const useBannerStore = create(
                     banner_record_url: banner_record_url,
                     game_path: game_path,
                 }),
+            addProfile: (
+                name: string,
+                banners: any,
+                banner_record_url: string,
+                game_path: string
+            ) =>
+                set((state: any) => ({
+                    ...state,
+                    profiles: {
+                        [name]: {
+                            banners: banners,
+                            banner_record_url: banner_record_url,
+                            game_path: game_path,
+                        },
+                    },
+                })),
             addBanner: (name: string, items: any) =>
                 set((state: any) => ({
                     banners: {
@@ -61,9 +78,15 @@ export const useBannerStore = create(
                     banner_record_url: banner_record_url,
                     game_path: game_path,
                 }),
+            clearPrevStore: () =>
+                set({
+                    banners: null,
+                    banner_record_url: null,
+                    game_path: null,
+                }),
             clearStore: () =>
                 set({
-                    banners: initialState,
+                    banners: null,
                     banner_record_url: null,
                     game_path: null,
                 }),

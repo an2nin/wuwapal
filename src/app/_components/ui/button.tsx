@@ -5,28 +5,28 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-    "inline-flex gap-2 font-bold items-center justify-center whitespace-nowrap rounded-xl text-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
+    "inline-flex gap-2 font-bold items-center justify-center whitespace-nowrap text-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
     {
         variants: {
             variant: {
                 default:
-                    "bg-primary text-primary-foreground shadow border hover:bg-primary/70 hover:text-black",
+                    "bg-primary text-primary-foreground shadow border hover:bg-primary/70",
                 defaultOld:
                     "bg-primary text-primary-foreground shadow hover:bg-primary/90",
                 destructive:
                     "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
                 outline:
-                    "border border hover:bg-primary text-primary bg-transparent hover:text-primary-foreground",
+                    "border-2 border-primary hover:bg-primary text-primary-foreground bg-transparent hover:text-primary-foreground",
                 secondary:
                     "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
                 ghost: "hover:opacity-70 ",
                 link: "text-primary underline-offset-4 hover:underline",
             },
             size: {
-                default: "h-9 px-4 py-2",
-                sm: "h-8 rounded-md px-3 text-xs",
-                lg: "h-10 rounded-md px-8",
-                icon: "h-9 w-9",
+                default: "h-12 rounded-2xl px-4 py-3",
+                sm: "h-8 rounded-xl px-3 text-xs",
+                lg: "h-10 rounded-2xl px-8",
+                icon: "size-10 rounded-xl",
             },
         },
         defaultVariants: {

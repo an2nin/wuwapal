@@ -1,14 +1,11 @@
 "use client";
 
 import * as React from "react";
-import { TrendingUp } from "lucide-react";
 import { Label, Pie, PieChart } from "recharts";
 
 import {
     Card,
     CardContent,
-    CardDescription,
-    CardFooter,
     CardHeader,
     CardTitle,
 } from "@/app/_components/ui/card";
@@ -44,24 +41,33 @@ interface Props {
 }
 
 export function BannerPieChart({ total, star4, star5 }: Props) {
-
     const chartData = [
-        { quality: "star3", value: total - (star4 + star5), fill: "var(--color-star3)" },
-        { quality: "star4", value: star4, fill: "var(--color-star4)" },
-        { quality: "star5", value: star5, fill: "var(--color-star5)" },
+        {
+            quality: "star3",
+            value: total - (star4 + star5),
+            fill: "var(--color-star3)",
+            percentage: ((total - (star4 + star5)) / total * 100).toFixed(2),
+        },
+        { quality: "star4", value: star4, fill: "var(--color-star4)", percentage: (star4 / total * 100).toFixed(2)},
+        { quality: "star5", value: star5, fill: "var(--color-star5)", percentage: (star5 /total * 100).toFixed(2)},
     ];
 
     return (
         <Card className="flex flex-col">
-            <CardContent className="flex-1 pb-0">
+            <CardHeader className="pb-0">
+                <CardTitle className="text-lg ">
+                    Pull Pie by Rarity
+                </CardTitle>
+            </CardHeader>
+            <CardContent className="flex-1 py-0">
                 <ChartContainer
                     config={chartConfig}
-                    className="mx-auto aspect-square max-h-[250px]"
+                    className="mx-auto aspect-square max-h-[250px] "
                 >
                     <PieChart>
                         <ChartTooltip
                             cursor={false}
-                            content={<ChartTooltipContent hideLabel />}
+                            content={<ChartTooltipContent hideLabel percentage="percentage" />}
                         />
                         <Pie
                             data={chartData}

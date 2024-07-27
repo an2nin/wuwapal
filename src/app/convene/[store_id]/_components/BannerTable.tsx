@@ -9,7 +9,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/app/_components/ui/table";
-import { Star } from "lucide-react";
+import { ChevronsLeft, ChevronsRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { formatDateToHumanReadable } from "@/app/_helpers/time";
 
@@ -20,6 +20,8 @@ interface Props {
 export default function BannerTable({ bannerData }: Props) {
     const [filteredItems, setFilteredItems] = useState<any[]>([]);
     const [activeFilters, setActiveFilters] = useState<number[]>([4, 5]);
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const itemsPerPage = 10; // Change this to your desired items per page
 
     const toggleFilter = (quality: number) => {
         setActiveFilters((prevFilters) =>
@@ -38,20 +40,39 @@ export default function BannerTable({ bannerData }: Props) {
             ) ?? [];
 
         setFilteredItems(filteredObjects);
+        setCurrentPage(1); // Reset to first page whenever filters change
     }, [activeFilters, bannerData]);
+
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
+
+    const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage((prevPage) => prevPage + 1);
+        }
+    };
+
+    const handlePreviousPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage((prevPage) => prevPage - 1);
+        }
+    };
+
     return (
         <>
             <Card>
-                <CardContent className="h-full p-5">
-                    <div className="hidden bg-quality-5"></div>
-                    <div className="flex flex-wrap gap-3 justify-between mb-5 items-center">
-                        <div className="flex gap-3 items-center justify-end w-full">
+                <CardContent className="pt-6">
+                    <div className="flex flex-wrap gap-5 lg:justify-between justify-center mb-5 items-center ">
+                        <div className="flex gap-3 items-center lg:justify-start justify-center">
                             {[5, 4, 3].map((star) => (
                                 <Button
                                     key={star}
                                     onClick={() => toggleFilter(star)}
                                     variant="ghost"
-                                    className={` ${
+                                    className={`p-3 ${
                                         activeFilters?.includes(star)
                                             ? `${
                                                   star === 5
@@ -69,24 +90,35 @@ export default function BannerTable({ bannerData }: Props) {
                                               }`
                                     }`}
                                 >
-                                    <div className="flex items-center gap-1 text-lg">
-                                        {star}
-                                        <Star
-                                            className={`w-4 h-4 ${
-                                                activeFilters?.includes(star)
-                                                    ? "fill-accent-foreground"
-                                                    : `${
-                                                          star === 5
-                                                              ? "fill-quality-5"
-                                                              : star === 4
-                                                              ? "fill-quality-4"
-                                                              : "fill-quality-3"
-                                                      }`
-                                            }`}
-                                        />
+                                    <div className="flex items-center text-lg">
+                                        {star} ✦
                                     </div>
                                 </Button>
                             ))}
+                        </div>
+                        <div className="flex items-center lg:justify-between justify-center">
+                            <Button
+                                variant="ghost"
+                                className="text-primary font-bold"
+                                size="icon"
+                                onClick={handlePreviousPage}
+                                disabled={currentPage === 1}
+                            >
+                                <ChevronsLeft className="size-10" />
+                            </Button>
+                            <div className="flex gap-1">
+                                {currentPage} <span>of</span>
+                                {totalPages}
+                            </div>
+                            <Button
+                                variant="ghost"
+                                className="text-primary font-bold"
+                                size="icon"
+                                onClick={handleNextPage}
+                                disabled={currentPage === totalPages}
+                            >
+                                <ChevronsRight className="size-10" />
+                            </Button>
                         </div>
                     </div>
                     <Table>
@@ -104,51 +136,49 @@ export default function BannerTable({ bannerData }: Props) {
                         </TableHeader>
                         {(bannerData?.items?.length ?? 0) > 0 ? (
                             <TableBody>
-                                {filteredItems?.map(
-                                    (item: any, idx: number) => (
-                                        <TableRow
-                                            key={idx}
-                                            className={`border-b border-white/30 ${
-                                                item?.qualityLevel != 3
-                                                    ? item?.qualityLevel == 4
-                                                        ? "bg-star-4"
-                                                        : "bg-star-5"
-                                                    : ""
-                                            }`}
-                                        >
-                                            <TableCell>{item?.roll}</TableCell>
-                                            <TableCell colSpan={3}>
-                                                <div className="flex items-center gap-3">
-                                                    <img
-                                                        className="w-10 h-10"
-                                                        src={
-                                                            process.env
-                                                                .NEXT_PUBLIC_IMAGE_URL +
-                                                            item?.image_path
-                                                        }
-                                                        alt={item?.name}
-                                                    />
-                                                    {item?.name}
-                                                </div>
-                                            </TableCell>
-                                            <TableCell>
-                                                <PitySeverityIndicator
-                                                    pity={item?.pity}
-                                                    maxPulls={
-                                                        item?.qualityLevel == 5
-                                                            ? 80
-                                                            : 10
+                                {currentItems?.map((item: any, idx: number) => (
+                                    <TableRow
+                                        key={idx}
+                                        className={`border-b border-white/30 ${
+                                            item?.qualityLevel != 3
+                                                ? item?.qualityLevel == 4
+                                                    ? "bg-star-4"
+                                                    : "bg-star-5"
+                                                : ""
+                                        }`}
+                                    >
+                                        <TableCell>{item?.roll}</TableCell>
+                                        <TableCell colSpan={3}>
+                                            <div className="flex items-center gap-3">
+                                                <img
+                                                    className="w-10 h-10"
+                                                    src={
+                                                        process.env
+                                                            .NEXT_PUBLIC_IMAGE_URL +
+                                                        item?.image_path
                                                     }
+                                                    alt={item?.name}
                                                 />
-                                            </TableCell>
-                                            <TableCell>
-                                                {formatDateToHumanReadable(
-                                                    new Date(item?.time)
-                                                )}
-                                            </TableCell>
-                                        </TableRow>
-                                    )
-                                )}
+                                                {item?.name}
+                                            </div>
+                                        </TableCell>
+                                        <TableCell>
+                                            <PitySeverityIndicator
+                                                pity={item?.pity}
+                                                maxPulls={
+                                                    item?.qualityLevel == 5
+                                                        ? 80
+                                                        : 10
+                                                }
+                                            />
+                                        </TableCell>
+                                        <TableCell>
+                                            {formatDateToHumanReadable(
+                                                new Date(item?.time)
+                                            )}
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
                             </TableBody>
                         ) : null}
                     </Table>

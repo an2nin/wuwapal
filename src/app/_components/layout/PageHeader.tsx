@@ -8,9 +8,9 @@ export default function PageHeader({ title, children }: Props) {
         <>
             {title ? (
                 <h1
-                    className="scroll-m-20 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight"
+                    className="pb-2 scroll-m-20 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight w-fit"
                     style={{
-                        background: "linear-gradient(to right, hsl(var(--accent)), #fff)",
+                        background: "linear-gradient(to right, hsl(var(--primary)), #fff)",
                         backgroundClip: "text",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",

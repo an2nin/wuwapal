@@ -4,30 +4,30 @@
 
 @layer base {
     :root {
-        --background: 210 17% 9%;
-        --foreground: 0 0% 95%;
-        --card: 213 15% 15%;
-        --card-foreground: 0 0% 95%;
-        --card-light: 213 15% 15%;
+        --background: 227 18% 10%;
+        --foreground: 0 0% 100%;
+        --card: 227 14% 13%;
+        --card-foreground: 0 0% 100%;
+        --card-light: 227 18% 9%;
         --popover: 0 0% 9%;
-        --popover-foreground: 0 0% 95%;
-        --primary: 3 90% 62%;
-        --primary-foreground: 220 60% 15%;
+        --popover-foreground: 0 0% 100%;
+        --primary: 337 100% 51%;
+        --primary-foreground: 0 0% 100%;
         --secondary: 240 3.7% 15.9%;
-        --secondary-foreground: 0 0% 98%;
+        --secondary-foreground: 0 0% 100%;
         --muted: 0 0% 15%;
         --muted-foreground: 240 5% 64.9%;
-        --accent: 3 90% 62%;
+        --accent: 337 100% 51%;
         --accent-foreground: 0 0% 9%;
         --destructive: 0 62.8% 30.6%;
         --destructive-foreground: 0 85.7% 97.3%;
         --border: 218 12.42% 30%;
         --input: 240 3.7% 15.9%;
-        --ring: 0 0% 95%;
+        --ring: 0 0% 100%;
 
         --quality-3: 195 80% 65%;
-        --quality-4: 270 60% 55%;
-        --quality-5: 45 100% 60%;
+        --quality-4: 292 91.4% 72.5%;
+        --quality-5: 47.9 95.8% 53.1%;
 
         --radius: 0.5rem;
 
@@ -153,3 +153,46 @@
     background-image: url(/images/backgrounds/bg-star5.webp);
     background-size: contain;
 }
+
+/* Style for the scrollbar track */
+::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+    border-radius: 5px;
+}
+
+/* Style for the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+    background: hsl(var(--accent));
+    border-radius: 5px;
+}
+
+/* Style for the scrollbar corner (for both horizontal and vertical scrollbars) */
+::-webkit-scrollbar-corner {
+    background: #f1f1f1;
+}
+
+/* Width of the vertical scrollbar */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Height of the horizontal scrollbar */
+::-webkit-scrollbar {
+    height: 5px;
+}
+
+.overlay-no-pull-found {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    pointer-events: auto;
+}
+

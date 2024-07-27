@@ -12,11 +12,11 @@ import { convertToISOWithOffset } from "@/shared/helpers/time";
 
 const items = {
     s5: [
-        { name: "Jinhsi", rarity: 5, type: "resonators" },
-        { name: "Ages of Harvest", rarity: 5, type: "weapons" },
+        { name: "Changli", rarity: 5, type: "resonators" },
+        { name: "Blazing Brilliance", rarity: 5, type: "weapons" },
     ],
-    s4: ["Sanhua", "Yangyang", "Danjin"],
-    img: "/images/banners/thawborn_renewal.webp",
+    s4: ["Taoqi", "Baizhi", "Mortefi"],
+    img: "/images/banners/vermillions_ploy.webp",
 };
 
 export default function BannerShowcase() {
@@ -60,7 +60,7 @@ export default function BannerShowcase() {
                         Ending in
                         <CountdownTimer
                             targetDate={convertToISOWithOffset(
-                                "2024-07-22 09:59",
+                                "2024-08-14 11:59",
                                 8
                             )}
                         />

@@ -23,6 +23,16 @@ export const FIVE_STAR_WEAPONS: any = {
             "Stormy Resolution: Increases Energy Regen by 12.8%. When hitting a target with Resonance Skill, increases Basic Attack DMG Bonus by 10%, lasting for 8s. When hitting a target with Basic Attacks, increases Resonance Skill DMG Bonus by 10%, lasting for 8s.",
         image: `${WEAPON_IMAGE_PATH}/ages_of_harvest.webp`,
     },
+    "Blazing Brilliance": {
+        type: "sword",
+        base_atk: 47,
+        stat_name: "Crit Rate",
+        stat_amount: "5.40%",
+        quality: 5,
+        skill_desc:
+            "Stormy Resolution: Increases Energy Regen by 12.8%. When Resonance Skill is released, increases ATK by 6%, stacking up to 2 time(s). This effect lasts for 10s.",
+        image: `${WEAPON_IMAGE_PATH}/blazing_brilliance.webp`,
+    },
     "Cosmic Ripples": {
         type: "rectifier",
         base_atk: 40,
@@ -83,5 +93,4 @@ export const FIVE_STAR_WEAPONS: any = {
             "Swordsworn: Increases the DMG Bonus of all Resonance Attributes by 12%. Every time Intro Skill or Resonance Liberation is cast, increases Heavy Attack DMG Bonus by 24%, stacking up to 2 time(s). This effect lasts for 14s.",
         image: `${WEAPON_IMAGE_PATH}/verdant_summit.webp`,
     },
-
 };

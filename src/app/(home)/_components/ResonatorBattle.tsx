@@ -29,7 +29,7 @@ export default function ResonatorBattle() {
                                     <div className="flex w-full justify-center relative md:gap-16 gap-5">
                                         <img
                                             className="h-56 w-auto"
-                                            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/portraits/yinlin.webp`}
+                                            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/portraits-short/changli.webp`}
                                             alt="Yinlin"
                                         />
                                         <img
@@ -44,7 +44,7 @@ export default function ResonatorBattle() {
                                                     {
                                                         globalData.items
                                                             .featured_resonator
-                                                            .s5s.Yinlin.c
+                                                            .s5s.Changli.c
                                                     }
                                                 </div>
                                                 <div>Yinlin</div>

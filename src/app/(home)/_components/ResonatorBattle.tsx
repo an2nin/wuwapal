@@ -30,7 +30,7 @@ export default function ResonatorBattle() {
                                         <img
                                             className="h-56 w-auto"
                                             src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/portraits-short/changli.webp`}
-                                            alt="Yinlin"
+                                            alt="Changli"
                                         />
                                         <img
                                             className="h-56 w-auto transform scale-x-[-1]"
@@ -47,7 +47,7 @@ export default function ResonatorBattle() {
                                                             .s5s.Changli.c
                                                     }
                                                 </div>
-                                                <div>Yinlin</div>
+                                                <div>Changli</div>
                                             </div>
                                             <div className="lg:bg-primary/50 bg-primary py-2 px-4 rounded-2xl w-30 text-center">
                                                 <div className="lg:text-3xl font-bold">

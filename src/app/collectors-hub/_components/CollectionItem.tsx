@@ -31,7 +31,7 @@ export default function CollectionItem({
 
     return (
         <Card
-            className={`w-36 h-48 p-0 m-0 flex flex-col justify-between overflow-hidden group cursor-pointer hover:border ${
+            className={`w-[7.85rem] h-36 p-0 m-0 flex flex-col justify-between overflow-hidden group cursor-pointer hover:border ${
                 resource.quality == 4
                     ? "bg-gradient-to-t to-purple-900 from-purple-400"
                     : "bg-gradient-to-t to-yellow-900 from-yellow-400"
@@ -48,7 +48,7 @@ export default function CollectionItem({
                 )}
                 <div className="h-full flex justify-center items-center pt-3">
                     <img
-                        className="transform duration-500 scale-110 transition ease-in-out group-hover:scale-125 z-20"
+                        className="transform h-28 duration-500 scale-110 transition ease-in-out group-hover:scale-125 z-20"
                         src={resource.image}
                         alt={name}
                     />

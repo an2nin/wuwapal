@@ -3,7 +3,7 @@ import CollectionList from "./_components/CollectionList";
 import { Tabs, TabsList, TabsTrigger } from "@/app/_components/ui/tabs";
 import { processBannersForCollection } from "@/app/_helpers/processors";
 import { RESONATORS } from "@/shared/resonators";
-import { WEAPONS } from "@/shared/weapons";
+import { WEAPONS_FOUR_AND_FIVE_STARS } from "@/shared/weapons";
 import { useEffect, useState } from "react";
 import PageHeader from "@/app/_components/layout/PageHeader";
 import { useProfileStore, ProfileStoreState } from "@/stores/profile";
@@ -59,7 +59,7 @@ export default function CollectorsHub() {
             <div className={`${currentTab === "weapon" ? "block" : "hidden"}`}>
                 <CollectionList
                     type={currentTab}
-                    resources={WEAPONS}
+                    resources={WEAPONS_FOUR_AND_FIVE_STARS}
                     collected={processedCollection?.weapons}
                 />
             </div>

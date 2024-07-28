@@ -190,6 +190,17 @@ export const FOUR_STAR_RESONATORS: any = {
             "When the Resonator dashes or dodges, increases ATK by 4%, stacking up to 3 time(s). This effect lasts for 8s.",
         image: `${WEAPON_IMAGE_PATH}/novaburst.webp`,
     },
+    Overture: {
+        type: "sword",
+        baseATK: 33,
+        stat_name: "ATK",
+        stat_amount: "6.75%",
+        quality: 4,
+        skill_name: "Ever-Changing",
+        skill_desc:
+            "When the Resonator dashes or dodges, increases ATK by 4%, stacking up to 3 time(s). This effect lasts for 8s.",
+        image: `${WEAPON_IMAGE_PATH}/overture.webp`,
+    },
     "Pistols#26": {
         type: "pistols",
         baseATK: 31,

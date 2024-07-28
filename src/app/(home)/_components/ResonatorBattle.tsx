@@ -1,11 +1,13 @@
 "use client";
 import { Globe, Percent } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/app/_components/ui/card";
-import { Button } from "@/app/_components/ui/button";
 import { calculatePercentage } from "@/app/_helpers/processors";
 import { useRouter } from "next-nprogress-bar";
 import { useGlobalStatsQuery } from "@/redux/services/banner";
 import MovingBorder from "@/app/_components/ui/moving-border";
+import { COMBINED } from "@/shared/combined";
+
+const combatants = ["Changli", "Jinhsi"];
 
 export default function ResonatorBattle() {
     const router = useRouter();
@@ -29,13 +31,13 @@ export default function ResonatorBattle() {
                                     <div className="flex w-full justify-center relative md:gap-16 gap-5">
                                         <img
                                             className="h-56 w-auto"
-                                            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/portraits-short/changli.webp`}
-                                            alt="Changli"
+                                            src={`${COMBINED[combatants[0]].image}`}
+                                            alt={combatants[0]}
                                         />
                                         <img
                                             className="h-56 w-auto transform scale-x-[-1]"
-                                            src={`${process.env.NEXT_PUBLIC_IMAGE_URL}/portraits/jinhsi.webp`}
-                                            alt="Jinhsi"
+                                            src={`${COMBINED[combatants[1]].image}`}
+                                            alt={combatants[1]}
                                         />
 
                                         <div className="absolute bottom-0 left-0 w-full flex justify-between">
@@ -44,10 +46,10 @@ export default function ResonatorBattle() {
                                                     {
                                                         globalData.items
                                                             .featured_resonator
-                                                            .s5s.Changli.c
+                                                            .s5s[combatants[0]].c
                                                     }
                                                 </div>
-                                                <div>Changli</div>
+                                                <div>{combatants[0]}</div>
                                             </div>
                                             <div className="lg:bg-primary/50 bg-primary py-2 px-4 rounded-2xl w-30 text-center">
                                                 <div className="lg:text-3xl font-bold">
@@ -64,10 +66,10 @@ export default function ResonatorBattle() {
                                                     {
                                                         globalData.items
                                                             .featured_resonator
-                                                            .s5s.Jinhsi.c
+                                                            .s5s[combatants[1]].c
                                                     }
                                                 </div>
-                                                <div>Jinhsi</div>
+                                                <div>{combatants[1]}</div>
                                             </div>
                                         </div>
                                     </div>
@@ -120,8 +122,8 @@ export default function ResonatorBattle() {
                                 >
                                     <MovingBorder isHoverable>
                                         <div className="flex items-center gap-2 px-2">
-                                            <Globe className="size-6" /> Global Convene
-                                            Stats
+                                            <Globe className="size-6" /> Global
+                                            Convene Stats
                                         </div>
                                     </MovingBorder>
                                 </button>

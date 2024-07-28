@@ -1,7 +1,7 @@
 const IMAGE_PATH = process.env.NEXT_PUBLIC_IMAGE_URL || "";
 
-export const RESONATOR_IMAGE_PATH = `${IMAGE_PATH}/portraits-short`;
-export const RESONATOR_ICON_PATH = `${IMAGE_PATH}/resonators`;
+export const RESONATOR_IMAGE_PATH = `${IMAGE_PATH}/resonators/portraits-short`;
+export const RESONATOR_ICON_PATH = `${IMAGE_PATH}/resonators/icons`;
 
 export const FOUR_STAR_RESONATORS: any = {
     Aalto: {

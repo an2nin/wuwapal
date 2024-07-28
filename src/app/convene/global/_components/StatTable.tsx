@@ -1,14 +1,7 @@
 import { Card, CardContent } from "@/app/_components/ui/card";
 import { ScrollArea } from "@/app/_components/ui/scroll-area";
-import {
-    Table,
-    TableBody,
-    TableCaption,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/app/_components/ui/table";
+
+import { COMBINED } from "@/shared/combined";
 import { Percent } from "lucide-react";
 import React from "react";
 
@@ -44,16 +37,10 @@ export default function StatTable({ items, star }: Props) {
                             <React.Fragment key={key}>
                                 <div className="grid grid-cols-4 p-4">
                                     <div className="col-span-2 flex justify-start">
-                                        <div className="flex items-center gap-3 capitalize">
+                                        <div className="flex items-center gap-3">
                                             <img
                                                 className="size-10"
-                                                src={`${
-                                                    process.env
-                                                        .NEXT_PUBLIC_IMAGE_URL
-                                                }/combined/${key
-                                                    .toLowerCase()
-                                                    .replace(/:/g, "")
-                                                    .replace(/ /g, "_")}.webp`}
+                                                src={key in COMBINED ? (COMBINED[key].icon || COMBINED[key].image) : ""}
                                                 alt={key}
                                             />
                                             {key}

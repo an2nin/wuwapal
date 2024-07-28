@@ -1,4 +1,4 @@
-import { FIVE_STAR_RESONATORS } from "./five_starts";
+import { FIVE_STAR_RESONATORS } from "./five_stars";
 import { FOUR_STAR_RESONATORS } from "./four_stars";
 
 const IMAGE_PATH = process.env.NEXT_PUBLIC_IMAGE_URL || "";

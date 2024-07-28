@@ -198,11 +198,9 @@ export default function SyncBtn() {
                     </DialogFooter>
                 </DialogContentWithoutClose>
             </Dialog>
-            {profileStore.getBannerRecordUrl() && (
-                <Button variant={"outline"} onClick={() => handleImport()}>
-                    <RefreshCcw className="size-6" /> Refresh Pulls
-                </Button>
-            )}
+            <Button variant={"outline"} onClick={() => handleImport()}>
+                <RefreshCcw className="size-6" /> Refresh Pulls
+            </Button>
         </>
     );
 }

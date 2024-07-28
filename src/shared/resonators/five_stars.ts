@@ -1,7 +1,7 @@
 const IMAGE_PATH = process.env.NEXT_PUBLIC_IMAGE_URL || "";
 
-export const RESONATOR_IMAGE_PATH = `${IMAGE_PATH}/portraits-short`;
-export const RESONATOR_ICON_PATH = `${IMAGE_PATH}/resonators`;
+export const RESONATOR_IMAGE_PATH = `${IMAGE_PATH}/resonators/portraits-short`;
+export const RESONATOR_ICON_PATH = `${IMAGE_PATH}/resonators/icons`;
 
 export const FIVE_STAR_RESONATORS: any = {
     Calcharo: {
@@ -53,14 +53,14 @@ export const FIVE_STAR_RESONATORS: any = {
         icon: `${RESONATOR_ICON_PATH}/lingyang.webp`,
         quality: 5,
     },
-    "Rover (havoc)": {
+    "Rover (Havoc)": {
         element: "havoc",
         weapon: "sword",
         image: `${RESONATOR_IMAGE_PATH}/rover.webp`,
         icon: `${RESONATOR_ICON_PATH}/rover.webp`,
         quality: 5,
     },
-    "Rover (spectro)": {
+    "Rover (Spectro)": {
         element: "spectro",
         weapon: "sword",
         image: `${RESONATOR_IMAGE_PATH}/rover.webp`,

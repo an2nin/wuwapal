@@ -12,6 +12,7 @@ import {
 import { ChevronsLeft, ChevronsRight } from "lucide-react";
 import { useEffect, useState } from "react";
 import { formatDateToHumanReadable } from "@/app/_helpers/time";
+import { COMBINED } from "@/shared/combined";
 
 interface Props {
     bannerData: any;
@@ -153,9 +154,14 @@ export default function BannerTable({ bannerData }: Props) {
                                                 <img
                                                     className="w-10 h-10"
                                                     src={
-                                                        process.env
-                                                            .NEXT_PUBLIC_IMAGE_URL +
-                                                        item?.image_path
+                                                        item?.name in COMBINED
+                                                            ? COMBINED[
+                                                                  item?.name
+                                                              ].icon ||
+                                                              COMBINED[
+                                                                  item?.name
+                                                              ].image
+                                                            : ""
                                                     }
                                                     alt={item?.name}
                                                 />

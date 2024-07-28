@@ -8,6 +8,7 @@ import {
     CardHeader,
     CardTitle,
 } from "@/app/_components/ui/card";
+import { BANNERS } from "@/shared/banners";
 import { convertToISOWithOffset } from "@/shared/helpers/time";
 
 const items = {
@@ -16,7 +17,8 @@ const items = {
         { name: "Blazing Brilliance", rarity: 5, type: "weapons" },
     ],
     s4: ["Taoqi", "Baizhi", "Mortefi"],
-    img: "/images/banners/vermillions_ploy.webp",
+    img: BANNERS.featured_resonator.image,
+    end_time: "2024-08-14 11:59",
 };
 
 export default function BannerShowcase() {
@@ -25,7 +27,7 @@ export default function BannerShowcase() {
             <CardHeader>
                 <CardTitle>Ongoing Banner</CardTitle>
             </CardHeader>
-            <CardContent className="mt-10 min-h-44">
+            <CardContent className="min-h-44">
                 <div className="rounded-2xl relative">
                     <img
                         src={items.img}
@@ -55,15 +57,15 @@ export default function BannerShowcase() {
                     </div>
                 </div>
             </CardContent>
-            <CardFooter >
-                    <div className="flex h-full gap-2 font-bold text-primary">
-                        Ending in
-                        <CountdownTimer
-                            targetDate={convertToISOWithOffset(
-                                "2024-08-14 11:59",
-                                8
-                            )}
-                        />
+            <CardFooter>
+                <div className="flex h-full gap-2 font-bold text-primary">
+                    Ending in
+                    <CountdownTimer
+                        targetDate={convertToISOWithOffset(
+                            items.end_time,
+                            8
+                        )}
+                    />
                 </div>
             </CardFooter>
         </Card>

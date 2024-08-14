@@ -59,13 +59,14 @@ export default function BannerShowcase() {
             </CardContent>
             <CardFooter>
                 <div className="flex h-full gap-2 font-bold text-primary">
-                    Ending in
+                    Ended
+                    {/* Ending in
                     <CountdownTimer
                         targetDate={convertToISOWithOffset(
                             items.end_time,
                             8
                         )}
-                    />
+                    /> */}
                 </div>
             </CardFooter>
         </Card>

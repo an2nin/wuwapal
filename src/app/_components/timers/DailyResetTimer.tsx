@@ -2,15 +2,27 @@
 import React, { useState, useEffect } from "react";
 
 const DailyResetTimer = () => {
-    const [timeLeft, setTimeLeft] = useState(getTimeUntilReset());
+    const [isClient, setIsClient] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(0);
 
     useEffect(() => {
+        setIsClient(true);
+        setTimeLeft(getTimeUntilReset());
         const timer = setInterval(() => {
             setTimeLeft(getTimeUntilReset());
         }, 1000);
 
         return () => clearInterval(timer);
     }, []);
+
+    if (!isClient) {
+        return (
+            <div className="flex gap-2 p-3 text-white font-bold w-56 justify-center">
+                <h4>Daily Reset In: </h4>
+                <p>Loading...</p>
+            </div>
+        );
+    }
 
     return (
         <div className="flex gap-2 p-3 text-white font-bold w-56 justify-center">

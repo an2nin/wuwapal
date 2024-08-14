@@ -39,7 +39,7 @@ export default function Timeline() {
                 <CardContent className="pt-6 bg-pattern-stripped rounded-xl">
                     <TimelineViewer
                         timelineStartDate={startDate}
-                        endDateDiff={4}
+                        endDateDiff={6}
                         events={EVENT_DATA}
                     />
                 </CardContent>

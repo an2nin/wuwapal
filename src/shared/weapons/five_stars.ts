@@ -63,6 +63,16 @@ export const FIVE_STAR_WEAPONS: any = {
             "Incision: Increases Energy Regen by 12.8%. When Resonance Skill is released, increases Resonance Liberation DMG by 7%, stacking up to 2 times. This effect lasts for 12s.",
         image: `${WEAPON_IMAGE_PATH}/lustrous_razor.webp`,
     },
+    "Rime-Draped Sprouts": {
+        type: "rectifier",
+        base_atk: 47,
+        stat_name: "ATK",
+        stat_amount: "8.10%",
+        quality: 5,
+        skill_desc:
+            "Incision: Increases Energy Regen by 12.8%. When Resonance Skill is released, increases Resonance Liberation DMG by 7%, stacking up to 2 times. This effect lasts for 12s.",
+        image: `${WEAPON_IMAGE_PATH}/rime-draped_sprouts.webp`,
+    },
     "Static Mist": {
         type: "pistols",
         base_atk: 47,

@@ -81,4 +81,11 @@ export const FIVE_STAR_RESONATORS: any = {
         icon: `${RESONATOR_ICON_PATH}/yinlin.webp`,
         quality: 5,
     },
+    Zhezhi: {
+        element: "glacio",
+        weapon: "rectifier",
+        image: `${RESONATOR_IMAGE_PATH}/zhezhi.webp`,
+        icon: `${RESONATOR_ICON_PATH}/zhezhi.webp`,
+        quality: 5,
+    },
 };

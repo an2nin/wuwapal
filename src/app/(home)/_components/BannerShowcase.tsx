@@ -13,12 +13,12 @@ import { convertToISOWithOffset } from "@/shared/helpers/time";
 
 const items = {
     s5: [
-        { name: "Changli", rarity: 5, type: "resonators" },
-        { name: "Blazing Brilliance", rarity: 5, type: "weapons" },
+        { name: "Zhezhi", rarity: 5, type: "resonators" },
+        { name: "Rime-Draped Sprouts", rarity: 5, type: "weapons" },
     ],
-    s4: ["Taoqi", "Baizhi", "Mortefi"],
+    s4: ["Chixia", "Baizhi", "Sanhua"],
     img: BANNERS.featured_resonator.image,
-    end_time: "2024-08-14 11:59",
+    end_time: "2024-09-07 09:59",
 };
 
 export default function BannerShowcase() {
@@ -59,14 +59,13 @@ export default function BannerShowcase() {
             </CardContent>
             <CardFooter>
                 <div className="flex h-full gap-2 font-bold text-primary">
-                    Ended
-                    {/* Ending in
+                    Ending in
                     <CountdownTimer
                         targetDate={convertToISOWithOffset(
                             items.end_time,
                             8
                         )}
-                    /> */}
+                    />
                 </div>
             </CardFooter>
         </Card>

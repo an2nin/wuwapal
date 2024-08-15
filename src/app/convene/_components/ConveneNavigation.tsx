@@ -24,9 +24,9 @@ export default function ConveneNavigation() {
                 >
                     <Import className="size-6" /> Import History
                 </Button>
-                <div>
+                {/* <div>
                     <SyncBtn />
-                </div>
+                </div> */}
             </div>
         </div>
     );

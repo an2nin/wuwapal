@@ -74,6 +74,13 @@ export const FIVE_STAR_RESONATORS: any = {
         icon: `${RESONATOR_ICON_PATH}/verina.webp`,
         quality: 5,
     },
+    "Xiangli Yao": {
+        element: "electro",
+        weapon: "gauntlets",
+        image: `${RESONATOR_IMAGE_PATH}/xiangli_yao.webp`,
+        icon: `${RESONATOR_ICON_PATH}/xiangli_yao.webp`,
+        quality: 5,
+    },
     Yinlin: {
         element: "electro",
         weapon: "rectifier",

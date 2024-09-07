@@ -6,16 +6,15 @@ export const BANNERS: any = {
         name: "Featured Resonator",
         value: "1",
         store_id: "featured_resonator",
-        image: `${IMAGE_PATH}/banners/chromatic_prose.webp`,
+        image: `${IMAGE_PATH}/banners/celestial_revelation.webp`,
         currency: "radiant_tide",
-        gradient_start: "",
     },
     featured_weapon: {
         id: "5c13a63f85465e9fcc0f24d6efb15083",
         name: "Featured Weapon",
         value: "2",
         store_id: "featured_weapon",
-        image: `${IMAGE_PATH}/banners/rime-draped_sprouts.webp`,
+        image: `${IMAGE_PATH}/banners/veritys_handle.webp`,
         currency: "forging_tide",
     },
     standard_resonator: {

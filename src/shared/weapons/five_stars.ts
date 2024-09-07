@@ -103,4 +103,14 @@ export const FIVE_STAR_WEAPONS: any = {
             "Swordsworn: Increases the DMG Bonus of all Resonance Attributes by 12%. Every time Intro Skill or Resonance Liberation is cast, increases Heavy Attack DMG Bonus by 24%, stacking up to 2 time(s). This effect lasts for 14s.",
         image: `${WEAPON_IMAGE_PATH}/verdant_summit.webp`,
     },
+    "Verity's Handle": {
+        type: "gauntlets",
+        base_atk: 47,
+        stat_name: "Crit DMG",
+        stat_amount: "10.80%",
+        quality: 5,
+        skill_desc:
+            "Swordsworn: Increases the DMG Bonus of all Resonance Attributes by 12%. Every time Intro Skill or Resonance Liberation is cast, increases Heavy Attack DMG Bonus by 24%, stacking up to 2 time(s). This effect lasts for 14s.",
+        image: `${WEAPON_IMAGE_PATH}/veritys_handle.webp`,
+    },
 };

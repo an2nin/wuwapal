@@ -1,5 +1,9 @@
 export const CHANGELOGS = [
   {
+    date: "2024-09-29",
+    changes: ["Adds Shorekeeper & Stellar Symphony", "Updates timeline for v1.3"],
+  },
+  {
     date: "2024-08-14",
     changes: ["Adds timeline section", "Adds Ongoing Banner at the home page"],
   },

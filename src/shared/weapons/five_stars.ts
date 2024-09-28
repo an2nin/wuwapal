@@ -83,6 +83,10 @@ export const FIVE_STAR_WEAPONS: any = {
             "Stormy Resolution: Increases Energy Regen by 12.8%. When Outro Skill is released, increases the switched-in Resonator's ATK by 10%, stacking up to 1 time(s). This effect lasts for 14s.",
         image: `${WEAPON_IMAGE_PATH}/static_mist.webp`,
     },
+    "Stellar Symphony": {
+        type: "rectifier",
+        image: `${WEAPON_IMAGE_PATH}/stellar_symphony.webp`,
+    },
     Stringmaster: {
         type: "rectifier",
         base_atk: 40,

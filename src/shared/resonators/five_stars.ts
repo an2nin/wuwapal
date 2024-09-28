@@ -67,6 +67,13 @@ export const FIVE_STAR_RESONATORS: any = {
         icon: `${RESONATOR_ICON_PATH}/rover.webp`,
         quality: 5,
     },
+    Shorekeeper: {
+        element: "spectro",
+        weapon: "rectifier",
+        image: `${RESONATOR_IMAGE_PATH}/shorekeeper.webp`,
+        icon: `${RESONATOR_ICON_PATH}/shorekeeper.webp`,
+        quality: 5,
+    },
     Verina: {
         element: "spectro",
         weapon: "rectifier",

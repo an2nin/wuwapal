@@ -11,13 +11,13 @@ export default function Changelogs() {
                 <CardTitle>Site Updates</CardTitle>
             </CardHeader>
             <CardContent className="mt-4">
-                <ScrollArea className="max-h-36 rounded-md">
+                <ScrollArea className="h-44 rounded-md">
                     <div className="flex flex-col gap-2">
                     {CHANGELOGS.map((changelog, idx) => (
                         <ChangelogItem
                             key={idx}
                             date={changelog.date}
-                            description={changelog.description}
+                            changes={changelog.changes}
                         />
                     ))}
                     </div>

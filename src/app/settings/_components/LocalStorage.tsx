@@ -42,14 +42,14 @@ export default function LocalStorage() {
 
     return (
         <div className="flex flex-col gap-5">
-            <div className="flex flex-col gap-3">
+            {/* <div className="flex flex-col gap-3">
                 <Label htmlFor="convene-record-url">Convene Record URL</Label>
                 <Input
                     id="convene-record-url"
                     value={recordUrl}
                     onChange={handleRecordUrlChange}
                 />
-            </div>
+            </div> */}
             <div className="flex flex-col gap-3">
                 <Label htmlFor="game-path">Game Installation Path</Label>
                 <Input

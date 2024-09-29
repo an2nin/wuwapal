@@ -30,6 +30,7 @@ export type ProfileStoreState = {
     active: string;
     profiles: Profiles;
     version: string;
+    importProfileStore: (payload: any) => void;
     addProfile: (name: string, profile: Profile) => void;
     addNewProfile: (name: string) => void;
     setProfileAsActive: (name: string) => void;
@@ -49,6 +50,14 @@ export const useProfileStore = create(
             active: "default",
             profiles: initialProfilesState,
             version: "1.0",
+            importProfileStore: (payload: any) => {
+                set((state: any) => {
+                    const copy = { ...state };
+                    copy.active = payload.active;
+                    copy.profiles = payload.profiles;
+                    return copy;
+                });
+            },
             addProfile: (name: string, profile: Profile) =>
                 set((state: any) => {
                     const copy = { ...state };

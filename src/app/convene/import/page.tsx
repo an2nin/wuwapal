@@ -9,9 +9,14 @@ import {
     TabsList,
     TabsTrigger,
 } from "@/app/_components/ui/tabs";
-import { useBannerStore } from "@/stores/banner";
 import { useEffect, useState } from "react";
 import { useProfileStore, ProfileStoreState } from "@/stores/profile";
+import {
+    Alert,
+    AlertDescription,
+    AlertTitle,
+} from "@/app/_components/ui/alert";
+import { TriangleAlert } from "lucide-react";
 
 export default function Import() {
     const profileStore = useProfileStore<ProfileStoreState>(
@@ -47,6 +52,19 @@ export default function Import() {
                     <TabsTrigger value="android">Android</TabsTrigger>
                     <TabsTrigger value="ios">IOS</TabsTrigger>
                 </TabsList>
+
+                <Alert className="mt-4" variant="warning">
+                    <AlertTitle className="flex items-center gap-2">
+                        <TriangleAlert className="size-5" />
+                            Patch 1.2 Alert!
+                        <TriangleAlert className="size-5" />
+                    </AlertTitle>
+                    <AlertDescription>
+                        🔗 Your Convene URL now expires after 1 hour! ⏳ <br />
+                        📈 To keep your pulls up to date, don&apos;t forget to open your in-game Convene History 🕹️ before re-importing. 🚀
+                    </AlertDescription>
+                </Alert>
+
                 <TabsContent value="pc">
                     <PCMethodList
                         conveneRecordURL={conveneRecordURL}

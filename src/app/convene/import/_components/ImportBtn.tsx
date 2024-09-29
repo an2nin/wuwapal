@@ -112,9 +112,9 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
                     bannerForGlobalStat,
                 ]);
 
-                if(profileStore.profiles[profileStore.active].banners[banner_name].total < bannerForStore.total) {
-                    profileStore.addBanner(banner_name, bannerForStore);
-                }
+                profileStore.addBanner(banner_name, bannerForStore);
+                // if(profileStore.profiles[profileStore.active].banners[banner_name].total < bannerForStore.total) {
+                // }
             }
 
             if (currentBanner <= TOTAL_BANNERS + 1) {

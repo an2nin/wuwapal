@@ -7,7 +7,7 @@ import { useGlobalStatsQuery } from "@/redux/services/banner";
 import MovingBorder from "@/app/_components/ui/moving-border";
 import { COMBINED } from "@/shared/combined";
 
-const combatants = ["Jinhsi", "Zhezhi"];
+const combatants = ["Xiangli Yao", "Shorekeeper"];
 
 export default function ResonatorBattle() {
     const router = useRouter();

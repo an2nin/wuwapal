@@ -1,29 +1,38 @@
 import { useEffect, useState } from "react";
 import CustomListItem from "@/app/_components/layout/CustomListItem";
 import { Textarea } from "@/app/_components/ui/textarea";
-import { isRecordJsonValid } from "@/app/_helpers/validators";
+import { validateJsonString } from "@/app/_helpers/validators";
 import { convertJsonToUrl } from "@/app/_helpers/processors";
+import { toast } from "sonner";
 
 interface Props {
     setConveneRecordURL: (value: any) => void;
 }
 
-export default function IOSMethodList({
-    setConveneRecordURL,
-}: Props) {
+export default function IOSMethodList({ setConveneRecordURL }: Props) {
     const [recordJson, setRecordJson] = useState("");
+    const [isRecordJsonInputValid, setIsRecordJsonInputValid] = useState(false);
 
-    const isRecordJsonInputValid = isRecordJsonValid(recordJson);
     const handleRecordJsonChange = (event: any) => {
         setRecordJson(event.target.value);
     };
 
     useEffect(() => {
-      if(isRecordJsonInputValid) {
-        setConveneRecordURL(convertJsonToUrl(recordJson));
-      }
-    }, [isRecordJsonInputValid])
-    
+        if(recordJson == "") {
+            setIsRecordJsonInputValid(false);
+            return;
+        };
+
+        const validation = validateJsonString(recordJson);
+        if (validation.isValid) {
+            setIsRecordJsonInputValid(true);
+            setConveneRecordURL(convertJsonToUrl(recordJson));
+        } else {
+            setIsRecordJsonInputValid(false);
+            toast.error(validation.errors.join(", "));
+        }
+    }, [recordJson]);
+
     return (
         <>
             <div className="md:mx-10 mx-0 mt-5">

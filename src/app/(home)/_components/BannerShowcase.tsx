@@ -13,12 +13,12 @@ import { convertToISOWithOffset } from "@/shared/helpers/time";
 
 const items = {
     s5: [
-        { name: "Shorekeeper", rarity: 5, type: "resonators" },
-        { name: "Stellar Symphony", rarity: 5, type: "weapons" },
+        { name: "Jiyan", rarity: 5, type: "resonators" },
+        { name: "Verdant Summit", rarity: 5, type: "weapons" },
     ],
-    s4: ["Taoqi", "Yangyang", "Chixia"],
+    s4: ["Youhu", "Sanhua", "Mortefi"],
     img: BANNERS.featured_resonator.image,
-    end_time: "2024-10-24 09:59",
+    end_time: "2024-11-13 11:59",
 };
 
 export default function BannerShowcase() {

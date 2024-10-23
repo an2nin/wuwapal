@@ -60,6 +60,13 @@ export const FOUR_STAR_RESONATORS: any = {
         icon: `${RESONATOR_ICON_PATH}/yangyang.webp`,
         quality: 4,
     },
+    Youhu: {
+        element: "glacio",
+        weapon: "gauntlets",
+        image: `${RESONATOR_IMAGE_PATH}/youhu.webp`,
+        icon: `${RESONATOR_ICON_PATH}/youhu.webp`,
+        quality: 4,
+    },
     Yuanwu: {
         element: "electro",
         weapon: "gauntlets",

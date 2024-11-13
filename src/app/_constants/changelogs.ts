@@ -1,5 +1,11 @@
 export const CHANGELOGS = [
     {
+        date: "2024-11-14",
+        changes: [
+            "Adds Camellya, Lumi & Red String",
+        ],
+    },
+    {
         date: "2024-10-24",
         changes: [
             "Adds Youhu",

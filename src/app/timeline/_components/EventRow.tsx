@@ -48,6 +48,7 @@ export default function EventRow({ timelineStartDate, timelineData }: Props) {
 
             currTop = currTop + topIncrement * 2;
             let highestTop = currTop;
+            let highestGroup = 1;
 
             timelineData.activities.forEach((patches: any) => {
                 const copyCurrTop = currTop;
@@ -62,18 +63,22 @@ export default function EventRow({ timelineStartDate, timelineData }: Props) {
                             new Date(item.endDate),
                             new Date(item.startDate)
                         );
-
+                    
+                    const eventTop = item.group ? currTop + (item.group * topIncrement) - topIncrement : currTop;
                     const processedEvent = {
                         info: { ...item },
                         left: diffForLeft * 60,
-                        top: currTop,
+                        top: eventTop,
                         width: diffForWidth * 60,
                     };
 
                     eventList.push({
                         ...processedEvent,
                     });
-                    currTop = currTop + topIncrement;
+
+                    if(!item.group){
+                        currTop = currTop + topIncrement;
+                    }
                 });
                 if (currTop > highestTop) highestTop = currTop;
                 currTop = copyCurrTop;

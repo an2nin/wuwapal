@@ -125,6 +125,50 @@ const ALL_BANNERS = [
         color: "#92875d",
         url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1408",
       },
+      {
+        name: "End of Lost Trail - Camellya Banner",
+        img: "https://snipboard.io/4dcm9b.jpg",
+        description: "Featured 4* are; Danjin, Yangyang, Aalto.",
+        startDate: "2024-11-14 11:00",
+        endDate: "2024-12-12 09:59",
+        isGlobal: true,
+        color: "#402821",
+        url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1607",
+        reliability: "Official",
+      },
+      {
+        name: "Red Spring - Camellya Weapon Banner",
+        img: "https://snipboard.io/U5wIMa.jpg",
+        description:
+          "Featured 4* are; Fusion Accretion, Commando of Conviction, Novaburst.",
+        startDate: "2024-11-14 11:00",
+        endDate: "2024-12-12 09:59",
+        isGlobal: true,
+        color: "#a84955",
+        url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1607",
+        reliability: "Official",
+      },
+      {
+        name: "Featured Resonator - Yinlin & Xiangli Yao Rerun Banners",
+        img: "https://snipboard.io/uyqe72.jpg",
+        description: "Featured 4* are; Lumi, Baizhi, Yuanwu.",
+        startDate: "2024-12-12 10:00",
+        endDate: "2025-01-01 11:59",
+        color: "#653e91",
+        url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1607",
+        reliability: "Official",
+      },
+      {
+        name: "Featured Weapon - Yinlin & Xiangli Yao Rerun Weapon Banners",
+        img: "https://snipboard.io/XZOYjk.jpg",
+        description:
+          "Featured 4* are; Waning Redshift, Jinzhou Keeper, Hollow Mirage.",
+        startDate: "2024-12-12 10:00",
+        endDate: "2025-01-01 11:59",
+        color: "#272540",
+        url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1607",
+        reliability: "Official",
+      },
 ];
 
 export const BANNERS = convertDatesToServerTime(ALL_BANNERS);

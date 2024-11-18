@@ -32,6 +32,13 @@ export const FOUR_STAR_RESONATORS: any = {
         icon: `${RESONATOR_ICON_PATH}/danjin.webp`,
         quality: 4,
     },
+    Lumi: {
+        element: "electro",
+        weapon: "broadblade",
+        image: `${RESONATOR_IMAGE_PATH}/lumi.webp`,
+        icon: `${RESONATOR_ICON_PATH}/lumi.webp`,
+        quality: 4,
+    },
     Mortefi: {
         element: "fusion",
         weapon: "pistols",

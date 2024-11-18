@@ -1,9 +1,15 @@
 export const CHANGELOGS = [
     {
+        date: "2024-11-18",
+        changes: ["Update Event Timeline for v1.4"],
+    },
+    {
+        date: "2024-11-14",
+        changes: ["Adds Camellya, Lumi & Red String"],
+    },
+    {
         date: "2024-10-24",
-        changes: [
-            "Adds Youhu",
-        ],
+        changes: ["Adds Youhu"],
     },
     {
         date: "2024-09-29",

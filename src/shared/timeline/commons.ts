@@ -40,6 +40,30 @@ const TOWER_OF_ADVERSITY = [
         endDate: "2024-09-30 04:00",
         color: "#18235f",
     },
+    {
+        name: "Tower of Adversity: Hazard Revisited",
+        img: "https://snipboard.io/NnA3YO.jpg",
+        startDate: "2024-10-28 04:00",
+        endDate: "2024-11-11 04:00",
+        color: "#18235f",
+        reliability: "Official",
+    },
+    {
+        name: "Tower of Adversity: Hazard Revisited",
+        img: "https://snipboard.io/NnA3YO.jpg",
+        startDate: "2024-11-11 04:00",
+        endDate: "2024-11-25 04:00",
+        color: "#18235f",
+        reliability: "Official",
+    },
+    {
+        name: "Tower of Adversity: Hazard Revisited",
+        img: "https://snipboard.io/NnA3YO.jpg",
+        startDate: "2024-11-25 04:00",
+        endDate: "2024-12-09 04:00",
+        color: "#18235f",
+        reliability: "Official",
+    },
 ];
 
 const DEPTHS_OF_ILLUSIVE_REALM = [
@@ -70,6 +94,15 @@ const DEPTHS_OF_ILLUSIVE_REALM = [
         url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1147",
         color: "#b66188",
     },
+    {
+        name: "Depths of Illusive Realm - Phantasm Amass",
+        img: "https://snipboard.io/2EorCx.jpg",
+        description: `New Content "Phantasm Amass" now available! Step into surreal, ever-shifting dreamscapes, where new maps await exploration and formidable enemies lurk in the shadows, and uncover the secrets that lie within! Rewards; 1000*Astrite, Phantom: Inferno Rider, Malleable Elite Class Echoes, Premium Sealed Tube, Weapon Projections.`,
+        startDate: "2024-11-14 11:00",
+        endDate: "2025-01-01 03:59",
+        url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1607",
+        color: "#545f5a",
+    },
 ];
 
 const PIONEER_PODCAST = [
@@ -96,7 +129,6 @@ const PIONEER_PODCAST = [
         img: "https://snipboard.io/1EkOtV.jpg",
         description: `You can complete tasks in Pioneer Podcast and accumulate Podcast EXP. Level up your Podcast to get rich rewards. Unlock "Insider Channel" or "Connoisseur Channel" and level up your Podcast to win extra rewards including Astrite*680, a 4-star Golden Eternal Series Weapon of Choice, Radiant Tide, and more! Unlocking "Connoisseur Channel" grants an instant advance of Podcast level by 10, with the period-limited Sigil "Moonlit Haven", Lustrous Tide*3, and Gilded Ginkgo (can be used to improve the Syntonization Rank of a 4-star Golden Eternal Series Weapon).`,
         startDate: "2024-08-15 13:00",
-        isGlobal: true,
         endDate: "2024-09-28 03:59",
         url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1147",
         color: "#594842",
@@ -107,9 +139,18 @@ const PIONEER_PODCAST = [
         description: `You can complete tasks in Pioneer Podcast and accumulate Podcast EXP. Level up your Podcast to get rich rewards. Unlock "Insider Channel" or "Connoisseur Channel" and level up your Podcast to win extra rewards including Astrite*680, a 4-star Golden Eternal Series Weapon of Choice, Radiant Tide, and more! Unlocking "Connoisseur Channel" grants an instant advance of Podcast level by 10, with the period-limited Sigil "Sound of Tides", Lustrous Tide*3, and Gilded Ginkgo (can be used to improve the Syntonization Rank of a 4-star Golden Eternal Series Weapon).`,
         startDate: "2024-09-29 11:00",
         endDate: "2024-11-13 03:59",
-        isGlobal: true,
         url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1408",
     },
+    {
+        name: "Pioneer Podcast",
+        img: "https://snipboard.io/2Z7Ncr.jpg",
+        description: `You can complete tasks in Pioneer Podcast and accumulate Podcast EXP. Level up your Podcast to get rich rewards. Unlock "Insider Channel" or "Connoisseur Channel" and level up your Podcast to win extra rewards including Astrite*680, a 4-star Golden Eternal Series Weapon of Choice, Radiant Tide, and more! Unlocking "Connoisseur Channel" grants an instant advance of Podcast level by 10, with the period-limited Sigil "Sound of Tides", Lustrous Tide*3, and Gilded Ginkgo (can be used to improve the Syntonization Rank of a 4-star Golden Eternal Series Weapon).`,
+        startDate: "2024-11-14 11:00",
+        endDate: "2025-01-01 03:59",
+        url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1607",
+        reliability: "Official",
+        color: "#645676",
+      },
 ];
 
 export const COMMONS = [

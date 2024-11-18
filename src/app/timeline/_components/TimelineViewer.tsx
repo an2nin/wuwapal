@@ -40,31 +40,29 @@ export default function TimelineViewer({
     }, [currentDateRowPos]);
 
     return (
-       
-                <div
-                    ref={scrollContainerRef}
-                    className="scrollbar scrollbar-thumb-rounded-lg scrollbar-thumb-neutral-800 scrollbar-track-subitem scrollbar-h-2 h-[58rem] w-full overflow-x-auto overflow-y-hidden overscroll-none pl-5 "
-                >
-                    <div className="timeline h-full content relative flex w-max flex-col">
-                        <DayRow
-                            timelineStartDate={timelineStartDate}
-                            endDateDiff={endDateDiff}
-                        />
-                        <MonthRow
-                            timelineStartDate={timelineStartDate}
-                            endDateDiff={endDateDiff}
-                        />
-                        <EventRow
-                            timelineStartDate={timelineStartDate}
-                            timelineData={events}
-                        />
+        <div
+            ref={scrollContainerRef}
+            className="scrollbar scrollbar-thumb-rounded-lg scrollbar-thumb-neutral-800 scrollbar-track-subitem scrollbar-h-2 h-[58rem] w-full overflow-x-auto overflow-y-hidden overscroll-none pl-5 "
+        >
+            <div className="timeline h-full content relative flex w-max flex-col">
+                <DayRow
+                    timelineStartDate={timelineStartDate}
+                    endDateDiff={endDateDiff}
+                />
+                <MonthRow
+                    timelineStartDate={timelineStartDate}
+                    endDateDiff={endDateDiff}
+                />
+                <EventRow
+                    timelineStartDate={timelineStartDate}
+                    timelineData={events}
+                />
 
-                        <div
-                            className="absolute z-20 mt-16 h-full w-0.5 bg-primary opacity-75"
-                            style={{ left: currentDateRowPos + "px" }}
-                        ></div>
-                    </div>
-                </div>
-          
+                <div
+                    className="absolute z-20 mt-16 h-full w-0.5 bg-primary opacity-75"
+                    style={{ left: currentDateRowPos + "px" }}
+                ></div>
+            </div>
+        </div>
     );
 }

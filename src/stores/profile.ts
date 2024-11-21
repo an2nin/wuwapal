@@ -92,7 +92,7 @@ export const useProfileStore = create(
                     const copy = { ...state };
                     const currentProfile = copy.profiles[state.active];
                     currentProfile.game_path = path;
-                    console.log("path ",copy);
+                    // console.log("path ",copy);
 
                     return copy;
                 }),

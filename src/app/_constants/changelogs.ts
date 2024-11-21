@@ -1,7 +1,11 @@
 export const CHANGELOGS = [
     {
+        date: "2024-11-22",
+        changes: ["Updates Import Convene History and Store Logic"],
+    },
+    {
         date: "2024-11-18",
-        changes: ["Update Event Timeline for v1.4"],
+        changes: ["Updates Event Timeline for v1.4"],
     },
     {
         date: "2024-11-14",

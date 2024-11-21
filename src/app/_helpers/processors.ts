@@ -22,7 +22,7 @@ export function calculatePercentage(part: number, total: number) {
     return ((part / total) * 100).toFixed(2);
 }
 
-export function processBannerForStore(banner: any, store_id: string) {
+export function processBannerForStorex(banner: any, store_id: string) {
     const copyData = [...banner.data].slice().reverse();
     let pity4_last_index = 0;
     let pity5_last_index = 0;
@@ -136,36 +136,50 @@ export function processBanner(banner: any) {
                 name: item.n || item.name,
                 resourceType: parseResourceType(item.y || item.resourceType),
                 roll: idx + 1,
-                pity: item.p || item.pity,
+                pity: 1,
                 time: item.t || item.time,
                 qualityLevel: item.q || item.qualityLevel,
                 import_type: item.i || item.import_type,
             };
 
             if (newItem.qualityLevel === 4) {
+                const pity =
+                    pity4_last_index == 0
+                        ? idx - pity4_last_index + 1
+                        : idx - pity4_last_index;
+
                 if (newItem.resourceType == "resonators") {
                     star4_resonators.push({
                         name: newItem.name,
-                        pity: newItem.pity,
+                        pity: pity,
                         type: newItem.resourceType,
                     });
                 } else {
                     star4_weapons.push({
                         name: newItem.name,
-                        pity: newItem.pity,
+                        pity: pity,
                         type: newItem.resourceType,
                     });
                 }
-                pity4_last_index = newItem.roll;
+
+                newItem.pity = pity;
+                pity4_last_index = idx;
             } else if (newItem.qualityLevel === 5) {
+                const pity =
+                    pity5_last_index == 0
+                        ? idx - pity5_last_index + 1
+                        : idx - pity5_last_index;
+
                 star5s.push({
                     name: newItem.name,
-                    pity: newItem.pity,
+                    pity: pity,
                     type: newItem.resourceType,
                 });
 
-                pity4_last_index = newItem.roll;
-                pity5_last_index = newItem.roll;
+                newItem.pity = pity;
+
+                pity4_last_index = idx;
+                pity5_last_index = idx;
             }
             // Replace the original item with the new one
             newItem.image_path =
@@ -184,8 +198,12 @@ export function processBanner(banner: any) {
             );
         }
 
-        star4_pity = banner.total - pity4_last_index;
-        star5_pity = banner.total - pity5_last_index;
+        // console.log("pity4_last_index ", pity4_last_index);
+        // console.log("pity5_last_index ", pity5_last_index);
+        // console.log("total ", banner.total);
+
+        star4_pity = banner.total - (pity4_last_index + 1);
+        star5_pity = banner.total - (pity5_last_index == 0 ? 0 : pity5_last_index + 1);
 
         const star5_avg_pity =
             star5s.reduce((sum: number, obj: any) => sum + obj.pity, 0) /
@@ -290,7 +308,7 @@ export function processBannersForCollection(banners: any) {
     const weapons: any = [];
     const resonators: any = [];
 
-    if(!banners){
+    if (!banners) {
         return { weapons, resonators };
     }
 
@@ -330,54 +348,141 @@ interface BannerData {
     items: ApiItem[]; // Array of items
 }
 
-export const mergeGachaDataOptimized = (existingData: BannerData, newData: BannerData) => {
-    if (!existingData || !existingData.items || existingData.items.length === 0) {
+export function processBannerForStore(banner: any, store_id: string) {
+    const copyData = [...banner.data].slice().reverse();
+
+    copyData.forEach((data: any, idx) => {
+        const newItem = {
+            q: data.qualityLevel,
+            i: "a",
+            n: data.name,
+            t: data.time,
+            y: data.resourceType == "Weapon" ? "w" : "r",
+        };
+
+        copyData[idx] = newItem;
+    });
+
+    return {
+        store_id,
+        items: copyData,
+        total: copyData.length,
+    };
+}
+
+export function processBannerForGlobalStat(banner: any, store_id: string) {
+    const copyData = [...banner.items].slice();
+    let pity4_last_index = 0;
+    let pity5_last_index = 0;
+    let last_star5_resonator = null;
+    const star4s: any = [];
+    const star5s: any = [];
+
+    copyData.forEach((data: any, idx) => {
+        const newItem = {
+            ...data,
+            p: 1,
+            i: "a",
+        };
+
+        if (data.q == 4) {
+            const pity =
+                pity4_last_index == 0
+                    ? idx - pity4_last_index + 1
+                    : idx - pity4_last_index;
+
+            newItem.p = pity;
+
+            star4s.push({
+                n: data.n,
+                p: pity,
+                t: new Date(data.t).getTime(),
+                y: data.y,
+            });
+
+            pity4_last_index = idx;
+        }
+
+        if (data.q == 5) {
+            const pity =
+                pity5_last_index == 0
+                    ? idx - pity5_last_index + 1
+                    : idx - pity5_last_index;
+
+            newItem.p = pity;
+
+            const star5_processed: any = {
+                n: data.n,
+                p: pity,
+                t: new Date(data.t).getTime(),
+                y: data.y,
+            };
+
+            if (store_id == "featured_resonator") {
+                if (last_star5_resonator == null) {
+                    star5_processed.w = !STANDARD_RESONATORS.includes(data.n);
+                } else if (
+                    last_star5_resonator != null &&
+                    !STANDARD_RESONATORS.includes(last_star5_resonator)
+                ) {
+                    star5_processed.w = !STANDARD_RESONATORS.includes(data.n);
+                }
+            }
+
+            star5s.push(star5_processed);
+
+            pity4_last_index = idx;
+            pity5_last_index = idx;
+        }
+
+        copyData[idx] = newItem;
+    });
+
+    return {
+        t: copyData.length,
+        b: store_id,
+        s4: star4s,
+        s5: star5s,
+    };
+}
+
+export const mergeGachaDataOptimized = (
+    existingData: BannerData,
+    newData: BannerData
+) => {
+    if (
+        !existingData ||
+        !existingData.items ||
+        existingData.items.length === 0
+    ) {
         // If no existing data, return new data directly
         return {
             ...newData,
-            total: newData.items.length || 0
+            total: newData.items.length || 0,
         };
     }
 
-    // Create a set of existing item keys to avoid duplicates
-    const existingKeys = new Set(existingData.items.map(item => `${item.n}-${item.t}`));
+    // Assuming both arrays are sorted by `t` (timestamp) in ascending order
+    const lastExistingTimestamp =
+        existingData.items[existingData.items.length - 1]?.t;
 
-    // Filter out only the truly new items from the new data
-    const newItemsToAdd = newData.items.filter(item => {
-        const key = `${item.n}-${item.t}`;
-        return !existingKeys.has(key);
-    });
+    // Find the starting point in newData where `t` exceeds `lastExistingTimestamp`
+    const newItemsToAdd = newData.items.filter(
+        (item) => item.t > lastExistingTimestamp
+    );
 
-    // Merge the items: keep all existing items and add only new ones
+    // if (newData.store_id == "featured_resonator") {
+    //     console.log("lastExistingTimestamp ", lastExistingTimestamp);
+    //     console.log("new items to add ", newItemsToAdd);
+    // }
+
+    // Concatenate the new items to the existing data
     const mergedItems = [...existingData.items, ...newItemsToAdd];
 
-    // Update total and return the result
+    // Update the total and return the merged data
     return {
         ...existingData,
         items: mergedItems,
-        total: mergedItems.length
+        total: mergedItems.length,
     };
 };
-
-export function mergePulls(storeDate: BannerData,newData: BannerData) {
-    // Retrieve existing data from localStorage
-    const existingData = storeDate ?? { total: 0, items: [], store_id: newData.store_id };
-
-    // Merge the new items with existing ones
-    const mergedItems = [
-        ...existingData.items,
-        ...newData.items.filter(newItem => 
-            !existingData.items.some(existingItem => 
-                existingItem.n === newItem.n && existingItem.t === newItem.t
-            )
-        )
-    ];
-
-    // Update the total count
-
-    // Save the merged data back to localStorage
-    const mergedPulls = { total: mergedItems.length, items: mergedItems, store_id: newData.store_id };
-
-    return mergedPulls;
-}
-

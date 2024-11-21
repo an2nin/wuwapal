@@ -13,7 +13,7 @@ export default function CollectionList({ type, resources, collected }: Props) {
 
     const clickHandler = (resource: any) => {
         setSelectedResource(resource);
-        setIsDialogOpen(true);
+        // setIsDialogOpen(true);
     };
 
     return (

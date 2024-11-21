@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next-nprogress-bar";
 import { Button } from "@/app/_components/ui/button";
-import { ArrowRightToLine } from "lucide-react";
+import { ArrowRightToLine, TriangleAlert } from "lucide-react";
 import { Progress } from "@/app/_components/ui/progress";
 import { Checkbox } from "@/app/_components/ui/checkbox";
 import { toast } from "sonner";

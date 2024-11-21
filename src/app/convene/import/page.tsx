@@ -17,6 +17,7 @@ import {
     AlertTitle,
 } from "@/app/_components/ui/alert";
 import { TriangleAlert } from "lucide-react";
+import Link from "next/link";
 
 export default function Import() {
     const profileStore = useProfileStore<ProfileStoreState>(
@@ -53,7 +54,7 @@ export default function Import() {
                     <TabsTrigger value="ios">IOS</TabsTrigger>
                 </TabsList>
 
-                <Alert className="mt-4" variant="warning">
+                {/* <Alert className="mt-4" variant="warning">
                     <AlertTitle className="flex items-center gap-2">
                         <TriangleAlert className="size-5" />
                             Patch 1.2 Alert!
@@ -62,6 +63,48 @@ export default function Import() {
                     <AlertDescription>
                         🔗 Your Convene URL now expires after 1 hour! ⏳ <br />
                         📈 To keep your pulls up to date, don&apos;t forget to open your in-game Convene History 🕹️ before re-importing. 🚀
+                    </AlertDescription>
+                </Alert> */}
+
+                <Alert className="mt-4" variant="warning">
+                    <AlertTitle className="flex items-center gap-2">
+                        <TriangleAlert className="size-5" />
+                        Important Update on the Convene Record History!
+                        <TriangleAlert className="size-5" />
+                    </AlertTitle>
+                    <AlertDescription>
+                        <p>
+                            Starting <strong>November 22, 2024</strong>, the
+                            WuWa server will begin
+                            <strong>
+                                {" "}
+                                deleting convene history data older than 6
+                                months{" "}
+                            </strong>
+                            .
+                        </p>
+                        <p>
+                            🗓️ For example, if you are a Day 1 player and pulled
+                            on <strong>May 22, 2024</strong>, those pulls will
+                            be <strong>deleted on November 22, 2024</strong>{" "}
+                            from
+                            <strong> the WuWa server</strong>.
+                        </p>
+                        <p>
+                            <strong>✨ WuWaPal</strong> will handle this issue
+                            for you. but keeping a <strong>backup</strong> is
+                            always a smart move! 💾✔️.
+                        </p>
+                        <p>
+                            You can do it from{" "}
+                            <Link
+                                className="font-bold underline"
+                                href="/settings"
+                            >
+                                Settings
+                            </Link>
+                            👈.
+                        </p>
                     </AlertDescription>
                 </Alert>
 

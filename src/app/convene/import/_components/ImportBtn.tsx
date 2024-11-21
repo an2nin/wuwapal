@@ -17,7 +17,9 @@ import { useFetchBannerMutation } from "@/redux/services/banner";
 import useSupabase from "@/app/_hooks/useSupabase";
 import {
     isConveneHistoryUrlValid,
+    mergeGachaDataOptimized,
     parseUrlParams,
+    processBannerForGlobalStat,
     processBannerForStore,
 } from "@/app/_helpers/processors";
 import { useProfileStore, ProfileStoreState } from "@/stores/profile";
@@ -85,6 +87,10 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
 
     useEffect(() => {
         if (isBannerSuccess) {
+            if (bannerData.code < 0) {
+                setCurrentBanner(100);
+                return;
+            }
             let banner_name = "";
 
             if (currentBanner == 1) {
@@ -104,17 +110,35 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
             }
 
             if (currentBanner <= TOTAL_BANNERS) {
-                const { bannerForStore, bannerForGlobalStat } =
-                    processBannerForStore(bannerData, banner_name);
+                const bannerForStore = processBannerForStore(
+                    bannerData,
+                    banner_name
+                );
+
+                const mergedBannerForStore = mergeGachaDataOptimized(
+                    profileStore.profiles?.[profileStore.active]?.banners?.[
+                        banner_name
+                    ] ?? null,
+                    bannerForStore
+                );
+
+                const bannerForGlobalStat = processBannerForGlobalStat(
+                    mergedBannerForStore,
+                    banner_name
+                );
+
+                // if (banner_name == "featured_resonator") {
+                //     console.log("bannerForStore", bannerForStore);
+                //     console.log("bannerForGlobalStat", bannerForGlobalStat);
+                //     console.log("merged", mergedBannerForStore);
+                // }
 
                 setBannersForGlobalStat((prev: any) => [
                     ...prev,
                     bannerForGlobalStat,
                 ]);
 
-                profileStore.addBanner(banner_name, bannerForStore);
-                // if(profileStore.profiles[profileStore.active].banners[banner_name].total < bannerForStore.total) {
-                // }
+                profileStore.addBanner(banner_name, mergedBannerForStore);
             }
 
             if (currentBanner <= TOTAL_BANNERS + 1) {
@@ -161,32 +185,81 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
                         <DialogTitle>Importing Banners</DialogTitle>
                         <DialogDescription></DialogDescription>
                     </DialogHeader>
-                    <div className="flex flex-col gap-3 justify-center my-2">
-                        <Progress
-                            value={(currentBanner / TOTAL_BANNERS) * 100}
-                        />
-                        {currentBanner === TOTAL_BANNERS + 1 &&
-                            !isBannerLoading &&
-                            isBannerSuccess && (
-                                <div className="text-green-500 text-center">
-                                    All Banners imported successfully
+                    {currentBanner == 100 ? (
+                        <div className="flex flex-col gap-3 justify-center my-2">
+                            <div className="text-red-500 text-center">
+                                <div className="font-bold text-2xl mb-2">
+                                    ⚠️ Error fetching Convene data! ⚠️
                                 </div>
-                            )}
-                    </div>
+                                <div>
+                                    Please check your{" "}
+                                    <span className="font-bold">
+                                        Convene Record URL
+                                    </span>
+                                    .
+                                </div>
+                                <div>
+                                    It might have{" "}
+                                    <span className="font-bold">expired</span>,
+                                    as it is valid for only{" "}
+                                    <span className="font-bold">1 hour</span>.
+                                    ⏳{" "}
+                                </div>
+                                <div>
+                                    Kindly generate a new one if needed. 😊
+                                </div>
+                                <div className="mt-2">
+                                    If you keep facing issue please contact me
+                                    at{" "}
+                                    <a
+                                        className="underline font-bold"
+                                        href="https://discord.com/invite/DFKG4nqUD4"
+                                    >
+                                        Discord.
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="flex flex-col gap-3 justify-center my-2">
+                            <Progress
+                                value={(currentBanner / TOTAL_BANNERS) * 100}
+                            />
+                            {currentBanner === TOTAL_BANNERS + 1 &&
+                                !isBannerLoading &&
+                                isBannerSuccess && (
+                                    <div className="text-green-500 text-center">
+                                        All Banners imported successfully
+                                    </div>
+                                )}
+                        </div>
+                    )}
                     <DialogFooter>
-                        <Button
-                            onClick={() => router.push("/convene")}
-                            variant="outline"
-                            disabled={
-                                !(
-                                    currentBanner == TOTAL_BANNERS + 1 &&
-                                    !isBannerLoading &&
-                                    isBannerSuccess
-                                )
-                            }
-                        >
-                            Go Back to Convene
-                        </Button>
+                        {currentBanner == 100 ? (
+                            <Button
+                                onClick={() => {
+                                    setCurrentBanner(0);
+                                    setIsDialogOpen(false);
+                                }}
+                                variant="outline"
+                            >
+                                Close
+                            </Button>
+                        ) : (
+                            <Button
+                                onClick={() => router.push("/convene")}
+                                variant="outline"
+                                disabled={
+                                    !(
+                                        currentBanner == TOTAL_BANNERS + 1 &&
+                                        !isBannerLoading &&
+                                        isBannerSuccess
+                                    )
+                                }
+                            >
+                                Go Back to Convene
+                            </Button>
+                        )}
                     </DialogFooter>
                 </DialogContentWithoutClose>
             </Dialog>

@@ -102,13 +102,20 @@ export default function SyncBtn() {
             }
 
             if (currentBanner <= total_banners) {
-                const { bannerForStore, bannerForGlobalStat } =
-                    processBannerForStore(bannerData, banner_name);
+                const bannerForStore = processBannerForStore(
+                    bannerData,
+                    banner_name
+                );
 
-                setBannersForGlobalStat((prev: any) => [
-                    ...prev,
-                    bannerForGlobalStat,
-                ]);
+                // const bannerForStore = processBannerForStore(
+                //     bannerData,
+                //     banner_name
+                // );
+
+                // setBannersForGlobalStat((prev: any) => [
+                //     ...prev,
+                //     bannerForGlobalStat,
+                // ]);
 
                 profileStore.addBanner(banner_name, bannerForStore);
             }

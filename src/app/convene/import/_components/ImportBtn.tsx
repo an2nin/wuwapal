@@ -17,6 +17,8 @@ import { useFetchBannerMutation } from "@/redux/services/banner";
 import useSupabase from "@/app/_hooks/useSupabase";
 import {
     isConveneHistoryUrlValid,
+    mergeGachaDataOptimized,
+    mergePulls,
     parseUrlParams,
     processBannerForStore,
 } from "@/app/_helpers/processors";
@@ -106,11 +108,28 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
             if (currentBanner <= TOTAL_BANNERS) {
                 const { bannerForStore, bannerForGlobalStat } =
                     processBannerForStore(bannerData, banner_name);
+                // console.log("got from api",bannerForStore);
+                // console.log("got from store",);
 
-                setBannersForGlobalStat((prev: any) => [
-                    ...prev,
-                    bannerForGlobalStat,
-                ]);
+                if (
+                    profileStore.profiles?.[profileStore.active]?.banners?.[
+                        banner_name
+                    ]?.total ??
+                    0 > 0
+                ) {
+                }
+
+                const mergedBanner = mergeGachaDataOptimized(
+                    profileStore.profiles?.[profileStore.active]?.banners?.[
+                        profileStore.active
+                    ] ?? null,
+                    bannerForStore
+                );
+                console.log("merged", mergedBanner);
+                // setBannersForGlobalStat((prev: any) => [
+                //     ...prev,
+                //     bannerForGlobalStat,
+                // ]);
 
                 profileStore.addBanner(banner_name, bannerForStore);
                 // if(profileStore.profiles[profileStore.active].banners[banner_name].total < bannerForStore.total) {

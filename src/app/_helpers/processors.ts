@@ -33,7 +33,6 @@ export function processBannerForStore(banner: any, store_id: string) {
     copyData.forEach((data: any, idx) => {
         const newItem = {
             q: data.qualityLevel,
-            r: idx + 1,
             p: 1,
             i: "a",
             n: data.name,
@@ -136,7 +135,7 @@ export function processBanner(banner: any) {
                 image_path: "",
                 name: item.n || item.name,
                 resourceType: parseResourceType(item.y || item.resourceType),
-                roll: item.r || item.roll,
+                roll: idx + 1,
                 pity: item.p || item.pity,
                 time: item.t || item.time,
                 qualityLevel: item.q || item.qualityLevel,
@@ -315,3 +314,70 @@ export function processBannersForCollection(banners: any) {
         resonators,
     };
 }
+
+interface ApiItem {
+    q: number; // Qyality level
+    p: number; // Price or points (based on context)
+    i: string; // import type; a = auto, m = manual
+    n: string; // Name of the item
+    t: string; // Timestamp in ISO 8601 format
+    y: string; // Category; r = resonator, w = weapon
+}
+
+interface BannerData {
+    total: number; // Total quantity or count
+    store_id: string; // Identifier for the store
+    items: ApiItem[]; // Array of items
+}
+
+export const mergeGachaDataOptimized = (existingData: BannerData, newData: BannerData) => {
+    if (!existingData || !existingData.items || existingData.items.length === 0) {
+        // If no existing data, return new data directly
+        return {
+            ...newData,
+            total: newData.items.length || 0
+        };
+    }
+
+    // Create a set of existing item keys to avoid duplicates
+    const existingKeys = new Set(existingData.items.map(item => `${item.n}-${item.t}`));
+
+    // Filter out only the truly new items from the new data
+    const newItemsToAdd = newData.items.filter(item => {
+        const key = `${item.n}-${item.t}`;
+        return !existingKeys.has(key);
+    });
+
+    // Merge the items: keep all existing items and add only new ones
+    const mergedItems = [...existingData.items, ...newItemsToAdd];
+
+    // Update total and return the result
+    return {
+        ...existingData,
+        items: mergedItems,
+        total: mergedItems.length
+    };
+};
+
+export function mergePulls(storeDate: BannerData,newData: BannerData) {
+    // Retrieve existing data from localStorage
+    const existingData = storeDate ?? { total: 0, items: [], store_id: newData.store_id };
+
+    // Merge the new items with existing ones
+    const mergedItems = [
+        ...existingData.items,
+        ...newData.items.filter(newItem => 
+            !existingData.items.some(existingItem => 
+                existingItem.n === newItem.n && existingItem.t === newItem.t
+            )
+        )
+    ];
+
+    // Update the total count
+
+    // Save the merged data back to localStorage
+    const mergedPulls = { total: mergedItems.length, items: mergedItems, store_id: newData.store_id };
+
+    return mergedPulls;
+}
+

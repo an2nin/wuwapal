@@ -48,9 +48,9 @@ export const metadata: Metadata = {
         siteName: "Wuwa Pal",
         images: [
             {
-                url: "https://wuwapal.com/og.png",
+                url: "https://wuwapal.com/wuwapal.png",
                 width: 1200,
-                height: 630,
+                height: 675,
                 alt: "Wuwa Pal: Track Your Convene History & View Global Statistics",
             },
         ],
@@ -64,9 +64,9 @@ export const metadata: Metadata = {
         creator: "@antonin686",
         images: [
             {
-                url: "https://wuwapal.com/og.png",
+                url: "https://wuwapal.com/wuwapal.png",
                 width: 1200,
-                height: 630,
+                height: 675,
                 alt: "Wuwa Pal: Track Your Convene History & View Global Statistics",
             },
         ],

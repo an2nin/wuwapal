@@ -1,5 +1,11 @@
 export const CHANGELOGS = [
     {
+        date: "2024-11-27",
+        changes: [
+            "Adds Celestial Spiral, Endless Collapse, Fusion Accretion, Relativistic Jet, and Waning Redshift",
+        ],
+    },
+    {
         date: "2024-11-22",
         changes: ["Updates Import Convene History and Store Logic"],
     },

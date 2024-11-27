@@ -58,6 +58,17 @@ export const FOUR_STAR_RESONATORS: any = {
             "When Resonance Skill is released, restores Resonance Energy by 8. This effect can be triggered 1 time(s) every 20s.",
         image: `${WEAPON_IMAGE_PATH}/cadenza.webp`,
     },
+    "Celestial Spiral": {
+        type: "gauntlets",
+        baseATK: 27,
+        stat_name: "Energy Regen",
+        stat_amount: "11.50%",
+        quality: 4,
+        skill_name: "Ceaseless Aria",
+        skill_desc:
+            "When Resonance Skill is released, restores Resonance Energy by 8. This effect can be triggered 1 time(s) every 20s.",
+        image: `${WEAPON_IMAGE_PATH}/celestial_spiral.webp`,
+    },
     "Commando of Conviction": {
         type: "sword",
         baseATK: 33,
@@ -101,6 +112,28 @@ export const FOUR_STAR_RESONATORS: any = {
         skill_desc:
             "When Resonance Skill is released, restore Concerto Energy by 8. This effect can be triggered 1 time every 20s.",
         image: `${WEAPON_IMAGE_PATH}/discord.webp`,
+    },
+    "Endless Collapse": {
+        type: "sword",
+        baseATK: 27,
+        stat_name: "Energy Regen",
+        stat_amount: "11.50%",
+        quality: 4,
+        skill_name: "Ceaseless Aria",
+        skill_desc:
+            "When Resonance Skill is released, restores Resonance Energy by 8. This effect can be triggered 1 time(s) every 20s.",
+        image: `${WEAPON_IMAGE_PATH}/endless_collapse.webp`,
+    },
+    "Fusion Accretion": {
+        type: "rectifier",
+        baseATK: 33,
+        stat_name: "Energy Regen",
+        stat_amount: "6.75%",
+        quality: 4,
+        skill_name: "Ever-Changing",
+        skill_desc:
+            "When the Resonator dashes or dodges, increases ATK by 4%, stacking up to 3 time(s). This effect lasts for 8s.",
+        image: `${WEAPON_IMAGE_PATH}/fusion_accretion.webp`,
     },
     "Gauntlets#21D": {
         type: "gauntlets",
@@ -223,6 +256,17 @@ export const FOUR_STAR_RESONATORS: any = {
             "When Resonance Skill is released, if the Resonator's HP is below 60%, restores their HP by 5%. This effect can be triggered 1 time(s) every 8s; if the Resonator's HP is above 60%.",
         image: `${WEAPON_IMAGE_PATH}/rectifier25.webp`,
     },
+    "Relativistic Jet": {
+        type: "pistols",
+        baseATK: 33,
+        stat_name: "ATK",
+        stat_amount: "6.75%",
+        quality: 4,
+        skill_name: "Ever-Changing",
+        skill_desc:
+            "When the Resonator dashes or dodges, increases ATK by 4%, stacking up to 3 time(s). This effect lasts for 8s.",
+        image: `${WEAPON_IMAGE_PATH}/relativistic_jet.webp`,
+    },
     "Scale: Slasher": {
         type: "sword",
         baseATK: 27,
@@ -289,4 +333,15 @@ export const FOUR_STAR_RESONATORS: any = {
             "When Resonance Skill is released, restores Resonance Energy by 8. This effect can be triggered 1 time(s) every 20s.",
         image: `${WEAPON_IMAGE_PATH}/variation.webp`,
     },
+    "Waning Redshift": {
+        type: "broadblade",
+        baseATK: 27,
+        stat_name: "Energy Regen",
+        stat_amount: "11.50%",
+        quality: 4,
+        skill_name: "Ceaseless Aria",
+        skill_desc:
+            "When Resonance Skill is released, restores Resonance Energy by 8. This effect can be triggered 1 time(s) every 20s.",
+        image: `${WEAPON_IMAGE_PATH}/waning_redshift.webp`,
+    }
 };

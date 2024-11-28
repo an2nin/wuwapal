@@ -2,35 +2,42 @@
 import {
     Card,
     CardContent,
-    CardFooter,
+    CardDescription,
     CardHeader,
     CardTitle,
 } from "@/app/_components/ui/card";
-import { SOCIAL_LINKS } from "@/app/_constants/social-links";
+import { Discord } from "@/app/_components/ui/custom-icons";
+import MovingBorder from "@/app/_components/ui/moving-border";
+import { SOCIAL_LINKS_OBJ } from "@/app/_constants/social-links";
+import { useRouter } from "next-nprogress-bar";
 
 export default function SocialLinks() {
+    const router = useRouter();
+
     return (
         <Card className="h-full flex flex-col justify-between">
             <CardHeader>
-                <CardTitle>Social Links</CardTitle>
+                <CardTitle>Join Our Community on Discord!</CardTitle>
+                <CardDescription>
+                    Connect with fellow Rovers, share strategies, and stay
+                    updated on WuWaPal&apos;s latest tools and events.
+                </CardDescription>
             </CardHeader>
 
             <CardContent>
-                <div className="flex gap-3">
-                    {SOCIAL_LINKS.map(({ path, icon_big, srOnly }, idx) => (
-                        <a
-                            key={idx}
-                            className="text-foreground/60 dark:text-foreground/30 dark:hover:text-foreground hover:text-foreground transition-all"
-                            target="_blank"
-                            href={path}
-                        >
-                            {icon_big}
-                            <span className="sr-only">{srOnly}</span>
-                        </a>
-                    ))}
+                <div className="flex gap-5 mt-3">
+                    <a href={SOCIAL_LINKS_OBJ.discord.path} target="_blank">
+                        <MovingBorder isHoverable>
+                            <div className="flex items-center gap-3 px-2 min-w-32 justify-center group animate-pulse duration-3000 group-hover:animate-none">
+                                <span className="text-foreground transition-all">
+                                    <Discord />
+                                </span>
+                                Join Us
+                            </div>
+                        </MovingBorder>
+                    </a>
                 </div>
             </CardContent>
-            <CardFooter></CardFooter>
         </Card>
     );
 }

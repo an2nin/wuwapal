@@ -11,27 +11,19 @@ import React from "react";
 
 export default function BasicIntro() {
     return (
-        <Card>
+        <Card className="h-full">
             <CardHeader>
                 <CardTitle>
-                    Hey fellow <span className="text-primary">Rover</span>, 
+                    Hey fellow <span className="text-primary">Rover!</span>
                 </CardTitle>
             </CardHeader>
             <CardContent>
                 <p className="leading-7 text-sm text-muted-foreground">
-                    This website is dedicated to enhancing
-                    your experience in Wuthering Waves. Currently, we offer a
-                    Convene (Pull) Tracker, global pull statistics and recently
-                    added Collector&apos;s Hub. We have many more tools in the
-                    pipeline that will be available soon. We highly value your
-                    feedback, which you can provide via{" "}
-                    <a
-                        className="underline text-primary hover:text-primary font-bold"
-                        href={SOCIAL_LINKS_OBJ["discord"].path}
-                        target="_blank"
-                    >
-                        Discord
-                    </a>{" "}
+                    Welcome to Wuwapal—your go-to site for all things Wuthering
+                    Waves. Right now, you can track your pulls with our Convene
+                    Tracker, check out global pull stats, and dive into the new
+                    Collector&apos;s Hub. And guess what? We&apos;re just
+                    getting started—more awesome tools are on the way!
                     {/* &{" "}
                     <a
                         className="underline text-primary hover:text-primary/70"
@@ -40,7 +32,17 @@ export default function BasicIntro() {
                     >
                         Github Issue
                     </a> */}
-                    .
+                </p>
+                <p className="mt-1">
+                    Got ideas or feedback? Hit us up on{" "}
+                    <a
+                        className="underline text-primary hover:text-primary font-bold"
+                        href={SOCIAL_LINKS_OBJ["discord"].path}
+                        target="_blank"
+                    >
+                        Discord
+                    </a>{" "}
+                    —we&apos;d love to hear from you!
                 </p>
             </CardContent>
         </Card>

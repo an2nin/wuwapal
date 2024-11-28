@@ -83,10 +83,10 @@ export default function Home() {
 
 
             <div className="grid lg:grid-cols-12 grid-cols-1 gap-5">
-                <div className="lg:col-span-9">
+                <div className="lg:col-span-7">
                     <BasicIntro />
                 </div>
-                <div className="lg:col-span-3">
+                <div className="lg:col-span-5">
                     <SocialLinks />
                 </div>
             </div>

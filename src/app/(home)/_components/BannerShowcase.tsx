@@ -13,12 +13,14 @@ import { convertToISOWithOffset } from "@/shared/helpers/time";
 
 const items = {
     s5: [
-        { name: "Camellya", rarity: 5, type: "resonators" },
-        { name: "Red Spring", rarity: 5, type: "weapons" },
+        { name: "Yinlin", rarity: 5, type: "resonators" },
+        { name: "Stringmaster", rarity: 5, type: "weapons" },
+        { name: "Xiangli Yao", rarity: 5, type: "resonators" },
+        { name: "Verity's Handle", rarity: 5, type: "weapons" },
     ],
-    s4: ["Danjin", "Yangyang", "Aalto"],
+    s4: ["Lumi", "Baizhi", "Yuanwu"],
     img: BANNERS.featured_resonator.image,
-    end_time: "2024-12-12 09:59",
+    end_time: "2025-01-01 11:59",
 };
 
 export default function BannerShowcase() {
@@ -36,9 +38,14 @@ export default function BannerShowcase() {
                     />
                     <div className="absolute bottom-0 left-0 h-full w-full">
                         <div className="flex gap-5 h-full items-center ml-4">
-                            <div className="flex flex-col gap-3">
-                                <ResourceAvatar item={items.s5[0]} />
-                                <ResourceAvatar item={items.s5[1]} />
+                            <div className="flex flex-col flex-wrap h-[13rem] justify-center gap-3">
+                                {items.s5.map((item, idx) => (
+                                    <ResourceAvatar key={idx} item={{
+                                        name: item.name,
+                                        rarity: 5,
+                                        type: item.type,
+                                    }} />
+                                ))}
                             </div>
                             <div className="flex flex-col flex-wrap h-[13rem] justify-center gap-3">
                                 {items.s4.map((item, idx) => (

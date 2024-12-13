@@ -9,11 +9,8 @@ import {
 import { Discord } from "@/app/_components/ui/custom-icons";
 import MovingBorder from "@/app/_components/ui/moving-border";
 import { SOCIAL_LINKS_OBJ } from "@/app/_constants/social-links";
-import { useRouter } from "next-nprogress-bar";
 
 export default function SocialLinks() {
-    const router = useRouter();
-
     return (
         <Card className="h-full flex flex-col justify-between">
             <CardHeader>

@@ -13,14 +13,14 @@ import { convertToISOWithOffset } from "@/shared/helpers/time";
 
 const items = {
     s5: [
-        { name: "Yinlin", rarity: 5, type: "resonators" },
-        { name: "Stringmaster", rarity: 5, type: "weapons" },
-        { name: "Xiangli Yao", rarity: 5, type: "resonators" },
-        { name: "Verity's Handle", rarity: 5, type: "weapons" },
+        { name: "Carlotta", rarity: 5, type: "resonators" },
+        { name: "The Last Dance", rarity: 5, type: "weapons" },
+        { name: "Zhezhi", rarity: 5, type: "resonators" },
+        { name: "Rime-Draped Sprouts", rarity: 5, type: "weapons" },
     ],
-    s4: ["Lumi", "Baizhi", "Yuanwu"],
+    s4: ["Chixia", "Sanhua", "Mortefi"],
     img: BANNERS.featured_resonator.image,
-    end_time: "2025-01-01 11:59",
+    end_time: "2025-01-23 09:59",
 };
 
 export default function BannerShowcase() {
@@ -40,11 +40,14 @@ export default function BannerShowcase() {
                         <div className="flex gap-5 h-full items-center ml-4">
                             <div className="flex flex-col flex-wrap h-[13rem] justify-center gap-3">
                                 {items.s5.map((item, idx) => (
-                                    <ResourceAvatar key={idx} item={{
-                                        name: item.name,
-                                        rarity: 5,
-                                        type: item.type,
-                                    }} />
+                                    <ResourceAvatar
+                                        key={idx}
+                                        item={{
+                                            name: item.name,
+                                            rarity: 5,
+                                            type: item.type,
+                                        }}
+                                    />
                                 ))}
                             </div>
                             <div className="flex flex-col flex-wrap h-[13rem] justify-center gap-3">
@@ -66,12 +69,10 @@ export default function BannerShowcase() {
             </CardContent>
             <CardFooter>
                 <div className="flex h-full gap-2 font-bold text-primary">
-                    Ending in
                     <CountdownTimer
-                        targetDate={convertToISOWithOffset(
-                            items.end_time,
-                            8
-                        )}
+                        startingText="Ends in "
+                        targetDate={convertToISOWithOffset(items.end_time, 8)}
+                        textIfEnded="Above Banner Ended :("
                     />
                 </div>
             </CardFooter>

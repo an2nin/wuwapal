@@ -18,6 +18,13 @@ export const FIVE_STAR_RESONATORS: any = {
         icon: `${RESONATOR_ICON_PATH}/camellya.webp`,
         quality: 5,
     },
+    Carlotta: {
+        element: "glacio",
+        weapon: "pistols",
+        image: `${RESONATOR_IMAGE_PATH}/carlotta.webp`,
+        icon: `${RESONATOR_ICON_PATH}/carlotta.webp`,
+        quality: 5,
+    },
     Changli: {
         element: "fusion",
         weapon: "sword",

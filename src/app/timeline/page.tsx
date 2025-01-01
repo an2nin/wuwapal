@@ -13,7 +13,7 @@ import DailyResetTimer from "../_components/timers/DailyResetTimer";
 import WeeklyResetTimer from "../_components/timers/WeeklyResetTimer";
 import { Info } from "lucide-react";
 export default function Timeline() {
-    const startDate = "2024-05-1";
+    const startDate = "2024-12-01";
 
     return (
         <div className="flex flex-col gap-5">

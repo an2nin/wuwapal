@@ -1,6 +1,16 @@
 import React, { useState, useEffect } from "react";
 
-const CountdownTimer = ({ targetDate }: { targetDate: string }) => {
+interface Props {
+    targetDate: string;
+    textIfEnded?: string;
+    startingText?: string;
+}
+
+const CountdownTimer = ({
+    targetDate,
+    textIfEnded = "Ended",
+    startingText,
+}: Props) => {
     const [timeLeft, setTimeLeft] = useState({
         days: 0,
         hours: 0,
@@ -37,7 +47,18 @@ const CountdownTimer = ({ targetDate }: { targetDate: string }) => {
 
     return (
         <p>
-            {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
+            {timeLeft.days < 0 ||
+            timeLeft.hours < 0 ||
+            timeLeft.minutes < 0 ||
+            timeLeft.seconds < 0 ? (
+                textIfEnded
+            ) : (
+                <>
+                    {startingText}
+                    {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m{" "}
+                    {timeLeft.seconds}s
+                </>
+            )}
         </p>
     );
 };

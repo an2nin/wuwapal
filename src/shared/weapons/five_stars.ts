@@ -107,6 +107,16 @@ export const FIVE_STAR_WEAPONS: any = {
             "Electric Amplification: Increases the DMG Bonus by 12%. When dealing Resonance Skill DMG, increases ATK by 12%, stacking up to 2. This effect lasts for 5s. When the equipped Resonator is not on the field, increases their ATK by an additional 12%.",
         image: `${WEAPON_IMAGE_PATH}/stringmaster.webp`,
     },
+    "The Last Dance": {
+        type: "pistols",
+        base_atk: 47,
+        stat_name: "Crit Rate",
+        stat_amount: "5.40%",
+        quality: 5,
+        skill_desc:
+            "Stormy Resolution: Increases Energy Regen by 12.8%. When Resonance Skill is released, increases ATK by 6%, stacking up to 2 time(s). This effect lasts for 10s.",
+        image: `${WEAPON_IMAGE_PATH}/the_last_dance.webp`,
+    },
     "Verdant Summit": {
         type: "broadblade",
         base_atk: 47,

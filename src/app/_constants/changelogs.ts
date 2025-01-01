@@ -1,5 +1,11 @@
 export const CHANGELOGS = [
     {
+        date: "2025-01-02",
+        changes: [
+            "Adds Carlotta, The Last Dance",
+        ],
+    },
+    {
         date: "2024-11-27",
         changes: [
             "Adds Celestial Spiral, Endless Collapse, Fusion Accretion, Relativistic Jet, and Waning Redshift",

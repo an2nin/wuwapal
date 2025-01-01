@@ -3,6 +3,7 @@ export const CHANGELOGS = [
         date: "2025-01-02",
         changes: [
             "Adds Carlotta, The Last Dance",
+            "Updates Event Timeline for v2.0",
         ],
     },
     {

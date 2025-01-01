@@ -60,8 +60,8 @@ const ALL_BANNERS = [
         color: "#7cb3ba",
         isGlobal: true,
         url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1147",
-      },
-      {
+    },
+    {
         name: "Absolute Pulsation - Zhezhi Weapon Banner",
         img: "https://snipboard.io/LiUNfr.jpg",
         startDate: "2024-08-15 13:00",
@@ -69,24 +69,24 @@ const ALL_BANNERS = [
         color: "#4fbdbe",
         isGlobal: true,
         url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1147",
-      },
-      {
+    },
+    {
         name: "Celestial Revelation - Xiangli Yao Banner",
         img: "https://snipboard.io/6Ywh7F.jpg",
         startDate: "2024-09-07 10:00",
         endDate: "2024-09-28 11:59",
         color: "#5562cc",
         url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1147",
-      },
-      {
+    },
+    {
         name: "Absolute Pulsation - Xiangli Yao Weapon Banner",
         img: "https://snipboard.io/6zIkbw.jpg",
         startDate: "2024-09-07 10:00",
         endDate: "2024-09-28 11:59",
         color: "#483a74",
         url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1147",
-      },
-      {
+    },
+    {
         name: "Til the Sea Turns Clear - Shorekeeper Banner",
         img: "https://snipboard.io/emZLR4.jpg",
         description: "Featured 4* are; Taoqi, Yangyang, Chixia.",
@@ -95,8 +95,8 @@ const ALL_BANNERS = [
         isGlobal: true,
         color: "#294156",
         url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1147",
-      },
-      {
+    },
+    {
         name: "Absolute Pulsation - Shorekeeper Weapon Banner",
         img: "https://snipboard.io/7WbTz0.jpg",
         description: "Featured 4* are; Endless Collapse, Discord, Comet Flare.",
@@ -105,8 +105,8 @@ const ALL_BANNERS = [
         isGlobal: true,
         color: "#7871a5",
         url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1408",
-      },
-      {
+    },
+    {
         name: "Prevail The Lasting Night - Jiyan Rerun Banner",
         img: "https://snipboard.io/S5xARm.jpg",
         description: "Featured 4* are; Youhu, Sanhua, Mortefi.",
@@ -114,18 +114,18 @@ const ALL_BANNERS = [
         endDate: "2024-11-13 11:59",
         color: "#54c1d6",
         url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1408",
-      },
-      {
+    },
+    {
         name: "Absolute Pulsation - Jiyan Weapon Banner",
         img: "https://snipboard.io/MugnOr.jpg",
         description:
-          "Featured 4* are; Celestial Spiral, Variation, Helios Cleaver.",
+            "Featured 4* are; Celestial Spiral, Variation, Helios Cleaver.",
         startDate: "2024-10-24 10:00",
         endDate: "2024-11-13 11:59",
         color: "#92875d",
         url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1408",
-      },
-      {
+    },
+    {
         name: "End of Lost Trail - Camellya Banner",
         img: "https://snipboard.io/4dcm9b.jpg",
         description: "Featured 4* are; Danjin, Yangyang, Aalto.",
@@ -135,20 +135,20 @@ const ALL_BANNERS = [
         color: "#402821",
         url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1607",
         reliability: "Official",
-      },
-      {
+    },
+    {
         name: "Red Spring - Camellya Weapon Banner",
         img: "https://snipboard.io/U5wIMa.jpg",
         description:
-          "Featured 4* are; Fusion Accretion, Commando of Conviction, Novaburst.",
+            "Featured 4* are; Fusion Accretion, Commando of Conviction, Novaburst.",
         startDate: "2024-11-14 11:00",
         endDate: "2024-12-12 09:59",
         isGlobal: true,
         color: "#a84955",
         url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1607",
         reliability: "Official",
-      },
-      {
+    },
+    {
         name: "Featured Resonator - Yinlin & Xiangli Yao Rerun Banners",
         img: "https://snipboard.io/uyqe72.jpg",
         description: "Featured 4* are; Lumi, Baizhi, Yuanwu.",
@@ -157,18 +157,58 @@ const ALL_BANNERS = [
         color: "#653e91",
         url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1607",
         reliability: "Official",
-      },
-      {
+    },
+    {
         name: "Featured Weapon - Yinlin & Xiangli Yao Rerun Weapon Banners",
         img: "https://snipboard.io/XZOYjk.jpg",
         description:
-          "Featured 4* are; Waning Redshift, Jinzhou Keeper, Hollow Mirage.",
+            "Featured 4* are; Waning Redshift, Jinzhou Keeper, Hollow Mirage.",
         startDate: "2024-12-12 10:00",
         endDate: "2025-01-01 11:59",
         color: "#272540",
         url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1607",
         reliability: "Official",
-      },
+    },
+    {
+        name: "When Silence Tolls - Carlotta & Zhezhi Rerun Banners",
+        img: "https://snipboard.io/EOflAo.jpg",
+        description: "Featured 4* are; Sanhua, Chixia, Mortefi.",
+        startDate: "2025-01-02 04:00",
+        endDate: "2025-01-23 09:59",
+        color: "#d2b1ad",
+        url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1864",
+        reliability: "Official",
+    },
+    {
+        name: "The Last Dance & Rime-Draped Sprouts - Carlotta & Zhezhi Weapon Banners",
+        img: "https://snipboard.io/g9myGO.jpg",
+        description:
+            "Featured 4* are; Waning Redshift, Jinzhou Keeper, Hollow Mirage.",
+        startDate: "2025-01-02 04:00",
+        endDate: "2025-01-23 09:59",
+        color: "#40619e",
+        url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1864",
+        reliability: "Official",
+    },
+    {
+      name: "Stage in the Box - Roccia & Jinhsi Rerun Banner",
+      img: "https://snipboard.io/eda9IF.jpg",
+      description: "Featured 4* are; Danjin, Youhu, Yuanwu.",
+      startDate: "2025-01-23 10:00",
+      endDate: "2025-02-12 11:59",
+      color: "#a365a7",
+      url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1864",
+    },
+    {
+      name: "Tragicomedy & Ages of Harvest - Roccia & Jinhsi Weapon Banner",
+      img: "https://snipboard.io/L6F73K.jpg",
+      description:
+        "Featured 4* are; Celestial Spiral, Dauntless Evernight, Variation.",
+      startDate: "2025-01-23 10:00",
+      endDate: "2025-02-12 11:59",
+      color: "#4d3871",
+      url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1864",
+    },
 ];
 
 export const BANNERS = convertDatesToServerTime(ALL_BANNERS);

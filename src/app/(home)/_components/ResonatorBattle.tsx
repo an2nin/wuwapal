@@ -7,7 +7,7 @@ import { useGlobalStatsQuery } from "@/redux/services/banner";
 import MovingBorder from "@/app/_components/ui/moving-border";
 import { COMBINED } from "@/shared/combined";
 
-const combatants = ["Yinlin", "Xiangli Yao"];
+const combatants = ["Carlotta", "Zhezhi"];
 
 export default function ResonatorBattle() {
     const router = useRouter();
@@ -31,23 +31,31 @@ export default function ResonatorBattle() {
                                     <div className="flex w-full justify-center relative md:gap-16 gap-5">
                                         <img
                                             className="h-56 w-auto"
-                                            src={`${COMBINED[combatants[0]].image}`}
+                                            src={`${
+                                                COMBINED[combatants[0]].image
+                                            }`}
                                             alt={combatants[0]}
                                         />
                                         <img
                                             className="h-56 w-auto transform scale-x-[-1]"
-                                            src={`${COMBINED[combatants[1]].image}`}
+                                            src={`${
+                                                COMBINED[combatants[1]].image
+                                            }`}
                                             alt={combatants[1]}
                                         />
 
                                         <div className="absolute bottom-0 left-0 w-full flex justify-between">
                                             <div className="lg:bg-primary/50 bg-primary py-2 px-4 rounded-2xl w-30 text-center">
                                                 <div className="lg:text-3xl font-bold">
-                                                    {
-                                                        globalData.items
-                                                            .featured_resonator
-                                                            .s5s[combatants[0]].c
-                                                    }
+                                                    {globalData.items.featured_resonator.s5s.hasOwnProperty(
+                                                        combatants[0]
+                                                    )
+                                                        ? globalData.items
+                                                              .featured_resonator
+                                                              .s5s[
+                                                              combatants[0]
+                                                          ].c
+                                                        : 0}
                                                 </div>
                                                 <div>{combatants[0]}</div>
                                             </div>
@@ -63,11 +71,15 @@ export default function ResonatorBattle() {
                                             </div>
                                             <div className="lg:bg-primary/50 bg-primary py-2 px-4 rounded-2xl w-30 text-center">
                                                 <div className="lg:text-3xl font-bold">
-                                                    {
-                                                        globalData.items
-                                                            .featured_resonator
-                                                            .s5s[combatants[1]].c
-                                                    }
+                                                    {globalData.items.featured_resonator.s5s.hasOwnProperty(
+                                                        combatants[1]
+                                                    )
+                                                        ? globalData.items
+                                                              .featured_resonator
+                                                              .s5s[
+                                                              combatants[1]
+                                                          ].c
+                                                        : 0}
                                                 </div>
                                                 <div>{combatants[1]}</div>
                                             </div>

@@ -5,7 +5,6 @@ import { useRouter } from "next-nprogress-bar";
 import Link from "next/link";
 import React from "react";
 import { NAVS } from "@/app/_constants/navs";
-
 interface Props {
     currentActiveNav: any;
 }
@@ -13,7 +12,7 @@ interface Props {
 export default function Header({ currentActiveNav }: Props) {
     const router = useRouter();
     return (
-        <header className="flex sticky top-0 z-50 lg:container w-full">
+        <header className="flex flex-col sticky top-0 z-50 lg:container w-full">
             <div className="w-full py-2 flex bg-card-light border rounded-b-xl justify-between items-center px-4">
                 <div className="lg:hidden block">
                     <SheetBar currentActiveNav={currentActiveNav} />
@@ -30,7 +29,10 @@ export default function Header({ currentActiveNav }: Props) {
                             className="h-10 w-10"
                             src="/android-chrome-192x192.png"
                         />
-                        <h1 className="font-bold">{process.env.NEXT_PUBLIC_APP_NAME}<span className="text-primary text-xs">.com</span></h1>
+                        <h1 className="font-bold">
+                            {process.env.NEXT_PUBLIC_APP_NAME}
+                            <span className="text-primary text-xs">.com</span>
+                        </h1>
                     </Link>
                 </div>
                 <div className="hidden lg:flex gap-2">

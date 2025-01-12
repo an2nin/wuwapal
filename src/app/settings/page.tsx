@@ -1,7 +1,7 @@
 "use client";
 import PageHeader from "../_components/layout/PageHeader";
 import BackupManager from "./_components/BackupManager";
-import CloudSync from "./_components/CloudSync";
+import CloudSync from "./_components/CloudSync/Index";
 import Profile from "./_components/Profile";
 
 export default function Settings() {

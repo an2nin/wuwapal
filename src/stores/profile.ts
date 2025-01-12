@@ -7,6 +7,8 @@ export interface Profile {
     banners?: any;
     banner_record_url?: string | null;
     game_path?: string | null;
+    player_id?: string | null;
+    svr_id?: string | null;
 }
 
 interface Profiles {
@@ -19,6 +21,8 @@ const initialProfilesState: Profiles = {
         banners: null,
         banner_record_url: null,
         game_path: null,
+        player_id: null,
+        svr_id: null,
     },
 };
 
@@ -35,6 +39,7 @@ export type ProfileStoreState = {
     addNewProfile: (name: string) => void;
     setProfileAsActive: (name: string) => void;
     addGamePath: (path: string) => void;
+    addPlayerInfo: (player_id: string, svr_id: string) => void;
     addBannerRecordUrl: (url: string) => void;
     addBanner: (name: string, banner: any) => void;
     getGamePath: () => string | null;
@@ -75,6 +80,8 @@ export const useProfileStore = create(
                         banners: null,
                         banner_record_url: null,
                         game_path: null,
+                        player_id: null,
+                        svr_id: null,
                     };
                     const profileKey = convertToProfileKey(name);
                     copy.profiles[profileKey] = newProfile;
@@ -92,7 +99,20 @@ export const useProfileStore = create(
                     const copy = { ...state };
                     const currentProfile = copy.profiles[state.active];
                     currentProfile.game_path = path;
-                    // console.log("path ",copy);
+
+                    return copy;
+                }),
+            addPlayerInfo: (player_id: string, svr_id: string) =>
+                set((state: any) => {
+                    const copy = { ...state };
+                    const currentProfile = copy.profiles[state.active];
+                    if (
+                        currentProfile.player_id == null &&
+                        currentProfile.svr_id == null
+                    ) {
+                        currentProfile.player_id = player_id;
+                        currentProfile.svr_id = svr_id;
+                    }
 
                     return copy;
                 }),
@@ -100,7 +120,7 @@ export const useProfileStore = create(
                 set((state: any) => {
                     const copy = { ...state };
                     const currentProfile = copy.profiles[state.active];
-                   
+
                     currentProfile.banner_record_url = url;
                     return copy;
                 }),

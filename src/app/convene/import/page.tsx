@@ -34,7 +34,6 @@ export default function Import() {
     };
 
     useEffect(() => {
-        setConveneRecordURL(profileStore.getBannerRecordUrl() || "");
         setGamePath(profileStore.getGamePath() || "");
     }, [profileStore]);
 

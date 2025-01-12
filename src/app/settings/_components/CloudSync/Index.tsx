@@ -101,7 +101,12 @@ export default function CloudSync() {
     return (
         <Card>
             <CardHeader>
-                <CardTitle>Cloud Sync</CardTitle>
+                <CardTitle>
+                    <div className="flex justify-between items-start">
+                        <span>Cloud Sync</span>
+                        <span className="text-yellow-500 border-yellow-500 border rounded-lg p-2">Beta</span>
+                    </div>
+                </CardTitle>
             </CardHeader>
             <CardContent>
                 <CardDescription className="max-w-2xl">

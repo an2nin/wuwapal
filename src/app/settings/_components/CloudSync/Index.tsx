@@ -39,6 +39,7 @@ export default function CloudSync() {
         {
             isLoading: isRevokeAuthTokensLoading,
             isSuccess: isRevokeAuthTokensSuccess,
+            isError: isRevokeAuthTokensError,
         },
     ] = useRevokeAuthTokensMutation();
 
@@ -93,10 +94,10 @@ export default function CloudSync() {
     }, [isFetchProfileSuccess]);
 
     useEffect(() => {
-        if (isRevokeAuthTokensSuccess) {
+        if (isRevokeAuthTokensSuccess || isRevokeAuthTokensError) {
             authStore.clearStore();
         }
-    }, [isRevokeAuthTokensSuccess]);
+    }, [isRevokeAuthTokensSuccess, isRevokeAuthTokensError]);
 
     return (
         <Card>

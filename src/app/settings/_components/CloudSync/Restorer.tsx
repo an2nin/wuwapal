@@ -4,11 +4,16 @@ import {
     useCreateFileInDriveMutation,
     useLazyFetchFileFromDriveQuery,
 } from "@/redux/services/gdrive";
+import { ProfileStoreState, useProfileStore } from "@/stores/profile";
 import { CloudDownload } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 export default function Restorer() {
+    const profileStore = useProfileStore<ProfileStoreState>(
+        (state: ProfileStoreState) => state
+    );
+    const [isRestorerActive, setIsRestorerActive] = useState(false);
     const [
         fetchFileList,
         {
@@ -37,6 +42,7 @@ export default function Restorer() {
     ] = useLazyFetchFileFromDriveQuery();
 
     function handleRestore() {
+        setIsRestorerActive(true);
         fetchFileList({
             q: "name = 'wuwapal_backup.json'",
             spaces: "appDataFolder",
@@ -45,7 +51,10 @@ export default function Restorer() {
     }
 
     useEffect(() => {
-        if (!isFetchingFileListFromDrive && isFetchingFileListFromDriveSuccess) {
+        if (
+            !isFetchingFileListFromDrive &&
+            isFetchingFileListFromDriveSuccess
+        ) {
             if (fileList.files.length == 0) {
                 createFileInDrive({
                     params: {
@@ -59,20 +68,29 @@ export default function Restorer() {
                     },
                 });
             } else {
-                fetchFileFromDrive({
-                    id: fileList.files[0].id,
-                    params: {
-                        alt: "media",
-                        key: process.env.NEXT_PUBLIC_GOOGLE_KEY || "",
-                    },
-                });
+                if (isRestorerActive) {
+                    fetchFileFromDrive({
+                        id: fileList.files[0].id,
+                        params: {
+                            alt: "media",
+                            key: process.env.NEXT_PUBLIC_GOOGLE_KEY || "",
+                        },
+                    });
+                }
             }
         }
     }, [isFetchingFileListFromDriveSuccess, isFetchingFileListFromDrive]);
 
     useEffect(() => {
         if (!isFetchingFile && isFetchingFileSuccess) {
-            if (fileData == null) toast.warning("No data to restore");
+            if (fileData == null) {
+                toast.warning("No data to restore");
+            } else {
+                profileStore.importProfileStore(fileData);
+                toast.success("Data restored successfully");
+            }
+
+            setIsRestorerActive(false);
         }
     }, [isFetchingFileSuccess, isFetchingFile]);
 

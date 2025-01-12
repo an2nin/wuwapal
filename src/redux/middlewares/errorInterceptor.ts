@@ -39,7 +39,7 @@ export const rtkQueryErrorLogger: Middleware =
                             });
                         }
 
-                        toast.error("Token refreshed, Retry the action");
+                        toast.warning("Token refreshed, Retry the action");
                     } catch (error) {
                         console.error("Error refreshing token", error);
                         toast.error("Error refreshing token");

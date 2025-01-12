@@ -141,6 +141,11 @@ export type RefreshAccessTokenResponse = {
     };
 };
 
+export type RevokeAuthTokensResponse = {
+    status: string;
+    message: string;
+}
+
 export type FetchProfileResponse = {
     sub: string;
     name: string;
@@ -151,18 +156,17 @@ export type FetchProfileResponse = {
 };
 
 export type UploadToDrivePayload = {
-    metadata: {
-        name: string;
-        parents: string[];
-    };
-    file: Blob;
+    id: string;
+    params: {
+        uploadType: string;
+        alt: string;
+        key: string;
+    },
+    body: string;
 };
 
 export type UploadToDriveResponse = {
-    kind: string;
-    id: string;
-    name: string;
-    mimeType: string;
+    
 };
 
 export type FetchFileListFromDrivePayload = {
@@ -201,4 +205,4 @@ export type FetchFileFromDrivePayload = {
     };
 };
 
-export type FetchFileFromDriveResponse = Blob;
+export type FetchFileFromDriveResponse = string;

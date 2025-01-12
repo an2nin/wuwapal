@@ -1,5 +1,8 @@
 import { api } from "@/redux/api/base";
-import { GOOGLE_DRIVE_ENDPOINT } from "@/redux/api/endpoints";
+import {
+    GOOGLE_DRIVE_ENDPOINT,
+    GOOGLE_DRIVE_UPLOAD_ENDPOINT,
+} from "@/redux/api/endpoints";
 import {
     CreateFileInDrivePayload,
     CreateFileInDriveResponse,
@@ -14,18 +17,21 @@ import { useAuthStore } from "@/stores/auth";
 
 export const gDriveApis = api.injectEndpoints({
     endpoints: (build) => ({
-        uploadToDrive: build.mutation<any, UploadToDrivePayload>({
-            query(form) {
+        uploadToDrive: build.mutation<
+            UploadToDriveResponse,
+            UploadToDrivePayload
+        >({
+            query({ id, params, body }) {
                 const authStore = useAuthStore.getState();
 
                 return {
-                    url: GOOGLE_DRIVE_ENDPOINT + "/files?uploadType=multipart",
+                    url: GOOGLE_DRIVE_UPLOAD_ENDPOINT + `/${id}`,
                     headers: {
                         Authorization: `Bearer ${authStore.access}`,
                     },
-                    method: "POST",
-                    body: form,
-                    formData: true,
+                    method: "PATCH",
+                    params,
+                    body,
                 };
             },
         }),

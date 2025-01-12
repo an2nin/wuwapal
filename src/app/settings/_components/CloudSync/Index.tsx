@@ -15,12 +15,16 @@ import { useAuthStore } from "@/stores/auth";
 import {
     useFetchAuthTokensMutation,
     useLazyFetchProfileQuery,
+    useRevokeAuthTokensMutation,
 } from "@/redux/services/auth";
 import Uploader from "./Uploader";
 import Restorer from "./Restorer";
+import useSupabase from "@/app/_hooks/useSupabase";
 
 export default function CloudSync() {
     const authStore = useAuthStore((state) => state);
+
+    const { upsertData: upsertUserData } = useSupabase("user_data");
     const [
         fetchAuthTokens,
         {
@@ -29,6 +33,14 @@ export default function CloudSync() {
             isSuccess: isFetchAuthTokensSuccess,
         },
     ] = useFetchAuthTokensMutation();
+
+    const [
+        revokeAuthTokens,
+        {
+            isLoading: isRevokeAuthTokensLoading,
+            isSuccess: isRevokeAuthTokensSuccess,
+        },
+    ] = useRevokeAuthTokensMutation();
 
     const [
         fetchProfile,
@@ -54,7 +66,7 @@ export default function CloudSync() {
     });
 
     const logout = () => {
-        authStore.clearStore();
+        revokeAuthTokens();
     };
 
     useEffect(() => {
@@ -70,8 +82,21 @@ export default function CloudSync() {
     useEffect(() => {
         if (isFetchProfileSuccess) {
             authStore.setProfile(profile);
+            upsertUserData(
+                {
+                    email: profile.email,
+                    profile: JSON.stringify(profile),
+                },
+                ["email"]
+            );
         }
     }, [isFetchProfileSuccess]);
+
+    useEffect(() => {
+        if (isRevokeAuthTokensSuccess) {
+            authStore.clearStore();
+        }
+    }, [isRevokeAuthTokensSuccess]);
 
     return (
         <Card>
@@ -82,12 +107,22 @@ export default function CloudSync() {
                 <CardDescription className="max-w-2xl">
                     Easily save and access your data across all your devices
                     with your Google Account.
+                    {authStore.profile?.email && (
+                        <div className="mt-2 flex flex-wrap items-center gap-2">
+                            <p className="text-primary font-bold">
+                                Signed in with:
+                            </p>
+                            <div className="bg-black px-4 py-1 rounded-lg font-bold text-black hover:text-white cursor-default">
+                                {authStore.profile?.email}
+                            </div>
+                        </div>
+                    )}
                 </CardDescription>
             </CardContent>
             <CardFooter>
                 {authStore.access ? (
-                    <div className="w-full flex justify-between items-center">
-                        <div className="flex gap-5">
+                    <div className="w-full flex flex-wrap gap-5 lg:justify-between justify-center items-center">
+                        <div className="flex flex-wrap items-center justify-center lg:justify-start  gap-5">
                             <Uploader />
                             <Restorer />
                         </div>
@@ -98,7 +133,9 @@ export default function CloudSync() {
                         >
                             <div className="flex gap-2 items-center">
                                 <LogOut className="size-6 text-red-500" />
-                                Sign Out From Google
+                                {isRevokeAuthTokensLoading
+                                    ? "Signing Out..."
+                                    : "Sign Out From Google"}
                             </div>
                         </Button>
                     </div>

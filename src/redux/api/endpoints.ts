@@ -5,3 +5,4 @@ export const GLOBAL_STAT_GIST = "https://gist.githubusercontent.com/antonin686/3
 export const API_SERVER_ENDPOINT = process.env.NEXT_PUBLIC_API_SERVER
 export const GOOGLE_OAUTH_ENDPOINT = "https://www.googleapis.com/oauth2/v3"
 export const GOOGLE_DRIVE_ENDPOINT = "https://content.googleapis.com/drive/v3/files"
+export const GOOGLE_DRIVE_UPLOAD_ENDPOINT = "https://content.googleapis.com/upload/drive/v3/files"

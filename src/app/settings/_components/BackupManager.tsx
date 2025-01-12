@@ -80,7 +80,7 @@ export default function BackupManager() {
                 </CardDescription>
             </CardHeader>
             <CardFooter className="mt-4">
-                <div className="flex justify-end w-full gap-3">
+                <div className="flex flex-wrap lg:justify-end justify-center w-full gap-5">
                     <input
                         type="file"
                         accept="application/json"

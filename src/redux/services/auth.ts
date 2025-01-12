@@ -9,6 +9,7 @@ import {
     FetchProfileResponse,
     RefreshAccessTokenPayload,
     RefreshAccessTokenResponse,
+    RevokeAuthTokensResponse,
 } from "@/redux/api/types";
 import { useAuthStore } from "@/stores/auth";
 
@@ -38,13 +39,23 @@ export const authApis = api.injectEndpoints({
                 };
             },
         }),
-        fetchProfile: build.query<
-            FetchProfileResponse,
-            void
-        >({
+        revokeAuthTokens: build.mutation<RevokeAuthTokensResponse, void>({
             query() {
                 const authStore = useAuthStore.getState();
-                
+
+                return {
+                    url: API_SERVER_ENDPOINT + "/auth/revoke",
+                    method: "POST",
+                    body: {
+                        refresh_token: authStore.refresh || "",
+                    },
+                };
+            },
+        }),
+        fetchProfile: build.query<FetchProfileResponse, void>({
+            query() {
+                const authStore = useAuthStore.getState();
+
                 return {
                     url: GOOGLE_OAUTH_ENDPOINT + "/userinfo",
                     headers: {
@@ -61,4 +72,5 @@ export const {
     useFetchAuthTokensMutation,
     useRefreshAccessTokenMutation,
     useLazyFetchProfileQuery,
+    useRevokeAuthTokensMutation
 } = authApis;

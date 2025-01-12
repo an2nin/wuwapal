@@ -59,7 +59,7 @@ export default function LocalStorage() {
                 />
             </div>
             <div className="flex justify-end">
-                <Button variant="outline" onClick={handleLocaleStorageSave}>Update Url & Path</Button>
+                <Button variant="outline" onClick={handleLocaleStorageSave}>Update Game Path</Button>
             </div>
         </div>
     );

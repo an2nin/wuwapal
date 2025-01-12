@@ -159,6 +159,16 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
         if (
             currentBanner === TOTAL_BANNERS + 1 &&
             !hasRunEffect.current &&
+            isBannerSuccess
+        ) {
+            profileStore.addPlayerInfo(
+                processedURLBody.player_id,
+                processedURLBody.svr_id
+            );
+        }
+        if (
+            currentBanner === TOTAL_BANNERS + 1 &&
+            !hasRunEffect.current &&
             sentForGlobalStat &&
             isBannerSuccess
         ) {

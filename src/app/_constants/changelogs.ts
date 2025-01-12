@@ -1,5 +1,11 @@
 export const CHANGELOGS = [
     {
+        date: "2025-01-13",
+        changes: [
+            "Adds Cloud Sync (Beta) With Google Drive",
+        ],
+    },
+    {
         date: "2025-01-02",
         changes: [
             "Adds Carlotta, The Last Dance",

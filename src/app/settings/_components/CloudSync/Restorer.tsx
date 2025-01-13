@@ -1,37 +1,16 @@
 import { Button } from "@/app/_components/ui/button";
-import {
-    useLazyFetchFileListFromDriveQuery,
-    useCreateFileInDriveMutation,
-    useLazyFetchFileFromDriveQuery,
-} from "@/redux/services/gdrive";
+import { useLazyFetchFileFromDriveQuery } from "@/redux/services/gdrive";
+import { useAuthStore } from "@/stores/auth";
 import { ProfileStoreState, useProfileStore } from "@/stores/profile";
-import { CloudDownload } from "lucide-react";
-import { useEffect, useState } from "react";
+import { CloudDownload, LoaderCircle } from "lucide-react";
+import { useEffect } from "react";
 import { toast } from "sonner";
 
 export default function Restorer() {
     const profileStore = useProfileStore<ProfileStoreState>(
         (state: ProfileStoreState) => state
     );
-    const [isRestorerActive, setIsRestorerActive] = useState(false);
-    const [
-        fetchFileList,
-        {
-            data: fileList,
-            isFetching: isFetchingFileListFromDrive,
-            isSuccess: isFetchingFileListFromDriveSuccess,
-        },
-    ] = useLazyFetchFileListFromDriveQuery();
-
-    const [
-        createFileInDrive,
-        {
-            data: createdFileData,
-            isLoading: isCreatingFile,
-            isSuccess: isCreatingFileSuccess,
-        },
-    ] = useCreateFileInDriveMutation();
-
+    const authStore = useAuthStore((state) => state);
     const [
         fetchFileFromDrive,
         {
@@ -42,44 +21,18 @@ export default function Restorer() {
     ] = useLazyFetchFileFromDriveQuery();
 
     function handleRestore() {
-        setIsRestorerActive(true);
-        fetchFileList({
-            q: "name = 'wuwapal_backup.json'",
-            spaces: "appDataFolder",
-            key: process.env.NEXT_PUBLIC_GOOGLE_KEY || "",
-        });
-    }
-
-    useEffect(() => {
-        if (
-            !isFetchingFileListFromDrive &&
-            isFetchingFileListFromDriveSuccess
-        ) {
-            if (fileList.files.length == 0) {
-                createFileInDrive({
-                    params: {
-                        fields: "id",
-                        alt: "json",
-                        key: process.env.NEXT_PUBLIC_GOOGLE_KEY || "",
-                    },
-                    body: {
-                        name: "wuwapal_backup.json",
-                        parents: ["appDataFolder"],
-                    },
-                });
-            } else {
-                if (isRestorerActive) {
-                    fetchFileFromDrive({
-                        id: fileList.files[0].id,
-                        params: {
-                            alt: "media",
-                            key: process.env.NEXT_PUBLIC_GOOGLE_KEY || "",
-                        },
-                    });
-                }
-            }
+        if (authStore.cloud_file_id) {
+            fetchFileFromDrive({
+                id: authStore.cloud_file_id,
+                params: {
+                    alt: "media",
+                    key: process.env.NEXT_PUBLIC_GOOGLE_KEY || "",
+                },
+            });
+        } else {
+            toast.error("No File Found, Please re-login to your account");
         }
-    }, [isFetchingFileListFromDriveSuccess, isFetchingFileListFromDrive]);
+    }
 
     useEffect(() => {
         if (!isFetchingFile && isFetchingFileSuccess) {
@@ -89,8 +42,6 @@ export default function Restorer() {
                 profileStore.importProfileStore(fileData);
                 toast.success("Data restored successfully");
             }
-
-            setIsRestorerActive(false);
         }
     }, [isFetchingFileSuccess, isFetchingFile]);
 
@@ -100,15 +51,11 @@ export default function Restorer() {
             className="h-20 flex items-center justify-center"
             onClick={handleRestore}
         >
-            <CloudDownload
-                className={`size-8 ${
-                    isFetchingFileListFromDrive ||
-                    isCreatingFile ||
-                    isFetchingFile
-                        ? "animate-spin"
-                        : ""
-                }`}
-            />
+            {isFetchingFile ? (
+                <LoaderCircle className="animate-spin size-8" />
+            ) : (
+                <CloudDownload className="size-8" />
+            )}
             <div className="flex flex-col">
                 <span className="text-base">Restore Your Data </span>
                 <span className="font-normal">From Cloud</span>

@@ -6,17 +6,20 @@ interface InitialAuthState {
     access: string | null;
     refresh: string | null;
     profile: FetchProfileResponse | null;
+    cloud_file_id: string | null;
 }
 
 const initialState: InitialAuthState = {
     access: null,
     refresh: null,
     profile: null,
+    cloud_file_id: null,
 };
 
 export type AuthStoreState = InitialAuthState & {
     setTokens: (access: string, refresh: string) => void;
     setProfile: (profile: FetchProfileResponse | null) => void;
+    setCloudFileId: (cloud_file_id: string) => void;
     clearStore: () => void;
 };
 
@@ -28,6 +31,7 @@ export const useAuthStore = create<AuthStoreState>()(
                 set({ access, refresh }),
             setProfile: (profile: FetchProfileResponse | null) =>
                 set({ profile }),
+            setCloudFileId: (cloud_file_id: string) => set({ cloud_file_id }),
             clearStore: () => set(initialState),
         }),
         {

@@ -9,7 +9,7 @@ import {
 } from "@/app/_components/ui/card";
 import { Google } from "@/app/_components/ui/custom-icons";
 import { useGoogleLogin } from "@react-oauth/google";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { LogOut } from "lucide-react";
 import { useAuthStore } from "@/stores/auth";
 import {
@@ -20,37 +20,46 @@ import {
 import Uploader from "./Uploader";
 import Restorer from "./Restorer";
 import useSupabase from "@/app/_hooks/useSupabase";
+import {
+    useCreateFileInDriveMutation,
+    useLazyFetchFileListFromDriveQuery,
+} from "@/redux/services/gdrive";
+
+const GOOGLE_SCOPES = [
+    "https://www.googleapis.com/auth/userinfo.profile",
+    "https://www.googleapis.com/auth/userinfo.email",
+    "https://www.googleapis.com/auth/drive.appdata",
+].join(" ");
 
 export default function CloudSync() {
     const authStore = useAuthStore((state) => state);
-
     const { upsertData: upsertUserData } = useSupabase("user_data");
+
+    // API Mutations and Queries
     const [
         fetchAuthTokens,
-        {
-            data: authTokens,
-            isLoading: isFetchAuthTokensLoading,
-            isSuccess: isFetchAuthTokensSuccess,
-        },
+        { data: authTokens, isSuccess: isAuthTokensFetched },
     ] = useFetchAuthTokensMutation();
-
+    const [fetchProfile, { data: profile, isSuccess: isProfileFetched }] =
+        useLazyFetchProfileQuery();
+    const [revokeAuthTokens, { isLoading: isRevoking, isSuccess: isRevoked, isError: isRevokeError }] =
+        useRevokeAuthTokensMutation();
     const [
-        revokeAuthTokens,
+        fetchFileList,
         {
-            isLoading: isRevokeAuthTokensLoading,
-            isSuccess: isRevokeAuthTokensSuccess,
-            isError: isRevokeAuthTokensError,
+            data: fileList,
+            isFetching: isFetchingFileListFromDrive,
+            isSuccess: isFetchingFileListFromDriveSuccess,
         },
-    ] = useRevokeAuthTokensMutation();
-
+    ] = useLazyFetchFileListFromDriveQuery();
     const [
-        fetchProfile,
+        createFileInDrive,
         {
-            data: profile,
-            isLoading: isFetchProfileLoading,
-            isSuccess: isFetchProfileSuccess,
+            data: createdFileData,
+            isLoading: isCreatingFile,
+            isSuccess: isCreatingFileSuccess,
         },
-    ] = useLazyFetchProfileQuery();
+    ] = useCreateFileInDriveMutation();
 
     const login = useGoogleLogin({
         onSuccess: (tokenResponse) => {
@@ -59,46 +68,86 @@ export default function CloudSync() {
                 redirect_uri: window.location.origin,
             });
         },
-        scope: [
-            "https://www.googleapis.com/auth/userinfo.profile",
-            "https://www.googleapis.com/auth/userinfo.email",
-            "https://www.googleapis.com/auth/drive.appdata",
-        ].join(" "),
+        scope: GOOGLE_SCOPES,
         flow: "auth-code",
     });
 
-    const logout = () => {
-        revokeAuthTokens();
-    };
+    const logout = () => revokeAuthTokens();
 
+    // Effects for Authentication Flow
     useEffect(() => {
-        if (isFetchAuthTokensSuccess) {
+        if (isAuthTokensFetched) {
             authStore.setTokens(
                 authTokens.data.access_token,
                 authTokens.data.refresh_token
             );
             fetchProfile();
+            fetchFileList({
+                q: "name = 'wuwapal_backup.json'",
+                spaces: "appDataFolder",
+                key: process.env.NEXT_PUBLIC_GOOGLE_KEY || "",
+            });
         }
-    }, [isFetchAuthTokensSuccess]);
+    }, [isAuthTokensFetched]);
 
     useEffect(() => {
-        if (isFetchProfileSuccess) {
+        if (isProfileFetched) {
             authStore.setProfile(profile);
             upsertUserData(
-                {
-                    email: profile.email,
-                    profile: JSON.stringify(profile),
-                },
+                { email: profile.email, profile: JSON.stringify(profile) },
                 ["email"]
             );
         }
-    }, [isFetchProfileSuccess]);
+    }, [isProfileFetched]);
 
     useEffect(() => {
-        if (isRevokeAuthTokensSuccess || isRevokeAuthTokensError) {
+        if (isRevoked || isRevokeError) {
             authStore.clearStore();
         }
-    }, [isRevokeAuthTokensSuccess, isRevokeAuthTokensError]);
+    }, [isRevoked, isRevokeError]);
+
+    useEffect(() => {
+        if (
+            !isFetchingFileListFromDrive &&
+            isFetchingFileListFromDriveSuccess
+        ) {
+            if (fileList.files.length == 0) {
+                createFileInDrive({
+                    params: {
+                        fields: "id",
+                        alt: "json",
+                        key: process.env.NEXT_PUBLIC_GOOGLE_KEY || "",
+                    },
+                    body: {
+                        name: "wuwapal_backup.json",
+                        parents: ["appDataFolder"],
+                    },
+                });
+            }else{
+                authStore.setCloudFileId(fileList.files[0].id);
+            }
+        }
+    }, [isFetchingFileListFromDriveSuccess, isFetchingFileListFromDrive]);
+
+    useEffect(() => {
+        if (isCreatingFileSuccess) {
+            authStore.setCloudFileId(createdFileData.id);
+        }
+    }, [isCreatingFileSuccess]);
+
+    // Memoized Computed Values
+    const profileEmail = useMemo(
+        () =>
+            authStore.profile?.email ? (
+                <div className="mt-2 flex flex-wrap items-center gap-2">
+                    <p className="text-primary font-bold">Signed in with:</p>
+                    <div className="bg-black px-4 py-1 rounded-lg font-bold text-black hover:text-white cursor-default">
+                        {authStore.profile?.email}
+                    </div>
+                </div>
+            ) : null,
+        [authStore.profile?.email]
+    );
 
     return (
         <Card>
@@ -106,7 +155,9 @@ export default function CloudSync() {
                 <CardTitle>
                     <div className="flex justify-between items-start">
                         <span>Cloud Sync</span>
-                        <span className="text-yellow-500 border-yellow-500 border rounded-lg p-2">Beta</span>
+                        <span className="text-yellow-500 border-yellow-500 border rounded-lg p-2">
+                            Beta
+                        </span>
                     </div>
                 </CardTitle>
             </CardHeader>
@@ -114,33 +165,24 @@ export default function CloudSync() {
                 <CardDescription className="max-w-2xl">
                     Easily save and access your data across all your devices
                     with your Google Account.
-                    {authStore.profile?.email && (
-                        <div className="mt-2 flex flex-wrap items-center gap-2">
-                            <p className="text-primary font-bold">
-                                Signed in with:
-                            </p>
-                            <div className="bg-black px-4 py-1 rounded-lg font-bold text-black hover:text-white cursor-default">
-                                {authStore.profile?.email}
-                            </div>
-                        </div>
-                    )}
+                    {profileEmail}
                 </CardDescription>
             </CardContent>
             <CardFooter>
                 {authStore.access ? (
                     <div className="w-full flex flex-wrap gap-5 lg:justify-between justify-center items-center">
-                        <div className="flex flex-wrap items-center justify-center lg:justify-start  gap-5">
+                        <div className="flex flex-wrap items-center justify-center lg:justify-start gap-5">
                             <Uploader />
                             <Restorer />
                         </div>
                         <Button
-                            variant={"outline"}
+                            variant="outline"
                             className="hover:scale-105 hover:bg-transparent"
-                            onClick={() => logout()}
+                            onClick={logout}
                         >
                             <div className="flex gap-2 items-center">
                                 <LogOut className="size-6 text-red-500" />
-                                {isRevokeAuthTokensLoading
+                                {isRevoking
                                     ? "Signing Out..."
                                     : "Sign Out From Google"}
                             </div>
@@ -149,21 +191,20 @@ export default function CloudSync() {
                 ) : (
                     <div className="w-full flex justify-end items-center">
                         <Button
-                            variant={"outline"}
+                            variant="outline"
                             className="hover:scale-105 hover:bg-transparent"
-                            onClick={() => login()}
+                            onClick={login}
                         >
                             <div className="flex gap-2 items-center">
                                 <Google
-                                    className={`${
-                                        isFetchAuthTokensLoading ||
-                                        isFetchProfileLoading
+                                    className={
+                                        isAuthTokensFetched
                                             ? "animate-spin"
                                             : ""
-                                    }`}
+                                    }
                                 />
-                                {isFetchAuthTokensLoading
-                                    ? isFetchProfileLoading
+                                {isAuthTokensFetched
+                                    ? isProfileFetched
                                         ? "Signing In..."
                                         : "Fetching Profile..."
                                     : "Sign In With Google"}

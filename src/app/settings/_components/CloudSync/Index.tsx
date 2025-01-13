@@ -38,12 +38,24 @@ export default function CloudSync() {
     // API Mutations and Queries
     const [
         fetchAuthTokens,
-        { data: authTokens, isSuccess: isAuthTokensFetched },
+        {
+            data: authTokens,
+            isSuccess: isAuthTokensFetched,
+            isLoading: isAuthTokenFetching,
+        },
     ] = useFetchAuthTokensMutation();
-    const [fetchProfile, { data: profile, isSuccess: isProfileFetched }] =
-        useLazyFetchProfileQuery();
-    const [revokeAuthTokens, { isLoading: isRevoking, isSuccess: isRevoked, isError: isRevokeError }] =
-        useRevokeAuthTokensMutation();
+    const [
+        fetchProfile,
+        {
+            data: profile,
+            isSuccess: isProfileFetched,
+            isFetching: isProfileFetching,
+        },
+    ] = useLazyFetchProfileQuery();
+    const [
+        revokeAuthTokens,
+        { isLoading: isRevoking, isSuccess: isRevoked, isError: isRevokeError },
+    ] = useRevokeAuthTokensMutation();
     const [
         fetchFileList,
         {
@@ -123,7 +135,7 @@ export default function CloudSync() {
                         parents: ["appDataFolder"],
                     },
                 });
-            }else{
+            } else {
                 authStore.setCloudFileId(fileList.files[0].id);
             }
         }
@@ -149,6 +161,19 @@ export default function CloudSync() {
         [authStore.profile?.email]
     );
 
+    function getMessage() {
+        switch (true) {
+            case isAuthTokenFetching:
+                return "Signing in...";
+            case isProfileFetching || isFetchingFileListFromDrive:
+                return "Fetching Profile...";
+            case isCreatingFile:
+                return "Creating File...";
+            default:
+                return "Sign In With Google";
+        }
+    }
+
     return (
         <Card>
             <CardHeader>
@@ -169,7 +194,7 @@ export default function CloudSync() {
                 </CardDescription>
             </CardContent>
             <CardFooter>
-                {authStore.access ? (
+                {authStore.cloud_file_id ? (
                     <div className="w-full flex flex-wrap gap-5 lg:justify-between justify-center items-center">
                         <div className="flex flex-wrap items-center justify-center lg:justify-start gap-5">
                             <Uploader />
@@ -198,16 +223,15 @@ export default function CloudSync() {
                             <div className="flex gap-2 items-center">
                                 <Google
                                     className={
-                                        isAuthTokensFetched
+                                        isAuthTokenFetching ||
+                                        isProfileFetching ||
+                                        isFetchingFileListFromDrive ||
+                                        isCreatingFile
                                             ? "animate-spin"
                                             : ""
                                     }
                                 />
-                                {isAuthTokensFetched
-                                    ? isProfileFetched
-                                        ? "Signing In..."
-                                        : "Fetching Profile..."
-                                    : "Sign In With Google"}
+                                {getMessage()}
                             </div>
                         </Button>
                     </div>

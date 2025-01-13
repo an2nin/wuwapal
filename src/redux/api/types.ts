@@ -112,6 +112,7 @@ export interface GlobalStatResponse {
 
 export type FetchAuthTokensPayload = {
     code: string;
+    redirect_uri: string;
 };
 
 export type FetchAuthTokensResponse = {

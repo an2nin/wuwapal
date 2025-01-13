@@ -56,6 +56,7 @@ export default function CloudSync() {
         onSuccess: (tokenResponse) => {
             fetchAuthTokens({
                 code: tokenResponse.code,
+                redirect_uri: window.location.origin,
             });
         },
         scope: [

@@ -1,39 +1,32 @@
-import { FIVE_STAR_RESONATORS } from "./five_stars";
+import { FIVE_STAR_RESONATOR_NAMES, FIVE_STAR_RESONATORS } from "./five_stars";
 import { FOUR_STAR_RESONATORS } from "./four_stars";
 
-const IMAGE_PATH = process.env.NEXT_PUBLIC_IMAGE_URL || "";
-export const ELEMENT_IMAGE_PATH = `${IMAGE_PATH}/elements`;
+export type Resonator = {
+    element: string;
+    weapon: string;
+    image: string;
+    icon: string;
+    quality: number;
+};
+
+export const FIVE_STAR_QUALITY = 5;
+export const FOUR_STAR_QUALITY = 4;
 
 export const STANDARD_RESONATORS: string[] = [
-    "Calcharo",
-    "Encore",
-    "Jianxin",
-    "Lingyang",
-    "Verina",
+    FIVE_STAR_RESONATOR_NAMES.CALCHARO,
+    FIVE_STAR_RESONATOR_NAMES.ENCORE,
+    FIVE_STAR_RESONATOR_NAMES.JIANXIN,
+    FIVE_STAR_RESONATOR_NAMES.LINGYANG,
+    FIVE_STAR_RESONATOR_NAMES.VERINA,
 ];
-
-export const ELEMENTS: any = {
-    aero: {
-        image: `${ELEMENT_IMAGE_PATH}/aero.webp`,
-    },
-    electro: {
-        image: `${ELEMENT_IMAGE_PATH}/electro.webp`,
-    },
-    fusion: {
-        image: `${ELEMENT_IMAGE_PATH}/fusion.webp`,
-    },
-    glacio: {
-        image: `${ELEMENT_IMAGE_PATH}/glacio.webp`,
-    },
-    havoc: {
-        image: `${ELEMENT_IMAGE_PATH}/havoc.webp`,
-    },
-    spectro: {
-        image: `${ELEMENT_IMAGE_PATH}/spectro.webp`,
-    },
-};
 
 export const RESONATORS = {
     ...FIVE_STAR_RESONATORS,
     ...FOUR_STAR_RESONATORS,
-}
+};
+
+export const RESONATOR_NAMES = {
+    ...FIVE_STAR_RESONATOR_NAMES,
+    ...FOUR_STAR_RESONATORS,
+};
+    

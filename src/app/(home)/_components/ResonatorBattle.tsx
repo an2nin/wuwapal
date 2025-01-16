@@ -6,8 +6,10 @@ import { useRouter } from "next-nprogress-bar";
 import { useGlobalStatsQuery } from "@/redux/services/banner";
 import MovingBorder from "@/app/_components/ui/moving-border";
 import { COMBINED } from "@/shared/combined";
+import { FIVE_STAR_RESONATOR_NAMES } from "@/shared/resonators/five_stars";
+import { RESONATORS } from "@/shared/resonators";
 
-const combatants = ["Carlotta", "Zhezhi"];
+const combatants = [FIVE_STAR_RESONATOR_NAMES.CAMELLYA, FIVE_STAR_RESONATOR_NAMES.ZHEZHI];
 
 export default function ResonatorBattle() {
     const router = useRouter();
@@ -32,14 +34,14 @@ export default function ResonatorBattle() {
                                         <img
                                             className="h-56 w-auto"
                                             src={`${
-                                                COMBINED[combatants[0]].image
+                                                RESONATORS[combatants[0]].image
                                             }`}
                                             alt={combatants[0]}
                                         />
                                         <img
                                             className="h-56 w-auto transform scale-x-[-1]"
                                             src={`${
-                                                COMBINED[combatants[1]].image
+                                                RESONATORS[combatants[1]].image
                                             }`}
                                             alt={combatants[1]}
                                         />

@@ -1,7 +1,7 @@
 import { Card, CardContent, CardFooter } from "@/app/_components/ui/card";
 import { Badge } from "@/app/_components/ui/badge";
-import { WEAPON_TYPES } from "@/shared/weapons";
-import { ELEMENTS } from "@/shared/resonators";
+import { WEAPON_TYPES } from "@/shared/weapons/types";
+import { ELEMENTS } from "@/shared/resonators/elements";
 import { useEffect, useState } from "react";
 
 interface Props {

@@ -1,8 +1,6 @@
 export function convertToISOWithOffset(dateStr: string, offsetHours: number) {
-    // Split the input string into date and time parts
     const [datePart, timePart] = dateStr.split(" ");
 
-    // Combine the date and time parts and add the offset
     const isoDateStr = `${datePart}T${timePart}:00+${String(
         offsetHours
     ).padStart(2, "0")}:00`;
@@ -15,7 +13,7 @@ export const convertDatesToServerTime = <
 >(
     items: T
 ): T => {
-    const SERVER_TIME_UTC_OFFSET = 8; // UTC+8
+    const SERVER_TIME_UTC_OFFSET = 8; 
     return items.map((item) => ({
         ...item,
         startDate: convertToISOWithOffset(

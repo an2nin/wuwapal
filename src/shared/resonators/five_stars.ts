@@ -1,119 +1,142 @@
-const IMAGE_PATH = process.env.NEXT_PUBLIC_IMAGE_URL || "";
+import { Resonator } from ".";
+import { RESONATOR_ICON_PATH, RESONATOR_IMAGE_PATH } from "../helpers/paths";
+import { WEAPON_TYPE_NAMES } from "../weapons/types";
+import { ELEMENT_NAMES } from "./elements";
 
-export const RESONATOR_IMAGE_PATH = `${IMAGE_PATH}/resonators/portraits-short`;
-export const RESONATOR_ICON_PATH = `${IMAGE_PATH}/resonators/icons`;
+const QUALITY = 5;
 
-export const FIVE_STAR_RESONATORS: any = {
-    Calcharo: {
-        element: "electro",
-        weapon: "broadblade",
+export const FIVE_STAR_RESONATOR_NAMES = {
+    CALCHARO: "Calcharo",
+    CAMELLYA: "Camellya",
+    CARLOTTA: "Carlotta",
+    CHANGLI: "Changli",
+    ENCORE: "Encore",
+    JIANXIN: "Jianxin",
+    JINHSI: "Jinhsi",
+    JIYAN: "Jiyan",
+    LINGYANG: "Lingyang",
+    ROVER_HAVOC: "Rover (Havoc)",
+    ROVER_SPECTRO: "Rover (Spectro)",
+    SHOREKEEPER: "Shorekeeper",
+    VERINA: "Verina",
+    XIANGLI_YAO: "Xiangli Yao",
+    YINLIN: "Yinlin",
+    ZHEZHI: "Zhezhi",
+} as const;
+
+export const FIVE_STAR_RESONATORS = {
+    [FIVE_STAR_RESONATOR_NAMES.CALCHARO]: {
+        element: ELEMENT_NAMES.ELECTRO,
+        weapon: WEAPON_TYPE_NAMES.BROADBLADE,
         image: `${RESONATOR_IMAGE_PATH}/calcharo.webp`,
         icon: `${RESONATOR_ICON_PATH}/calcharo.webp`,
-        quality: 5,
+        quality: QUALITY,
     },
-    Camellya: {
-        element: "havoc",
-        weapon: "sword",
+    [FIVE_STAR_RESONATOR_NAMES.CAMELLYA]: {
+        element: ELEMENT_NAMES.HAVOC,
+        weapon: WEAPON_TYPE_NAMES.SWORD,
         image: `${RESONATOR_IMAGE_PATH}/camellya.webp`,
         icon: `${RESONATOR_ICON_PATH}/camellya.webp`,
-        quality: 5,
+        quality: QUALITY,
     },
-    Carlotta: {
-        element: "glacio",
-        weapon: "pistols",
+    [FIVE_STAR_RESONATOR_NAMES.CARLOTTA]: {
+        element: ELEMENT_NAMES.GLACIO,
+        weapon: WEAPON_TYPE_NAMES.PISTOLS,
         image: `${RESONATOR_IMAGE_PATH}/carlotta.webp`,
         icon: `${RESONATOR_ICON_PATH}/carlotta.webp`,
-        quality: 5,
+        quality: QUALITY,
     },
-    Changli: {
-        element: "fusion",
-        weapon: "sword",
+    [FIVE_STAR_RESONATOR_NAMES.CHANGLI]: {
+        element: ELEMENT_NAMES.FUSION,
+        weapon: WEAPON_TYPE_NAMES.SWORD,
         image: `${RESONATOR_IMAGE_PATH}/changli.webp`,
         icon: `${RESONATOR_ICON_PATH}/changli.webp`,
-        quality: 5,
+        quality: QUALITY,
     },
-    Encore: {
-        element: "fusion",
-        weapon: "rectifier",
+    [FIVE_STAR_RESONATOR_NAMES.ENCORE]: {
+        element: ELEMENT_NAMES.FUSION,
+        weapon: WEAPON_TYPE_NAMES.RECTIFIER,
         image: `${RESONATOR_IMAGE_PATH}/encore.webp`,
         icon: `${RESONATOR_ICON_PATH}/encore.webp`,
-        quality: 5,
+        quality: QUALITY,
     },
-    Jianxin: {
-        element: "aero",
-        weapon: "gauntlets",
+    [FIVE_STAR_RESONATOR_NAMES.JIANXIN]: {
+        element: ELEMENT_NAMES.AERO,
+        weapon: WEAPON_TYPE_NAMES.GAUNTLETS,
         image: `${RESONATOR_IMAGE_PATH}/jianxin.webp`,
         icon: `${RESONATOR_ICON_PATH}/jianxin.webp`,
-        quality: 5,
+        quality: QUALITY,
     },
-    Jinhsi: {
-        element: "spectro",
-        weapon: "broadblade",
+    [FIVE_STAR_RESONATOR_NAMES.JINHSI]: {
+        element: ELEMENT_NAMES.SPECTRO,
+        weapon: WEAPON_TYPE_NAMES.BROADBLADE,
         image: `${RESONATOR_IMAGE_PATH}/jinhsi.webp`,
         icon: `${RESONATOR_ICON_PATH}/jinhsi.webp`,
-        quality: 5,
+        quality: QUALITY,
     },
-    Jiyan: {
-        element: "aero",
-        weapon: "broadblade",
+    [FIVE_STAR_RESONATOR_NAMES.JIYAN]: {
+        element: ELEMENT_NAMES.AERO,
+        weapon: WEAPON_TYPE_NAMES.BROADBLADE,
         image: `${RESONATOR_IMAGE_PATH}/jiyan.webp`,
         icon: `${RESONATOR_ICON_PATH}/jiyan.webp`,
-        quality: 5,
+        quality: QUALITY,
     },
-    Lingyang: {
-        element: "glacio",
-        weapon: "gauntlets",
+    [FIVE_STAR_RESONATOR_NAMES.LINGYANG]: {
+        element: ELEMENT_NAMES.GLACIO,
+        weapon: WEAPON_TYPE_NAMES.GAUNTLETS,
         image: `${RESONATOR_IMAGE_PATH}/lingyang.webp`,
         icon: `${RESONATOR_ICON_PATH}/lingyang.webp`,
-        quality: 5,
+        quality: QUALITY,
     },
-    "Rover (Havoc)": {
-        element: "havoc",
-        weapon: "sword",
+    [FIVE_STAR_RESONATOR_NAMES.ROVER_HAVOC]: {
+        element: ELEMENT_NAMES.HAVOC,
+        weapon: WEAPON_TYPE_NAMES.SWORD,
         image: `${RESONATOR_IMAGE_PATH}/rover.webp`,
         icon: `${RESONATOR_ICON_PATH}/rover.webp`,
-        quality: 5,
+        quality: QUALITY,
     },
-    "Rover (Spectro)": {
-        element: "spectro",
-        weapon: "sword",
+    [FIVE_STAR_RESONATOR_NAMES.ROVER_SPECTRO]: {
+        element: ELEMENT_NAMES.SPECTRO,
+        weapon: WEAPON_TYPE_NAMES.SWORD,
         image: `${RESONATOR_IMAGE_PATH}/rover.webp`,
         icon: `${RESONATOR_ICON_PATH}/rover.webp`,
-        quality: 5,
+        quality: QUALITY,
     },
-    Shorekeeper: {
-        element: "spectro",
-        weapon: "rectifier",
+    [FIVE_STAR_RESONATOR_NAMES.SHOREKEEPER]: {
+        element: ELEMENT_NAMES.SPECTRO,
+        weapon: WEAPON_TYPE_NAMES.RECTIFIER,
         image: `${RESONATOR_IMAGE_PATH}/shorekeeper.webp`,
         icon: `${RESONATOR_ICON_PATH}/shorekeeper.webp`,
-        quality: 5,
+        quality: QUALITY,
     },
-    Verina: {
-        element: "spectro",
-        weapon: "rectifier",
+    [FIVE_STAR_RESONATOR_NAMES.VERINA]: {
+        element: ELEMENT_NAMES.SPECTRO,
+        weapon: WEAPON_TYPE_NAMES.RECTIFIER,
         image: `${RESONATOR_IMAGE_PATH}/verina.webp`,
         icon: `${RESONATOR_ICON_PATH}/verina.webp`,
-        quality: 5,
+        quality: QUALITY,
     },
-    "Xiangli Yao": {
-        element: "electro",
-        weapon: "gauntlets",
+    [FIVE_STAR_RESONATOR_NAMES.XIANGLI_YAO]: {
+        element: ELEMENT_NAMES.ELECTRO,
+        weapon: WEAPON_TYPE_NAMES.GAUNTLETS,
         image: `${RESONATOR_IMAGE_PATH}/xiangli_yao.webp`,
         icon: `${RESONATOR_ICON_PATH}/xiangli_yao.webp`,
-        quality: 5,
+        quality: QUALITY,
     },
-    Yinlin: {
-        element: "electro",
-        weapon: "rectifier",
+    [FIVE_STAR_RESONATOR_NAMES.YINLIN]: {
+        element: ELEMENT_NAMES.ELECTRO,
+        weapon: WEAPON_TYPE_NAMES.RECTIFIER,
         image: `${RESONATOR_IMAGE_PATH}/yinlin.webp`,
         icon: `${RESONATOR_ICON_PATH}/yinlin.webp`,
-        quality: 5,
+        quality: QUALITY,
     },
-    Zhezhi: {
-        element: "glacio",
-        weapon: "rectifier",
+    [FIVE_STAR_RESONATOR_NAMES.ZHEZHI]: {
+        element: ELEMENT_NAMES.GLACIO,
+        weapon: WEAPON_TYPE_NAMES.RECTIFIER,
         image: `${RESONATOR_IMAGE_PATH}/zhezhi.webp`,
         icon: `${RESONATOR_ICON_PATH}/zhezhi.webp`,
-        quality: 5,
+        quality: QUALITY,
     },
-};
+} as Record<string, Resonator>;
+
+

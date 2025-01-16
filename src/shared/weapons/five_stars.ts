@@ -1,140 +1,96 @@
-const IMAGE_PATH = process.env.NEXT_PUBLIC_IMAGE_URL || "";
+import { Weapon } from ".";
+import { WEAPON_IMAGE_PATH } from "../helpers/paths";
+import { WEAPON_TYPE_NAMES } from "./types";
 
-export const WEAPON_IMAGE_PATH = `${IMAGE_PATH}/weapons`;
+const QUALITY = 5;
 
-export const FIVE_STAR_WEAPONS: any = {
-    "Abyss Surges": {
-        type: "gauntlets",
-        base_atk: 47,
-        stat_name: "ATK",
-        stat_amount: "8.10%",
-        quality: 5,
-        skill_desc:
-            "Stormy Resolution: Increases Energy Regen by 12.8%. When hitting a target with Resonance Skill, increases Basic Attack DMG Bonus by 10%, lasting for 8s. When hitting a target with Basic Attacks, increases Resonance Skill DMG Bonus by 10%, lasting for 8s.",
+export const FIVE_STAR_WEAPON_NAMES = {
+    ABYSS_SURGES: "Abyss Surges",
+    AGES_OF_HARVEST: "Ages of Harvest",
+    BLAZING_BRILLIANCE: "Blazing Brilliance",
+    COSMIC_RIPPLES: "Cosmic Ripples",
+    EMERALD_OF_GENESIS: "Emerald of Genesis",
+    LUSTROUS_RAZOR: "Lustrous Razor",
+    RED_SPRING: "Red Spring",
+    RIME_DRAPED_SPROUTS: "Rime-Draped Sprouts",
+    STATIC_MIST: "Static Mist",
+    STELLAR_SYMPHONY: "Stellar Symphony",
+    STRINGMASTER: "Stringmaster",
+    THE_LAST_DANCE: "The Last Dance",
+    VERDANT_SUMMIT: "Verdant Summit",
+    VERITYS_HANDLE: "Verity's Handle",
+} as const;
+
+export const FIVE_STAR_WEAPONS = {
+    [FIVE_STAR_WEAPON_NAMES.ABYSS_SURGES]: {
+        type: WEAPON_TYPE_NAMES.GAUNTLETS,
         image: `${WEAPON_IMAGE_PATH}/abyss_surges.webp`,
+        quality: QUALITY,
     },
-    "Ages of Harvest": {
-        type: "broadblade",
-        base_atk: 47,
-        stat_name: "ATK",
-        stat_amount: "8.10%",
-        quality: 5,
-        skill_desc:
-            "Stormy Resolution: Increases Energy Regen by 12.8%. When hitting a target with Resonance Skill, increases Basic Attack DMG Bonus by 10%, lasting for 8s. When hitting a target with Basic Attacks, increases Resonance Skill DMG Bonus by 10%, lasting for 8s.",
+    [FIVE_STAR_WEAPON_NAMES.AGES_OF_HARVEST]: {
+        type: WEAPON_TYPE_NAMES.BROADBLADE,
         image: `${WEAPON_IMAGE_PATH}/ages_of_harvest.webp`,
+        quality: QUALITY,
     },
-    "Blazing Brilliance": {
-        type: "sword",
-        base_atk: 47,
-        stat_name: "Crit Rate",
-        stat_amount: "5.40%",
-        quality: 5,
-        skill_desc:
-            "Stormy Resolution: Increases Energy Regen by 12.8%. When Resonance Skill is released, increases ATK by 6%, stacking up to 2 time(s). This effect lasts for 10s.",
+    [FIVE_STAR_WEAPON_NAMES.BLAZING_BRILLIANCE]: {
+        type: WEAPON_TYPE_NAMES.SWORD,
         image: `${WEAPON_IMAGE_PATH}/blazing_brilliance.webp`,
+        quality: QUALITY,
     },
-    "Cosmic Ripples": {
-        type: "rectifier",
-        base_atk: 40,
-        stat_name: "ATK",
-        stat_amount: "11.90%",
-        quality: 5,
-        skill_desc:
-            "Stormy Resolution: Increases Energy Regen by 12.8%. When hitting a target with Basic Attack, increases Basic Attack DMG Bonus by 3.2%, stacking up to 5 time(s). This effect lasts for 8s and can be triggered 1 time(s) every 0.5s.",
+    [FIVE_STAR_WEAPON_NAMES.COSMIC_RIPPLES]: {
+        type: WEAPON_TYPE_NAMES.RECTIFIER,
         image: `${WEAPON_IMAGE_PATH}/cosmic_ripples.webp`,
+        quality: QUALITY,
     },
-    "Emerald of Genesis": {
-        type: "sword",
-        base_atk: 47,
-        stat_name: "Crit Rate",
-        stat_amount: "5.40%",
-        quality: 5,
-        skill_desc:
-            "Stormy Resolution: Increases Energy Regen by 12.8%. When Resonance Skill is released, increases ATK by 6%, stacking up to 2 time(s). This effect lasts for 10s.",
+    [FIVE_STAR_WEAPON_NAMES.EMERALD_OF_GENESIS]: {
+        type: WEAPON_TYPE_NAMES.SWORD,
         image: `${WEAPON_IMAGE_PATH}/emerald_of_genesis.webp`,
+        quality: QUALITY,
     },
-    "Lustrous Razor": {
-        type: "broadblade",
-        base_atk: 47,
-        stat_name: "ATK",
-        stat_amount: "8.10%",
-        quality: 5,
-        skill_desc:
-            "Incision: Increases Energy Regen by 12.8%. When Resonance Skill is released, increases Resonance Liberation DMG by 7%, stacking up to 2 times. This effect lasts for 12s.",
+    [FIVE_STAR_WEAPON_NAMES.LUSTROUS_RAZOR]: {
+        type: WEAPON_TYPE_NAMES.BROADBLADE,
         image: `${WEAPON_IMAGE_PATH}/lustrous_razor.webp`,
+        quality: QUALITY,
     },
-    "Red Spring": {
-        type: "sword",
-        base_atk: 47,
-        stat_name: "ATK",
-        stat_amount: "8.10%",
-        quality: 5,
-        skill_desc:
-            "Incision: Increases Energy Regen by 12.8%. When Resonance Skill is released, increases Resonance Liberation DMG by 7%, stacking up to 2 times. This effect lasts for 12s.",
+    [FIVE_STAR_WEAPON_NAMES.RED_SPRING]: {
+        type: WEAPON_TYPE_NAMES.SWORD,
         image: `${WEAPON_IMAGE_PATH}/red_spring.webp`,
+        quality: QUALITY,
     },
-    "Rime-Draped Sprouts": {
-        type: "rectifier",
-        base_atk: 47,
-        stat_name: "ATK",
-        stat_amount: "8.10%",
-        quality: 5,
-        skill_desc:
-            "Incision: Increases Energy Regen by 12.8%. When Resonance Skill is released, increases Resonance Liberation DMG by 7%, stacking up to 2 times. This effect lasts for 12s.",
+    [FIVE_STAR_WEAPON_NAMES.RIME_DRAPED_SPROUTS]: {
+        type: WEAPON_TYPE_NAMES.RECTIFIER,
         image: `${WEAPON_IMAGE_PATH}/rime-draped_sprouts.webp`,
+        quality: QUALITY,
     },
-    "Static Mist": {
-        type: "pistols",
-        base_atk: 47,
-        stat_name: "Crit Rate",
-        stat_amount: "5.40%",
-        quality: 5,
-        skill_desc:
-            "Stormy Resolution: Increases Energy Regen by 12.8%. When Outro Skill is released, increases the switched-in Resonator's ATK by 10%, stacking up to 1 time(s). This effect lasts for 14s.",
+    [FIVE_STAR_WEAPON_NAMES.STATIC_MIST]: {
+        type: WEAPON_TYPE_NAMES.PISTOLS,
         image: `${WEAPON_IMAGE_PATH}/static_mist.webp`,
+        quality: QUALITY,
     },
-    "Stellar Symphony": {
-        type: "rectifier",
+    [FIVE_STAR_WEAPON_NAMES.STELLAR_SYMPHONY]: {
+        type: WEAPON_TYPE_NAMES.RECTIFIER,
         image: `${WEAPON_IMAGE_PATH}/stellar_symphony.webp`,
+        quality: QUALITY,
     },
-    Stringmaster: {
-        type: "rectifier",
-        base_atk: 40,
-        stat_name: "Crit Rate",
-        stat_amount: "8.00%",
-        quality: 5,
-        skill_desc:
-            "Electric Amplification: Increases the DMG Bonus by 12%. When dealing Resonance Skill DMG, increases ATK by 12%, stacking up to 2. This effect lasts for 5s. When the equipped Resonator is not on the field, increases their ATK by an additional 12%.",
+    [FIVE_STAR_WEAPON_NAMES.STRINGMASTER]: {
+        type: WEAPON_TYPE_NAMES.RECTIFIER,
         image: `${WEAPON_IMAGE_PATH}/stringmaster.webp`,
+        quality: QUALITY,
     },
-    "The Last Dance": {
-        type: "pistols",
-        base_atk: 47,
-        stat_name: "Crit Rate",
-        stat_amount: "5.40%",
-        quality: 5,
-        skill_desc:
-            "Stormy Resolution: Increases Energy Regen by 12.8%. When Resonance Skill is released, increases ATK by 6%, stacking up to 2 time(s). This effect lasts for 10s.",
+    [FIVE_STAR_WEAPON_NAMES.THE_LAST_DANCE]: {
+        type: WEAPON_TYPE_NAMES.PISTOLS,
         image: `${WEAPON_IMAGE_PATH}/the_last_dance.webp`,
+        quality: QUALITY,
     },
-    "Verdant Summit": {
-        type: "broadblade",
-        base_atk: 47,
-        stat_name: "Crit DMG",
-        stat_amount: "10.80%",
-        quality: 5,
-        skill_desc:
-            "Swordsworn: Increases the DMG Bonus of all Resonance Attributes by 12%. Every time Intro Skill or Resonance Liberation is cast, increases Heavy Attack DMG Bonus by 24%, stacking up to 2 time(s). This effect lasts for 14s.",
+    [FIVE_STAR_WEAPON_NAMES.VERDANT_SUMMIT]: {
+        type: WEAPON_TYPE_NAMES.BROADBLADE,
         image: `${WEAPON_IMAGE_PATH}/verdant_summit.webp`,
+        quality: QUALITY,
     },
-    "Verity's Handle": {
-        type: "gauntlets",
-        base_atk: 47,
-        stat_name: "Crit DMG",
-        stat_amount: "10.80%",
-        quality: 5,
-        skill_desc:
-            "Swordsworn: Increases the DMG Bonus of all Resonance Attributes by 12%. Every time Intro Skill or Resonance Liberation is cast, increases Heavy Attack DMG Bonus by 24%, stacking up to 2 time(s). This effect lasts for 14s.",
+    [FIVE_STAR_WEAPON_NAMES.VERITYS_HANDLE]: {
+        type: WEAPON_TYPE_NAMES.GAUNTLETS,
         image: `${WEAPON_IMAGE_PATH}/veritys_handle.webp`,
+        quality: QUALITY,
     },
-};
+} as Record<string, Weapon>;
+

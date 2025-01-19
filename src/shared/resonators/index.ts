@@ -1,5 +1,5 @@
 import { FIVE_STAR_RESONATOR_NAMES, FIVE_STAR_RESONATORS } from "./five_stars";
-import { FOUR_STAR_RESONATORS } from "./four_stars";
+import { FOUR_STAR_RESONATOR_NAMES, FOUR_STAR_RESONATORS } from "./four_stars";
 
 export type Resonator = {
     element: string;
@@ -27,6 +27,6 @@ export const RESONATORS = {
 
 export const RESONATOR_NAMES = {
     ...FIVE_STAR_RESONATOR_NAMES,
-    ...FOUR_STAR_RESONATORS,
+    ...FOUR_STAR_RESONATOR_NAMES,
 };
     

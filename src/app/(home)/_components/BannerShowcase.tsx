@@ -10,15 +10,21 @@ import {
 } from "@/app/_components/ui/card";
 import { BANNERS } from "@/shared/banners";
 import { convertToISOWithOffset } from "@/shared/helpers/time";
+import { RESONATOR_NAMES } from "@/shared/resonators";
+import { WEAPON_NAMES } from "@/shared/weapons";
 
 const items = {
     s5: [
-        { name: "Carlotta", rarity: 5, type: "resonators" },
-        { name: "The Last Dance", rarity: 5, type: "weapons" },
-        { name: "Zhezhi", rarity: 5, type: "resonators" },
-        { name: "Rime-Draped Sprouts", rarity: 5, type: "weapons" },
+        { name: RESONATOR_NAMES.CAMELLYA, rarity: 5, type: "resonators" },
+        { name: WEAPON_NAMES.THE_LAST_DANCE, rarity: 5, type: "weapons" },
+        { name: RESONATOR_NAMES.ZHEZHI, rarity: 5, type: "resonators" },
+        { name: WEAPON_NAMES.RIME_DRAPED_SPROUTS, rarity: 5, type: "weapons" },
     ],
-    s4: ["Chixia", "Sanhua", "Mortefi"],
+    s4: [
+        RESONATOR_NAMES.CHIXIA,
+        RESONATOR_NAMES.SANHUA,
+        RESONATOR_NAMES.MORTEFI,
+    ],
     img: BANNERS.featured_resonator.image,
     end_time: "2025-01-23 09:59",
 };

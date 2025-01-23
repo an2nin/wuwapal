@@ -15,6 +15,7 @@ export const FIVE_STAR_RESONATOR_NAMES = {
     JINHSI: "Jinhsi",
     JIYAN: "Jiyan",
     LINGYANG: "Lingyang",
+    ROCCIA: "Roccia",
     ROVER_HAVOC: "Rover (Havoc)",
     ROVER_SPECTRO: "Rover (Spectro)",
     SHOREKEEPER: "Shorekeeper",
@@ -86,6 +87,13 @@ export const FIVE_STAR_RESONATORS = {
         weapon: WEAPON_TYPE_NAMES.GAUNTLETS,
         image: `${RESONATOR_IMAGE_PATH}/lingyang.webp`,
         icon: `${RESONATOR_ICON_PATH}/lingyang.webp`,
+        quality: QUALITY,
+    },
+    [FIVE_STAR_RESONATOR_NAMES.ROCCIA]: {
+        element: ELEMENT_NAMES.HAVOC,
+        weapon: WEAPON_TYPE_NAMES.GAUNTLETS,
+        image: `${RESONATOR_IMAGE_PATH}/roccia.webp`,
+        icon: `${RESONATOR_ICON_PATH}/roccia.webp`,
         quality: QUALITY,
     },
     [FIVE_STAR_RESONATOR_NAMES.ROVER_HAVOC]: {

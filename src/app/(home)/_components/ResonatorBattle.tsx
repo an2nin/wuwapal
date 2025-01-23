@@ -9,7 +9,7 @@ import { COMBINED } from "@/shared/combined";
 import { FIVE_STAR_RESONATOR_NAMES } from "@/shared/resonators/five_stars";
 import { RESONATORS } from "@/shared/resonators";
 
-const combatants = [FIVE_STAR_RESONATOR_NAMES.CARLOTTA, FIVE_STAR_RESONATOR_NAMES.ZHEZHI];
+const combatants = [FIVE_STAR_RESONATOR_NAMES.ROCCIA, FIVE_STAR_RESONATOR_NAMES.JINHSI];
 
 export default function ResonatorBattle() {
     const router = useRouter();

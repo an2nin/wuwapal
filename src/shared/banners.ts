@@ -6,7 +6,7 @@ export const BANNERS: any = {
         name: "Featured Resonator",
         value: "1",
         store_id: "featured_resonator",
-        image: `${IMAGE_PATH}/banners/when_silence_tolls.webp`,
+        image: `${IMAGE_PATH}/banners/stage_in_the_box.webp`,
         currency: "radiant_tide",
     },
     featured_weapon: {
@@ -14,7 +14,7 @@ export const BANNERS: any = {
         name: "Featured Weapon",
         value: "2",
         store_id: "featured_weapon",
-        image: `${IMAGE_PATH}/banners/the_last_dance.webp`,
+        image: `${IMAGE_PATH}/banners/tragicomedy.webp`,
         currency: "forging_tide",
     },
     standard_resonator: {

@@ -15,18 +15,18 @@ import { WEAPON_NAMES } from "@/shared/weapons";
 
 const items = {
     s5: [
-        { name: RESONATOR_NAMES.CAMELLYA, rarity: 5, type: "resonators" },
-        { name: WEAPON_NAMES.THE_LAST_DANCE, rarity: 5, type: "weapons" },
-        { name: RESONATOR_NAMES.ZHEZHI, rarity: 5, type: "resonators" },
-        { name: WEAPON_NAMES.RIME_DRAPED_SPROUTS, rarity: 5, type: "weapons" },
+        { name: RESONATOR_NAMES.ROCCIA, rarity: 5, type: "resonators" },
+        { name: WEAPON_NAMES.TRAGICOMEDY, rarity: 5, type: "weapons" },
+        { name: RESONATOR_NAMES.JINHSI, rarity: 5, type: "resonators" },
+        { name: WEAPON_NAMES.AGES_OF_HARVEST, rarity: 5, type: "weapons" },
     ],
     s4: [
-        RESONATOR_NAMES.CHIXIA,
-        RESONATOR_NAMES.SANHUA,
-        RESONATOR_NAMES.MORTEFI,
+        RESONATOR_NAMES.YOUHU,
+        RESONATOR_NAMES.DANJIN,
+        RESONATOR_NAMES.YUANWU,
     ],
     img: BANNERS.featured_resonator.image,
-    end_time: "2025-01-23 09:59",
+    end_time: "2025-02-12 11:59",
 };
 
 export default function BannerShowcase() {

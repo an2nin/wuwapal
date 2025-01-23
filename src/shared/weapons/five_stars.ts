@@ -17,6 +17,7 @@ export const FIVE_STAR_WEAPON_NAMES = {
     STELLAR_SYMPHONY: "Stellar Symphony",
     STRINGMASTER: "Stringmaster",
     THE_LAST_DANCE: "The Last Dance",
+    TRAGICOMEDY: "Tragicomedy",
     VERDANT_SUMMIT: "Verdant Summit",
     VERITYS_HANDLE: "Verity's Handle",
 } as const;
@@ -80,6 +81,11 @@ export const FIVE_STAR_WEAPONS = {
     [FIVE_STAR_WEAPON_NAMES.THE_LAST_DANCE]: {
         type: WEAPON_TYPE_NAMES.PISTOLS,
         image: `${WEAPON_IMAGE_PATH}/the_last_dance.webp`,
+        quality: QUALITY,
+    },
+    [FIVE_STAR_WEAPON_NAMES.TRAGICOMEDY]: {
+        type: WEAPON_TYPE_NAMES.GAUNTLETS,
+        image: `${WEAPON_IMAGE_PATH}/tragicomedy.webp`,
         quality: QUALITY,
     },
     [FIVE_STAR_WEAPON_NAMES.VERDANT_SUMMIT]: {

@@ -15,6 +15,7 @@ export const FIVE_STAR_RESONATOR_NAMES = {
     JINHSI: "Jinhsi",
     JIYAN: "Jiyan",
     LINGYANG: "Lingyang",
+    PHOEBE: "Phoebe",
     ROCCIA: "Roccia",
     ROVER_HAVOC: "Rover (Havoc)",
     ROVER_SPECTRO: "Rover (Spectro)",
@@ -87,6 +88,13 @@ export const FIVE_STAR_RESONATORS = {
         weapon: WEAPON_TYPE_NAMES.GAUNTLETS,
         image: `${RESONATOR_IMAGE_PATH}/lingyang.webp`,
         icon: `${RESONATOR_ICON_PATH}/lingyang.webp`,
+        quality: QUALITY,
+    },
+    [FIVE_STAR_RESONATOR_NAMES.PHOEBE]: {
+        element: ELEMENT_NAMES.SPECTRO,
+        weapon: WEAPON_TYPE_NAMES.RECTIFIER,
+        image: `${RESONATOR_IMAGE_PATH}/phoebe.webp`,
+        icon: `${RESONATOR_ICON_PATH}/phoebe.webp`,
         quality: QUALITY,
     },
     [FIVE_STAR_RESONATOR_NAMES.ROCCIA]: {

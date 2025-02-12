@@ -191,23 +191,43 @@ const ALL_BANNERS = [
         reliability: "Official",
     },
     {
-      name: "Stage in the Box - Roccia & Jinhsi Rerun Banner",
-      img: "https://snipboard.io/eda9IF.jpg",
-      description: "Featured 4* are; Danjin, Youhu, Yuanwu.",
-      startDate: "2025-01-23 10:00",
-      endDate: "2025-02-12 11:59",
-      color: "#a365a7",
-      url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1864",
+        name: "Stage in the Box - Roccia & Jinhsi Rerun Banner",
+        img: "https://snipboard.io/eda9IF.jpg",
+        description: "Featured 4* are; Danjin, Youhu, Yuanwu.",
+        startDate: "2025-01-23 10:00",
+        endDate: "2025-02-12 11:59",
+        color: "#a365a7",
+        url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1864",
     },
     {
-      name: "Tragicomedy & Ages of Harvest - Roccia & Jinhsi Weapon Banner",
-      img: "https://snipboard.io/L6F73K.jpg",
-      description:
-        "Featured 4* are; Celestial Spiral, Dauntless Evernight, Variation.",
-      startDate: "2025-01-23 10:00",
-      endDate: "2025-02-12 11:59",
-      color: "#4d3871",
-      url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1864",
+        name: "Tragicomedy & Ages of Harvest - Roccia & Jinhsi Weapon Banner",
+        img: "https://snipboard.io/L6F73K.jpg",
+        description:
+            "Featured 4* are; Celestial Spiral, Dauntless Evernight, Variation.",
+        startDate: "2025-01-23 10:00",
+        endDate: "2025-02-12 11:59",
+        color: "#4d3871",
+        url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1864",
+    },
+    {
+        name: "With Hushed Whispers - Phoebe Banner",
+        img: "https://snipboard.io/OyTLY9.jpg",
+        description:
+            "Featured 4* are; Lumi, Chixia, Aalto.",
+        startDate: "2025-02-13 10:00",
+        endDate: "2025-03-06 09:59",
+        color: "#4d3871",
+        url: "https://wutheringwaves.kurogames.com/en/main/news/detail/2123",
+    },
+    {
+        name: "Luminous Hymn - Phoebe Weapon Banner",
+        img: "https://snipboard.io/1RrXJd.jpg",
+        description:
+            "Featured 4* are; Jinzhou Keeper, Novaburst, Discord.",
+        startDate: "2025-02-13 10:00",
+        endDate: "2025-03-06 09:59",
+        color: "#4d3871",
+        url: "https://wutheringwaves.kurogames.com/en/main/news/detail/1864",
     },
 ];
 

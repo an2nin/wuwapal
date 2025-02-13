@@ -5,11 +5,10 @@ import { calculatePercentage } from "@/app/_helpers/processors";
 import { useRouter } from "next-nprogress-bar";
 import { useGlobalStatsQuery } from "@/redux/services/banner";
 import MovingBorder from "@/app/_components/ui/moving-border";
-import { COMBINED } from "@/shared/combined";
 import { FIVE_STAR_RESONATOR_NAMES } from "@/shared/resonators/five_stars";
 import { RESONATORS } from "@/shared/resonators";
 
-const combatants = [FIVE_STAR_RESONATOR_NAMES.ROCCIA, FIVE_STAR_RESONATOR_NAMES.JINHSI];
+const combatants = [FIVE_STAR_RESONATOR_NAMES.PHOEBE, FIVE_STAR_RESONATOR_NAMES.ROCCIA];
 
 export default function ResonatorBattle() {
     const router = useRouter();

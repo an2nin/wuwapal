@@ -15,18 +15,16 @@ import { WEAPON_NAMES } from "@/shared/weapons";
 
 const items = {
     s5: [
-        { name: RESONATOR_NAMES.ROCCIA, rarity: 5, type: "resonators" },
+        { name: RESONATOR_NAMES.PHOEBE, rarity: 5, type: "resonators" },
         { name: WEAPON_NAMES.TRAGICOMEDY, rarity: 5, type: "weapons" },
-        { name: RESONATOR_NAMES.JINHSI, rarity: 5, type: "resonators" },
-        { name: WEAPON_NAMES.AGES_OF_HARVEST, rarity: 5, type: "weapons" },
     ],
     s4: [
-        RESONATOR_NAMES.YOUHU,
-        RESONATOR_NAMES.DANJIN,
-        RESONATOR_NAMES.YUANWU,
+        RESONATOR_NAMES.LUMI,
+        RESONATOR_NAMES.CHIXIA,
+        RESONATOR_NAMES.AALTO,
     ],
     img: BANNERS.featured_resonator.image,
-    end_time: "2025-02-12 11:59",
+    end_time: "2025-03-06 09:59",
 };
 
 export default function BannerShowcase() {

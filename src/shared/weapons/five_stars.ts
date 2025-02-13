@@ -20,6 +20,7 @@ export const FIVE_STAR_WEAPON_NAMES = {
     TRAGICOMEDY: "Tragicomedy",
     VERDANT_SUMMIT: "Verdant Summit",
     VERITYS_HANDLE: "Verity's Handle",
+    LUMINOUS_HYMN: "LUMINOUS HYMN",
 } as const;
 
 export const FIVE_STAR_WEAPONS = {
@@ -96,6 +97,11 @@ export const FIVE_STAR_WEAPONS = {
     [FIVE_STAR_WEAPON_NAMES.VERITYS_HANDLE]: {
         type: WEAPON_TYPE_NAMES.GAUNTLETS,
         image: `${WEAPON_IMAGE_PATH}/veritys_handle.webp`,
+        quality: QUALITY,
+    },
+    [FIVE_STAR_WEAPON_NAMES.LUMINOUS_HYMN]: {
+        type: WEAPON_TYPE_NAMES.RECTIFIER,
+        image: `${WEAPON_IMAGE_PATH}/luminous_hymn.webp`,
         quality: QUALITY,
     },
 } as Record<string, Weapon>;

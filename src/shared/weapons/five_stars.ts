@@ -20,7 +20,7 @@ export const FIVE_STAR_WEAPON_NAMES = {
     TRAGICOMEDY: "Tragicomedy",
     VERDANT_SUMMIT: "Verdant Summit",
     VERITYS_HANDLE: "Verity's Handle",
-    LUMINOUS_HYMN: "LUMINOUS HYMN",
+    LUMINOUS_HYMN: "Luminous Hymn",
 } as const;
 
 export const FIVE_STAR_WEAPONS = {

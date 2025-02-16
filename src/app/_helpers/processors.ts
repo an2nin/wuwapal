@@ -203,7 +203,8 @@ export function processBanner(banner: any) {
         // console.log("total ", banner.total);
 
         star4_pity = banner.total - (pity4_last_index + 1);
-        star5_pity = banner.total - (pity5_last_index == 0 ? 0 : pity5_last_index + 1);
+        star5_pity =
+            banner.total - (pity5_last_index == 0 ? 0 : pity5_last_index + 1);
 
         const star5_avg_pity =
             star5s.reduce((sum: number, obj: any) => sum + obj.pity, 0) /
@@ -445,6 +446,67 @@ export function processBannerForGlobalStat(banner: any, store_id: string) {
         s5: star5s,
     };
 }
+
+export function processBannerForGlobalStatV2(banner: any, store_id: string) {
+    const copyData = [...banner.items].slice();
+
+    const globalData: any = [];
+
+    let pity4_last_index = 0;
+    let pity5_last_index = 0;
+
+    copyData.forEach((data: any, idx: number) => {
+        const newItem: any = {
+            q: data.q,
+            i: "a",
+            n: data.n,
+            t: data.t,
+            y: data.y == "w" ? "w" : "r",
+        };
+
+        if (data.q == 4) {
+            const pity =
+                pity4_last_index == 0
+                    ? idx - pity4_last_index + 1
+                    : idx - pity4_last_index;
+
+            const { i, ...newItemForGlobal } = newItem;
+            globalData.push({ ...newItemForGlobal, p: pity });
+
+            pity4_last_index = idx;
+        }
+
+        if (data.q == 5) {
+            const pity =
+                pity5_last_index == 0
+                    ? idx - pity5_last_index + 1
+                    : idx - pity5_last_index;
+
+            const { i, ...newItemForGlobal } = newItem;
+            globalData.push({ ...newItemForGlobal, p: pity });
+
+            pity4_last_index = idx;
+            pity5_last_index = idx;
+        }
+    });
+
+    return {
+        store_id,
+        items: globalData,
+        total: globalData.length,
+    };
+}
+
+export function mapBannersForGlobalStats(banners: any) {
+    const bannerMap = banners.reduce((acc: any, banner: any) => {
+      acc[banner.store_id] = { total: banner.total, items: banner.items };
+      return acc;
+    }, {} as any);
+  
+    return bannerMap;
+  }
+
+
 
 export const mergeGachaDataOptimized = (
     existingData: BannerData,

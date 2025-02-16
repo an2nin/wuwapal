@@ -61,7 +61,7 @@ const useSupabase = (tableName: string) => {
     const upsertData = async (newData: any, onConflict: any) => {
         setError(null);
         try {
-            const { data: any, error } = await supabase
+            const { data: _, error } = await supabase
                 .from(tableName)
                 .upsert(newData, { onConflict });
             if (error) throw error;
@@ -74,7 +74,7 @@ const useSupabase = (tableName: string) => {
     const updateData = async (id: any, updatedData: any) => {
         setError(null);
         try {
-            const { data: any, error } = await supabase
+            const { data: _, error } = await supabase
                 .from(tableName)
                 .update(updatedData)
                 .eq("id", id);

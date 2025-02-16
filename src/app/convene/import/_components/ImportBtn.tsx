@@ -13,13 +13,15 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/app/_components/ui/dialog";
-import { useFetchBannerMutation } from "@/redux/services/banner";
+import { useFetchBannerMutation, useUploadToGlobalStatsMutation } from "@/redux/services/banner";
 import useSupabase from "@/app/_hooks/useSupabase";
 import {
     isConveneHistoryUrlValid,
+    mapBannersForGlobalStats,
     mergeGachaDataOptimized,
     parseUrlParams,
     processBannerForGlobalStat,
+    processBannerForGlobalStatV2,
     processBannerForStore,
 } from "@/app/_helpers/processors";
 import { useProfileStore, ProfileStoreState } from "@/stores/profile";
@@ -36,6 +38,7 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
     const profileStore = useProfileStore<ProfileStoreState>(
         (state: ProfileStoreState) => state
     );
+    const [uploadToGlobalStats] = useUploadToGlobalStatsMutation();
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [currentBanner, setCurrentBanner] = useState(0);
     const [processedURLBody, setProcessedURLBody] = useState<any>(null);
@@ -122,16 +125,10 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
                     bannerForStore
                 );
 
-                const bannerForGlobalStat = processBannerForGlobalStat(
+                const bannerForGlobalStat = processBannerForGlobalStatV2(
                     mergedBannerForStore,
                     banner_name
                 );
-
-                // if (banner_name == "featured_resonator") {
-                //     console.log("bannerForStore", bannerForStore);
-                //     console.log("bannerForGlobalStat", bannerForGlobalStat);
-                //     console.log("merged", mergedBannerForStore);
-                // }
 
                 setBannersForGlobalStat((prev: any) => [
                     ...prev,
@@ -172,17 +169,14 @@ export default function ImportBtn({ historyUrl, gamePath }: Props) {
             sentForGlobalStat &&
             isBannerSuccess
         ) {
-            upsertGlobalData(
-                {
-                    resources_id: processedURLBody.resources_id,
-                    player_id: processedURLBody.player_id,
-                    svr_id: processedURLBody.svr_id,
-                    lang: "en",
-                    record_id: processedURLBody.record_id,
-                    pulls: bannersForGlobalStat,
-                },
-                ["svr_id", "player_id"]
-            );
+
+            const mappedBannerData = mapBannersForGlobalStats(bannersForGlobalStat);
+
+            uploadToGlobalStats({
+                player_id: processedURLBody.player_id,
+                svr_id: processedURLBody.svr_id,
+                banners: mappedBannerData,
+              })
             hasRunEffect.current = true;
         }
     }, [currentBanner, isBannerSuccess, sentForGlobalStat]);

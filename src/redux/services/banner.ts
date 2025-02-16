@@ -14,14 +14,27 @@ export const conveneApis = api.injectEndpoints({
             },
         }),
         globalStats: build.query<any, void>({
-          query: () => {
-            return {
-              url: GLOBAL_STAT_GIST,
-              method: "GET",
-            };
-          },
+            query: () => {
+                return {
+                    url: GLOBAL_STAT_GIST,
+                    method: "GET",
+                };
+            },
+        }),
+        uploadToGlobalStats: build.mutation<any, any>({
+            query: (form) => {
+                return {
+                    url: `${process.env.NEXT_PUBLIC_API_SERVER}/global-stats/upload`,
+                    method: "POST",
+                    body: form,
+                };
+            },
         }),
     }),
 });
 
-export const { useFetchBannerMutation, useGlobalStatsQuery } = conveneApis;
+export const {
+    useFetchBannerMutation,
+    useGlobalStatsQuery,
+    useUploadToGlobalStatsMutation,
+} = conveneApis;

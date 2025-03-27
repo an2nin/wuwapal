@@ -9,6 +9,7 @@ export const FIVE_STAR_RESONATOR_NAMES = {
   BRANT: "Brant",
   CALCHARO: "Calcharo",
   CAMELLYA: "Camellya",
+  CANTARELLA: "Cantarella",
   CARLOTTA: "Carlotta",
   CHANGLI: "Changli",
   ENCORE: "Encore",
@@ -47,6 +48,13 @@ export const FIVE_STAR_RESONATORS = {
     weapon: WEAPON_TYPE_NAMES.SWORD,
     image: `${RESONATOR_IMAGE_PATH}/camellya.webp`,
     icon: `${RESONATOR_ICON_PATH}/camellya.webp`,
+    quality: QUALITY,
+  },
+  [FIVE_STAR_RESONATOR_NAMES.CANTARELLA]: {
+    element: ELEMENT_NAMES.HAVOC,
+    weapon: WEAPON_TYPE_NAMES.RECTIFIER,
+    image: `${RESONATOR_IMAGE_PATH}/cantarella.webp`,
+    icon: `${RESONATOR_ICON_PATH}/cantarella.webp`,
     quality: QUALITY,
   },
   [FIVE_STAR_RESONATOR_NAMES.CARLOTTA]: {

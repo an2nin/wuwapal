@@ -15,14 +15,14 @@ import { WEAPON_NAMES } from "@/shared/weapons";
 
 const items = {
   s5: [
-    { name: RESONATOR_NAMES.BRANT, rarity: 5, type: "resonators" },
-    { name: WEAPON_NAMES.UNFLICKERING_VALOR, rarity: 5, type: "weapons" },
-    { name: RESONATOR_NAMES.CHANGLI, rarity: 5, type: "resonators" },
-    { name: WEAPON_NAMES.BLAZING_BRILLIANCE, rarity: 5, type: "weapons" },
+    { name: RESONATOR_NAMES.CANTARELLA, rarity: 5, type: "resonators" },
+    { name: WEAPON_NAMES.WHISPERS_OF_SIRENS, rarity: 5, type: "weapons" },
+    { name: RESONATOR_NAMES.CAMELLYA, rarity: 5, type: "resonators" },
+    { name: WEAPON_NAMES.RED_SPRING, rarity: 5, type: "weapons" },
   ],
-  s4: [RESONATOR_NAMES.YOUHU, RESONATOR_NAMES.TAOQI, RESONATOR_NAMES.MORTEFI],
+  s4: [RESONATOR_NAMES.DANJIN, RESONATOR_NAMES.CHIXIA, RESONATOR_NAMES.YUANWU],
   img: BANNERS.featured_resonator.image,
-  end_time: "2025-03-26 11:59",
+  end_time: "2025-04-17 09:59",
 };
 
 export default function BannerShowcase() {

@@ -22,6 +22,7 @@ export const FIVE_STAR_WEAPON_NAMES = {
   VERDANT_SUMMIT: "Verdant Summit",
   VERITYS_HANDLE: "Verity's Handle",
   LUMINOUS_HYMN: "Luminous Hymn",
+  WHISPERS_OF_SIRENS: "Whispers of Sirens",
 } as const;
 
 export const FIVE_STAR_WEAPONS = {
@@ -108,6 +109,11 @@ export const FIVE_STAR_WEAPONS = {
   [FIVE_STAR_WEAPON_NAMES.LUMINOUS_HYMN]: {
     type: WEAPON_TYPE_NAMES.RECTIFIER,
     image: `${WEAPON_IMAGE_PATH}/luminous_hymn.webp`,
+    quality: QUALITY,
+  },
+  [FIVE_STAR_WEAPON_NAMES.WHISPERS_OF_SIRENS]: {
+    type: WEAPON_TYPE_NAMES.RECTIFIER,
+    image: `${WEAPON_IMAGE_PATH}/whispers_of_sirens.webp`,
     quality: QUALITY,
   },
 } as Record<string, Weapon>;

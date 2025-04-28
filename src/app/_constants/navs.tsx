@@ -32,12 +32,12 @@ export const NAVS: Navs = {
         //     icon: <Globe className="size-5" />,
         // },
     ],
-    Planner: [
-        {
-            title: "Timeline",
-            path: "/timeline",
-            match: "/timeline",
-            icon: <Calendar className="size-5" />,
-        },
-    ],
+    // Planner: [
+    //     {
+    //         title: "Timeline",
+    //         path: "/timeline",
+    //         match: "/timeline",
+    //         icon: <Calendar className="size-5" />,
+    //     },
+    // ],
 };

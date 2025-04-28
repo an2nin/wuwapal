@@ -8,6 +8,7 @@ export const FIVE_STAR_WEAPON_NAMES = {
   ABYSS_SURGES: "Abyss Surges",
   AGES_OF_HARVEST: "Ages of Harvest",
   BLAZING_BRILLIANCE: "Blazing Brilliance",
+  BLAZING_JUSTICE: "Blazing Justice",
   COSMIC_RIPPLES: "Cosmic Ripples",
   EMERALD_OF_GENESIS: "Emerald of Genesis",
   LUSTROUS_RAZOR: "Lustrous Razor",
@@ -39,6 +40,11 @@ export const FIVE_STAR_WEAPONS = {
   [FIVE_STAR_WEAPON_NAMES.BLAZING_BRILLIANCE]: {
     type: WEAPON_TYPE_NAMES.SWORD,
     image: `${WEAPON_IMAGE_PATH}/blazing_brilliance.webp`,
+    quality: QUALITY,
+  },
+  [FIVE_STAR_WEAPON_NAMES.BLAZING_JUSTICE]: {
+    type: WEAPON_TYPE_NAMES.GAUNTLETS,
+    image: `${WEAPON_IMAGE_PATH}/blazing_justice.webp`,
     quality: QUALITY,
   },
   [FIVE_STAR_WEAPON_NAMES.COSMIC_RIPPLES]: {

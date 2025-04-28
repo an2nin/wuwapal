@@ -25,6 +25,7 @@ export const FIVE_STAR_RESONATOR_NAMES = {
   VERINA: "Verina",
   XIANGLI_YAO: "Xiangli Yao",
   YINLIN: "Yinlin",
+  ZANI: "Zani",
   ZHEZHI: "Zhezhi",
 } as const;
 
@@ -160,6 +161,13 @@ export const FIVE_STAR_RESONATORS = {
     weapon: WEAPON_TYPE_NAMES.RECTIFIER,
     image: `${RESONATOR_IMAGE_PATH}/yinlin.webp`,
     icon: `${RESONATOR_ICON_PATH}/yinlin.webp`,
+    quality: QUALITY,
+  },
+  [FIVE_STAR_RESONATOR_NAMES.ZANI]: {
+    element: ELEMENT_NAMES.SPECTRO,
+    weapon: WEAPON_TYPE_NAMES.GAUNTLETS,
+    image: `${RESONATOR_IMAGE_PATH}/zani.webp`,
+    icon: `${RESONATOR_ICON_PATH}/zani.webp`,
     quality: QUALITY,
   },
   [FIVE_STAR_RESONATOR_NAMES.ZHEZHI]: {

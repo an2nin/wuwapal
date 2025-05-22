@@ -15,12 +15,12 @@ import { WEAPON_NAMES } from "@/shared/weapons";
 
 const items = {
   s5: [
-    { name: RESONATOR_NAMES.ZANI, rarity: 5, type: "resonators" },
-    { name: WEAPON_NAMES.BLAZING_JUSTICE, rarity: 5, type: "weapons" },
+    { name: RESONATOR_NAMES.CIACCONA, rarity: 5, type: "resonators" },
+    { name: WEAPON_NAMES.WOODLAND_ARIA, rarity: 5, type: "weapons" },
   ],
-  s4: [RESONATOR_NAMES.LUMI, RESONATOR_NAMES.TAOQI, RESONATOR_NAMES.YUANWU],
+  s4: [RESONATOR_NAMES.DANJIN, RESONATOR_NAMES.YANGYANG, RESONATOR_NAMES.MORTEFI],
   img: BANNERS.featured_resonator.image,
-  end_time: "2025-05-22 09:59",
+  end_time: "2025-06-11 11:59",
 };
 
 export default function BannerShowcase() {

@@ -12,6 +12,7 @@ export const FIVE_STAR_RESONATOR_NAMES = {
   CANTARELLA: "Cantarella",
   CARLOTTA: "Carlotta",
   CHANGLI: "Changli",
+  CIACCONA: "Ciaccona",
   ENCORE: "Encore",
   JIANXIN: "Jianxin",
   JINHSI: "Jinhsi",
@@ -70,6 +71,13 @@ export const FIVE_STAR_RESONATORS = {
     weapon: WEAPON_TYPE_NAMES.SWORD,
     image: `${RESONATOR_IMAGE_PATH}/changli.webp`,
     icon: `${RESONATOR_ICON_PATH}/changli.webp`,
+    quality: QUALITY,
+  },
+  [FIVE_STAR_RESONATOR_NAMES.CIACCONA]: {
+    element: ELEMENT_NAMES.GLACIO,
+    weapon: WEAPON_TYPE_NAMES.PISTOLS,
+    image: `${RESONATOR_IMAGE_PATH}/ciaccona.webp`,
+    icon: `${RESONATOR_ICON_PATH}/ciaccona.webp`,
     quality: QUALITY,
   },
   [FIVE_STAR_RESONATOR_NAMES.ENCORE]: {

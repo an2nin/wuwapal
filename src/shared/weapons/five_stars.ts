@@ -10,6 +10,7 @@ export const FIVE_STAR_WEAPON_NAMES = {
   BLAZING_BRILLIANCE: "Blazing Brilliance",
   BLAZING_JUSTICE: "Blazing Justice",
   COSMIC_RIPPLES: "Cosmic Ripples",
+  DEFIERS_THORN: "Defier's Thorn",
   EMERALD_OF_GENESIS: "Emerald of Genesis",
   LUSTROUS_RAZOR: "Lustrous Razor",
   RED_SPRING: "Red Spring",
@@ -51,6 +52,11 @@ export const FIVE_STAR_WEAPONS = {
   [FIVE_STAR_WEAPON_NAMES.COSMIC_RIPPLES]: {
     type: WEAPON_TYPE_NAMES.RECTIFIER,
     image: `${WEAPON_IMAGE_PATH}/cosmic_ripples.webp`,
+    quality: QUALITY,
+  },
+  [FIVE_STAR_WEAPON_NAMES.DEFIERS_THORN]: {
+    type: WEAPON_TYPE_NAMES.SWORD,
+    image: `${WEAPON_IMAGE_PATH}/defiers_thorn.webp`,
     quality: QUALITY,
   },
   [FIVE_STAR_WEAPON_NAMES.EMERALD_OF_GENESIS]: {

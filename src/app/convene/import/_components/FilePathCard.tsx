@@ -11,7 +11,7 @@ export default function FilePathCard({}) {
                             Install Folder
                         </span>
                         \Wuthering Waves
-                        Game\Client\Binaries\Win64\ThirdParty\KrPcSdk_Global\KRSDKRes\KRSDKWebView\debug.log
+                        Game\Client\Saved\Logs\Client.log
                     </div>
                 </CardContent>
             </Card>

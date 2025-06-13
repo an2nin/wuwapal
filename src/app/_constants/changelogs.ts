@@ -1,5 +1,9 @@
 export const CHANGELOGS = [
   {
+    date: "2025-08-13",
+    changes: ["Improves pull import scripts"],
+  },
+  {
     date: "2025-06-12",
     changes: ["Adds Cartethyia & Defiers Thorn"],
   },

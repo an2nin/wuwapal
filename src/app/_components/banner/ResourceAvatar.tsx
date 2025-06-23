@@ -16,7 +16,7 @@ export default function ResourceAvatar({ item, className }: Props) {
             )}
         >
             <img
-                className={`size-16 rounded-full lg:size-20 border-[0.2rem] lg:border-[0.25rem] ${
+                className={`size-14 rounded-full lg:size-16 border-[0.2rem] lg:border-[0.25rem] ${
                     item.rarity == 5 ? "border-quality-5" : "border-quality-4"
                 }`}
                 src={

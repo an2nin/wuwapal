@@ -25,7 +25,7 @@ const items = {
 
 export default function BannerShowcase() {
   return (
-    <Card className="flex flex-col justify-between">
+    <Card className="flex flex-col justify-between h-full">
       <CardHeader>
         <CardTitle>Ongoing Banner</CardTitle>
       </CardHeader>

@@ -11,13 +11,13 @@ export default function ConveneNavigation() {
     return (
         <div className="grid grid-cols-1 gap-5">
             <div className="flex flex-wrap gap-5 lg:justify-end justify-center">
-                <button onClick={() => router.push("/convene/global")}>
+               {/*  <button onClick={() => router.push("/convene/global")}>
                     <MovingBorder isHoverable>
                         <div className="flex items-center gap-2 px-2">
                             <Globe className="size-6" /> Global Stats
                         </div>
                     </MovingBorder>
-                </button>
+                </button> */}
                 <Button
                     onClick={() => router.push("/convene/import")}
                     variant="outline"

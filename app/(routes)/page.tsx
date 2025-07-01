@@ -1,13 +1,9 @@
-import BasicIntro from "@/(routes)/(home)/_components/BasicIntro";
 import { Metadata } from "next";
-import LinkCard from "./_components/LinkCard";
-import { Combine, Globe, Sparkles } from "lucide-react";
+// import LinkCard from "./_components/LinkCard";
+// import { Combine, Globe, Sparkles } from "lucide-react";
 import PageHeader from "@/shared/components/layout/PageHeader";
-import SocialLinks from "./_components/SocialLinks";
-import Changelogs from "./_components/Changelogs";
-import ResonatorBattle from "./_components/ResonatorBattle";
-import BannerShowcase from "./_components/BannerShowcase";
-import TrackMyPulls from "./_components/TrackMyPulls";
+import Home from "@/features/home";
+// import ResonatorBattle from "./_components/ResonatorBattle";
 
 export const metadata: Metadata = {
   // Basic Meta Tags
@@ -72,36 +68,8 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex flex-col gap-5">
-      <PageHeader>
-        <h1 className="scroll-m-20 text-3xl font-bold tracking-tight lg:text-4xl">
-          Welcome to WuWaPal
-          <span className="text-primary text-lg">.com</span>
-        </h1>
-      </PageHeader>
-
-
-      <div className="grid lg:grid-cols-12 grid-cols-1 gap-5">
-        <div className="lg:col-span-7">
-          <BasicIntro />
-        </div>
-        <div className="lg:col-span-5">
-          <SocialLinks />
-        </div>
-      </div>
-      <div className="grid lg:grid-cols-5 grid-cols-1 gap-5">
-        <div className="lg:col-span-2">
-          <BannerShowcase />
-        </div>
-        <div className="lg:col-span-3">
-          <TrackMyPulls />
-        </div>
-      </div>
-      <div className="grid grid-cols-1 gap-5">
-        <Changelogs />
-      </div>
-    </div>
+    <Home />
   );
 }

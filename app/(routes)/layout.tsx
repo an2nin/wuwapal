@@ -1,4 +1,5 @@
 "use client";
+
 import { Inter } from "next/font/google";
 import "@/globals.css";
 import Header from "@/shared/components/layout/Header";

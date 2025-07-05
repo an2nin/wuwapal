@@ -1,5 +1,47 @@
+"use client";
+
+import ConveneNavigation from "@/core/layout/ConveneNavigation";
+import PageHeader from "@/shared/components/layout/PageHeader";
+import { ProfileStoreState, useProfileStore } from "@/shared/stores/profile";
+import { useEffect, useState } from "react";
+import NoPullFound from "@/features/tracker/components/NoPullFound";
+import BannerOverview from "@/features/tracker/components/BannerOverview";
+import { BANNERS } from "@/data/banners";
+
 export default function Tracker() {
+  const profileStore = useProfileStore<ProfileStoreState>(
+    (state: ProfileStoreState) => state
+  );
+  const [banners, setBanners] = useState<any>(null);
+
+  useEffect(() => {
+    const currentProfilesBanner =
+      profileStore.profiles[profileStore.active].banners;
+    setBanners(currentProfilesBanner);
+  }, [profileStore]);
+
   return (
-    <div>Hello</div>
-  )
+    <>
+      <div className="flex flex-wrap-reverse gap-5 justify-between items-center">
+        <PageHeader title="Your Pull Journey" />
+        <ConveneNavigation />
+      </div>
+      <div>
+        {!banners && (
+          <div className="overlay-no-pull-found">
+            <NoPullFound />
+          </div>
+        )}
+        <div className="grid lg:grid-cols-2 gap-5 mt-5">
+          {Object.keys(BANNERS).map((banner, idx) => (
+            <BannerOverview
+              key={idx}
+              bannerData={banners ? banners[banner] : null}
+              bannerInfo={BANNERS[banner]}
+            />
+          ))}
+        </div>
+      </div>
+    </>
+  );
 }

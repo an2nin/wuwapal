@@ -2,7 +2,7 @@
 import { Button } from "@/shared/components/ui/button";
 import { ChevronsLeft, Globe, Import } from "lucide-react";
 import { useRouter } from "next-nprogress-bar";
-import SyncBtn from "../_components/SyncBtn";
+import SyncBtn from "../../../features/tracker/components/SyncBtn";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -12,7 +12,7 @@ import {
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BANNERS } from "@/data/banners";
-import ConveneNavigation from "../_components/ConveneNavigation";
+import ConveneNavigation from "../../../features/tracker/components/ConveneNavigation";
 
 export default function BannerLayout({
     children,

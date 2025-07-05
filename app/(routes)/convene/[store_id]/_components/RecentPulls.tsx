@@ -1,4 +1,4 @@
-import BannerItemBadge from "../../_components/BannerItemBadge";
+import BannerItemBadge from "../../../../features/tracker/components/BannerItemBadge";
 
 interface Props {
     bannerData: any;

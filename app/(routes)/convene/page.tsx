@@ -1,4 +1,4 @@
-import Tracker from "@/features/tracker";
+import Summary from "@/features/summary";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -66,6 +66,6 @@ export const metadata: Metadata = {
 
 export default function page() {
   return (
-    <Tracker />
+    <Summary />
   )
 }

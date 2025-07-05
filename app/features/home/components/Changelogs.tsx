@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/shared/components/ui/card";
 import { ScrollArea, ScrollBar } from "@/shared/components/ui/scroll-area";
 import React from "react";
-import ChangelogItem from "./ChangelogItem";
+import ChangelogItem from "./changelog-item";
 import { CHANGELOGS } from "@/shared/constants/changelogs";
 
 export default function Changelogs() {

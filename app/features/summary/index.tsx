@@ -4,11 +4,11 @@ import ConveneNavigation from "@/core/layout/ConveneNavigation";
 import PageHeader from "@/shared/components/layout/PageHeader";
 import { ProfileStoreState, useProfileStore } from "@/shared/stores/profile";
 import { useEffect, useState } from "react";
-import NoPullFound from "@/features/tracker/components/NoPullFound";
-import BannerOverview from "@/features/tracker/components/BannerOverview";
+import NoPullFound from "@/features/summary/components/no-pulls-found";
+import BannerOverview from "@/features/summary/components/banner-overview";
 import { BANNERS } from "@/data/banners";
 
-export default function Tracker() {
+export default function Summary() {
   const profileStore = useProfileStore<ProfileStoreState>(
     (state: ProfileStoreState) => state
   );

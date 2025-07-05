@@ -1,9 +1,9 @@
 import PageHeader from "@/shared/components/layout/PageHeader";
-import BannerShowcase from "./components/BannerShowcase";
-import BasicIntro from "./components/BasicIntro";
-import Changelogs from "./components/Changelogs";
-import SocialLinks from "./components/SocialLinks";
-import TrackMyPulls from "./components/TrackMyPulls";
+import BannerShowcase from "./components/banner-showcase";
+import BasicIntro from "./components/basic-intro";
+import Changelogs from "./components/changelogs";
+import SocialLinks from "./components/social-links";
+import TrackMyPulls from "./components/trackmypulls";
 
 export default function Home() {
   return (

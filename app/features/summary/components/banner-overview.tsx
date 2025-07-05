@@ -6,9 +6,8 @@ import {
   CardTitle,
 } from "@/shared/components/ui/card";
 import { processBanner } from "@/shared/helpers/processors";
-import { CURRENCIES } from "@/data/currencies";
 import { useEffect, useState } from "react";
-import BannerItemBadge from "./BannerItemBadge";
+import PullAvatar from "@/shared/components/pull-avatar";
 import { useRouter } from "next-nprogress-bar";
 import { Sigma } from "lucide-react";
 
@@ -78,7 +77,7 @@ export default function BannerOverview({ bannerData, bannerInfo }: Props) {
             {processedBanner?.star5s.length > 0 ? (
               processedBanner.star5s.slice().reverse().map(
                 (item: any, idx: number) => (
-                  <BannerItemBadge
+                  <PullAvatar
                     key={idx}
                     item={item}
                     maxPity={80}

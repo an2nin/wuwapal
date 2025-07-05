@@ -20,7 +20,7 @@ const getColorClass = (pity: number, max: number) => {
     }
 };
 
-export default function BannerItemBadge({ item, maxPity, rarity }: Props) {
+export default function PullAvatar({ item, maxPity, rarity }: Props) {
     return (
         <div className="relative rounded-full bg-transparent border-black border-[0.15rem] md:border-[0.2rem] items-center justify-center flex">
             <img

@@ -1,4 +1,4 @@
-import CustomListItem from "@/shared/components/layout/CustomListItem";
+import CustomListItem from "@/core/layout/custom-list-item";
 import FilePathCard from "./FilePathCard";
 import URLViewer from "./URLViewer";
 

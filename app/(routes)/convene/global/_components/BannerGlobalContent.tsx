@@ -2,7 +2,7 @@ import { BannerPieChart } from "@/shared/components/banner/BannerPieChart";
 import AvgPity from "./AvgPity";
 import StatTable from "./StatTable";
 import PercentageStat from "@/shared/components/banner/PercentageStat";
-import PageHeader from "@/shared/components/layout/PageHeader";
+import PageHeader from "@/core/layout/page-header";
 import { BannerPityBarChart } from "@/shared/components/banner/BannerPityBarChart";
 import { ScrollArea } from "@/shared/components/ui/scroll-area";
 import { BannerBarChart } from "@/shared/components/banner/BannerBarChart";

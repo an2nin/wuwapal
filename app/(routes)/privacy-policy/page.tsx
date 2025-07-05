@@ -1,5 +1,5 @@
 import Link from "next/link";
-import PageHeader from "@/shared/components/layout/PageHeader";
+import PageHeader from "@/core/layout/page-header";
 
 export default function PrivacyPolicy() {
     return (

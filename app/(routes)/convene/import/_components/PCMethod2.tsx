@@ -1,4 +1,4 @@
-import CustomListItem from "@/shared/components/layout/CustomListItem";
+import CustomListItem from "@/core/layout/custom-list-item";
 import CopyCardSemiAutomatic from "./CopyCardSemiAutomatic";
 import { Input } from "@/shared/components/ui/input";
 

@@ -1,6 +1,6 @@
 import { Settings } from "lucide-react";
 import { Button } from "@/shared/components/ui/button";
-import SheetBar from "@/shared/components/layout/SheetBar";
+import SheetBar from "@/core/layout/sheet-bar";
 import { useRouter } from "next-nprogress-bar";
 import Link from "next/link";
 import React from "react";

@@ -1,9 +1,8 @@
 "use client";
+
 import { Button } from "@/shared/components/ui/button";
-import { Globe, Import } from "lucide-react";
-import SyncBtn from "./SyncBtn";
+import { Import } from "lucide-react";
 import { useRouter } from "next-nprogress-bar";
-import MovingBorder from "@/shared/components/ui/moving-border";
 
 export default function ConveneNavigation() {
     const router = useRouter();
@@ -24,9 +23,6 @@ export default function ConveneNavigation() {
                 >
                     <Import className="size-6" /> Import History
                 </Button>
-                {/* <div>
-                    <SyncBtn />
-                </div> */}
             </div>
         </div>
     );

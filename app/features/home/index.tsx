@@ -1,4 +1,4 @@
-import PageHeader from "@/shared/components/layout/PageHeader";
+import PageHeader from "@/core/layout/page-header";
 import BannerShowcase from "./components/banner-showcase";
 import BasicIntro from "./components/basic-intro";
 import Changelogs from "./components/changelogs";

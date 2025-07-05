@@ -7,10 +7,10 @@ import {
     CardHeader,
     CardTitle,
 } from "@/shared/components/ui/card";
-import PageHeader from "@/shared/components/layout/PageHeader";
+import PageHeader from "@/core/layout/page-header";
 import MovingBorder from "@/shared/components/ui/moving-border";
-import DailyResetTimer from "@/shared/components/timers/DailyResetTimer";
-import WeeklyResetTimer from "@/shared/components/timers/WeeklyResetTimer";
+import DailyResetTimer from "@/shared/components/timers/daily-reset-timer";
+import WeeklyResetTimer from "@/shared/components/timers/weekly-reset-timer";
 import { Info } from "lucide-react";
 export default function Timeline() {
     const startDate = "2024-12-01";

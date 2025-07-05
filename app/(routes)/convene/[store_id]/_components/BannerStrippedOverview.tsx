@@ -1,4 +1,4 @@
-import SiteSymbol from "@/shared/components/layout/SiteSymbol";
+import SiteSymbol from "@/core/layout/site-symbol";
 import BannerStats from "./BannerStats";
 import RecentPulls from "./RecentPulls";
 

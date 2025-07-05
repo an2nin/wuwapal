@@ -5,7 +5,7 @@ import { processBannersForCollection } from "@/shared/helpers/processors";
 import { RESONATORS } from "@/data/resonators";
 import { WEAPONS_FOUR_AND_FIVE_STARS } from "@/data/weapons";
 import { useEffect, useState } from "react";
-import PageHeader from "@/shared/components/layout/PageHeader";
+import PageHeader from "@/core/layout/page-header";
 import { useProfileStore, ProfileStoreState } from "@/shared/stores/profile";
 
 export default function CollectorsHub() {

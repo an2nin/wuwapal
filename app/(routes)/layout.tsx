@@ -2,11 +2,11 @@
 
 import { Inter } from "next/font/google";
 import "@/globals.css";
-import Header from "@/shared/components/layout/Header";
+import Header from "@/core/layout/header";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { NAVS } from "@/shared/constants/navs";
-import Footer from "@/shared/components/layout/Footer";
+import Footer from "@/core/layout/footer";
 import { Toaster } from "@/shared/components/ui/sonner";
 import { AppProgressBar as TopProgressBar } from "next-nprogress-bar";
 import { Provider } from "react-redux";

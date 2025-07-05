@@ -1,7 +1,7 @@
 "use client";
 
-import ConveneNavigation from "@/core/layout/ConveneNavigation";
-import PageHeader from "@/shared/components/layout/PageHeader";
+import ConveneNavigation from "@/core/layout/convene-navigation";
+import PageHeader from "@/core/layout/page-header";
 import { ProfileStoreState, useProfileStore } from "@/shared/stores/profile";
 import { useEffect, useState } from "react";
 import NoPullFound from "@/features/summary/components/no-pulls-found";

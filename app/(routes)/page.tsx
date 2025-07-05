@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 // import LinkCard from "./_components/LinkCard";
 // import { Combine, Globe, Sparkles } from "lucide-react";
-import PageHeader from "@/shared/components/layout/PageHeader";
+import PageHeader from "@/core/layout/page-header";
 import Home from "@/features/home";
 // import ResonatorBattle from "./_components/ResonatorBattle";
 

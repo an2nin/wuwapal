@@ -1,6 +1,6 @@
 "use client";
 import ResourceAvatar from "@/shared/components/banner/ResourceAvatar";
-import CountdownTimer from "@/shared/components/timers/CountdownTimer";
+import CountdownTimer from "@/shared/components/timers/countdown-timer";
 import {
   Card,
   CardContent,

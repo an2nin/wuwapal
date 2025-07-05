@@ -1,4 +1,4 @@
-import CustomListItem from "@/shared/components/layout/CustomListItem";
+import CustomListItem from "@/core/layout/custom-list-item";
 import CopyCardAutomatic from "./CopyCardAutomatic";
 
 export default function PCMethod1() {

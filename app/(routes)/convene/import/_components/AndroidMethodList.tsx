@@ -1,5 +1,5 @@
 import { useState } from "react";
-import CustomListItem from "@/shared/components/layout/CustomListItem";
+import CustomListItem from "@/core/layout/custom-list-item";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/shared/components/ui/tabs";
 import { Input } from "@/shared/components/ui/input";
 

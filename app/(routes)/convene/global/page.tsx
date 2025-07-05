@@ -13,7 +13,7 @@ import {
     CarouselPrevious,
 } from "@/shared/components/ui/carousel";
 import BannerGlobalContent from "./_components/BannerGlobalContent";
-import PageHeader from "@/shared/components/layout/PageHeader";
+import PageHeader from "@/core/layout/page-header";
 
 const BANNERS_ARRAY = [
     "featured_resonator",

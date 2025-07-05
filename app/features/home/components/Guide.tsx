@@ -1,6 +1,6 @@
 'use client'
-import CustomList from "@/shared/components/layout/CustomList";
-import CustomListItem from "@/shared/components/layout/CustomListItem";
+import CustomList from "@/core/layout/custom-list";
+import CustomListItem from "@/core/layout/custom-list-item";
 import { Button } from "@/shared/components/ui/button";
 import {
     Card,

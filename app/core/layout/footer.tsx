@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SOCIAL_LINKS } from "@/shared/constants/social-links";
 import { Heart } from "lucide-react";
-import { Bangladesh } from "../ui/custom-icons";
+import { Bangladesh } from "../../shared/components/ui/custom-icons";
 
 export default function Footer() {
     return (

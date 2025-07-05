@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import CustomListItem from "@/shared/components/layout/CustomListItem";
+import CustomListItem from "@/core/layout/custom-list-item";
 import { Textarea } from "@/shared/components/ui/textarea";
 import { validateJsonString } from "@/shared/helpers/validators";
 import { convertJsonToUrl } from "@/shared/helpers/processors";

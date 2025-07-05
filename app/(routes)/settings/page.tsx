@@ -1,5 +1,5 @@
 "use client";
-import PageHeader from "@/shared/components/layout/PageHeader";
+import PageHeader from "@/core/layout/page-header";
 import BackupManager from "./_components/BackupManager";
 import CloudSync from "./_components/CloudSync/Index";
 import Profile from "./_components/Profile";

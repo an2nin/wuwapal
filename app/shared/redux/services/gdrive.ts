@@ -1,8 +1,8 @@
-import { api } from "@/redux/api/base";
+import { api } from "@/shared/redux/api/base";
 import {
     GOOGLE_DRIVE_ENDPOINT,
     GOOGLE_DRIVE_UPLOAD_ENDPOINT,
-} from "@/redux/api/endpoints";
+} from "@/shared/redux/api/endpoints";
 import {
     CreateFileInDrivePayload,
     CreateFileInDriveResponse,
@@ -12,7 +12,7 @@ import {
     FetchFileListFromDriveResponse,
     UploadToDrivePayload,
     UploadToDriveResponse,
-} from "@/redux/api/types";
+} from "@/shared/redux/api/types";
 import { useAuthStore } from "@/shared/stores/auth";
 
 export const gDriveApis = api.injectEndpoints({

@@ -1,5 +1,5 @@
 import { Button } from "@/shared/components/ui/button";
-import { useLazyFetchFileFromDriveQuery } from "@/redux/services/gdrive";
+import { useLazyFetchFileFromDriveQuery } from "@/shared/redux/services/gdrive";
 import { useAuthStore } from "@/shared/stores/auth";
 import { ProfileStoreState, useProfileStore } from "@/shared/stores/profile";
 import { CloudDownload, LoaderCircle } from "lucide-react";

@@ -1,7 +1,7 @@
 // import BannerGlobalContent from "@/components/banner/BannerGlobalContent";
 // import BannerTab from "@/components/banner/BannerTab";
 "use client";
-import { useGlobalStatsQuery } from "@/redux/services/banner";
+import { useGlobalStatsQuery } from "@/shared/redux/services/banner";
 import { BANNERS } from "@/data/banners";
 import { useEffect, useState } from "react";
 import BannerCarouselItem from "./_components/BannerCarouselItem";

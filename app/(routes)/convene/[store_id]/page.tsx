@@ -1,5 +1,5 @@
 import { BANNERS } from "@/data/banners";
-import DetailedBanner from "./_components/DetailedBanner";
+import BannerWiseTracker from "@/features/tracker/banner-wise";
 
 export async function generateStaticParams() {
     return Object.keys(BANNERS).map((banner) => ({
@@ -8,5 +8,5 @@ export async function generateStaticParams() {
 }
 
 export default function Page({ params }: { params: { store_id: string } }) {
-    return <DetailedBanner params={params} />;
+    return <BannerWiseTracker params={params} />;
 }

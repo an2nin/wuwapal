@@ -1,4 +1,4 @@
-import { FetchProfileResponse } from "@/redux/api/types";
+import { FetchProfileResponse } from "@/shared/redux/api/types";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 

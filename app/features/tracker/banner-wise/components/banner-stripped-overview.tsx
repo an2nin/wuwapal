@@ -1,6 +1,6 @@
 import SiteSymbol from "@/core/layout/site-symbol";
-import BannerStats from "./BannerStats";
-import RecentPulls from "./RecentPulls";
+import BannerStats from "./banner-stats";
+import RecentPulls from "./recent-pulls";
 
 interface Props {
     bannerData: any;

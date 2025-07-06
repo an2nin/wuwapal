@@ -13,7 +13,7 @@ import {
     DialogHeader,
     DialogTitle,
 } from "@/shared/components/ui/dialog";
-import { useFetchBannerMutation, useUploadToGlobalStatsMutation } from "@/redux/services/banner";
+import { useFetchBannerMutation, useUploadToGlobalStatsMutation } from "@/shared/redux/services/banner";
 import useSupabase from "@/shared/hooks/useSupabase";
 import {
     isConveneHistoryUrlValid,

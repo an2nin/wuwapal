@@ -1,6 +1,6 @@
 import { getAuthHeader } from "@/shared/helpers/auth";
-import { api } from "@/redux/api/base";
-import { API_SERVER_ENDPOINT } from "@/redux/api/endpoints";
+import { api } from "@/shared/redux/api/base";
+import { API_SERVER_ENDPOINT } from "@/shared/redux/api/endpoints";
 
 export const userDataApis = api.injectEndpoints({
     endpoints: (build) => ({

@@ -4,8 +4,8 @@ import ConveneNavigation from "@/core/layout/convene-navigation";
 import PageHeader from "@/core/layout/page-header";
 import { ProfileStoreState, useProfileStore } from "@/shared/stores/profile";
 import { useEffect, useState } from "react";
-import NoPullFound from "@/features/summary/components/no-pulls-found";
-import BannerOverview from "@/features/summary/components/banner-overview";
+import NoPullFound from "@/features/tracker/summary/components/no-pulls-found";
+import BannerOverview from "@/features/tracker/summary/components/banner-overview";
 import { BANNERS } from "@/data/banners";
 
 export default function Summary() {

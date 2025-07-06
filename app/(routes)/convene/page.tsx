@@ -1,4 +1,4 @@
-import Summary from "@/features/summary";
+import Summary from "@/features/tracker/summary";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

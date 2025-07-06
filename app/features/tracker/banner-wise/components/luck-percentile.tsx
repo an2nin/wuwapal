@@ -1,6 +1,6 @@
 import { calculateLuck } from "@/shared/helpers/banner";
 import { useEffect, useState } from "react";
-import LuckStatCard from "./LuckStatCard";
+import LuckStatCard from "./luck-stat-card";
 
 interface Props {
     bannerData: any;

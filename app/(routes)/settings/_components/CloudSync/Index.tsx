@@ -16,14 +16,14 @@ import {
     useFetchAuthTokensMutation,
     useLazyFetchProfileQuery,
     useRevokeAuthTokensMutation,
-} from "@/redux/services/auth";
+} from "@/shared/redux/services/auth";
 import Uploader from "./Uploader";
 import Restorer from "./Restorer";
 import useSupabase from "@/shared/hooks/useSupabase";
 import {
     useCreateFileInDriveMutation,
     useLazyFetchFileListFromDriveQuery,
-} from "@/redux/services/gdrive";
+} from "@/shared/redux/services/gdrive";
 
 const GOOGLE_SCOPES = [
     "https://www.googleapis.com/auth/userinfo.profile",

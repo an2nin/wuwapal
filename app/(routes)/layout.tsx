@@ -10,7 +10,7 @@ import Footer from "@/core/layout/footer";
 import { Toaster } from "@/shared/components/ui/sonner";
 import { AppProgressBar as TopProgressBar } from "next-nprogress-bar";
 import { Provider } from "react-redux";
-import { store } from "@/redux/store";
+import { store } from "@/shared/redux/store";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Script from "next/script";
 

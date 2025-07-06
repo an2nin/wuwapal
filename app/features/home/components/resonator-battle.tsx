@@ -3,7 +3,7 @@ import { Globe, Percent } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/shared/components/ui/card";
 import { calculatePercentage } from "@/shared/helpers/processors";
 import { useRouter } from "next-nprogress-bar";
-import { useGlobalStatsQuery } from "@/redux/services/banner";
+import { useGlobalStatsQuery } from "@/shared/redux/services/banner";
 import MovingBorder from "@/shared/components/ui/moving-border";
 import { FIVE_STAR_RESONATOR_NAMES } from "@/data/resonators/five_stars";
 import { RESONATORS } from "@/data/resonators";

@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { api } from "@/redux/api/base";
+import { api } from "@/shared/redux/api/base";
 import { rtkQueryErrorLogger } from "./middlewares/errorInterceptor";
 
 export const store = configureStore({

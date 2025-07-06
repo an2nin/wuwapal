@@ -1,8 +1,8 @@
-import { api } from "@/redux/api/base";
+import { api } from "@/shared/redux/api/base";
 import {
     API_SERVER_ENDPOINT,
     GOOGLE_OAUTH_ENDPOINT,
-} from "@/redux/api/endpoints";
+} from "@/shared/redux/api/endpoints";
 import {
     FetchAuthTokensPayload,
     FetchAuthTokensResponse,
@@ -10,7 +10,7 @@ import {
     RefreshAccessTokenPayload,
     RefreshAccessTokenResponse,
     RevokeAuthTokensResponse,
-} from "@/redux/api/types";
+} from "@/shared/redux/api/types";
 import { useAuthStore } from "@/shared/stores/auth";
 
 export const authApis = api.injectEndpoints({

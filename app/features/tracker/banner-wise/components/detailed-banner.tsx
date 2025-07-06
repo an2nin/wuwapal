@@ -1,13 +1,13 @@
 "use client";
+
 import { processBanner } from "@/shared/helpers/processors";
-import { useBannerStore } from "@/shared/stores/banner";
 import { useState, useEffect } from "react";
-import BannerStrippedOverview from "./BannerStrippedOverview";
+import BannerStrippedOverview from "./banner-stripped-overview";
 import { BANNERS } from "@/data/banners";
-import PullBreakdown from "./PullBreakdown";
-import BannerTable from "./BannerTable";
-import { useGlobalStatsQuery } from "@/redux/services/banner";
-import LuckPercentile from "./LuckPercentile";
+import PullBreakdown from "./pull-breakdown";
+import BannerTable from "./banner-table";
+import { useGlobalStatsQuery } from "@/shared/redux/services/banner";
+import LuckPercentile from "./luck-percentile";
 import { BannerPieChart } from "@/shared/components/banner/BannerPieChart";
 import { useProfileStore, ProfileStoreState } from "@/shared/stores/profile";
 interface Props {

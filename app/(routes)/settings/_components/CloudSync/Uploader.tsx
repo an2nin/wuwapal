@@ -1,6 +1,6 @@
 import { Button } from "@/shared/components/ui/button";
 import useSupabase from "@/shared/hooks/useSupabase";
-import { useUploadToDriveMutation } from "@/redux/services/gdrive";
+import { useUploadToDriveMutation } from "@/shared/redux/services/gdrive";
 import { useAuthStore } from "@/shared/stores/auth";
 import { ProfileStoreState, useProfileStore } from "@/shared/stores/profile";
 import { format } from "date-fns";

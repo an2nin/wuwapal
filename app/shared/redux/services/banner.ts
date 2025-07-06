@@ -1,6 +1,6 @@
-import { api } from "@/redux/api/base";
-import { GM_SERVER_ENDPOINT, GLOBAL_STAT_GIST } from "@/redux/api/endpoints";
-import { FetchBannerPayload, FetchBannerResponse } from "@/redux/api/types";
+import { api } from "@/shared/redux/api/base";
+import { GM_SERVER_ENDPOINT, GLOBAL_STAT_GIST } from "@/shared/redux/api/endpoints";
+import { FetchBannerPayload, FetchBannerResponse } from "@/shared/redux/api/types";
 
 export const conveneApis = api.injectEndpoints({
     endpoints: (build) => ({

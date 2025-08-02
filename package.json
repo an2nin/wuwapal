@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev --turbopack --port 5551",
     "build": "next build",
     "start": "next start",
     "prepare": "husky",
@@ -12,13 +12,15 @@
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
+    "@t3-oss/env-nextjs": "^0.13.8",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.536.0",
     "next": "15.4.5",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "tailwind-merge": "^3.3.1"
+    "tailwind-merge": "^3.3.1",
+    "zod": "^4.0.14"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^5.0.0",

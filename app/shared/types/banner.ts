@@ -69,6 +69,7 @@ export interface StarItem {
   name: string;
   pity: number;
   type: string;
+  icon: string;
 }
 
 export interface ProcessedBanner {

@@ -12,11 +12,11 @@ interface Props {
   bannerInfo: BannerInfo;
 }
 
-export default function BannerStats({ processedBanner, bannerInfo }: Props) {
+export default function BannerBasicStats({ processedBanner, bannerInfo }: Props) {
   return (
     <div className="absolute top-0 h-full w-full left-0 flex lg:justify-start justify-center lg:ml-6 lg:mt-5">
       <div className="flex items-center ">
-        <div className="flex flex-wrap border bg-card/95 rounded-xl w-fit">
+        <div className="flex flex-wrap border bg-card/85 rounded-xl w-fit">
           <div className="flex flex-col-reverse gap-1 p-3">
             <div className="grid grid-cols-2 gap-2 lg:gap-5 text-xs sm:grid-cols-2 p-3 lg:inline-flex lg:flex-row lg:flex-wrap">
               <div className="flex flex-col gap-1  text-center">

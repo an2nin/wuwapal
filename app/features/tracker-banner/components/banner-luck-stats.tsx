@@ -47,12 +47,12 @@ export default function BannerLuckStats({ processedBanner }: Props) {
       {isError && (
         <>
           <BannerStatCard
-            title="✦ 5 Luck"
+            title="5 ✦ Luck"
             description="Oops! Error fetching data"
             value="N/A"
           />
           <BannerStatCard
-            title="✦ 4 Luck"
+            title="4 ✦ Luck"
             description="Oops! Error fetching data"
             value="N/A"
           />
@@ -67,7 +67,7 @@ export default function BannerLuckStats({ processedBanner }: Props) {
           return (
             <BannerStatCard
               key={key}
-              title={`✦ ${key === 'star5' ? '5' : '4'} Luck`}
+              title={`${key === 'star5' ? '5' : '4'} ✦  Luck`}
               description={`${isTop ? 'Luckier' : 'Unluckier'} than ${luck?.comparisonPercent ?? 'N/A'}%`}
               value={(
                 <div

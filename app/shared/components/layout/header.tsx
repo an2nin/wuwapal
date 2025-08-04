@@ -11,7 +11,7 @@ export default function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="flex flex-col sticky top-0 z-50 lg:container w-full bg-background">
+    <header className="flex flex-col sticky top-0 z-50 lg:container w-full bg-background/90">
       <nav className="py-2 rounded-b-xl justify-between items-center px-4 hidden lg:flex">
         <div className="w-fit">
           <Link href="/" className="flex items-center gap-3 group">

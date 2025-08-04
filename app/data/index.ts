@@ -51,6 +51,12 @@ export const WEAPONS: Record<string, Weapon> = {
   ...FOUR_STAR_WEAPONS,
 };
 
+export const WEAPONS_FOR_COLLECTION: Record<string, Weapon> = Object.fromEntries(
+  Object.entries({
+    ...FIVE_STAR_WEAPONS,
+    ...FOUR_STAR_WEAPONS,
+  }).filter(([_, weapon]) => weapon.notGacha === undefined),
+);
 export const COMBINED: Record<string, Weapon | Resonator> = {
   ...WEAPONS,
   ...RESONATORS,

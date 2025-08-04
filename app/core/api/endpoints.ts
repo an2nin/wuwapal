@@ -8,3 +8,6 @@ export const WUWA_GACHA_ENDPOINT
   = env.NEXT_PUBLIC_NODE_ENV === 'dev'
     ? `${env.NEXT_PUBLIC_API_URL}/gacha/record/query`
     : 'https://gmserver-api.aki-game2.net/gacha/record/query';
+
+export const GLOBAL_STAT_GIST
+  = 'https://gist.githubusercontent.com/an2nin/3f10d0695f68210dd7dcce856cb557a1/raw/global_pull_stat.json';

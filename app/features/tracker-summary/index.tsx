@@ -6,7 +6,7 @@ import { useLayoutStore } from '@/shared/stores/layout';
 import NoPullFound from './components/no-pull-found';
 import SummaryCard from './components/summary-card';
 
-export default function PullJourney() {
+export default function TrackerSummary() {
   const { banners, isLoading } = useIndexDB('default');
   const layoutStore = useLayoutStore(state => state);
 

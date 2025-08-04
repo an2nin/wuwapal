@@ -1,5 +1,5 @@
-import TrackerSummary from '@/features/pull-journey';
-import BannerSwitch from '@/features/pull-journey/components/banner-switch';
+import TrackerSummary from '@/features/tracker-summary';
+import BannerSwitch from '@/features/tracker-summary/components/banner-switch';
 import PageHeader from '@/shared/components/page-header';
 
 export default function ConvenePage() {

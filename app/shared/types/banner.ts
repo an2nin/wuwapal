@@ -76,15 +76,15 @@ export interface ProcessedBanner {
   total: number; // Total quantity or count
   name: string; // Identifier for the store
   items: ProcessedBannerItem[]; // Array of items
-  star4_resonators: StarItem[];
-  star4_weapons: StarItem[];
-  star5s: StarItem[];
-  star4_pity: number;
-  star5_pity: number;
-  guaranteed: boolean;
-  star4_avg_pity: number;
-  star5_avg_pity: number;
-  ff_win_percent?: number;
+  star4Resonators: StarItem[];
+  star4Weapons: StarItem[];
+  star5Items: StarItem[];
+  star4Pity: number;
+  star5Pity: number;
+  isGuaranteed: boolean;
+  star4AvgPity: number;
+  star5AvgPity: number;
+  ffWinPercent?: number;
 }
 
 export interface ProcessedBanners {

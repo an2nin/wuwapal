@@ -3,7 +3,7 @@ import { cn } from '@/shared/utils';
 import PullAvatar from './pull-avatar';
 
 interface Props {
-  items: StarItem[];
+  items: StarItem[] | null;
   className?: string;
   limit?: number;
 }

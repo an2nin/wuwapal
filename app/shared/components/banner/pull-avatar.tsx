@@ -29,13 +29,13 @@ export default function PullAvatar({ item, maxPity, rarity }: Props) {
     >
       {imageError
         ? (
-            <div className="flex size-12 items-center justify-center rounded-full bg-gray-800 text-xs text-gray-400">
+            <div className="flex size-14 items-center justify-center rounded-full bg-gray-800 text-xs text-gray-400">
               {item.name.substring(0, 2)}
             </div>
           )
         : (
             <img
-              className="size-12 rounded-full object-cover transition-opacity duration-300 hover:opacity-90"
+              className="size-14 rounded-full object-cover transition-opacity duration-300 hover:opacity-90"
               src={item.icon || '/placeholder.svg'}
               alt={`${item.name} - ${rarity}★ item`}
               onError={handleImageError}

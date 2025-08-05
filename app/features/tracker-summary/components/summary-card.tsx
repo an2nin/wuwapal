@@ -13,6 +13,7 @@ import {
 } from '@/shared/components/ui/card';
 import { CURRENCIES } from '@/shared/constants/game/currencies';
 import useIndexDB from '@/shared/hooks/use-index-db';
+import { useAccountStore } from '@/shared/stores/account';
 import { processBannerForSummary } from '../utils/processor';
 
 interface Props {
@@ -22,7 +23,8 @@ interface Props {
 
 export default function SummaryCard({ bannerId, bannerInfo }: Props) {
   const router = useRouter();
-  const { getBannerById, banners } = useIndexDB('default');
+  const accountStore = useAccountStore(state => state);
+  const { getBannerById, banners } = useIndexDB(accountStore.active);
   const [processedBanner, setProcessedBanner] = useState<SummarizedBanner | null>(null);
 
   useEffect(() => {

@@ -1,4 +1,5 @@
 'use client';
+
 import { useRouter } from 'next/navigation';
 import MovingBorder from '@/shared/components/moving-border';
 import { Button } from '@/shared/components/ui/button';
@@ -25,7 +26,7 @@ export default function NoPullFound() {
               <div>
                 <Button
                   variant="ghost"
-                  onClick={() => router.push('/pull-tracker/import')}
+                  onClick={() => router.push('/convene/import')}
                 >
                   <MovingBorder hoverable>
                     <div className="flex items-center gap-2 px-2">

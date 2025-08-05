@@ -1,22 +1,34 @@
 'use client';
+
+import type { BannerTable } from '@/core/db';
 import { useLiveQuery } from 'dexie-react-hooks';
 import db from '@/core/db';
 
-function useIndexDB(profileId: string) {
-  const banners = useLiveQuery(() => db.banners.toArray(), []);
+function useIndexDB(profileId: string | null) {
+  // only run a real query once we have a profileId
+  const banners = useLiveQuery<BannerTable[]>(
+    () =>
+      profileId
+        ? db.banners
+            .where('profile')
+            .equals(profileId)
+            .toArray()
+        : Promise.resolve([]),
+    [profileId],
+  );
 
   const isLoading = banners === undefined; // Dexie not loaded yet
 
   const getBannerById = (id: string) => {
-    if (!banners)
-      return null; // Still loading
-
-    const profileBanners = banners.filter(b => b.profile === profileId);
-    return profileBanners.find(b => b.name === id) ?? null;
+    if (!banners || !profileId) {
+      // still loading or no profile
+      return null;
+    }
+    return banners.find(b => b.name === id) ?? null;
   };
 
   return {
-    banners: banners ?? [], // so caller always gets an array
+    banners: banners ?? [], // always an array
     isLoading,
     getBannerById,
   };

@@ -2,12 +2,14 @@
 import { useMemo } from 'react';
 import { REGULAR_BANNERS, SPECIAL_BANNERS } from '@/shared/constants/game/banners';
 import useIndexDB from '@/shared/hooks/use-index-db';
+import { useAccountStore } from '@/shared/stores/account';
 import { useLayoutStore } from '@/shared/stores/layout';
 import NoPullFound from './components/no-pull-found';
 import SummaryCard from './components/summary-card';
 
 export default function TrackerSummary() {
-  const { banners, isLoading } = useIndexDB('default');
+  const accountStore = useAccountStore(state => state);
+  const { banners, isLoading } = useIndexDB(accountStore.active);
   const layoutStore = useLayoutStore(state => state);
 
   const isNoPullFound = useMemo(() => {

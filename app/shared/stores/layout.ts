@@ -6,6 +6,9 @@ interface LayoutState {
   hasPullsConverted: boolean;
   hasHydrated: boolean;
   showAllBanners: boolean;
+  gamePath: string;
+  // Actions
+  setGamePath: (path: string) => void;
   setActiveProfile: (profile: string) => void;
   setHasPullsConverted: (converted: boolean) => void;
   setHasHydrated: (hydrated: boolean) => void;
@@ -19,10 +22,12 @@ export const useLayoutStore = create<LayoutState>()(
       hasPullsConverted: false,
       hasHydrated: false,
       showAllBanners: false,
+      gamePath: '',
       setActiveProfile: profile => set({ activeProfile: profile }),
       setHasPullsConverted: converted => set({ hasPullsConverted: converted }),
       setHasHydrated: hydrated => set({ hasHydrated: hydrated }),
       setShowAllBanners: show => set({ showAllBanners: show }),
+      setGamePath: path => set({ gamePath: path }),
     }),
     {
       name: 'layout-storage',

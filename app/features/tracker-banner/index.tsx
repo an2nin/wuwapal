@@ -4,6 +4,7 @@ import { useSearchParams } from 'next/navigation';
 import { useMemo } from 'react';
 import { BANNERS } from '@/shared/constants/game/banners';
 import useIndexDB from '@/shared/hooks/use-index-db';
+import { useAccountStore } from '@/shared/stores/account';
 import BannerLuckStats from './components/banner-luck-stats';
 import BannerPullBreakdown from './components/banner-pull-breakdown';
 import BannerStatsSection from './components/banner-stats-section';
@@ -13,7 +14,9 @@ import { processBannerForDetailed } from './utils/processor';
 export default function TrackerBanner() {
   const searchParams = useSearchParams();
   const bannerId = searchParams.get('id') || 'featured_resonator';
-  const { getBannerById, banners } = useIndexDB('default');
+  const accountStore = useAccountStore(state => state);
+
+  const { getBannerById, banners } = useIndexDB(accountStore.active);
 
   const processedBanner = useMemo(() => {
     if (!bannerId || !banners)

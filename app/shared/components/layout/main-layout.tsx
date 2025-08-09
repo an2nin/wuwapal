@@ -1,8 +1,10 @@
 'use client';
-import { GoogleAnalytics } from '@next/third-parties/google';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+import { GoogleAnalytics } from '@next/third-parties/google';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import NextTopLoader from 'nextjs-toploader';
+import { env } from '@/core/env';
 import Footer from '@/shared/components/layout/footer';
 import Header from '@/shared/components/layout/header';
 import { Toaster } from '@/shared/components/ui/sonner';
@@ -25,13 +27,15 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         <GoogleAnalytics gaId="G-7NLQRZE5QL" />
         <NextTopLoader showSpinner={false} />
         <QueryClientProvider client={queryClient}>
-          <div className="min-h-screen scrollbar-thin flex flex-col justify-start transition-[margin-left] ease-in-out duration-300 container mx-auto">
-            <Header />
-            <main className="flex-1 px-2 lg:my-10 my-5">
-              {children}
-            </main>
-            <Footer />
-          </div>
+          <GoogleOAuthProvider clientId={env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ''}>
+            <div className="min-h-screen scrollbar-thin flex flex-col justify-start transition-[margin-left] ease-in-out duration-300 container mx-auto">
+              <Header />
+              <main className="flex-1 px-2 lg:my-10 my-5">
+                {children}
+              </main>
+              <Footer />
+            </div>
+          </GoogleOAuthProvider>
         </QueryClientProvider>
         <Toaster richColors />
       </body>

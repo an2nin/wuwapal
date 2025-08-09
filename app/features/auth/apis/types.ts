@@ -1,0 +1,97 @@
+export interface FetchAuthTokensPayload {
+  code: string;
+  redirect_uri: string;
+}
+
+export interface FetchAuthTokensResponse {
+  status: string;
+  data: {
+    access_token: string;
+    expires_in: number;
+    refresh_token: string;
+    token_type: string;
+    scope: string;
+    id_token: string;
+  };
+}
+
+export interface RefreshAccessTokenPayload {
+  refresh_token: string;
+}
+
+export interface RefreshAccessTokenResponse {
+  status: string;
+  data: {
+    access_token: string;
+    expires_in: number;
+    token_type: string;
+    scope: string;
+    id_token: string;
+  };
+}
+
+export interface RevokeAuthTokensResponse {
+  status: string;
+  message: string;
+}
+
+export interface FetchProfileResponse {
+  sub: string;
+  name: string;
+  given_name: string;
+  picture: string;
+  email: string;
+  email_verified: boolean;
+}
+
+export interface UploadToDrivePayload {
+  id: string;
+  params: {
+    uploadType: string;
+    alt: string;
+    key: string;
+  };
+  body: string;
+}
+
+export interface UploadToDriveResponse {
+
+}
+
+export interface FetchFileListFromDrivePayload {
+  q: string;
+  spaces: string;
+  key: string;
+}
+
+export interface FetchFileListFromDriveResponse {
+  kind: string;
+  incompleteSearch: boolean;
+  files: { kind: string; id: string; name: string; mimeType: string }[];
+}
+
+export interface CreateFileInDrivePayload {
+  params: {
+    fields: string;
+    alt: string;
+    key: string;
+  };
+  body: {
+    name: string;
+    parents: string[];
+  };
+}
+
+export interface CreateFileInDriveResponse {
+  id: string;
+}
+
+export interface FetchFileFromDrivePayload {
+  id: string;
+  params: {
+    alt: string;
+    key: string;
+  };
+}
+
+export type FetchFileFromDriveResponse = string;

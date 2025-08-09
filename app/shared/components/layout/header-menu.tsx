@@ -1,5 +1,6 @@
-import { ChevronDown, Languages, LogOut, Settings } from 'lucide-react';
+import { ChevronDown, Languages, Settings } from 'lucide-react';
 import Link from 'next/link';
+import AuthDropdownItems from '@/features/auth';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -63,10 +64,7 @@ export default function HeaderMenu() {
           </DropdownMenuSub>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <LogOut />
-          <span>Log out</span>
-        </DropdownMenuItem>
+        <AuthDropdownItems />
       </DropdownMenuContent>
     </DropdownMenu>
   );

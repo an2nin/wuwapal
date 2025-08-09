@@ -1,5 +1,6 @@
 import { Cloud } from 'lucide-react';
 import CloudSync from '@/features/backups/components/cloud-sync';
+import FileBackup from '@/features/backups/components/file-backup';
 import { Card, CardContent } from '@/shared/components/ui/card';
 
 export default function Backups() {
@@ -12,7 +13,7 @@ export default function Backups() {
         </div>
         <div className="space-y-6">
           <CloudSync />
-          {/* <ManualBackup /> */}
+          <FileBackup />
         </div>
       </CardContent>
     </Card>

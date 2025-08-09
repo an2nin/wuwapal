@@ -15,21 +15,6 @@ export interface FetchAuthTokensResponse {
   };
 }
 
-export interface RefreshAccessTokenPayload {
-  refresh_token: string;
-}
-
-export interface RefreshAccessTokenResponse {
-  status: string;
-  data: {
-    access_token: string;
-    expires_in: number;
-    token_type: string;
-    scope: string;
-    id_token: string;
-  };
-}
-
 export interface RevokeAuthTokensResponse {
   status: string;
   message: string;
@@ -70,19 +55,7 @@ export interface FetchFileListFromDriveResponse {
   files: { kind: string; id: string; name: string; mimeType: string }[];
 }
 
-export interface CreateFileInDrivePayload {
-  params: {
-    fields: string;
-    alt: string;
-    key: string;
-  };
-  body: {
-    name: string;
-    parents: string[];
-  };
-}
-
-export interface CreateFileInDriveResponse {
+export interface CreateGDriveFileResponse {
   id: string;
 }
 
@@ -93,5 +66,3 @@ export interface FetchFileFromDrivePayload {
     key: string;
   };
 }
-
-export type FetchFileFromDriveResponse = string;

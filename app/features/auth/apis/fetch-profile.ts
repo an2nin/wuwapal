@@ -7,6 +7,8 @@ export function fetchProfile() {
   const authStore = useAuthStore.getState();
 
   return api.get<FetchProfileResponse>(`${GOOGLE_OAUTH_ENDPOINT}/userinfo`, {
-    Authorization: `Bearer ${authStore.access}`,
+    headers: {
+      Authorization: `Bearer ${authStore.access}`,
+    },
   });
 }

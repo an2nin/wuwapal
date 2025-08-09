@@ -1,6 +1,4 @@
-import type { BannerTable } from '@/core/db';
 import { useEffect, useState } from 'react';
-import { saveBanner } from '@/core/db/actions';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,7 +10,7 @@ import {
 } from '@/shared/components/ui/alert-dialog';
 import { useLayoutStore } from '@/shared/stores/layout';
 import { useProfileStore } from '@/shared/stores/profile';
-import { convertBannerToNewFormat } from '@/shared/utils';
+import { importV1PullsIntoTable } from '@/shared/utils/importer';
 
 export default function PullConverter() {
   const { hasHydrated, hasPullsConverted } = useLayoutStore(state => state);
@@ -28,21 +26,7 @@ export default function PullConverter() {
       // eslint-disable-next-line react-hooks-extra/no-direct-set-state-in-use-effect
       setIsDialogOpen(true);
 
-      Object.entries(profiles).forEach(([profileKey, profile]) => {
-        if (profile.banners) {
-          // Convert the pulls to the new format
-          Object.entries(profile.banners).forEach(async ([bannerKey, banner]: any) => {
-            const convertedItems = convertBannerToNewFormat(banner);
-            // Update the profile with the converted pulls
-            const bannerForTable: BannerTable = {
-              profile: profileKey,
-              name: bannerKey,
-              items: convertedItems,
-            };
-            await saveBanner(bannerForTable);
-          });
-        }
-      });
+      importV1PullsIntoTable(profiles);
       layoutStore.setHasPullsConverted(true);
       // eslint-disable-next-line react-hooks-extra/no-direct-set-state-in-use-effect
       setIsConverting(false);

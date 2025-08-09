@@ -31,10 +31,20 @@ export const useAccountStore = create<AccountStoreState>()(
       ...initialState,
       setActive: (playerId: string | null) => set({ active: playerId }),
       getAccountById: (playerId: string) =>
-        (get().accounts.find(account => account.playerId === playerId)),
-      addAccount: (account: Account) => set(state => ({
-        accounts: [...state.accounts, account],
-      })),
+        get().accounts.find(account => account.playerId === playerId),
+      addAccount: (account: Account) => set((state) => {
+        if (state.active === null) {
+          set({ active: account.playerId });
+        }
+        // Ensure playerId is unique
+        if (state.accounts.some(a => a.playerId === account.playerId)) {
+          return {}; // No change if playerId already exists
+        }
+
+        return {
+          accounts: [...state.accounts, account],
+        };
+      }),
       updateAccount: (playerId: string, updatedAccount: Partial<Account>) => set(state => ({
         accounts: state.accounts.map(account =>
           account.playerId === playerId ? { ...account, ...updatedAccount } : account,

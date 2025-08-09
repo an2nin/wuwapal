@@ -9,11 +9,8 @@ export default function LogoutButton() {
 
   const revokeTokensMutation = useMutation({
     mutationFn: fetchRevokeTokens,
-    onSuccess: () => {
+    onSettled: () => {
       authStore.clearStore();
-    },
-    onError: (error) => {
-      console.error('Error revoking tokens:', error);
     },
   });
 

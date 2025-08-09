@@ -10,7 +10,7 @@ export interface Profile {
   svr_id?: string | null;
 }
 
-interface Profiles {
+export interface Profiles {
   [profile: string]: Profile;
 }
 

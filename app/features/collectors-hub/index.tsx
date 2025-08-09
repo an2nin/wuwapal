@@ -4,11 +4,13 @@ import { useMemo, useState } from 'react';
 import { RESONATORS, WEAPONS_FOR_COLLECTION } from '@/data';
 import { Tabs, TabsList, TabsTrigger } from '@/shared/components/ui/tabs';
 import useIndexDB from '@/shared/hooks/use-index-db';
+import { useAccountStore } from '@/shared/stores/account';
 import CollectionList from './components/collection-list';
 import { processBannersForCollection } from './utils/processors';
 
 export default function CollectorsHub() {
-  const { banners } = useIndexDB('default');
+  const accountStore = useAccountStore(state => state);
+  const { banners } = useIndexDB(accountStore.active);
   const items = useMemo(() => processBannersForCollection(banners ?? null), [banners]);
   const [currentTab, setCurrentTab] = useState('resonator');
 

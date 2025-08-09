@@ -1,4 +1,4 @@
-import type { RefreshAccessTokenResponse } from '@/features/cloud-sync/apis/types';
+import type { RefreshAccessTokenResponse } from '@/features/backups/apis/types';
 import { api } from '@/core/api/client';
 import { API_SERVER_ENDPOINT } from '@/core/api/endpoints';
 import { useAuthStore } from '@/shared/stores/auth';

@@ -9,14 +9,14 @@ import { Download, Upload } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { toast } from 'sonner';
 import db from '@/core/db';
-import { importPullsIntoTableFromGDrive } from '@/features/cloud-sync/utils/import';
+import { fetchGDriveFile } from '@/features/backups/apis/fetch-gdrive-file';
+import { fetchRefreshedToken } from '@/features/backups/apis/fetch-refreshed-token';
+import { updateGDriveFile } from '@/features/backups/apis/update-gdrive-file';
+import { importPullsIntoTableFromGDrive } from '@/features/backups/utils/import';
 import { Button } from '@/shared/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { useAccountStore } from '@/shared/stores/account';
 import { useAuthStore } from '@/shared/stores/auth';
-import { fetchGDriveFile } from './apis/fetch-gdrive-file';
-import { fetchRefreshedToken } from './apis/fetch-refreshed-token';
-import { updateGDriveFile } from './apis/update-gdrive-file';
 
 export default function CloudSync() {
   const authStore = useAuthStore(state => state);

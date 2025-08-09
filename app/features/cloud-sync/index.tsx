@@ -1,20 +1,28 @@
 'use client';
 
 import type { ApiError } from '@/core/api/client';
+import type { BannerTable } from '@/core/db';
 import { useMutation } from '@tanstack/react-query';
+import { format } from 'date-fns';
+import { useLiveQuery } from 'dexie-react-hooks';
 import { Download, Upload } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { toast } from 'sonner';
+import db from '@/core/db';
 import { importPullsIntoTableFromGDrive } from '@/features/cloud-sync/utils/import';
 import { Button } from '@/shared/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card';
+import { useAccountStore } from '@/shared/stores/account';
 import { useAuthStore } from '@/shared/stores/auth';
 import { fetchGDriveFile } from './apis/fetch-gdrive-file';
 import { fetchRefreshedToken } from './apis/fetch-refreshed-token';
+import { updateGDriveFile } from './apis/update-gdrive-file';
 
 export default function CloudSync() {
   const authStore = useAuthStore(state => state);
+  const accountStore = useAccountStore(state => state);
   const [pendingAction, setPendingAction] = useState<string | null>(null);
+  const banners = useLiveQuery<BannerTable[]>(() => db.banners.toArray());
 
   const refreshedTokenMutation = useMutation({
     mutationFn: fetchRefreshedToken,
@@ -25,9 +33,15 @@ export default function CloudSync() {
         setPendingAction(null);
         handleRestoreFromCloud();
       }
+
+      if (pendingAction === 'upload') {
+        setPendingAction(null);
+        handleUploadToCloud();
+      }
     },
     onError: (error) => {
       console.error('Error refreshing token:', error);
+      toast.error('Failed to refresh session. Please log in again.');
       authStore.clearStore();
     },
   });
@@ -48,8 +62,36 @@ export default function CloudSync() {
     },
   });
 
+  const updateGDriveFileMutation = useMutation({
+    mutationFn: updateGDriveFile,
+    onSuccess: () => {
+      toast.success('File updated successfully!');
+    },
+    onError: (error: ApiError) => {
+      if (error.status === 401) {
+        toast.error('Session Expired, Refreshing...');
+        setPendingAction('upload');
+        refreshedTokenMutation.mutate();
+      }
+      else {
+        toast.error('Failed to update file. Please try again.');
+      }
+    },
+  });
+
   function handleRestoreFromCloud() {
     gDriveFileMutation.mutate();
+  }
+
+  function handleUploadToCloud() {
+    const fileContent = JSON.stringify({
+      version: '2.0',
+      active: accountStore.active,
+      date: format(new Date(), 'dd/MM/yyyy hh:mm a'),
+      banners,
+      accounts: accountStore.accounts,
+    });
+    updateGDriveFileMutation.mutate(fileContent);
   }
 
   const profileEmail = useMemo(
@@ -90,7 +132,12 @@ export default function CloudSync() {
                 >
                   Restore from Cloud
                 </Button>
-                <Button variant="outline" icon={<Upload />}>
+                <Button
+                  variant="outline"
+                  icon={<Upload />}
+                  onClick={handleUploadToCloud}
+                  isLoading={updateGDriveFileMutation.isPending}
+                >
                   Upload to Cloud
                 </Button>
               </div>

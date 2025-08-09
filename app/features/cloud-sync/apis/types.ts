@@ -12,3 +12,7 @@ export interface RefreshAccessTokenResponse {
     id_token: string;
   };
 }
+
+export interface updateGDriveResponse {
+
+}

@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-interface Account {
+export interface Account {
   displayName: string;
   playerId: string; // Profile ID connected to Profile in DB
 }
@@ -20,6 +20,7 @@ export type AccountStoreState = InitialAccountState & {
   setActive: (playerId: string | null) => void;
   getAccountById: (playerId: string) => Account | undefined;
   addAccount: (account: Account) => void;
+  setAccounts: (accounts: Account[]) => void;
   updateAccount: (playerId: string, updatedAccount: Partial<Account>) => void;
   removeAccount: (playerId: string) => void;
   clearStore: () => void;
@@ -45,6 +46,7 @@ export const useAccountStore = create<AccountStoreState>()(
           accounts: [...state.accounts, account],
         };
       }),
+      setAccounts: (accounts: Account[]) => set({ accounts }),
       updateAccount: (playerId: string, updatedAccount: Partial<Account>) => set(state => ({
         accounts: state.accounts.map(account =>
           account.playerId === playerId ? { ...account, ...updatedAccount } : account,

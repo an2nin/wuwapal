@@ -29,20 +29,6 @@ export interface FetchProfileResponse {
   email_verified: boolean;
 }
 
-export interface UploadToDrivePayload {
-  id: string;
-  params: {
-    uploadType: string;
-    alt: string;
-    key: string;
-  };
-  body: string;
-}
-
-export interface UploadToDriveResponse {
-
-}
-
 export interface FetchFileListFromDrivePayload {
   q: string;
   spaces: string;

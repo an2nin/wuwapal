@@ -1,3 +1,4 @@
+import type { Account } from '../stores/account';
 import type { Profiles } from '../stores/profile';
 import type { BannerTable } from '@/core/db';
 import { saveBanner } from '@/core/db/actions';
@@ -30,5 +31,26 @@ export async function importV1PullsIntoTable(profiles: Profiles) {
         playerId: profile.player_id || '',
       });
     }
+  }
+}
+
+export async function importV2PullsIntoTable(banners: BannerTable[], accounts: Account[], active: string | null) {
+  const accountStore = useAccountStore.getState();
+
+  if (banners.length === 0) {
+    console.warn('No banners to import');
+    return;
+  }
+
+  for (const banner of banners) {
+    await saveBanner(banner);
+  }
+
+  if (accounts.length > 0) {
+    accountStore.setAccounts(accounts);
+  }
+
+  if (active) {
+    accountStore.setActive(active);
   }
 }

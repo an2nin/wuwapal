@@ -17,6 +17,6 @@ export function importPullsIntoTableFromGDrive(content: gdriveFileContent) {
     return importV1PullsIntoTable(content.profiles);
   }
   else if (content.version === '2.0' && content.banners) {
-    return importV2PullsIntoTable(content.banners, content.accounts || [], content.active || null);
+    return importV2PullsIntoTable(content.banners || [], content.accounts || [], content.active || null);
   }
 }

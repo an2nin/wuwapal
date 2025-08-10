@@ -1,9 +1,10 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { deleteAllBannersForProfile } from '@/core/db/actions';
 
 export interface Account {
   displayName: string;
-  playerId: string; // Profile ID connected to Profile in DB
+  playerId?: string | null; // Profile ID connected to Profile in DB
 }
 
 interface InitialAccountState {
@@ -19,6 +20,7 @@ const initialState: InitialAccountState = {
 export type AccountStoreState = InitialAccountState & {
   setActive: (playerId: string | null) => void;
   getAccountById: (playerId: string) => Account | undefined;
+  getActiveAccount: () => Account | undefined;
   addAccount: (account: Account) => void;
   setAccounts: (accounts: Account[]) => void;
   updateAccount: (playerId: string, updatedAccount: Partial<Account>) => void;
@@ -33,6 +35,12 @@ export const useAccountStore = create<AccountStoreState>()(
       setActive: (playerId: string | null) => set({ active: playerId }),
       getAccountById: (playerId: string) =>
         get().accounts.find(account => account.playerId === playerId),
+      getActiveAccount: () => {
+        const state = get();
+        if (!state.active)
+          return undefined;
+        return state.accounts.find(account => account.playerId === state.active);
+      },
       addAccount: (account: Account) => set((state) => {
         if (state.active === null) {
           set({ active: account.playerId });
@@ -52,9 +60,14 @@ export const useAccountStore = create<AccountStoreState>()(
           account.playerId === playerId ? { ...account, ...updatedAccount } : account,
         ),
       })),
-      removeAccount: (playerId: string) => set(state => ({
-        accounts: state.accounts.filter(account => account.playerId !== playerId),
-      })),
+      removeAccount: (playerId: string) => set((state) => {
+        const updatedAccounts = state.accounts.filter(account => account.playerId !== playerId);
+        deleteAllBannersForProfile(playerId);
+        return {
+          accounts: updatedAccounts,
+          active: updatedAccounts.length === 0 ? null : state.active,
+        };
+      }),
       clearStore: () => set(initialState),
     }),
     {

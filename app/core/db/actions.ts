@@ -21,6 +21,10 @@ export async function deleteBanner(profile: string, name: string) {
   await db.banners.delete([profile, name]);
 }
 
+export async function deleteAllBannersForProfile(profile: string) {
+  await db.banners.where('profile').equals(profile).delete();
+}
+
 export async function clearAllBanners() {
   await db.banners.clear();
 }

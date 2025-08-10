@@ -39,8 +39,12 @@ export default function ImportBtn({ gachaUrl, gamePath }: Props) {
     if (gamePath)
       layoutStore.setGamePath(gamePath);
 
+    const displayName = accountStore.active
+      ? accountStore.getAccountById(accountStore.active)?.displayName
+      : undefined;
+
     accountStore.addAccount({
-      displayName: 'Default',
+      displayName: displayName || 'Default',
       playerId: parsedBody.player_id,
     });
 

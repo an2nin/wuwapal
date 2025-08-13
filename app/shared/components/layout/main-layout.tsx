@@ -5,6 +5,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import NextTopLoader from 'nextjs-toploader';
 import { env } from '@/core/env';
+import PullConverter from '@/core/pull-converter';
 import Footer from '@/shared/components/layout/footer';
 import Header from '@/shared/components/layout/header';
 import { Toaster } from '@/shared/components/ui/sonner';
@@ -37,6 +38,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
             </div>
           </GoogleOAuthProvider>
         </QueryClientProvider>
+        <PullConverter />
         <Toaster richColors />
       </body>
     </html>

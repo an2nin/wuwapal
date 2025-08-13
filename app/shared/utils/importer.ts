@@ -1,12 +1,14 @@
 import type { Account } from '../stores/account';
 import type { Profiles } from '../stores/profile';
 import type { BannerTable } from '@/core/db';
-import { saveBanner } from '@/core/db/actions';
+import { resetDatabase, saveBanner } from '@/core/db/actions';
 import { useAccountStore } from '../stores/account';
 import { convertBannerToNewFormat } from './converter';
 
 export async function importV1PullsIntoTable(profiles: Profiles) {
   const accountStore = useAccountStore.getState();
+  await resetDatabase();
+  accountStore.clearStore();
 
   for (const [profileKey, profile] of Object.entries(profiles)) {
     if (profile.banners) {
@@ -36,6 +38,8 @@ export async function importV1PullsIntoTable(profiles: Profiles) {
 
 export async function importV2PullsIntoTable(banners: BannerTable[], accounts: Account[], active: string | null) {
   const accountStore = useAccountStore.getState();
+  await resetDatabase();
+  accountStore.clearStore();
 
   if (banners.length === 0) {
     console.warn('No banners to import');

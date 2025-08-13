@@ -1,4 +1,5 @@
 import type { BannerTable } from './index';
+import { Dexie } from 'dexie';
 import db from './index';
 
 export async function saveBanner(banner: BannerTable) {
@@ -27,4 +28,16 @@ export async function deleteAllBannersForProfile(profile: string) {
 
 export async function clearAllBanners() {
   await db.banners.clear();
+}
+
+export async function resetDatabase() {
+  try {
+    db.close();
+    await Dexie.delete('GachaDatabase'); // Deletes the entire DB including all tables
+    await db.open(); // Re-initializes schema, creates empty tables
+  }
+  catch (err) {
+    console.error('Failed to delete/reopen DB:', err);
+    // Optionally: Show error to user, or rethrow
+  }
 }

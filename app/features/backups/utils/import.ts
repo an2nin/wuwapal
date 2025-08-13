@@ -12,7 +12,7 @@ interface gdriveFileContent {
   accounts?: Account[];
 }
 
-export function importPullsIntoTableFromGDrive(content: gdriveFileContent) {
+export async function importPullsIntoTableFromGDrive(content: gdriveFileContent) {
   if (content.version === '1.0' && content.profiles) {
     return importV1PullsIntoTable(content.profiles);
   }

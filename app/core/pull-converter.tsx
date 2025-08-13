@@ -39,6 +39,7 @@ export default function PullConverter() {
         <AlertDialogHeader>
           <AlertDialogTitle>
             Data migration
+            {' '}
             {isConverting ? 'in progress' : 'complete'}
           </AlertDialogTitle>
           <AlertDialogDescription>

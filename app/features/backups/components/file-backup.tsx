@@ -10,7 +10,7 @@ import db from '@/core/db';
 import { Button } from '@/shared/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { useAccountStore } from '@/shared/stores/account';
-import { importV2PullsIntoTable } from '@/shared/utils/importer';
+import { importV1PullsIntoTable, importV2PullsIntoTable } from '@/shared/utils/importer';
 
 export default function FileBackup() {
   const accountStore = useAccountStore(state => state);
@@ -29,11 +29,18 @@ export default function FileBackup() {
           // Ensure the result is a string
           try {
             const importedData = JSON.parse(result); // Parse JSON data
-            await importV2PullsIntoTable(importedData.banners, importedData.accounts || [], importedData.active || null);
-            toast.success('Data imported successfully');
+            if (importedData.version === '2.0') {
+              await importV2PullsIntoTable(importedData.banners, importedData.accounts || [], importedData.active || null);
+              toast.success('Data imported successfully');
+            }
+            else {
+              await importV1PullsIntoTable(importedData.profiles || {});
+              toast.success('Data imported successfully');
+            }
           }
-          catch {
-            toast.error('Invalid JSON data');
+          catch (error: any) {
+            console.error('Error parsing JSON:', error);
+            toast.error(`Invalid JSON data: ${error}`);
           }
         }
         else {

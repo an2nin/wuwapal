@@ -124,3 +124,11 @@
     var(--card) 10px
   );
 }
+
+.link {
+  @apply text-primary font-bold underline;
+}
+
+.link:hover {
+  @apply text-primary/90;
+}

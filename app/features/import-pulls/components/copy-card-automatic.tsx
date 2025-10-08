@@ -40,7 +40,7 @@ export default function CopyCardAutomatic() {
           rel="noopener noreferrer"
           target="_blank"
           href={scriptUrl}
-          className="text-primary font-bold underline"
+          className="link"
         >
           here
         </a>

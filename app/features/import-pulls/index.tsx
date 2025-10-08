@@ -77,6 +77,7 @@ export default function ImportPulls() {
               {' '}
               will handle this issue for you. but
               keeping a
+              {' '}
               <strong>backup</strong>
               {' '}
               is always a smart move! 💾✔️.
@@ -84,7 +85,7 @@ export default function ImportPulls() {
             <p>
               You can do it from
               {' '}
-              <Link className="font-bold text-primary underline" href="/settings">
+              <Link className="link" href="/settings">
                 Settings
               </Link>
               {' '}
@@ -111,7 +112,7 @@ export default function ImportPulls() {
           <IOSMethodList setConveneRecordURL={setConveneRecordURL} />
         </TabsContent>
       </Tabs>
-      <div className="md:ml-28 ml-12 mt-4">
+      <div className="md:ml-28 ml-8 mb-4">
         <ImportBtn gachaUrl={conveneRecordURL} gamePath={gamePath} />
       </div>
     </div>

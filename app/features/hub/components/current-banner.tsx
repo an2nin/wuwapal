@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/shared/components/ui/card';
-import { BANNERS } from '@/shared/constants/game/banners';
+import { IMAGE_PATH } from '@/shared/constants/game/paths';
 import { convertToISOWithOffset } from '@/shared/utils';
 
 const items = {
@@ -18,7 +18,7 @@ const items = {
     { name: 'sad', rarity: 5, type: 'weapons' },
   ],
   s4: ['sada'],
-  img: BANNERS.featured_resonator.image,
+  img: `${IMAGE_PATH}/banners/showcase.webp`,
   end_time: '2025-08-14 09:59',
 };
 

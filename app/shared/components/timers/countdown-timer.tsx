@@ -47,7 +47,7 @@ function CountdownTimer({
   }, [targetDate]);
 
   return (
-    <p>
+    <div>
       {timeLeft.days < 0
         || timeLeft.hours < 0
         || timeLeft.minutes < 0
@@ -60,8 +60,10 @@ function CountdownTimer({
               {startingText}
               {timeLeft.days}
               d
+              {' '}
               {timeLeft.hours}
               h
+              {' '}
               {timeLeft.minutes}
               m
               {' '}
@@ -69,7 +71,7 @@ function CountdownTimer({
               s
             </>
           )}
-    </p>
+    </div>
   );
 }
 

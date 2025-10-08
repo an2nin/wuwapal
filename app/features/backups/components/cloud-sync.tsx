@@ -117,13 +117,13 @@ export default function CloudSync() {
           Easily save and access your data across all your devices with your Google Account.
         </CardDescription>
       </CardHeader>
-      <CardContent className="flex justify-between items-center">
+      <CardContent className="flex flex-col md:flex-row justify-between items-center gap-3">
         <div>
           {profileEmail}
         </div>
         {authStore.cloud_file_id
           ? (
-              <div className="flex gap-3 items-center">
+              <div className="flex flex-col md:flex-row gap-3 items-center">
                 <Button
                   variant="outline"
                   onClick={handleRestoreFromCloud}

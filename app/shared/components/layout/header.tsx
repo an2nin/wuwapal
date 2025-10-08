@@ -1,7 +1,8 @@
 'use client';
 import type { NavItem } from '@/shared/constants/navs';
+import { Settings } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { env } from '@/core/env';
 import HeaderMenu from '@/shared/components/layout/header-menu';
 import HeaderSheet from '@/shared/components/layout/header-sheet';
@@ -9,6 +10,7 @@ import { NAVS } from '@/shared/constants/navs';
 
 export default function Header() {
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
     <header className="flex flex-col sticky top-0 z-50 lg:container w-full bg-background/90">
@@ -133,7 +135,15 @@ export default function Header() {
             </div>
           </Link>
         </div>
-        <div></div>
+        <div>
+          <button
+            type="button"
+            onClick={() => router.push('/settings')}
+            className="bg-background rounded-2xl p-2"
+          >
+            <Settings className="size-8" />
+          </button>
+        </div>
       </nav>
     </header>
   );

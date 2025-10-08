@@ -16,7 +16,7 @@ export default function HeaderSheet({ currentActiveRoute }: Props) {
     <>
       <button
         type="button"
-        className="bg-background rounded-full p-2"
+        className="bg-background rounded-2xl p-2"
         onClick={() => setIsOpen(!isOpen)}
       >
         <Menu className="size-8" />

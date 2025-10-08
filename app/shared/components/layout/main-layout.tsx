@@ -29,9 +29,9 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
         <NextTopLoader showSpinner={false} color="var(--primary)" zIndex={9999} />
         <QueryClientProvider client={queryClient}>
           <GoogleOAuthProvider clientId={env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ''}>
-            <div className="min-h-screen scrollbar-thin flex flex-col justify-start transition-[margin-left] ease-in-out duration-300 container mx-auto">
+            <div className="min-h-screen scrollbar-thin flex flex-col justify-start transition-[margin-left] ease-in-out duration-300 container mx-auto gap-4 lg:gap-6">
               <Header />
-              <main className="flex-1 px-2 my-3">
+              <main className="flex-1 px-2">
                 {children}
               </main>
               <Footer />

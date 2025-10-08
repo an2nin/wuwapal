@@ -1,3 +1,4 @@
+import AlertNewChange from './components/alert-new-change';
 import Changelogs from './components/changelogs';
 import CurrentBanner from './components/current-banner';
 import SocialLinks from './components/social-links';
@@ -10,6 +11,7 @@ export default function Hub() {
         Welcome to WuWaPal
         <span className="text-primary text-lg">.com</span>
       </h1>
+      <AlertNewChange />
       <div className="grid lg:grid-cols-12 grid-cols-1 lg:gap-6 gap-4">
         <div className="lg:col-span-7">
           <Welcome />

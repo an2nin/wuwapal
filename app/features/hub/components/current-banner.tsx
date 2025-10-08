@@ -39,7 +39,7 @@ export default function CurrentBanner() {
           />
           <div className="absolute bottom-0 left-0 h-full w-full">
             <div className="flex gap-5 h-full items-center ml-4">
-              <div className="flex flex-col flex-wrap h-[13rem] justify-center gap-3">
+              <div className="grid grid-cols-2 justify-center gap-3">
                 {items.s5.map((item, idx) => (
                   <ResourceAvatar
                     key={idx}
@@ -51,7 +51,7 @@ export default function CurrentBanner() {
                   />
                 ))}
               </div>
-              <div className="flex flex-col flex-wrap h-[13rem] justify-center gap-3">
+              <div className="grid grid-cols-2 justify-center items-center gap-3">
                 {items.s4.map((item, idx) => (
                   <ResourceAvatar
                     key={idx}

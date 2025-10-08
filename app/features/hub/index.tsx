@@ -1,3 +1,4 @@
+import Changelogs from './components/changelogs';
 import CurrentBanner from './components/current-banner';
 import SocialLinks from './components/social-links';
 import Welcome from './components/welcome';
@@ -17,12 +18,12 @@ export default function Hub() {
           <SocialLinks />
         </div>
       </div>
-      <div className="grid lg:grid-cols-5 grid-cols-1 gap-5">
+      <div className="grid lg:grid-cols-4 grid-cols-1 gap-5">
         <div className="lg:col-span-2">
           <CurrentBanner />
         </div>
-        <div className="lg:col-span-3">
-          {/* <TrackMyPulls /> */}
+        <div className="lg:col-span-2">
+          <Changelogs />
         </div>
       </div>
     </div>

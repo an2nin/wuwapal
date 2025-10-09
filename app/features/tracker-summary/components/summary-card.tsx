@@ -69,7 +69,7 @@ export default function SummaryCard({ bannerId, bannerInfo }: Props) {
                   ✦
                 </div>
                 <p className="text-quality-5">
-                  {processedBanner?.star4Pity || 0}
+                  {processedBanner?.star5Pity || 0}
                   {' '}
                   / 80
                 </p>
@@ -79,7 +79,7 @@ export default function SummaryCard({ bannerId, bannerInfo }: Props) {
                   ✦
                 </div>
                 <p className="text-quality-4">
-                  {processedBanner?.star5Pity || 0}
+                  {processedBanner?.star4Pity || 0}
                   {' '}
                   / 10
                 </p>

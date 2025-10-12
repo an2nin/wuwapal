@@ -1,7 +1,11 @@
 export const CHANGELOGS = [
   {
+    date: '2025-10-13',
+    changes: ['Fixes emoji issues', 'Adds new android import method (Airplane)'],
+  },
+  {
     date: '2025-10-09',
-    changes: ['Revamp full site design', 'Refactor codebase', 'Adds 1.7 characters'],
+    changes: ['Revamp full site design', 'Refactor codebase', 'Adds 2.7 characters'],
   },
   {
     date: '2025-09-17',

@@ -3,6 +3,7 @@ import { ELEMENT_NAMES } from '@/shared/constants/game/elements';
 import { WEAPON_TYPE_NAMES } from '@/shared/constants/game/weapon-types';
 
 export const fiveStarResonatorDefinitions: Record<string, Omit<Resonator, 'image' | 'icon' | 'quality'>> = {
+  'Augusta': { element: ELEMENT_NAMES.ELECTRO, weapon: WEAPON_TYPE_NAMES.BROADBLADE },
   'Brant': { element: ELEMENT_NAMES.FUSION, weapon: WEAPON_TYPE_NAMES.SWORD },
   'Calcharo': { element: ELEMENT_NAMES.ELECTRO, weapon: WEAPON_TYPE_NAMES.BROADBLADE },
   'Camellya': { element: ELEMENT_NAMES.HAVOC, weapon: WEAPON_TYPE_NAMES.SWORD },
@@ -19,6 +20,7 @@ export const fiveStarResonatorDefinitions: Record<string, Omit<Resonator, 'image
   'Jiyan': { element: ELEMENT_NAMES.AERO, weapon: WEAPON_TYPE_NAMES.BROADBLADE },
   'Lingyang': { element: ELEMENT_NAMES.GLACIO, weapon: WEAPON_TYPE_NAMES.GAUNTLETS },
   'Lupa': { element: ELEMENT_NAMES.FUSION, weapon: WEAPON_TYPE_NAMES.BROADBLADE },
+  'Phrolova': { element: ELEMENT_NAMES.HAVOC, weapon: WEAPON_TYPE_NAMES.RECTIFIER },
   'Phoebe': { element: ELEMENT_NAMES.SPECTRO, weapon: WEAPON_TYPE_NAMES.RECTIFIER },
   'Roccia': { element: ELEMENT_NAMES.HAVOC, weapon: WEAPON_TYPE_NAMES.GAUNTLETS },
   'Shorekeeper': { element: ELEMENT_NAMES.SPECTRO, weapon: WEAPON_TYPE_NAMES.RECTIFIER },

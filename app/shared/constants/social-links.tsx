@@ -9,6 +9,10 @@ interface SocialLink {
   srOnly: string;
 }
 
+interface SocialLinksObj {
+  [key: string]: SocialLink;
+}
+
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     title: 'Discord',
@@ -40,7 +44,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
 ];
 
-export const SOCIAL_LINKS_OBJ: any = {
+export const SOCIAL_LINKS_OBJ: SocialLinksObj = {
   discord: {
     title: 'Discord',
     path: 'https://discord.gg/DFKG4nqUD4',

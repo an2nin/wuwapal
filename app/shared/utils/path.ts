@@ -6,5 +6,6 @@ export function toFileName(name: string): string {
     .replace(/#/g, '') // remove #
     .replace(/'/g, '') // remove apostrophes
     .replace(/:/g, '') // remove colons
+    .replace(/&/g, 'n') // remove ampersands
     .replace(/\(|\)/g, ''); // remove parentheses
 }

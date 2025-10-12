@@ -19,7 +19,7 @@ export default function AlertNewChange() {
           ! While this brings exciting improvements, some things might break during the transition.
         </p>
         <p>
-          �
+          🔒
           {' '}
           <strong>Don't panic!</strong>
           {' '}
@@ -34,10 +34,10 @@ export default function AlertNewChange() {
           {' '}
           <strong>contact me on Discord</strong>
           {' '}
-          so I can fix them quickly. Your feedback helps make WuWaPal better! �
+          so I can fix them quickly. Your feedback helps make WuWaPal better! 🚀
         </p>
         <p>
-          Thank you for your patience during this upgrade! �
+          Thank you for your patience during this upgrade! 🙏
         </p>
       </AlertDescription>
     </Alert>

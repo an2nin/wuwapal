@@ -10,7 +10,7 @@ export default function Changelogs() {
         <CardTitle>Changelogs</CardTitle>
       </CardHeader>
       <CardContent className="mt-4">
-        <ScrollArea className="h-44 rounded-md">
+        <ScrollArea className="h-62 rounded-md">
           <div className="flex flex-col gap-2">
             {CHANGELOGS.map((changelog, idx) => (
               <ChangelogItem

@@ -26,7 +26,6 @@ export const fourStarWeaponDefinitions: Record<string, Omit<Weapon, 'image' | 'i
   'Pistols#26': { type: WEAPON_TYPE_NAMES.PISTOLS, notGacha: true },
   'Rectifier#25': { type: WEAPON_TYPE_NAMES.RECTIFIER, notGacha: true },
   'Relativistic Jet': { type: WEAPON_TYPE_NAMES.PISTOLS },
-  'Scale Slasher': { type: WEAPON_TYPE_NAMES.SWORD },
   'Stonard': { type: WEAPON_TYPE_NAMES.GAUNTLETS, notGacha: true },
   'Sword#18': { type: WEAPON_TYPE_NAMES.SWORD, notGacha: true },
   'Thunderbolt': { type: WEAPON_TYPE_NAMES.PISTOLS, notGacha: true },

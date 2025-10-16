@@ -29,13 +29,13 @@ export default function PullAvatar({ item, maxPity, rarity }: Props) {
     >
       {imageError
         ? (
-            <div className="flex size-14 items-center justify-center rounded-full bg-gray-800 text-xs text-gray-400">
+            <div className="flex size-16 items-center justify-center rounded-full bg-gray-800 text-xs text-gray-400">
               {item.name.substring(0, 2)}
             </div>
           )
         : (
             <img
-              className="size-14 rounded-full object-cover transition-opacity duration-300 hover:opacity-90"
+              className="size-16 rounded-full object-cover transition-opacity duration-300 hover:opacity-90"
               src={item.icon || '/placeholder.svg'}
               alt={`${item.name} - ${rarity}★ item`}
               onError={handleImageError}
@@ -44,7 +44,7 @@ export default function PullAvatar({ item, maxPity, rarity }: Props) {
           )}
       <div
         className={cn(
-          'absolute -right-2 -bottom-2 flex size-6 bg-gray-900 font-bold text-xs items-center justify-center rounded-full transition-transform duration-200',
+          'absolute -right-2 -bottom-2 flex size-8 bg-background/95 font-bold text-sm items-center justify-center rounded-full transition-transform duration-200',
           getColorClassWithSeverity(item.pity, maxPity),
         )}
       >

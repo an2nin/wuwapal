@@ -22,6 +22,7 @@ export const fiveStarResonatorDefinitions: Record<string, Omit<Resonator, 'image
   'Lupa': { element: ELEMENT_NAMES.FUSION, weapon: WEAPON_TYPE_NAMES.BROADBLADE },
   'Phrolova': { element: ELEMENT_NAMES.HAVOC, weapon: WEAPON_TYPE_NAMES.RECTIFIER },
   'Phoebe': { element: ELEMENT_NAMES.SPECTRO, weapon: WEAPON_TYPE_NAMES.RECTIFIER },
+  'qiuyuan': { element: ELEMENT_NAMES.AERO, weapon: WEAPON_TYPE_NAMES.SWORD },
   'Roccia': { element: ELEMENT_NAMES.HAVOC, weapon: WEAPON_TYPE_NAMES.GAUNTLETS },
   'Shorekeeper': { element: ELEMENT_NAMES.SPECTRO, weapon: WEAPON_TYPE_NAMES.RECTIFIER },
   'Verina': { element: ELEMENT_NAMES.SPECTRO, weapon: WEAPON_TYPE_NAMES.RECTIFIER },

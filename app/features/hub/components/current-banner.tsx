@@ -14,14 +14,14 @@ import { convertToISOWithOffset } from '@/shared/utils';
 
 const items = {
   s5: [
-    { name: 'galbrena', rarity: 5, type: 'resonators' },
-    { name: 'lux-umbra', rarity: 5, type: 'weapons' },
-    { name: 'lupa', rarity: 5, type: 'resonators' },
-    { name: 'wildfire-mark', rarity: 5, type: 'weapons' },
+    { name: 'qiuyuan', rarity: 5, type: 'resonators' },
+    { name: 'emerald-sentence', rarity: 5, type: 'weapons' },
+    { name: 'zani', rarity: 5, type: 'resonators' },
+    { name: 'blazing-justice', rarity: 5, type: 'weapons' },
   ],
-  s4: ['sanhua', 'mortefi', 'lumi'],
+  s4: ['yangyang', 'taoqi', 'danjin'],
   img: `${IMAGE_PATH}/banners/showcase.webp`,
-  end_time: '2025-10-30 09:59',
+  end_time: '2025-11-19 11:59',
 };
 
 export default function CurrentBanner() {

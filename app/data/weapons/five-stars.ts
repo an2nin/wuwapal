@@ -11,6 +11,7 @@ export const fiveStarWeaponDefinitions: Record<string, Omit<Weapon, 'image' | 'i
   'Emerald of Genesis': { type: WEAPON_TYPE_NAMES.SWORD },
   'Emerald Sentence': { type: WEAPON_TYPE_NAMES.SWORD },
   'Moongazer\'s Sigil': { type: WEAPON_TYPE_NAMES.GAUNTLETS },
+  'Kumokiri': { type: WEAPON_TYPE_NAMES.BROADBLADE },
   'Lustrous Razor': { type: WEAPON_TYPE_NAMES.BROADBLADE },
   'Lux & Umbra': { type: WEAPON_TYPE_NAMES.PISTOLS },
   'Red Spring': { type: WEAPON_TYPE_NAMES.SWORD },

@@ -11,6 +11,7 @@ export const fiveStarResonatorDefinitions: Record<string, Omit<Resonator, 'image
   'Carlotta': { element: ELEMENT_NAMES.GLACIO, weapon: WEAPON_TYPE_NAMES.PISTOLS },
   'Cartethyia': { element: ELEMENT_NAMES.AERO, weapon: WEAPON_TYPE_NAMES.SWORD },
   'Changli': { element: ELEMENT_NAMES.FUSION, weapon: WEAPON_TYPE_NAMES.SWORD },
+  'Chisa': { element: ELEMENT_NAMES.HAVOC, weapon: WEAPON_TYPE_NAMES.BROADBLADE },
   'Ciaccona': { element: ELEMENT_NAMES.GLACIO, weapon: WEAPON_TYPE_NAMES.PISTOLS },
   'Encore': { element: ELEMENT_NAMES.FUSION, weapon: WEAPON_TYPE_NAMES.RECTIFIER },
   'Galbrena': { element: ELEMENT_NAMES.HAVOC, weapon: WEAPON_TYPE_NAMES.PISTOLS },

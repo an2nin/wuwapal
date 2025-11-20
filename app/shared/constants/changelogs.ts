@@ -1,5 +1,9 @@
 export const CHANGELOGS = [
   {
+    date: '2025-11-20',
+    changes: ['Adds Chisa & Kumokiri'],
+  },
+  {
     date: '2025-10-31',
     changes: ['Adds qiuyuan and emerland sentence'],
   },

@@ -7,6 +7,7 @@ import { Button } from '@/shared/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { Input } from '@/shared/components/ui/input';
 import { Label } from '@/shared/components/ui/label';
+import { useLayoutStore } from '@/shared/stores/layout';
 import { cn } from '@/shared/utils';
 
 const unlockPhrase = 'unlock';
@@ -32,8 +33,8 @@ const advancedToggles = [
 type AdvancedToggleKey = (typeof advancedToggles)[number]['key'];
 
 export default function AdvancedSettings() {
+  const layoutStore = useLayoutStore(state => state);
   const [phrase, setPhrase] = useState('');
-  const [isUnlocked, setIsUnlocked] = useState(false);
   const [toggles, setToggles] = useState<Record<AdvancedToggleKey, boolean>>(() =>
     advancedToggles.reduce(
       (state, toggle) => ({ ...state, [toggle.key]: false }),
@@ -49,17 +50,17 @@ export default function AdvancedSettings() {
   function handleUnlock(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (phraseMatches) {
-      setIsUnlocked(true);
+      layoutStore.setAdvancedSettingsUnlocked(true);
     }
   }
 
   function handleRelock() {
-    setIsUnlocked(false);
+    layoutStore.setAdvancedSettingsUnlocked(false);
     setPhrase('');
   }
 
   function toggleFlag(key: AdvancedToggleKey) {
-    if (!isUnlocked) {
+    if (!layoutStore.advancedSettingsUnlocked) {
       return;
     }
     setToggles(prev => ({
@@ -75,19 +76,19 @@ export default function AdvancedSettings() {
           <ShieldAlert className="size-5 text-amber-400" />
           Advanced Settings
           <Badge
-            variant={isUnlocked ? 'default' : 'outline'}
+            variant={layoutStore.advancedSettingsUnlocked ? 'default' : 'outline'}
             className={cn(
               'border-amber-500/40 text-xs',
-              isUnlocked
+              layoutStore.advancedSettingsUnlocked
                 ? 'bg-emerald-500 text-white border-emerald-500'
                 : 'text-amber-400',
             )}
           >
-            {isUnlocked ? 'Unlocked' : 'Locked'}
+            {layoutStore.advancedSettingsUnlocked ? 'Unlocked' : 'Locked'}
           </Badge>
         </CardTitle>
         <CardDescription>
-          Safeguard dangerous toggles behind a typed barrier so users don&apos;t activate them by accident.
+          Safeguard dangerous settings behind a typed barrier so users don&apos;t activate them by accident.
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -102,7 +103,7 @@ export default function AdvancedSettings() {
               autoComplete="off"
               placeholder={`Type "${unlockPhrase}" to proceed`}
               value={phrase}
-              disabled={isUnlocked}
+              disabled={layoutStore.advancedSettingsUnlocked}
               onChange={event => setPhrase(event.target.value)}
             />
             <p className="text-xs text-muted-foreground">
@@ -112,7 +113,7 @@ export default function AdvancedSettings() {
           <div className="flex gap-2 sm:justify-end">
             <Button
               type="submit"
-              disabled={!phraseMatches || isUnlocked}
+              disabled={!phraseMatches || layoutStore.advancedSettingsUnlocked}
             >
               Unlock
             </Button>
@@ -120,7 +121,7 @@ export default function AdvancedSettings() {
               type="button"
               variant="outline"
               onClick={handleRelock}
-              disabled={!isUnlocked}
+              disabled={!layoutStore.advancedSettingsUnlocked}
             >
               <LockKeyhole className="size-4" />
               Relock
@@ -130,10 +131,10 @@ export default function AdvancedSettings() {
 
         <div className="relative">
           <fieldset
-            disabled={!isUnlocked}
+            disabled={!layoutStore.advancedSettingsUnlocked}
             className={cn(
               'grid gap-3 lg:grid-cols-2',
-              !isUnlocked && 'opacity-60',
+              !layoutStore.advancedSettingsUnlocked && 'opacity-60',
             )}
           >
             {advancedToggles.map(toggle => (
@@ -178,7 +179,7 @@ export default function AdvancedSettings() {
             ))}
           </fieldset>
 
-          {!isUnlocked && (
+          {!layoutStore.advancedSettingsUnlocked && (
             <div className="absolute inset-0 grid place-items-center rounded-lg border border-dashed border-muted-foreground/40 bg-background/80 backdrop-blur-sm">
               <p className="text-sm text-muted-foreground">
                 Locked: clear the input barrier to adjust advanced settings.

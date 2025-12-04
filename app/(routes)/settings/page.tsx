@@ -1,4 +1,5 @@
 import AccountManager from '@/features/account-manager';
+import AdvancedSettings from '@/features/advanced-settings';
 import Backups from '@/features/backups';
 
 export default function SettingPage() {
@@ -6,6 +7,7 @@ export default function SettingPage() {
     <div className="flex flex-col lg:gap-6 gap-4">
       <AccountManager />
       <Backups />
+      <AdvancedSettings />
     </div>
   );
 }

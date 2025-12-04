@@ -2,6 +2,7 @@
 
 import { LockKeyhole, ShieldAlert } from 'lucide-react';
 import { useMemo, useState } from 'react';
+import db from '@/core/db';
 import { Badge } from '@/shared/components/ui/badge';
 import { Button } from '@/shared/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card';
@@ -10,37 +11,31 @@ import { Label } from '@/shared/components/ui/label';
 import { useLayoutStore } from '@/shared/stores/layout';
 import { cn } from '@/shared/utils';
 
-const unlockPhrase = 'unlock';
+const unlockPhrase = 'unlock advanced';
 
-const advancedToggles = [
+const advancedActions = [
   {
-    key: 'developerPreview',
-    label: 'Developer preview mode',
-    description: 'Surfacing unfinished UI and data fetchers for debugging sessions.',
+    key: 'clearGachaDatabase',
+    label: 'Clear gacha database',
+    description: 'Remove all stored banner pulls from Dexie to reset local gacha data.',
   },
   {
-    key: 'bypassRateLimits',
-    label: 'Bypass rate limits',
-    description: 'Loosens client-side throttles during bulk imports or large backups.',
-  },
-  {
-    key: 'verboseLogs',
-    label: 'Verbose logging',
-    description: 'Capture detailed traces for support tickets and regression hunts.',
+    key: 'restorePreviousPulls',
+    label: 'Restore previous pulls flag',
+    description: 'Mark pulls as unconverted so the importer can attempt a restore again.',
   },
 ] as const;
 
-type AdvancedToggleKey = (typeof advancedToggles)[number]['key'];
+type AdvancedActionKey = (typeof advancedActions)[number]['key'];
 
 export default function AdvancedSettings() {
   const layoutStore = useLayoutStore(state => state);
   const [phrase, setPhrase] = useState('');
-  const [toggles, setToggles] = useState<Record<AdvancedToggleKey, boolean>>(() =>
-    advancedToggles.reduce(
-      (state, toggle) => ({ ...state, [toggle.key]: false }),
-      {} as Record<AdvancedToggleKey, boolean>,
-    ),
-  );
+  const [runningKey, setRunningKey] = useState<AdvancedActionKey | null>(null);
+  const [actionStatus, setActionStatus] = useState<Record<AdvancedActionKey, string>>({
+    clearGachaDatabase: '',
+    restorePreviousPulls: '',
+  });
 
   const phraseMatches = useMemo(
     () => phrase.trim().toLowerCase() === unlockPhrase,
@@ -59,14 +54,32 @@ export default function AdvancedSettings() {
     setPhrase('');
   }
 
-  function toggleFlag(key: AdvancedToggleKey) {
+  async function runAction(key: AdvancedActionKey) {
     if (!layoutStore.advancedSettingsUnlocked) {
       return;
     }
-    setToggles(prev => ({
-      ...prev,
-      [key]: !prev[key],
-    }));
+
+    setRunningKey(key);
+    setActionStatus(prev => ({ ...prev, [key]: 'Working...' }));
+    try {
+      if (key === 'clearGachaDatabase') {
+        await db.banners.clear();
+        setActionStatus(prev => ({ ...prev, [key]: 'Gacha database cleared.' }));
+      }
+      if (key === 'restorePreviousPulls') {
+        layoutStore.setHasPullsConverted(false);
+        setActionStatus(prev => ({ ...prev, [key]: 'Previous pulls marked for restore.' }));
+      }
+    }
+    catch (error) {
+      setActionStatus(prev => ({
+        ...prev,
+        [key]: error instanceof Error ? error.message : 'Something went wrong.',
+      }));
+    }
+    finally {
+      setRunningKey(null);
+    }
   }
 
   return (
@@ -137,44 +150,41 @@ export default function AdvancedSettings() {
               !layoutStore.advancedSettingsUnlocked && 'opacity-60',
             )}
           >
-            {advancedToggles.map(toggle => (
+            {advancedActions.map(action => (
               <div
-                key={toggle.key}
+                key={action.key}
                 className="flex items-start justify-between gap-3 rounded-lg border border-border/60 bg-background/40 px-4 py-3"
               >
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
                     <p className="text-sm font-semibold text-white">
-                      {toggle.label}
+                      {action.label}
                     </p>
                     <Badge variant="secondary" className="text-[10px] uppercase tracking-wide">
                       guarded
                     </Badge>
                   </div>
                   <p className="text-xs text-muted-foreground">
-                    {toggle.description}
+                    {action.description}
                   </p>
                 </div>
-                <button
-                  type="button"
-                  role="switch"
-                  aria-checked={toggles[toggle.key]}
-                  aria-label={toggle.label}
-                  onClick={() => toggleFlag(toggle.key)}
-                  className={cn(
-                    'relative inline-flex h-6 w-11 items-center rounded-full border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
-                    toggles[toggle.key]
-                      ? 'border-primary bg-primary/80'
-                      : 'border-border bg-muted/50',
+                <div className="flex flex-col items-end gap-1">
+                  <Button
+                    type="button"
+                    size="sm"
+                    onClick={() => runAction(action.key)}
+                    disabled={!layoutStore.advancedSettingsUnlocked || runningKey === action.key}
+                    className="shrink-0"
+                    isLoading={runningKey === action.key}
+                  >
+                    Execute
+                  </Button>
+                  {actionStatus[action.key] && (
+                    <p className="text-[11px] text-muted-foreground">
+                      {actionStatus[action.key]}
+                    </p>
                   )}
-                >
-                  <span
-                    className={cn(
-                      'inline-block h-5 w-5 rounded-full bg-background shadow transition-transform',
-                      toggles[toggle.key] ? 'translate-x-5' : 'translate-x-1',
-                    )}
-                  />
-                </button>
+                </div>
               </div>
             ))}
           </fieldset>

@@ -1,5 +1,9 @@
 export const CHANGELOGS = [
   {
+    date: '2025-12-11',
+    changes: ['Adds Buling'],
+  },
+  {
     date: '2025-12-05',
     changes: [
       'Adds advanced settings actions to clear gacha data and restore previous pulls flag behind unlock barrier',

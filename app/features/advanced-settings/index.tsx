@@ -1,14 +1,20 @@
 'use client';
 
+import { format } from 'date-fns';
 import { LockKeyhole, ShieldAlert } from 'lucide-react';
 import { useMemo, useState } from 'react';
+import { ApiError } from '@/core/api/client';
 import db from '@/core/db';
+import { fetchGDriveFile } from '@/features/backups/apis/fetch-gdrive-file';
+import { fetchRefreshedToken } from '@/features/backups/apis/fetch-refreshed-token';
 import { Badge } from '@/shared/components/ui/badge';
 import { Button } from '@/shared/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { Input } from '@/shared/components/ui/input';
 import { Label } from '@/shared/components/ui/label';
+import { useAuthStore } from '@/shared/stores/auth';
 import { useLayoutStore } from '@/shared/stores/layout';
+import { useProfileStore } from '@/shared/stores/profile';
 import { cn } from '@/shared/utils';
 
 const unlockPhrase = 'unlock advanced';
@@ -24,18 +30,31 @@ const advancedActions = [
     label: 'Restore previous pulls flag',
     description: 'Mark pulls as unconverted so the importer can attempt a restore again.',
   },
+  {
+    key: 'downloadProfileStore',
+    label: 'Download profile store',
+    description: 'Export the profile store snapshot as a JSON file for debugging or support.',
+  },
+  {
+    key: 'downloadCloudBackup',
+    label: 'Download cloud backup',
+    description: 'If signed in, fetch the latest cloud backup file and save it locally.',
+  },
 ] as const;
 
 type AdvancedActionKey = (typeof advancedActions)[number]['key'];
+
+const initialActionStatus: Record<AdvancedActionKey, string> = advancedActions
+  .reduce(
+    (acc, action) => ({ ...acc, [action.key]: '' }),
+    {} as Record<AdvancedActionKey, string>,
+  );
 
 export default function AdvancedSettings() {
   const layoutStore = useLayoutStore(state => state);
   const [phrase, setPhrase] = useState('');
   const [runningKey, setRunningKey] = useState<AdvancedActionKey | null>(null);
-  const [actionStatus, setActionStatus] = useState<Record<AdvancedActionKey, string>>({
-    clearGachaDatabase: '',
-    restorePreviousPulls: '',
-  });
+  const [actionStatus, setActionStatus] = useState<Record<AdvancedActionKey, string>>(initialActionStatus);
 
   const phraseMatches = useMemo(
     () => phrase.trim().toLowerCase() === unlockPhrase,
@@ -54,6 +73,61 @@ export default function AdvancedSettings() {
     setPhrase('');
   }
 
+  function downloadJsonFile(content: string | object, filename: string) {
+    const dataStr = typeof content === 'string' ? content : JSON.stringify(content, null, 2);
+    const blob = new Blob([dataStr], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
+
+  async function downloadProfileStore() {
+    const { active, profiles, version } = useProfileStore.getState();
+    downloadJsonFile(
+      { active, profiles, version },
+      `profile-store-${format(new Date(), 'yyyy_MM_dd_HH_mm_ss')}.json`,
+    );
+  }
+
+  async function downloadCloudBackup() {
+    const authState = useAuthStore.getState();
+    if (!authState.access || !authState.cloud_file_id || !authState.profile) {
+      throw new Error('Login required to download cloud backup.');
+    }
+
+    try {
+      const response = await fetchGDriveFile();
+      const fileContent = typeof response === 'string' ? response : JSON.stringify(response, null, 2);
+      downloadJsonFile(
+        fileContent,
+        `cloud-backup-${format(new Date(), 'yyyy_MM_dd_HH_mm_ss')}.json`,
+      );
+    }
+    catch (error) {
+      if (error instanceof ApiError && error.status === 401) {
+        if (!useAuthStore.getState().refresh) {
+          throw new Error('Session expired: log in again to download cloud backup.');
+        }
+        const refreshResponse = await fetchRefreshedToken();
+        useAuthStore.getState().setTokens(refreshResponse.data.access_token);
+        const response = await fetchGDriveFile();
+        const fileContent = typeof response === 'string' ? response : JSON.stringify(response, null, 2);
+        downloadJsonFile(
+          fileContent,
+          `cloud-backup-${format(new Date(), 'yyyy_MM_dd_HH_mm_ss')}.json`,
+        );
+        return;
+      }
+      throw error;
+    }
+  }
+
   async function runAction(key: AdvancedActionKey) {
     if (!layoutStore.advancedSettingsUnlocked) {
       return;
@@ -69,6 +143,14 @@ export default function AdvancedSettings() {
       if (key === 'restorePreviousPulls') {
         layoutStore.setHasPullsConverted(false);
         setActionStatus(prev => ({ ...prev, [key]: 'Previous pulls marked for restore.' }));
+      }
+      if (key === 'downloadProfileStore') {
+        await downloadProfileStore();
+        setActionStatus(prev => ({ ...prev, [key]: 'Profile store downloaded.' }));
+      }
+      if (key === 'downloadCloudBackup') {
+        await downloadCloudBackup();
+        setActionStatus(prev => ({ ...prev, [key]: 'Cloud backup downloaded.' }));
       }
     }
     catch (error) {

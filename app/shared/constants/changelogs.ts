@@ -1,5 +1,11 @@
 export const CHANGELOGS = [
   {
+    date: '2025-12-12',
+    changes: [
+      'Adds new advanced settings actions to download profile store and cloud backup',
+    ],
+  },
+  {
     date: '2025-12-11',
     changes: ['Adds Buling'],
   },

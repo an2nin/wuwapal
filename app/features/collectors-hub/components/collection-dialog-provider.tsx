@@ -2,6 +2,7 @@
 
 import type { PropsWithChildren } from 'react';
 import type { Resonator, Weapon } from '@/data/types';
+import { ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
 import { createContext, use, useMemo, useState } from 'react';
 import { Button } from '@/shared/components/ui/button';
 import {
@@ -43,12 +44,14 @@ export function useCollectionDialog() {
 export default function CollectionDialogProvider({ children }: PropsWithChildren) {
   const [selectedItem, setSelectedItem] = useState<SelectedItem | null>(null);
   const [open, setOpen] = useState(false);
+  const [timelineExpanded, setTimelineExpanded] = useState(false);
   const today = () => new Date().toISOString().split('T')[0];
   const [noteInput, setNoteInput] = useState('coral shop');
   const [dateInput, setDateInput] = useState(today());
 
   const activeProfileId = useAccountStore(state => state.active);
   const addExternalCount = useExternalCollectionStore(state => state.addExternalCount);
+  const deleteExternalEntry = useExternalCollectionStore(state => state.deleteExternalEntry);
 
   const details = useMemo(() => {
     if (!selectedItem)
@@ -83,6 +86,7 @@ export default function CollectionDialogProvider({ children }: PropsWithChildren
     setSelectedItem(item);
     setNoteInput('coral shop');
     setDateInput(today());
+    setTimelineExpanded(false);
     setOpen(true);
   };
 
@@ -134,6 +138,49 @@ export default function CollectionDialogProvider({ children }: PropsWithChildren
     setDateInput(today());
   };
 
+  const handleDeleteEntry = (entry: { date: string; note: string }) => {
+    if (!selectedItem || !activeProfileId) {
+      return;
+    }
+
+    const sanitizedNote = entry.note.trim();
+    const sanitizedDate = entry.date.trim();
+
+    if (!sanitizedNote || !sanitizedDate) {
+      return;
+    }
+
+    deleteExternalEntry(
+      activeProfileId,
+      selectedItem.type,
+      selectedItem.name,
+      sanitizedNote,
+      sanitizedDate,
+    );
+
+    // Remove the first matching entry from local state
+    setSelectedItem((prev) => {
+      if (!prev)
+        return prev;
+
+      const entryIndex = prev.entries.findIndex(
+        e => e.note.trim() === sanitizedNote && e.date.trim() === sanitizedDate,
+      );
+
+      if (entryIndex === -1)
+        return prev;
+
+      const newEntries = [...prev.entries];
+      newEntries.splice(entryIndex, 1);
+
+      return {
+        ...prev,
+        count: Math.max(0, prev.count - 1),
+        entries: newEntries,
+      };
+    });
+  };
+
   return (
     <CollectionDialogContext value={{ openWith }}>
       {children}
@@ -145,127 +192,216 @@ export default function CollectionDialogProvider({ children }: PropsWithChildren
             setSelectedItem(null);
             setNoteInput('coral shop');
             setDateInput(today());
+            setTimelineExpanded(false);
           }
         }}
       >
-        <DialogContent className="sm:max-w-lg">
+        <DialogContent className="sm:max-w-2xl p-0 gap-0 overflow-hidden">
           {selectedItem && details && (
             <>
-              <DialogHeader>
-                <DialogTitle className="inline-flex items-center gap-2 pr-10">
-                  <span>{selectedItem.name}</span>
-                  <span
-                    className={`${details.qualityClass} inline-flex items-center gap-1 rounded-full bg-muted/30 px-2 py-1 text-xs font-semibold`}
-                  >
-                    <span>{details.qualityText}</span>
-                  </span>
-                </DialogTitle>
-                <DialogDescription>
-                  {details.typeLabel}
-                  {' '}
-                  details
-                </DialogDescription>
-              </DialogHeader>
+              {/* Header with gradient background */}
+              <div className="relative bg-gradient-to-br from-background via-background to-muted/20 border-b">
+                <DialogHeader className="relative px-6 pt-6 pb-4">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      <DialogTitle className="text-2xl font-bold mb-2 pr-8">
+                        {selectedItem.name}
+                      </DialogTitle>
+                      <DialogDescription className="text-sm font-medium">
+                        {details.typeLabel}
+                      </DialogDescription>
+                    </div>
+                    <div
+                      className={`${details.qualityClass} inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-br from-muted/50 to-muted/30 backdrop-blur-sm px-3 py-1.5 text-sm font-bold shadow-lg border border-muted/50 shrink-0`}
+                    >
+                      <span>{details.qualityText}</span>
+                    </div>
+                  </div>
+                </DialogHeader>
+              </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <div className="w-full sm:w-40 rounded-md overflow-hidden border bg-black/40 sm:self-start">
-                  <img
-                    src={selectedItem.resource.image}
-                    alt={selectedItem.name}
-                    className="w-full object-cover aspect-square"
-                  />
-                </div>
-                <div className="flex flex-1 flex-col gap-2 text-sm">
-                  <div className="flex items-center justify-between border-b pb-2">
-                    <span className="text-muted-foreground">Owned</span>
-                    <span className="font-semibold">{selectedItem.count}</span>
+              <div className="px-6 py-6 space-y-6 max-h-[calc(100vh-12rem)] overflow-y-auto">
+                {/* Image and Stats Section */}
+                <div className="flex flex-col sm:flex-row gap-6">
+                  {/* Image Card */}
+                  <div className="relative w-full sm:w-48 h-48 sm:h-48 rounded-xl overflow-hidden border-2 border-muted/50 bg-gradient-to-br from-muted/20 to-muted/10 shadow-lg group">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <img
+                      src={selectedItem.resource.image}
+                      alt={selectedItem.name}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-muted-foreground">
-                      {details.typeLabel === 'Resonator' ? 'Element' : 'Type'}
-                    </span>
-                    <span className="font-medium capitalize">{details.primary}</span>
-                  </div>
-                  {details.secondary && (
-                    <div className="flex items-center justify-between">
-                      <span className="text-muted-foreground">Weapon</span>
-                      <span className="font-medium capitalize">{details.secondary}</span>
-                    </div>
-                  )}
-                  <div className="mt-4 border-t pt-3">
-                    <div className="text-xs uppercase tracking-wider text-muted-foreground mb-2">
-                      Collection timeline
-                    </div>
-                    {selectedItem.entries.length === 0 && (
-                      <div className="text-muted-foreground text-sm">
-                        No notes recorded yet.
+
+                  {/* Stats Grid */}
+                  <div className="flex-1 grid grid-cols-2 gap-4">
+                    <div className="rounded-lg border border-muted/50 bg-muted/20 p-4 backdrop-blur-sm">
+                      <div className="text-xs font-medium text-muted-foreground mb-1.5 uppercase tracking-wider">
+                        Owned
                       </div>
-                    )}
-                    {selectedItem.entries.length > 0 && (
-                      <div className="relative max-h-64 overflow-y-auto pr-2">
-                        <div className="absolute left-[6px] top-0 h-full w-[2px] bg-border" aria-hidden />
-                        <div className="flex flex-col gap-3">
-                          {timelineEntries.map((entry, idx) => (
-                            <div key={`${entry.date}-${entry.note}-${idx}`} className="relative pl-6">
-                              <div className="absolute left-0 top-1 h-3 w-3 rounded-full bg-primary shadow-[0_0_0_4px_rgba(59,130,246,0.15)]" />
-                              <div className="flex items-center justify-between text-xs text-muted-foreground">
-                                <span>{entry.date || 'No date'}</span>
-                                <span className="font-semibold text-foreground">
-                                  #
-                                  {selectedItem.entries.length - idx}
-                                </span>
-                              </div>
-                              <div className="text-sm text-foreground">
-                                {entry.note || 'No note provided'}
-                              </div>
-                            </div>
-                          ))}
+                      <div className="text-2xl font-bold">{selectedItem.count}</div>
+                    </div>
+                    <div className="rounded-lg border border-muted/50 bg-muted/20 p-4 backdrop-blur-sm">
+                      <div className="text-xs font-medium text-muted-foreground mb-1.5 uppercase tracking-wider">
+                        {details.typeLabel === 'Resonator' ? 'Element' : 'Type'}
+                      </div>
+                      <div className="text-lg font-semibold capitalize">{details.primary}</div>
+                    </div>
+                    {details.secondary && (
+                      <div className="rounded-lg border border-muted/50 bg-muted/20 p-4 backdrop-blur-sm col-span-2 sm:col-span-1">
+                        <div className="text-xs font-medium text-muted-foreground mb-1.5 uppercase tracking-wider">
+                          Weapon
                         </div>
+                        <div className="text-lg font-semibold capitalize">{details.secondary}</div>
                       </div>
                     )}
                   </div>
-                  <div className="mt-4 border-t pt-3">
-                    <div className="text-xs uppercase tracking-wider text-muted-foreground mb-2">
-                      Add external entry
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                      <div className="sm:col-span-1">
-                        <Label className="text-xs text-muted-foreground">Date</Label>
+                </div>
+
+                {/* Timeline Section */}
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2">
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
+                    <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground px-2">
+                      Collection Timeline
+                    </h3>
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
+                  </div>
+
+                  {selectedItem.entries.length === 0
+                    ? (
+                        <div className="rounded-lg border border-dashed border-muted/50 bg-muted/10 p-8 text-center">
+                          <div className="text-muted-foreground text-sm">
+                            No entries recorded yet
+                          </div>
+                        </div>
+                      )
+                    : (
+                        <div className="space-y-4">
+                          <div className="relative">
+                            <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/50 via-primary/30 to-transparent" aria-hidden />
+                            <div className="space-y-4 pl-8">
+                              {(timelineExpanded ? timelineEntries : timelineEntries.slice(0, 3)).map((entry, idx) => {
+                                // Calculate the actual index in the full timelineEntries array
+                                const actualIndex = idx;
+                                const entryNumber = selectedItem.entries.length - actualIndex;
+                                const isExternalEntry = entry.note && entry.note.trim() !== '';
+                                return (
+                                  <div
+                                    key={`${entry.date}-${entry.note}-${actualIndex}`}
+                                    className="relative group"
+                                  >
+                                    <div className="absolute -left-[29px] top-1.5 h-2.5 w-2.5 rounded-full bg-primary ring-4 ring-background shadow-lg transition-all group-hover:scale-125 group-hover:ring-primary/20" />
+                                    <div className="rounded-lg border border-muted/50 bg-muted/10 p-4 hover:bg-muted/20 transition-colors backdrop-blur-sm">
+                                      <div className="flex items-center justify-between mb-2">
+                                        <span className="text-xs font-medium text-muted-foreground">
+                                          {entry.date || 'No date'}
+                                        </span>
+                                        <div className="flex items-center gap-2">
+                                          <span className="text-xs font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                                            #
+                                            {entryNumber}
+                                          </span>
+                                          {isExternalEntry && (
+                                            <Button
+                                              type="button"
+                                              variant="ghost"
+                                              size="sm"
+                                              onClick={() => handleDeleteEntry(entry)}
+                                              className="h-6 w-6 p-0 text-destructive hover:text-destructive hover:bg-destructive/10"
+                                              title="Delete entry"
+                                            >
+                                              <Trash2 className="h-3.5 w-3.5" />
+                                            </Button>
+                                          )}
+                                        </div>
+                                      </div>
+                                      <div className="text-sm font-medium text-foreground">
+                                        {entry.note || 'Gacha'}
+                                      </div>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                          {timelineEntries.length > 3 && (
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              onClick={() => setTimelineExpanded(!timelineExpanded)}
+                              className="w-full text-sm text-muted-foreground hover:text-foreground"
+                            >
+                              {timelineExpanded
+                                ? (
+                                    <>
+                                      <ChevronUp className="mr-2 h-4 w-4" />
+                                      Show less
+                                    </>
+                                  )
+                                : (
+                                    <>
+                                      <ChevronDown className="mr-2 h-4 w-4" />
+                                      Show
+                                      {' '}
+                                      {timelineEntries.length - 3}
+                                      {' '}
+                                      more
+                                    </>
+                                  )}
+                            </Button>
+                          )}
+                        </div>
+                      )}
+                </div>
+
+                {/* Add Entry Section */}
+                <div className="space-y-4 pt-2">
+                  <div className="flex items-center gap-2">
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
+                    <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground px-2">
+                      Add Entry
+                    </h3>
+                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
+                  </div>
+
+                  <div className="rounded-lg border border-muted/50 bg-muted/10 p-4 space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                      <div className="sm:col-span-1 space-y-2">
+                        <Label className="text-xs font-medium text-muted-foreground">Date</Label>
                         <Input
                           type="date"
                           value={dateInput}
                           onChange={event => setDateInput(event.target.value)}
-                          className="mt-1"
+                          className="bg-background/50 border-muted/50 focus:border-primary/50"
                         />
                       </div>
-                      <div className="sm:col-span-2">
-                        <Label className="text-xs text-muted-foreground">Note</Label>
+                      <div className="sm:col-span-2 space-y-2">
+                        <Label className="text-xs font-medium text-muted-foreground">Note</Label>
                         <select
                           value={noteInput}
                           onChange={event => setNoteInput(event.target.value)}
-                          className="mt-1 w-full rounded-md border bg-background p-2 text-sm"
+                          className="w-full rounded-md border border-muted/50 bg-background/50 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-colors"
                         >
                           <option value="coral shop">Coral shop</option>
                           <option value="reward">Reward</option>
                           <option value="lost entry">Lost entry</option>
                         </select>
                       </div>
-                      <div className="sm:col-span-2 flex items-end">
-                        <Button
-                          type="button"
-                          disabled={
-                            !activeProfileId
-                            || !selectedItem
-                            || !noteInput.trim()
-                            || !dateInput.trim()
-                          }
-                          onClick={handleAddExternal}
-                          className="w-full sm:w-auto"
-                        >
-                          Add entry
-                        </Button>
-                      </div>
                     </div>
+                    <Button
+                      type="button"
+                      disabled={
+                        !activeProfileId
+                        || !selectedItem
+                        || !noteInput.trim()
+                        || !dateInput.trim()
+                      }
+                      onClick={handleAddExternal}
+                      className="w-full sm:w-auto sm:ml-auto sm:block"
+                    >
+                      Add Entry
+                    </Button>
                   </div>
                 </div>
               </div>

@@ -33,6 +33,13 @@ interface ExternalCollectionStore {
     name: string,
     count: number,
   ) => void;
+  deleteExternalEntry: (
+    profileId: string | null,
+    type: CollectionType,
+    name: string,
+    note: string,
+    date: string,
+  ) => void;
   getCollectionForProfile: (
     profileId: string | null,
   ) => ExternalCollectionCounts;
@@ -149,6 +156,44 @@ export const useExternalCollectionStore = create<ExternalCollectionStore>()(
                 [targetKey]: {
                   ...existing[targetKey],
                   [name]: trimmedEntries,
+                },
+              },
+            },
+          };
+        });
+      },
+      deleteExternalEntry: (profileId, type, name, note, date) => {
+        const sanitizedNote = sanitizeMeta(note);
+        const sanitizedDate = sanitizeMeta(date);
+
+        if (!profileId || !name || !sanitizedNote || !sanitizedDate) {
+          return;
+        }
+
+        set((state) => {
+          const existing = state.externalCollections[profileId]
+            ?? emptyCollection;
+          const targetKey = type === 'weapon' ? 'weapons' : 'resonators';
+          const currentEntry = normalizeEntry(existing[targetKey][name]);
+
+          // Find and remove the first entry that matches both note and date
+          const filteredEntries = currentEntry.filter(
+            entry => !(entry.note === sanitizedNote && entry.date === sanitizedDate),
+          );
+
+          // Only update if an entry was actually removed
+          if (filteredEntries.length === currentEntry.length) {
+            return state;
+          }
+
+          return {
+            externalCollections: {
+              ...state.externalCollections,
+              [profileId]: {
+                ...existing,
+                [targetKey]: {
+                  ...existing[targetKey],
+                  [name]: filteredEntries,
                 },
               },
             },

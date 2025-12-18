@@ -22,7 +22,7 @@ export default function CollectionList({ type, resources, collected }: Props) {
             type={type}
             name={resourceName}
             resource={resources[resourceName]}
-            count={collected?.[resourceName]?.length ?? 0}
+            entries={collected?.[resourceName] ?? []}
           />
         ))}
     </div>

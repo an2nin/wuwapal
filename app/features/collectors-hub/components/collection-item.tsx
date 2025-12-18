@@ -1,3 +1,4 @@
+import type { CollectionCounts } from '../utils/processors';
 import type { Resonator, Weapon } from '@/data/types';
 import { useMemo } from 'react';
 import { cn } from '@/shared/utils';
@@ -9,16 +10,17 @@ interface Props {
   type: CollectionType;
   name: string;
   resource: Resonator | Weapon;
-  count: number;
+  entries: CollectionCounts['resonators'][string];
 }
 
 export default function CollectionItem({
   type,
   resource,
   name,
-  count,
+  entries,
 }: Props) {
   const { openWith } = useCollectionDialog();
+  const count = entries.length;
   const showCount = useMemo(() => {
     const actualCount = count - 1;
     if (actualCount > 6) {
@@ -36,13 +38,13 @@ export default function CollectionItem({
           ? 'bg-gradient-to-t to-purple-900 from-purple-400'
           : 'bg-gradient-to-t to-yellow-900 from-yellow-400')
       }
-      onClick={() => openWith({ type, resource, name, count })}
+      onClick={() => openWith({ type, resource, name, count, entries })}
       role="button"
       tabIndex={0}
       onKeyDown={(event) => {
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();
-          openWith({ type, resource, name, count });
+          openWith({ type, resource, name, count, entries });
         }
       }}
     >

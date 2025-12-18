@@ -18,6 +18,7 @@ interface SelectedItem {
   name: string;
   resource: Resonator | Weapon;
   count: number;
+  entries: { date: string; note: string }[];
 }
 
 interface DialogContextValue {

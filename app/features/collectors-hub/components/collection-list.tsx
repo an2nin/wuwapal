@@ -1,3 +1,4 @@
+import type { CollectionCounts } from '../utils/processors';
 import type { Resonator, Weapon } from '@/data/types';
 
 import CollectionItem from './collection-item';
@@ -7,7 +8,7 @@ type CollectionType = 'resonator' | 'weapon';
 interface Props {
   type: CollectionType;
   resources: Record<string, Resonator | Weapon>;
-  collected: Record<string, number> | undefined;
+  collected: CollectionCounts['resonators'] | CollectionCounts['weapons'] | undefined;
 }
 
 export default function CollectionList({ type, resources, collected }: Props) {
@@ -21,7 +22,7 @@ export default function CollectionList({ type, resources, collected }: Props) {
             type={type}
             name={resourceName}
             resource={resources[resourceName]}
-            count={collected?.[resourceName] ?? 0}
+            count={collected?.[resourceName]?.length ?? 0}
           />
         ))}
     </div>

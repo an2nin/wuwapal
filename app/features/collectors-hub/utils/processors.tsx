@@ -5,16 +5,21 @@ import type {
 } from '@/shared/stores/external-collection';
 import type { GenericBannerItem } from '@/shared/types';
 
+interface CollectionMeta {
+  date: string;
+  note: string;
+}
+
 export interface CollectionCounts {
-  weapons: Record<string, number>;
-  resonators: Record<string, number>;
+  weapons: Record<string, CollectionMeta[]>;
+  resonators: Record<string, CollectionMeta[]>;
 }
 
 export function processBannersForCollection(
   banners: BannerTable[] | null,
 ): CollectionCounts {
-  const weapons: Record<string, number> = {};
-  const resonators: Record<string, number> = {};
+  const weapons: Record<string, CollectionMeta[]> = {};
+  const resonators: Record<string, CollectionMeta[]> = {};
 
   if (!banners || banners.length === 0) {
     return { weapons, resonators };
@@ -26,12 +31,24 @@ export function processBannersForCollection(
         item.c === 'w'
         && item.q > 3
       ) {
-        weapons[item.n]
-          = (weapons[item.n] || 0) + 1;
+        const existing = weapons[item.n] ?? [];
+        weapons[item.n] = [
+          ...existing,
+          {
+            date: item.t ?? '',
+            note: '',
+          },
+        ];
       }
       else if (item.c === 'r') {
-        resonators[item.n]
-          = (resonators[item.n] || 0) + 1;
+        const existing = resonators[item.n] ?? [];
+        resonators[item.n] = [
+          ...existing,
+          {
+            date: item.t ?? '',
+            note: '',
+          },
+        ];
       }
     });
   });
@@ -46,30 +63,61 @@ export function mergeCollectionCounts(
   bannerCounts: CollectionCounts,
   externalCounts?: ExternalCollectionCounts,
 ): CollectionCounts {
-  const mergedWeapons = { ...bannerCounts.weapons };
-  const mergedResonators = { ...bannerCounts.resonators };
+  const mergedWeapons = Object.fromEntries(
+    Object.entries(bannerCounts.weapons).map(([name, meta]) => [name, [...meta]]),
+  ) as Record<string, CollectionMeta[]>;
+  const mergedResonators = Object.fromEntries(
+    Object.entries(bannerCounts.resonators).map(([name, meta]) => [name, [...meta]]),
+  ) as Record<string, CollectionMeta[]>;
 
-  const getCount = (entry: number | ExternalCollectionEntry | Record<string, any> | undefined) => {
+  const normalizeEntry = (
+    entry: number | ExternalCollectionEntry | Record<string, any> | undefined,
+  ): ExternalCollectionEntry => {
     if (typeof entry === 'number') {
-      return entry;
+      return Array.from({ length: entry }, () => ({ date: '', note: '' }));
+    }
+
+    if (!entry) {
+      return [];
     }
 
     if (Array.isArray(entry)) {
-      return entry.length;
+      return entry.map(item => ({
+        date: item.date?.trim() ?? '',
+        note: item.note?.trim() ?? '',
+      }));
     }
 
-    return entry?.count ?? 0;
+    const count = entry.count
+      ?? entry.notes?.length
+      ?? entry.dates?.length
+      ?? (entry.note || entry.date ? 1 : 0);
+    const notes = entry.notes ?? (entry.note ? Array.from({ length: count }, () => entry.note) : []);
+    const dates = entry.dates ?? (entry.date ? Array.from({ length: count }, () => entry.date) : []);
+
+    return Array.from({ length: count }, (_, idx) => ({
+      note: notes[idx]?.trim() ?? '',
+      date: dates[idx]?.trim() ?? '',
+    }));
   };
 
   if (externalCounts) {
     Object.entries(externalCounts.weapons).forEach(([name, entry]) => {
-      const count = getCount(entry);
-      mergedWeapons[name] = (mergedWeapons[name] ?? 0) + count;
+      const normalized = normalizeEntry(entry);
+
+      mergedWeapons[name] = [
+        ...(mergedWeapons[name] ?? []),
+        ...normalized,
+      ];
     });
 
     Object.entries(externalCounts.resonators).forEach(([name, entry]) => {
-      const count = getCount(entry);
-      mergedResonators[name] = (mergedResonators[name] ?? 0) + count;
+      const normalized = normalizeEntry(entry);
+
+      mergedResonators[name] = [
+        ...(mergedResonators[name] ?? []),
+        ...normalized,
+      ];
     });
   }
 

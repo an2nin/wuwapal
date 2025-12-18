@@ -1,10 +1,14 @@
+import type { Resonator, Weapon } from '@/data/types';
 import { useMemo } from 'react';
 import { cn } from '@/shared/utils';
+import { useCollectionDialog } from './collection-dialog-provider';
+
+type CollectionType = 'resonator' | 'weapon';
 
 interface Props {
-  type: string;
+  type: CollectionType;
   name: string;
-  resource: any;
+  resource: Resonator | Weapon;
   count: number;
 }
 
@@ -14,6 +18,7 @@ export default function CollectionItem({
   name,
   count,
 }: Props) {
+  const { openWith } = useCollectionDialog();
   const showCount = useMemo(() => {
     const actualCount = count - 1;
     if (actualCount > 6) {
@@ -31,6 +36,15 @@ export default function CollectionItem({
           ? 'bg-gradient-to-t to-purple-900 from-purple-400'
           : 'bg-gradient-to-t to-yellow-900 from-yellow-400')
       }
+      onClick={() => openWith({ type, resource, name, count })}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openWith({ type, resource, name, count });
+        }
+      }}
     >
       <div className={cn('relative', count)}>
         <img

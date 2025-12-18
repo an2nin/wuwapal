@@ -1,9 +1,13 @@
+import type { Resonator, Weapon } from '@/data/types';
+
 import CollectionItem from './collection-item';
 
+type CollectionType = 'resonator' | 'weapon';
+
 interface Props {
-  type: string;
-  resources: any;
-  collected: any;
+  type: CollectionType;
+  resources: Record<string, Resonator | Weapon>;
+  collected: Record<string, number> | undefined;
 }
 
 export default function CollectionList({ type, resources, collected }: Props) {

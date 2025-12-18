@@ -1,11 +1,11 @@
 'use client';
 
-import type { CollectionType } from '@/shared/stores/manual-collection';
+import type { CollectionType } from '@/shared/stores/external-collection';
 import { useEffect, useMemo, useState } from 'react';
 import { Button } from '@/shared/components/ui/button';
 import { Input } from '@/shared/components/ui/input';
 import { Label } from '@/shared/components/ui/label';
-import { useManualCollectionStore } from '@/shared/stores/manual-collection';
+import { useExternalCollectionStore } from '@/shared/stores/external-collection';
 
 interface Props {
   activeProfileId: string | null;
@@ -13,13 +13,13 @@ interface Props {
   resources: Record<string, any>;
 }
 
-export default function ManualCollectionForm({
+export default function ExternalCollectionForm({
   activeProfileId,
   type,
   resources,
 }: Props) {
-  const addManualCount = useManualCollectionStore(state => state.addManualCount);
-  const manualCollection = useManualCollectionStore(state =>
+  const addExternalCount = useExternalCollectionStore(state => state.addExternalCount);
+  const externalCollection = useExternalCollectionStore(state =>
     state.getCollectionForProfile(activeProfileId),
   );
 
@@ -35,9 +35,9 @@ export default function ManualCollectionForm({
     }
   }, [resources, type]);
 
-  const currentManualCount = useMemo(
-    () => manualCollection?.[typeKey]?.[selectedItem] ?? 0,
-    [manualCollection, selectedItem, typeKey],
+  const currentExternalCount = useMemo(
+    () => externalCollection?.[typeKey]?.[selectedItem] ?? 0,
+    [externalCollection, selectedItem, typeKey],
   );
 
   const handleSubmit = (event: React.FormEvent) => {
@@ -47,7 +47,7 @@ export default function ManualCollectionForm({
       return;
     }
 
-    addManualCount(activeProfileId, type, selectedItem, parsedCount);
+    addExternalCount(activeProfileId, type, selectedItem, parsedCount);
     setCountInput('1');
   };
 
@@ -63,7 +63,7 @@ export default function ManualCollectionForm({
             {' '}
             {type === 'weapon' ? 'weapon' : 'resonator'}
             {' '}
-            manually
+            from external source
           </Label>
           <select
             value={selectedItem}
@@ -99,9 +99,9 @@ export default function ManualCollectionForm({
       </div>
 
       <p className="mt-2 text-xs text-muted-foreground">
-        Stored separately from banner data. Current manual count for this item:
+        Stored separately from banner data. Current external count for this item:
         {' '}
-        {currentManualCount}
+        {currentExternalCount}
       </p>
     </form>
   );

@@ -5,15 +5,15 @@ import { RESONATORS, WEAPONS_FOR_COLLECTION } from '@/data';
 import { Tabs, TabsList, TabsTrigger } from '@/shared/components/ui/tabs';
 import useIndexDB from '@/shared/hooks/use-index-db';
 import { useAccountStore } from '@/shared/stores/account';
-import { useManualCollectionStore } from '@/shared/stores/manual-collection';
+import { useExternalCollectionStore } from '@/shared/stores/external-collection';
 import CollectionList from './components/collection-list';
-import ManualCollectionForm from './components/manual-collection-form';
+import ExternalCollectionForm from './components/external-collection-form';
 import { mergeCollectionCounts, processBannersForCollection } from './utils/processors';
 
 export default function CollectorsHub() {
   const accountStore = useAccountStore(state => state);
   const { banners } = useIndexDB(accountStore.active);
-  const manualCollection = useManualCollectionStore(state =>
+  const externalCollection = useExternalCollectionStore(state =>
     state.getCollectionForProfile(accountStore.active),
   );
   const bannerCollections = useMemo(
@@ -21,8 +21,8 @@ export default function CollectorsHub() {
     [banners],
   );
   const mergedCollections = useMemo(
-    () => mergeCollectionCounts(bannerCollections, manualCollection),
-    [bannerCollections, manualCollection],
+    () => mergeCollectionCounts(bannerCollections, externalCollection),
+    [bannerCollections, externalCollection],
   );
   const [currentTab, setCurrentTab] = useState('resonator');
 
@@ -38,7 +38,7 @@ export default function CollectorsHub() {
       <div
         className={`${currentTab === 'resonator' ? 'block' : 'hidden'}`}
       >
-        <ManualCollectionForm
+        <ExternalCollectionForm
           activeProfileId={accountStore.active}
           type="resonator"
           resources={RESONATORS}
@@ -50,7 +50,7 @@ export default function CollectorsHub() {
         />
       </div>
       <div className={`${currentTab === 'weapon' ? 'block' : 'hidden'}`}>
-        <ManualCollectionForm
+        <ExternalCollectionForm
           activeProfileId={accountStore.active}
           type="weapon"
           resources={WEAPONS_FOR_COLLECTION}

@@ -5,14 +5,14 @@ import { persist } from 'zustand/middleware';
 
 export type CollectionType = 'resonator' | 'weapon';
 
-export interface ManualCollectionCounts {
+export interface ExternalCollectionCounts {
   resonators: Record<string, number>;
   weapons: Record<string, number>;
 }
 
-interface ManualCollectionStore {
-  manualCollections: Record<string, ManualCollectionCounts>;
-  addManualCount: (
+interface ExternalCollectionStore {
+  externalCollections: Record<string, ExternalCollectionCounts>;
+  addExternalCount: (
     profileId: string | null,
     type: CollectionType,
     name: string,
@@ -20,32 +20,32 @@ interface ManualCollectionStore {
   ) => void;
   getCollectionForProfile: (
     profileId: string | null,
-  ) => ManualCollectionCounts;
+  ) => ExternalCollectionCounts;
   clearProfile: (profileId: string) => void;
 }
 
-const emptyCollection: ManualCollectionCounts = {
+const emptyCollection: ExternalCollectionCounts = {
   resonators: {},
   weapons: {},
 };
 
-export const useManualCollectionStore = create<ManualCollectionStore>()(
+export const useExternalCollectionStore = create<ExternalCollectionStore>()(
   persist(
     (set, get) => ({
-      manualCollections: {},
-      addManualCount: (profileId, type, name, count) => {
+      externalCollections: {},
+      addExternalCount: (profileId, type, name, count) => {
         if (!profileId || !name || count <= 0) {
           return;
         }
 
         set((state) => {
-          const existing = state.manualCollections[profileId]
+          const existing = state.externalCollections[profileId]
             ?? emptyCollection;
           const targetKey = type === 'weapon' ? 'weapons' : 'resonators';
 
           return {
-            manualCollections: {
-              ...state.manualCollections,
+            externalCollections: {
+              ...state.externalCollections,
               [profileId]: {
                 ...existing,
                 [targetKey]: {
@@ -62,21 +62,21 @@ export const useManualCollectionStore = create<ManualCollectionStore>()(
           return emptyCollection;
         }
 
-        return get().manualCollections[profileId] ?? emptyCollection;
+        return get().externalCollections[profileId] ?? emptyCollection;
       },
       clearProfile: profileId =>
         set((state) => {
-          if (!state.manualCollections[profileId]) {
+          if (!state.externalCollections[profileId]) {
             return state;
           }
 
-          const next = { ...state.manualCollections };
+          const next = { ...state.externalCollections };
           delete next[profileId];
-          return { manualCollections: next };
+          return { externalCollections: next };
         }),
     }),
     {
-      name: 'manual-collection-storage',
+      name: 'external-collection-storage',
     },
   ),
 );

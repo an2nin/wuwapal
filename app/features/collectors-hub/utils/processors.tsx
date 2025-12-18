@@ -1,5 +1,5 @@
 import type { BannerTable } from '@/core/db';
-import type { ManualCollectionCounts } from '@/shared/stores/manual-collection';
+import type { ExternalCollectionCounts } from '@/shared/stores/external-collection';
 import type { GenericBannerItem } from '@/shared/types';
 
 export interface CollectionCounts {
@@ -41,17 +41,17 @@ export function processBannersForCollection(
 
 export function mergeCollectionCounts(
   bannerCounts: CollectionCounts,
-  manualCounts?: ManualCollectionCounts,
+  externalCounts?: ExternalCollectionCounts,
 ): CollectionCounts {
   const mergedWeapons = { ...bannerCounts.weapons };
   const mergedResonators = { ...bannerCounts.resonators };
 
-  if (manualCounts) {
-    Object.entries(manualCounts.weapons).forEach(([name, count]) => {
+  if (externalCounts) {
+    Object.entries(externalCounts.weapons).forEach(([name, count]) => {
       mergedWeapons[name] = (mergedWeapons[name] ?? 0) + count;
     });
 
-    Object.entries(manualCounts.resonators).forEach(([name, count]) => {
+    Object.entries(externalCounts.resonators).forEach(([name, count]) => {
       mergedResonators[name] = (mergedResonators[name] ?? 0) + count;
     });
   }

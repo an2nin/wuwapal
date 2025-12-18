@@ -19,6 +19,7 @@ export default function ExternalCollectionForm({
   resources,
 }: Props) {
   const addExternalCount = useExternalCollectionStore(state => state.addExternalCount);
+  const subtractExternalCount = useExternalCollectionStore(state => state.subtractExternalCount);
   const externalCollection = useExternalCollectionStore(state =>
     state.getCollectionForProfile(activeProfileId),
   );
@@ -40,26 +41,28 @@ export default function ExternalCollectionForm({
     [externalCollection, selectedItem, typeKey],
   );
 
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
+  const handleAdjust = (direction: 'add' | 'subtract') => {
     const parsedCount = Number.parseInt(countInput, 10);
     if (!activeProfileId || Number.isNaN(parsedCount) || parsedCount <= 0 || !selectedItem) {
       return;
     }
 
-    addExternalCount(activeProfileId, type, selectedItem, parsedCount);
+    if (direction === 'add') {
+      addExternalCount(activeProfileId, type, selectedItem, parsedCount);
+    }
+    else {
+      subtractExternalCount(activeProfileId, type, selectedItem, parsedCount);
+    }
+
     setCountInput('1');
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="mb-4 rounded-xl border bg-card/50 p-4 shadow-sm backdrop-blur-sm"
-    >
+    <div className="mb-4 rounded-xl border bg-card/50 p-4 shadow-sm backdrop-blur-sm">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
         <div className="flex-1">
           <Label className="text-sm text-muted-foreground">
-            Add
+            Adjust
             {' '}
             {type === 'weapon' ? 'weapon' : 'resonator'}
             {' '}
@@ -89,13 +92,25 @@ export default function ExternalCollectionForm({
           />
         </div>
 
-        <Button
-          type="submit"
-          disabled={!activeProfileId || !selectedItem}
-          className="w-full sm:w-auto"
-        >
-          Add
-        </Button>
+        <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
+          <Button
+            type="button"
+            disabled={!activeProfileId || !selectedItem}
+            className="w-full sm:w-auto"
+            onClick={() => handleAdjust('add')}
+          >
+            Add
+          </Button>
+          <Button
+            type="button"
+            variant="secondary"
+            disabled={!activeProfileId || !selectedItem}
+            className="w-full sm:w-auto"
+            onClick={() => handleAdjust('subtract')}
+          >
+            Subtract
+          </Button>
+        </div>
       </div>
 
       <p className="mt-2 text-xs text-muted-foreground">
@@ -103,6 +118,6 @@ export default function ExternalCollectionForm({
         {' '}
         {currentExternalCount}
       </p>
-    </form>
+    </div>
   );
 }

@@ -18,6 +18,12 @@ interface ExternalCollectionStore {
     name: string,
     count: number,
   ) => void;
+  subtractExternalCount: (
+    profileId: string | null,
+    type: CollectionType,
+    name: string,
+    count: number,
+  ) => void;
   getCollectionForProfile: (
     profileId: string | null,
   ) => ExternalCollectionCounts;
@@ -51,6 +57,32 @@ export const useExternalCollectionStore = create<ExternalCollectionStore>()(
                 [targetKey]: {
                   ...existing[targetKey],
                   [name]: (existing[targetKey][name] ?? 0) + count,
+                },
+              },
+            },
+          };
+        });
+      },
+      subtractExternalCount: (profileId, type, name, count) => {
+        if (!profileId || !name || count <= 0) {
+          return;
+        }
+
+        set((state) => {
+          const existing = state.externalCollections[profileId]
+            ?? emptyCollection;
+          const targetKey = type === 'weapon' ? 'weapons' : 'resonators';
+          const currentCount = existing[targetKey][name] ?? 0;
+          const nextCount = Math.max(0, currentCount - count);
+
+          return {
+            externalCollections: {
+              ...state.externalCollections,
+              [profileId]: {
+                ...existing,
+                [targetKey]: {
+                  ...existing[targetKey],
+                  [name]: nextCount,
                 },
               },
             },

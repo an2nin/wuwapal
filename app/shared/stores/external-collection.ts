@@ -5,9 +5,16 @@ import { persist } from 'zustand/middleware';
 
 export type CollectionType = 'resonator' | 'weapon';
 
+export interface ExternalCollectionItem {
+  note: string;
+  date: string;
+}
+
+export type ExternalCollectionEntry = ExternalCollectionItem[];
+
 export interface ExternalCollectionCounts {
-  resonators: Record<string, number>;
-  weapons: Record<string, number>;
+  resonators: Record<string, ExternalCollectionEntry>;
+  weapons: Record<string, ExternalCollectionEntry>;
 }
 
 interface ExternalCollectionStore {
@@ -17,6 +24,8 @@ interface ExternalCollectionStore {
     type: CollectionType,
     name: string,
     count: number,
+    note: string,
+    date: string,
   ) => void;
   subtractExternalCount: (
     profileId: string | null,
@@ -35,12 +44,60 @@ const emptyCollection: ExternalCollectionCounts = {
   weapons: {},
 };
 
+function normalizeEntry(value:
+  | number
+  | ExternalCollectionEntry
+  | {
+    count?: number;
+    notes?: (string | undefined)[];
+    dates?: (string | undefined)[];
+    note?: string;
+    date?: string;
+  }
+  | undefined): ExternalCollectionEntry {
+  if (typeof value === 'number') {
+    return Array.from({ length: value }, () => ({ note: '', date: '' }));
+  }
+
+  if (!value) {
+    return [];
+  }
+
+  if (Array.isArray(value)) {
+    return value.map(entry => ({
+      note: entry.note?.trim() ?? '',
+      date: entry.date?.trim() ?? '',
+    }));
+  }
+
+  // Migrate legacy single note/date shape.
+  const baseCount = value.count
+    ?? value.notes?.length
+    ?? value.dates?.length
+    ?? (value.note || value.date ? 1 : 0);
+  const notes = value.notes ?? (value.note ? Array.from({ length: baseCount }, () => value.note) : []);
+  const dates = value.dates ?? (value.date ? Array.from({ length: baseCount }, () => value.date) : []);
+
+  return Array.from({ length: baseCount }, (_, idx) => ({
+    note: notes[idx]?.trim() ?? '',
+    date: dates[idx]?.trim() ?? '',
+  }));
+}
+
+function sanitizeMeta(value?: string) {
+  const trimmed = value?.trim();
+  return trimmed || undefined;
+}
+
 export const useExternalCollectionStore = create<ExternalCollectionStore>()(
   persist(
     (set, get) => ({
       externalCollections: {},
-      addExternalCount: (profileId, type, name, count) => {
-        if (!profileId || !name || count <= 0) {
+      addExternalCount: (profileId, type, name, count, note, date) => {
+        const sanitizedNote = sanitizeMeta(note);
+        const sanitizedDate = sanitizeMeta(date);
+
+        if (!profileId || !name || count <= 0 || !sanitizedNote || !sanitizedDate) {
           return;
         }
 
@@ -48,6 +105,12 @@ export const useExternalCollectionStore = create<ExternalCollectionStore>()(
           const existing = state.externalCollections[profileId]
             ?? emptyCollection;
           const targetKey = type === 'weapon' ? 'weapons' : 'resonators';
+          const currentEntry = normalizeEntry(existing[targetKey][name]);
+
+          const newEntries: ExternalCollectionEntry = Array.from(
+            { length: count },
+            () => ({ note: sanitizedNote, date: sanitizedDate }),
+          );
 
           return {
             externalCollections: {
@@ -56,7 +119,7 @@ export const useExternalCollectionStore = create<ExternalCollectionStore>()(
                 ...existing,
                 [targetKey]: {
                   ...existing[targetKey],
-                  [name]: (existing[targetKey][name] ?? 0) + count,
+                  [name]: [...currentEntry, ...newEntries],
                 },
               },
             },
@@ -72,8 +135,11 @@ export const useExternalCollectionStore = create<ExternalCollectionStore>()(
           const existing = state.externalCollections[profileId]
             ?? emptyCollection;
           const targetKey = type === 'weapon' ? 'weapons' : 'resonators';
-          const currentCount = existing[targetKey][name] ?? 0;
-          const nextCount = Math.max(0, currentCount - count);
+          const currentEntry = normalizeEntry(existing[targetKey][name]);
+          const trimmedEntries = currentEntry.slice(
+            0,
+            Math.max(0, currentEntry.length - count),
+          );
 
           return {
             externalCollections: {
@@ -82,7 +148,7 @@ export const useExternalCollectionStore = create<ExternalCollectionStore>()(
                 ...existing,
                 [targetKey]: {
                   ...existing[targetKey],
-                  [name]: nextCount,
+                  [name]: trimmedEntries,
                 },
               },
             },

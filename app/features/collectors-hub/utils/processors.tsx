@@ -1,5 +1,8 @@
 import type { BannerTable } from '@/core/db';
-import type { ExternalCollectionCounts } from '@/shared/stores/external-collection';
+import type {
+  ExternalCollectionCounts,
+  ExternalCollectionEntry,
+} from '@/shared/stores/external-collection';
 import type { GenericBannerItem } from '@/shared/types';
 
 export interface CollectionCounts {
@@ -46,12 +49,26 @@ export function mergeCollectionCounts(
   const mergedWeapons = { ...bannerCounts.weapons };
   const mergedResonators = { ...bannerCounts.resonators };
 
+  const getCount = (entry: number | ExternalCollectionEntry | Record<string, any> | undefined) => {
+    if (typeof entry === 'number') {
+      return entry;
+    }
+
+    if (Array.isArray(entry)) {
+      return entry.length;
+    }
+
+    return entry?.count ?? 0;
+  };
+
   if (externalCounts) {
-    Object.entries(externalCounts.weapons).forEach(([name, count]) => {
+    Object.entries(externalCounts.weapons).forEach(([name, entry]) => {
+      const count = getCount(entry);
       mergedWeapons[name] = (mergedWeapons[name] ?? 0) + count;
     });
 
-    Object.entries(externalCounts.resonators).forEach(([name, count]) => {
+    Object.entries(externalCounts.resonators).forEach(([name, entry]) => {
+      const count = getCount(entry);
       mergedResonators[name] = (mergedResonators[name] ?? 0) + count;
     });
   }

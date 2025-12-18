@@ -1,6 +1,9 @@
 'use client';
 
-import type { CollectionType } from '@/shared/stores/external-collection';
+import type {
+  CollectionType,
+  ExternalCollectionEntry,
+} from '@/shared/stores/external-collection';
 import { useEffect, useMemo, useState } from 'react';
 import { Button } from '@/shared/components/ui/button';
 import { Input } from '@/shared/components/ui/input';
@@ -26,8 +29,25 @@ export default function ExternalCollectionForm({
 
   const [selectedItem, setSelectedItem] = useState<string>('');
   const [countInput, setCountInput] = useState<string>('1');
+  const [noteInput, setNoteInput] = useState<string>('');
+  const [dateInput, setDateInput] = useState<string>('');
 
   const typeKey = type === 'weapon' ? 'weapons' : 'resonators';
+
+  const normalizeEntry = (entry: number | ExternalCollectionEntry | undefined): ExternalCollectionEntry => {
+    if (typeof entry === 'number') {
+      return Array.from({ length: entry }, () => ({ note: '', date: '' }));
+    }
+
+    if (!entry) {
+      return [];
+    }
+
+    return entry.map(item => ({
+      note: item.note?.trim() ?? '',
+      date: item.date?.trim() ?? '',
+    }));
+  };
 
   useEffect(() => {
     const resourceNames = Object.keys(resources);
@@ -36,19 +56,50 @@ export default function ExternalCollectionForm({
     }
   }, [resources, type]);
 
-  const currentExternalCount = useMemo(
-    () => externalCollection?.[typeKey]?.[selectedItem] ?? 0,
+  const currentExternalEntry = useMemo(
+    () => normalizeEntry(externalCollection?.[typeKey]?.[selectedItem]),
     [externalCollection, selectedItem, typeKey],
   );
 
+  const latestNote = useMemo(
+    () => [...currentExternalEntry].reverse().find(entry => !!entry.note)?.note ?? '',
+    [currentExternalEntry],
+  );
+
+  const latestDate = useMemo(
+    () => [...currentExternalEntry].reverse().find(entry => !!entry.date)?.date ?? '',
+    [currentExternalEntry],
+  );
+
+  useEffect(() => {
+    setNoteInput('');
+    setDateInput('');
+  }, [externalCollection, selectedItem, typeKey]);
+
   const handleAdjust = (direction: 'add' | 'subtract') => {
     const parsedCount = Number.parseInt(countInput, 10);
-    if (!activeProfileId || Number.isNaN(parsedCount) || parsedCount <= 0 || !selectedItem) {
+    const sanitizedNote = noteInput.trim();
+    const sanitizedDate = dateInput.trim();
+
+    if (
+      !activeProfileId
+      || Number.isNaN(parsedCount)
+      || parsedCount <= 0
+      || !selectedItem
+      || (direction === 'add' && (!sanitizedNote || !sanitizedDate))
+    ) {
       return;
     }
 
     if (direction === 'add') {
-      addExternalCount(activeProfileId, type, selectedItem, parsedCount);
+      addExternalCount(
+        activeProfileId,
+        type,
+        selectedItem,
+        parsedCount,
+        sanitizedNote,
+        sanitizedDate,
+      );
     }
     else {
       subtractExternalCount(activeProfileId, type, selectedItem, parsedCount);
@@ -59,7 +110,7 @@ export default function ExternalCollectionForm({
 
   return (
     <div className="mb-4 rounded-xl border bg-card/50 p-4 shadow-sm backdrop-blur-sm">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-end">
+      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-end">
         <div className="flex-1">
           <Label className="text-sm text-muted-foreground">
             Adjust
@@ -86,8 +137,30 @@ export default function ExternalCollectionForm({
           <Input
             type="number"
             min={1}
+            step={1}
             value={countInput}
             onChange={event => setCountInput(event.target.value)}
+            className="mt-2"
+          />
+        </div>
+
+        <div className="w-full sm:w-44">
+          <Label className="text-sm text-muted-foreground">Date (required to add)</Label>
+          <Input
+            type="date"
+            value={dateInput}
+            onChange={event => setDateInput(event.target.value)}
+            className="mt-2"
+          />
+        </div>
+
+        <div className="w-full sm:flex-1">
+          <Label className="text-sm text-muted-foreground">Note (required to add)</Label>
+          <Input
+            type="text"
+            placeholder="e.g. From co-op run"
+            value={noteInput}
+            onChange={event => setNoteInput(event.target.value)}
             className="mt-2"
           />
         </div>
@@ -95,7 +168,14 @@ export default function ExternalCollectionForm({
         <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row">
           <Button
             type="button"
-            disabled={!activeProfileId || !selectedItem}
+            disabled={
+              !activeProfileId
+              || !selectedItem
+              || !noteInput.trim()
+              || !dateInput.trim()
+              || Number.isNaN(Number.parseInt(countInput, 10))
+              || Number.parseInt(countInput, 10) <= 0
+            }
             className="w-full sm:w-auto"
             onClick={() => handleAdjust('add')}
           >
@@ -113,11 +193,32 @@ export default function ExternalCollectionForm({
         </div>
       </div>
 
-      <p className="mt-2 text-xs text-muted-foreground">
-        Stored separately from banner data. Current external count for this item:
-        {' '}
-        {currentExternalCount}
-      </p>
+      <div className="mt-2 text-xs text-muted-foreground">
+        <p className="font-semibold">
+          Stored separately from banner data. Current external details:
+        </p>
+        <p>
+          Count:
+          {' '}
+          {currentExternalEntry.length}
+          {latestNote && (
+            <>
+              {' '}
+              • Note:
+              {' '}
+              {latestNote}
+            </>
+          )}
+          {latestDate && (
+            <>
+              {' '}
+              • Date:
+              {' '}
+              {latestDate}
+            </>
+          )}
+        </p>
+      </div>
     </div>
   );
 }

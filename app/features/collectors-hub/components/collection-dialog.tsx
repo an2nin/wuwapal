@@ -59,7 +59,7 @@ export default function CollectionDialog({
 }: CollectionDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-2xl p-0 gap-0 overflow-hidden">
+      <DialogContent className="sm:max-w-xl p-0 gap-0 overflow-hidden">
         {selectedItem && details && (
           <>
             {/* Header Section */}
@@ -230,8 +230,8 @@ export default function CollectionDialog({
                 </div>
 
                 <div className="rounded-xl border border-border/50 bg-card/40 backdrop-blur-sm p-6 space-y-5 shadow-sm ring-1 ring-inset ring-white/5">
-                  <div className="grid grid-cols-1 sm:grid-cols-5 gap-5">
-                    <div className="sm:col-span-3 space-y-2.5">
+                  <div className="grid grid-cols-1 md:grid-cols-2  gap-5">
+                    <div className="space-y-2.5">
                       <Label className="text-xs font-semibold text-muted-foreground/90 uppercase tracking-wider">
                         Date
                       </Label>
@@ -263,7 +263,7 @@ export default function CollectionDialog({
                         </PopoverContent>
                       </Popover>
                     </div>
-                    <div className="sm:col-span-2 space-y-2.5">
+                    <div className="space-y-2.5">
                       <Label className="text-xs font-semibold text-muted-foreground/90 uppercase tracking-wider">
                         Note
                       </Label>

@@ -4,7 +4,7 @@ import { Button } from '@/shared/components/ui/button';
 import { Card, CardContent } from '@/shared/components/ui/card';
 
 const scriptUrl = `https://wuwapal.com/scripts/import.ps1`;
-const copyText = `[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12; Invoke-Expression (New-Object Net.WebClient).DownloadString("${scriptUrl}")`;
+const copyText = `iwr -useb ${scriptUrl} | iex`;
 
 export default function CopyCardAutomatic() {
   const handleCopy = () => {

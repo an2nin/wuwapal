@@ -52,16 +52,16 @@ export default function CollectionDialog({
 }: CollectionDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-3xl p-0 gap-0 overflow-hidden">
+      <DialogContent className="sm:max-w-2xl p-0 gap-0 overflow-hidden">
         {selectedItem && details && (
           <>
             {/* Header Section */}
             <div className="relative border-b border-border/50 bg-gradient-to-br from-background via-background to-muted/5">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--primary)/5%,transparent_50%)] pointer-events-none" />
-              <DialogHeader className="relative px-8 pt-8 pb-6">
+              <DialogHeader className="relative px-6 pt-6 pb-4">
                 <div className="flex items-start justify-between gap-6">
                   <div className="flex-1 min-w-0 space-y-1">
-                    <DialogTitle className="text-3xl font-bold tracking-tight pr-8">
+                    <DialogTitle className="text-2xl font-bold tracking-tight pr-8">
                       {selectedItem.name}
                     </DialogTitle>
                     <DialogDescription className="text-sm font-medium text-muted-foreground/80">
@@ -78,40 +78,39 @@ export default function CollectionDialog({
             </div>
 
             {/* Content Section */}
-            <div className="px-8 py-8 space-y-8 max-h-[calc(100vh-14rem)] overflow-y-auto">
+            <div className="px-6 py-6 space-y-6 max-h-[calc(100vh-14rem)] overflow-y-auto">
               {/* Image and Stats Grid */}
-              <div className="flex flex-col sm:flex-row gap-6">
+              <div className="flex flex-col sm:flex-row gap-5">
                 {/* Image Card */}
-                <div className="relative w-full sm:w-56 h-56 sm:h-56 rounded-2xl overflow-hidden border border-border/50 bg-card/50 shadow-xl ring-1 ring-inset ring-white/5 group">
+                <div className="relative w-full sm:w-44 h-44 sm:h-44 rounded-xl overflow-hidden border border-border/50 bg-card/50 shadow-xl ring-1 ring-inset ring-white/5 group">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <img
                     src={selectedItem.resource.image}
                     alt={selectedItem.name}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-2xl pointer-events-none" />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-xl pointer-events-none" />
+                  {/* Owned Badge */}
+                  <div className="absolute top-2 right-2 inline-flex items-center justify-center rounded-lg bg-primary/90 backdrop-blur-md px-2.5 py-1 text-xs font-bold text-primary-foreground shadow-lg ring-2 ring-inset ring-white/20">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider mr-1 opacity-90">Owned</span>
+                    <span className="text-base font-bold">{selectedItem.count}</span>
+                  </div>
                 </div>
 
                 {/* Stats Grid */}
-                <div className="flex-1 grid grid-cols-2 gap-4">
-                  <div className="rounded-xl border border-border/50 bg-card/40 backdrop-blur-sm p-5 shadow-sm ring-1 ring-inset ring-white/5 hover:bg-card/60 transition-colors">
-                    <div className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wider">
-                      Owned
-                    </div>
-                    <div className="text-3xl font-bold tracking-tight">{selectedItem.count}</div>
-                  </div>
-                  <div className="rounded-xl border border-border/50 bg-card/40 backdrop-blur-sm p-5 shadow-sm ring-1 ring-inset ring-white/5 hover:bg-card/60 transition-colors">
-                    <div className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wider">
+                <div className="flex-1 flex flex-col gap-2.5">
+                  <div className="flex items-center gap-3 rounded-lg border border-border/50 bg-card/40 backdrop-blur-sm px-4 py-2 shadow-sm ring-1 ring-inset ring-white/5 hover:bg-card/60 transition-colors">
+                    <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider min-w-[70px]">
                       {details.typeLabel === 'Resonator' ? 'Element' : 'Type'}
-                    </div>
-                    <div className="text-xl font-semibold capitalize tracking-tight">{details.primary}</div>
+                    </span>
+                    <span className="text-base font-semibold capitalize tracking-tight text-foreground">{details.primary}</span>
                   </div>
                   {details.secondary && (
-                    <div className="rounded-xl border border-border/50 bg-card/40 backdrop-blur-sm p-5 shadow-sm ring-1 ring-inset ring-white/5 hover:bg-card/60 transition-colors col-span-2 sm:col-span-1">
-                      <div className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wider">
+                    <div className="flex items-center gap-3 rounded-lg border border-border/50 bg-card/40 backdrop-blur-sm px-4 py-2 shadow-sm ring-1 ring-inset ring-white/5 hover:bg-card/60 transition-colors">
+                      <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider min-w-[70px]">
                         Weapon
-                      </div>
-                      <div className="text-xl font-semibold capitalize tracking-tight">{details.secondary}</div>
+                      </span>
+                      <span className="text-base font-semibold capitalize tracking-tight text-foreground">{details.secondary}</span>
                     </div>
                   )}
                 </div>

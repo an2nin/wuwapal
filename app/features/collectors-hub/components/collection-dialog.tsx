@@ -66,9 +66,9 @@ export default function CollectionDialog({
             <div className="relative border-b border-border/50 bg-gradient-to-br from-background via-background to-muted/5">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--primary)/5%,transparent_50%)] pointer-events-none" />
               <DialogHeader className="relative px-6 pt-6 pb-4">
-                <div className="flex items-start justify-between gap-6">
+                <div className="flex items-start justify-between gap-6 pr-10">
                   <div className="flex-1 min-w-0 space-y-1">
-                    <DialogTitle className="text-2xl font-bold tracking-tight pr-8">
+                    <DialogTitle className="text-2xl font-bold tracking-tight">
                       {selectedItem.name}
                     </DialogTitle>
                     <DialogDescription className="text-sm font-medium text-muted-foreground/80">
@@ -97,11 +97,12 @@ export default function CollectionDialog({
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-xl pointer-events-none" />
-                  {/* Owned Badge */}
-                  <div className="absolute top-2 right-2 inline-flex items-center justify-center rounded-lg bg-primary/90 backdrop-blur-md px-2.5 py-1 text-xs font-bold text-primary-foreground shadow-lg ring-2 ring-inset ring-white/20">
-                    <span className="text-[10px] font-semibold uppercase tracking-wider mr-1 opacity-90">Owned</span>
-                    <span className="text-base font-bold">{selectedItem.count}</span>
-                  </div>
+                  {/* Count Badge */}
+                  {selectedItem.count > 0 && (
+                    <div className="absolute top-0 right-0 bg-primary/60 backdrop-blur-sm rounded-tl-none rounded-bl-xl px-2 py-1 text-xs text-white font-bold border border-primary/30">
+                      {selectedItem.count}
+                    </div>
+                  )}
                 </div>
 
                 {/* Stats Grid */}

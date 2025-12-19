@@ -52,22 +52,24 @@ export default function CollectionDialog({
 }: CollectionDialogProps) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-2xl p-0 gap-0 overflow-hidden">
+      <DialogContent className="sm:max-w-3xl p-0 gap-0 overflow-hidden">
         {selectedItem && details && (
           <>
-            <div className="relative bg-gradient-to-br from-background via-background to-muted/20 border-b">
-              <DialogHeader className="relative px-6 pt-6 pb-4">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="flex-1 min-w-0">
-                    <DialogTitle className="text-2xl font-bold mb-2 pr-8">
+            {/* Header Section */}
+            <div className="relative border-b border-border/50 bg-gradient-to-br from-background via-background to-muted/5">
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--primary)/5%,transparent_50%)] pointer-events-none" />
+              <DialogHeader className="relative px-8 pt-8 pb-6">
+                <div className="flex items-start justify-between gap-6">
+                  <div className="flex-1 min-w-0 space-y-1">
+                    <DialogTitle className="text-3xl font-bold tracking-tight pr-8">
                       {selectedItem.name}
                     </DialogTitle>
-                    <DialogDescription className="text-sm font-medium">
+                    <DialogDescription className="text-sm font-medium text-muted-foreground/80">
                       {details.typeLabel}
                     </DialogDescription>
                   </div>
                   <div
-                    className={`${details.qualityClass} inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-br from-muted/50 to-muted/30 backdrop-blur-sm px-3 py-1.5 text-sm font-bold shadow-lg border border-muted/50 shrink-0`}
+                    className={`${details.qualityClass} inline-flex items-center justify-center rounded-xl bg-gradient-to-br from-muted/60 to-muted/40 backdrop-blur-md px-4 py-2 text-sm font-bold shadow-md border border-muted/60 shrink-0 ring-1 ring-inset ring-white/5`}
                   >
                     <span>{details.qualityText}</span>
                   </div>
@@ -75,63 +77,69 @@ export default function CollectionDialog({
               </DialogHeader>
             </div>
 
-            <div className="px-6 py-6 space-y-6 max-h-[calc(100vh-12rem)] overflow-y-auto">
+            {/* Content Section */}
+            <div className="px-8 py-8 space-y-8 max-h-[calc(100vh-14rem)] overflow-y-auto">
+              {/* Image and Stats Grid */}
               <div className="flex flex-col sm:flex-row gap-6">
-                <div className="relative w-full sm:w-48 h-48 sm:h-48 rounded-xl overflow-hidden border-2 border-muted/50 bg-gradient-to-br from-muted/20 to-muted/10 shadow-lg group">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                {/* Image Card */}
+                <div className="relative w-full sm:w-56 h-56 sm:h-56 rounded-2xl overflow-hidden border border-border/50 bg-card/50 shadow-xl ring-1 ring-inset ring-white/5 group">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <img
                     src={selectedItem.resource.image}
                     alt={selectedItem.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-2xl pointer-events-none" />
                 </div>
 
+                {/* Stats Grid */}
                 <div className="flex-1 grid grid-cols-2 gap-4">
-                  <div className="rounded-lg border border-muted/50 bg-muted/20 p-4 backdrop-blur-sm">
-                    <div className="text-xs font-medium text-muted-foreground mb-1.5 uppercase tracking-wider">
+                  <div className="rounded-xl border border-border/50 bg-card/40 backdrop-blur-sm p-5 shadow-sm ring-1 ring-inset ring-white/5 hover:bg-card/60 transition-colors">
+                    <div className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wider">
                       Owned
                     </div>
-                    <div className="text-2xl font-bold">{selectedItem.count}</div>
+                    <div className="text-3xl font-bold tracking-tight">{selectedItem.count}</div>
                   </div>
-                  <div className="rounded-lg border border-muted/50 bg-muted/20 p-4 backdrop-blur-sm">
-                    <div className="text-xs font-medium text-muted-foreground mb-1.5 uppercase tracking-wider">
+                  <div className="rounded-xl border border-border/50 bg-card/40 backdrop-blur-sm p-5 shadow-sm ring-1 ring-inset ring-white/5 hover:bg-card/60 transition-colors">
+                    <div className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wider">
                       {details.typeLabel === 'Resonator' ? 'Element' : 'Type'}
                     </div>
-                    <div className="text-lg font-semibold capitalize">{details.primary}</div>
+                    <div className="text-xl font-semibold capitalize tracking-tight">{details.primary}</div>
                   </div>
                   {details.secondary && (
-                    <div className="rounded-lg border border-muted/50 bg-muted/20 p-4 backdrop-blur-sm col-span-2 sm:col-span-1">
-                      <div className="text-xs font-medium text-muted-foreground mb-1.5 uppercase tracking-wider">
+                    <div className="rounded-xl border border-border/50 bg-card/40 backdrop-blur-sm p-5 shadow-sm ring-1 ring-inset ring-white/5 hover:bg-card/60 transition-colors col-span-2 sm:col-span-1">
+                      <div className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wider">
                         Weapon
                       </div>
-                      <div className="text-lg font-semibold capitalize">{details.secondary}</div>
+                      <div className="text-xl font-semibold capitalize tracking-tight">{details.secondary}</div>
                     </div>
                   )}
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <div className="flex items-center gap-2">
-                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
-                  <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground px-2">
+              {/* Timeline Section */}
+              <div className="space-y-5">
+                <div className="flex items-center gap-3">
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border/60 to-transparent" />
+                  <h3 className="text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground/90 px-3">
                     Collection Timeline
                   </h3>
-                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border/60 to-transparent" />
                 </div>
 
                 {selectedItem.entries.length === 0
                   ? (
-                      <div className="rounded-lg border border-dashed border-muted/50 bg-muted/10 p-8 text-center">
-                        <div className="text-muted-foreground text-sm">
+                      <div className="rounded-xl border border-dashed border-border/50 bg-muted/5 p-12 text-center ring-1 ring-inset ring-white/5">
+                        <div className="text-muted-foreground/70 text-sm font-medium">
                           No entries recorded yet
                         </div>
                       </div>
                     )
                   : (
-                      <div className="space-y-4">
+                      <div className="space-y-1">
                         <div className="relative">
-                          <div className="absolute left-3 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/50 via-primary/30 to-transparent" aria-hidden />
-                          <div className="space-y-4 pl-8">
+                          <div className="absolute left-4 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary/60 via-primary/40 to-transparent rounded-full" aria-hidden />
+                          <div className="space-y-3 pl-10">
                             {(timelineExpanded ? timelineEntries : timelineEntries.slice(0, 3)).map((entry, idx) => {
                               const actualIndex = idx;
                               const entryNumber = selectedItem.entries.length - actualIndex;
@@ -141,14 +149,14 @@ export default function CollectionDialog({
                                   key={`${entry.date}-${entry.note}-${actualIndex}`}
                                   className="relative group"
                                 >
-                                  <div className="absolute -left-[29px] top-1.5 h-2.5 w-2.5 rounded-full bg-primary ring-4 ring-background shadow-lg transition-all group-hover:scale-125 group-hover:ring-primary/20" />
-                                  <div className="rounded-lg border border-muted/50 bg-muted/10 p-4 hover:bg-muted/20 transition-colors backdrop-blur-sm">
-                                    <div className="flex items-center justify-between mb-2">
-                                      <span className="text-xs font-medium text-muted-foreground">
+                                  <div className="absolute -left-[34px] top-2 h-3 w-3 rounded-full bg-primary ring-[3px] ring-background shadow-md transition-all duration-200 group-hover:scale-125 group-hover:ring-primary/30" />
+                                  <div className="rounded-xl border border-border/50 bg-card/40 backdrop-blur-sm p-4 hover:bg-card/60 hover:border-border/70 transition-all duration-200 shadow-sm ring-1 ring-inset ring-white/5 group-hover:shadow-md">
+                                    <div className="flex items-center justify-between mb-2.5">
+                                      <span className="text-xs font-medium text-muted-foreground/80">
                                         {entry.date || 'No date'}
                                       </span>
                                       <div className="flex items-center gap-2">
-                                        <span className="text-xs font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                                        <span className="text-xs font-bold text-primary bg-primary/15 px-2.5 py-1 rounded-full ring-1 ring-inset ring-primary/20">
                                           #
                                           {entryNumber}
                                         </span>
@@ -158,7 +166,7 @@ export default function CollectionDialog({
                                             variant="ghost"
                                             size="sm"
                                             onClick={() => onDeleteEntry(entry)}
-                                            className="h-6 w-6 p-0 text-destructive hover:text-destructive hover:bg-destructive/10"
+                                            className="h-7 w-7 p-0 text-destructive/70 hover:text-destructive hover:bg-destructive/10 rounded-md transition-colors"
                                             title="Delete entry"
                                           >
                                             <Trash2 className="h-3.5 w-3.5" />
@@ -166,7 +174,7 @@ export default function CollectionDialog({
                                         )}
                                       </div>
                                     </div>
-                                    <div className="text-sm font-medium text-foreground">
+                                    <div className="text-sm font-medium text-foreground/90">
                                       {entry.note || 'Gacha'}
                                     </div>
                                   </div>
@@ -180,7 +188,7 @@ export default function CollectionDialog({
                             type="button"
                             variant="ghost"
                             onClick={onToggleTimeline}
-                            className="w-full text-sm text-muted-foreground hover:text-foreground"
+                            className="w-full mt-4 text-sm text-muted-foreground/80 hover:text-foreground hover:bg-muted/30 rounded-lg transition-colors"
                           >
                             {timelineExpanded
                               ? (
@@ -205,32 +213,37 @@ export default function CollectionDialog({
                     )}
               </div>
 
-              <div className="space-y-4 pt-2">
-                <div className="flex items-center gap-2">
-                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
-                  <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground px-2">
+              {/* Add Entry Section */}
+              <div className="space-y-5 pt-2">
+                <div className="flex items-center gap-3">
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border/60 to-transparent" />
+                  <h3 className="text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground/90 px-3">
                     Add Entry
                   </h3>
-                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
+                  <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border/60 to-transparent" />
                 </div>
 
-                <div className="rounded-lg border border-muted/50 bg-muted/10 p-4 space-y-4">
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div className="sm:col-span-1 space-y-2">
-                      <Label className="text-xs font-medium text-muted-foreground">Date</Label>
+                <div className="rounded-xl border border-border/50 bg-card/40 backdrop-blur-sm p-6 space-y-5 shadow-sm ring-1 ring-inset ring-white/5">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+                    <div className="sm:col-span-1 space-y-2.5">
+                      <Label className="text-xs font-semibold text-muted-foreground/90 uppercase tracking-wider">
+                        Date
+                      </Label>
                       <Input
                         type="date"
                         value={dateInput}
                         onChange={event => onDateChange(event.target.value)}
-                        className="bg-background/50 border-muted/50 focus:border-primary/50"
+                        className="bg-background/60 border-border/50 focus:border-primary/60 focus:ring-primary/20 h-10"
                       />
                     </div>
-                    <div className="sm:col-span-2 space-y-2">
-                      <Label className="text-xs font-medium text-muted-foreground">Note</Label>
+                    <div className="sm:col-span-2 space-y-2.5">
+                      <Label className="text-xs font-semibold text-muted-foreground/90 uppercase tracking-wider">
+                        Note
+                      </Label>
                       <select
                         value={noteInput}
                         onChange={event => onNoteChange(event.target.value)}
-                        className="w-full rounded-md border border-muted/50 bg-background/50 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 transition-colors"
+                        className="w-full h-10 rounded-md border border-border/50 bg-background/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/60 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         <option value="coral shop">Coral shop</option>
                         <option value="reward">Reward</option>
@@ -238,14 +251,16 @@ export default function CollectionDialog({
                       </select>
                     </div>
                   </div>
-                  <Button
-                    type="button"
-                    disabled={isAddDisabled}
-                    onClick={onAddEntry}
-                    className="w-full sm:w-auto sm:ml-auto sm:block"
-                  >
-                    Add Entry
-                  </Button>
+                  <div className="flex justify-end">
+                    <Button
+                      type="button"
+                      disabled={isAddDisabled}
+                      onClick={onAddEntry}
+                      className="min-w-[120px] shadow-sm hover:shadow-md transition-shadow"
+                    >
+                      Add Entry
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>

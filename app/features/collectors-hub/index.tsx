@@ -8,7 +8,6 @@ import { useAccountStore } from '@/shared/stores/account';
 import { useExternalCollectionStore } from '@/shared/stores/external-collection';
 import CollectionDialogProvider from './components/collection-dialog-provider';
 import CollectionList from './components/collection-list';
-import ExternalCollectionForm from './components/external-collection-form';
 import { mergeCollectionCounts, processBannersForCollection } from './utils/processors';
 
 export default function CollectorsHub() {
@@ -47,11 +46,6 @@ export default function CollectorsHub() {
         <div
           className={`${currentTab === 'resonator' ? 'block' : 'hidden'}`}
         >
-          <ExternalCollectionForm
-            activeProfileId={accountStore.active}
-            type="resonator"
-            resources={RESONATORS}
-          />
           <CollectionList
             type={currentTab}
             resources={RESONATORS}
@@ -59,11 +53,6 @@ export default function CollectorsHub() {
           />
         </div>
         <div className={`${currentTab === 'weapon' ? 'block' : 'hidden'}`}>
-          <ExternalCollectionForm
-            activeProfileId={accountStore.active}
-            type="weapon"
-            resources={WEAPONS_FOR_COLLECTION}
-          />
           <CollectionList
             type={currentTab}
             resources={WEAPONS_FOR_COLLECTION}

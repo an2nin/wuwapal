@@ -5,8 +5,10 @@ import type {
   CollectionEntry,
   SelectedItem,
 } from './collection-dialog-types';
-import { ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
+import { format } from 'date-fns';
+import { CalendarIcon, ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
 import { Button } from '@/shared/components/ui/button';
+import { Calendar } from '@/shared/components/ui/calendar';
 import {
   Dialog,
   DialogContent,
@@ -14,8 +16,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/shared/components/ui/dialog';
-import { Input } from '@/shared/components/ui/input';
 import { Label } from '@/shared/components/ui/label';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/shared/components/ui/popover';
+import { cn } from '@/shared/utils/index';
 
 interface CollectionDialogProps {
   open: boolean;
@@ -223,17 +230,38 @@ export default function CollectionDialog({
                 </div>
 
                 <div className="rounded-xl border border-border/50 bg-card/40 backdrop-blur-sm p-6 space-y-5 shadow-sm ring-1 ring-inset ring-white/5">
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-                    <div className="sm:col-span-1 space-y-2.5">
+                  <div className="grid grid-cols-1 sm:grid-cols-5 gap-5">
+                    <div className="sm:col-span-3 space-y-2.5">
                       <Label className="text-xs font-semibold text-muted-foreground/90 uppercase tracking-wider">
                         Date
                       </Label>
-                      <Input
-                        type="date"
-                        value={dateInput}
-                        onChange={event => onDateChange(event.target.value)}
-                        className="bg-background/60 border-border/50 focus:border-primary/60 focus:ring-primary/20 h-10"
-                      />
+                      <Popover>
+                        <PopoverTrigger asChild>
+                          <Button
+                            className={cn(
+                              'w-full justify-start text-left border font-normal h-10 bg-background/60 border-border/50 hover:bg-background/80',
+                              !dateInput && 'text-muted-foreground',
+                            )}
+                          >
+                            <CalendarIcon className="mr-2 h-4 w-4" />
+                            {dateInput
+                              ? format(new Date(dateInput), 'PPP')
+                              : <span>Pick a date</span>}
+                          </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                          <Calendar
+                            mode="single"
+                            selected={dateInput ? new Date(dateInput) : undefined}
+                            onSelect={(date) => {
+                              if (date) {
+                                onDateChange(format(date, 'yyyy-MM-dd'));
+                              }
+                            }}
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
                     </div>
                     <div className="sm:col-span-2 space-y-2.5">
                       <Label className="text-xs font-semibold text-muted-foreground/90 uppercase tracking-wider">

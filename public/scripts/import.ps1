@@ -300,10 +300,13 @@ if ($url) {
     catch {
         Write-Warn "Could not copy to clipboard: $_"
     }
+    Write-Host "Press any key to close..."
+    $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
     exit
 }
 
 Write-Err "Unable to locate the Convene History URL."
 Write-Info $errorLog
 Write-Info "Open the in-game Convene History, then rerun this script."
-
+Write-Host "Press any key to close..."
+$null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")

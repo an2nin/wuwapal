@@ -6,9 +6,8 @@ import type {
   SelectedItem,
 } from './collection-dialog-types';
 import { format } from 'date-fns';
-import { CalendarIcon, ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
+import { ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
 import { Button } from '@/shared/components/ui/button';
-import { Calendar } from '@/shared/components/ui/calendar';
 import {
   Dialog,
   DialogContent,
@@ -17,12 +16,6 @@ import {
   DialogTitle,
 } from '@/shared/components/ui/dialog';
 import { Label } from '@/shared/components/ui/label';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from '@/shared/components/ui/popover';
-import { cn } from '@/shared/utils/index';
 
 interface CollectionDialogProps {
   open: boolean;
@@ -241,32 +234,12 @@ export default function CollectionDialog({
                       <Label className="text-xs font-semibold text-muted-foreground/90 uppercase tracking-wider">
                         Date
                       </Label>
-                      <Popover>
-                        <PopoverTrigger asChild>
-                          <Button
-                            className={cn(
-                              'w-full justify-start text-left border font-normal h-10 bg-background/60 border-border/50 hover:bg-background/80',
-                              !dateInput && 'text-muted-foreground',
-                            )}
-                          >
-                            <CalendarIcon className="mr-2 h-4 w-4" />
-                            {dateInput
-                              ? format(new Date(dateInput), 'PPP')
-                              : <span>Pick a date</span>}
-                          </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0" align="start">
-                          <Calendar
-                            mode="single"
-                            selected={dateInput ? new Date(dateInput) : undefined}
-                            onSelect={(date) => {
-                              if (date) {
-                                onDateChange(format(date, 'yyyy-MM-dd'));
-                              }
-                            }}
-                          />
-                        </PopoverContent>
-                      </Popover>
+                      <input
+                        type="date"
+                        value={dateInput}
+                        onChange={e => onDateChange(e.target.value)}
+                        className="w-full h-10 rounded-md border border-border/50 bg-background/60 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/60 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                      />
                     </div>
                     <div className="space-y-2.5">
                       <Label className="text-xs font-semibold text-muted-foreground/90 uppercase tracking-wider">

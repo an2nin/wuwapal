@@ -1,5 +1,9 @@
 export const CHANGELOGS = [
   {
+    date: '2025-12-20',
+    changes: ['Extends Collector\'s Hub with filters and external entry'],
+  },
+  {
     date: '2025-12-19',
     changes: ['Fixes import script issue'],
   },

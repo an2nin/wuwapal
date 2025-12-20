@@ -74,7 +74,7 @@ export default function CollectionList({ type, resources, collected }: Props) {
           {' '}
           <span className="font-medium text-foreground">{type}</span>
           {' '}
-          card to add external entries
+          card to view full pull timeline or add external entries
         </span>
       </div>
       {/* Collection Grid */}

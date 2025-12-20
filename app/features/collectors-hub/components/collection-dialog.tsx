@@ -230,7 +230,7 @@ export default function CollectionDialog({
                 <div className="flex items-center gap-3">
                   <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border/60 to-transparent" />
                   <h3 className="text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground/90 px-3">
-                    Add Entry
+                    Add External Entry
                   </h3>
                   <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border/60 to-transparent" />
                 </div>

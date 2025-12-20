@@ -30,7 +30,6 @@ export function useCollectionDialog() {
 export default function CollectionDialogProvider({ children }: PropsWithChildren) {
   const [selectedItem, setSelectedItem] = useState<SelectedItem | null>(null);
   const [open, setOpen] = useState(false);
-  const [timelineExpanded, setTimelineExpanded] = useState(false);
   const [noteInput, setNoteInput] = useState('coral shop');
   const [dateInput, setDateInput] = useState(getToday());
 
@@ -71,7 +70,6 @@ export default function CollectionDialogProvider({ children }: PropsWithChildren
     setSelectedItem(item);
     setNoteInput('coral shop');
     setDateInput(getToday());
-    setTimelineExpanded(false);
     setOpen(true);
   };
 
@@ -91,7 +89,6 @@ export default function CollectionDialogProvider({ children }: PropsWithChildren
     setSelectedItem(null);
     setNoteInput('coral shop');
     setDateInput(getToday());
-    setTimelineExpanded(false);
   };
 
   const handleAddExternal = () => {
@@ -192,12 +189,10 @@ export default function CollectionDialogProvider({ children }: PropsWithChildren
         selectedItem={selectedItem}
         details={details}
         timelineEntries={timelineEntries}
-        timelineExpanded={timelineExpanded}
         noteInput={noteInput}
         dateInput={dateInput}
         isAddDisabled={isAddDisabled}
         onOpenChange={handleOpenChange}
-        onToggleTimeline={() => setTimelineExpanded(prev => !prev)}
         onNoteChange={setNoteInput}
         onDateChange={setDateInput}
         onAddEntry={handleAddExternal}

@@ -6,7 +6,7 @@ import type {
   SelectedItem,
 } from './collection-dialog-types';
 import { format } from 'date-fns';
-import { ChevronDown, ChevronUp, Trash2 } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 import { Button } from '@/shared/components/ui/button';
 import {
   Dialog,
@@ -16,18 +16,17 @@ import {
   DialogTitle,
 } from '@/shared/components/ui/dialog';
 import { Label } from '@/shared/components/ui/label';
+import { ScrollArea } from '@/shared/components/ui/scroll-area';
 
 interface CollectionDialogProps {
   open: boolean;
   selectedItem: SelectedItem | null;
   details: CollectionDetails | null;
   timelineEntries: CollectionEntry[];
-  timelineExpanded: boolean;
   noteInput: string;
   dateInput: string;
   isAddDisabled: boolean;
   onOpenChange: (open: boolean) => void;
-  onToggleTimeline: () => void;
   onNoteChange: (note: string) => void;
   onDateChange: (date: string) => void;
   onAddEntry: () => void;
@@ -39,12 +38,10 @@ export default function CollectionDialog({
   selectedItem,
   details,
   timelineEntries,
-  timelineExpanded,
   noteInput,
   dateInput,
   isAddDisabled,
   onOpenChange,
-  onToggleTimeline,
   onNoteChange,
   onDateChange,
   onAddEntry,
@@ -136,84 +133,62 @@ export default function CollectionDialog({
                       </div>
                     )
                   : (
-                      <div className="relative">
-                        {/* Timeline line */}
-                        <div className="absolute left-5 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/50 via-primary/30 to-transparent" aria-hidden />
-                        <div className="space-y-4 pl-12">
-                          {(timelineExpanded ? timelineEntries : timelineEntries.slice(0, 3)).map((entry, idx) => {
-                            const actualIndex = idx;
-                            const entryNumber = selectedItem.entries.length - actualIndex;
-                            const isExternalEntry = entry.note && entry.note.trim() !== '';
-                            return (
-                              <div
-                                key={`${entry.date}-${entry.note}-${actualIndex}`}
-                                className="relative group"
-                              >
-                                {/* Timeline dot */}
-                                <div className="absolute -left-[32px] top-3 h-2.5 w-2.5 rounded-full bg-primary ring-4 ring-background shadow-sm transition-all duration-200 group-hover:scale-125 group-hover:ring-primary/20 z-10" />
-                                {/* Entry card */}
-                                <div className="rounded-lg border border-border/50 bg-card/50 backdrop-blur-sm p-4 hover:bg-card/70 hover:border-border/60 transition-all duration-200 shadow-sm ring-1 ring-inset ring-white/5 group-hover:shadow-md">
-                                  <div className="flex items-start justify-between gap-3 mb-2">
-                                    <div className="flex-1 min-w-0">
-                                      <div className="text-xs font-semibold text-muted-foreground/90 mb-1">
-                                        {entry.date
-                                          ? format(new Date(entry.date), 'MMM d, yyyy')
-                                          : 'No date'}
+                      <div className="relative space-y-4">
+                        <ScrollArea className="h-72">
+                          <div className="relative pb-1">
+                            {/* Timeline line */}
+                            <div className="absolute left-5 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary/50 via-primary/30 to-transparent" aria-hidden />
+                            <div className="space-y-4 pl-12 pr-2">
+                              {timelineEntries.map((entry, idx) => {
+                                const actualIndex = idx;
+                                const entryNumber = selectedItem.entries.length - actualIndex;
+                                const isExternalEntry = entry.note && entry.note.trim() !== '';
+                                return (
+                                  <div
+                                    key={`${entry.date}-${entry.note}-${actualIndex}`}
+                                    className="relative group"
+                                  >
+                                    {/* Timeline dot */}
+                                    <div className="absolute -left-[32px] top-3 h-2.5 w-2.5 rounded-full bg-primary ring-4 ring-background shadow-sm transition-all duration-200 group-hover:scale-125 group-hover:ring-primary/20 z-10" />
+                                    {/* Entry card */}
+                                    <div className="rounded-lg border border-border/50 bg-card/50 backdrop-blur-sm p-4 hover:bg-card/70 hover:border-border/60 transition-all duration-200 shadow-sm ring-1 ring-inset ring-white/5 group-hover:shadow-md">
+                                      <div className="flex items-start justify-between gap-3 mb-2">
+                                        <div className="flex-1 min-w-0">
+                                          <div className="text-xs font-semibold text-muted-foreground/90 mb-1">
+                                            {entry.date
+                                              ? format(new Date(entry.date), 'MMM d, yyyy')
+                                              : 'No date'}
+                                          </div>
+                                          <div className="text-sm font-semibold text-foreground capitalize">
+                                            {entry.note || 'Gacha'}
+                                          </div>
+                                        </div>
+                                        <div className="flex items-center gap-2 shrink-0">
+                                          <span className="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-md ring-1 ring-inset ring-primary/20">
+                                            #
+                                            {entryNumber}
+                                          </span>
+                                          {isExternalEntry && (
+                                            <Button
+                                              type="button"
+                                              variant="ghost"
+                                              size="sm"
+                                              onClick={() => onDeleteEntry(entry)}
+                                              className="h-6 w-6 p-0 text-destructive/60 hover:text-destructive hover:bg-destructive/10 rounded transition-colors"
+                                              title="Delete entry"
+                                            >
+                                              <Trash2 className="h-3 w-3" />
+                                            </Button>
+                                          )}
+                                        </div>
                                       </div>
-                                      <div className="text-sm font-semibold text-foreground capitalize">
-                                        {entry.note || 'Gacha'}
-                                      </div>
-                                    </div>
-                                    <div className="flex items-center gap-2 shrink-0">
-                                      <span className="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-md ring-1 ring-inset ring-primary/20">
-                                        #
-                                        {entryNumber}
-                                      </span>
-                                      {isExternalEntry && (
-                                        <Button
-                                          type="button"
-                                          variant="ghost"
-                                          size="sm"
-                                          onClick={() => onDeleteEntry(entry)}
-                                          className="h-6 w-6 p-0 text-destructive/60 hover:text-destructive hover:bg-destructive/10 rounded transition-colors"
-                                          title="Delete entry"
-                                        >
-                                          <Trash2 className="h-3 w-3" />
-                                        </Button>
-                                      )}
                                     </div>
                                   </div>
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </div>
-                        {timelineEntries.length > 3 && (
-                          <Button
-                            type="button"
-                            variant="ghost"
-                            onClick={onToggleTimeline}
-                            className="w-full mt-5 text-sm text-muted-foreground/80 hover:text-foreground hover:bg-muted/30 rounded-lg transition-colors"
-                          >
-                            {timelineExpanded
-                              ? (
-                                  <>
-                                    <ChevronUp className="mr-2 h-4 w-4" />
-                                    Show less
-                                  </>
-                                )
-                              : (
-                                  <>
-                                    <ChevronDown className="mr-2 h-4 w-4" />
-                                    Show
-                                    {' '}
-                                    {timelineEntries.length - 3}
-                                    {' '}
-                                    more
-                                  </>
-                                )}
-                          </Button>
-                        )}
+                                );
+                              })}
+                            </div>
+                          </div>
+                        </ScrollArea>
                       </div>
                     )}
               </div>

@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WuwaPal
+
+WuwaPal is a fan-made Wuthering Waves convene tracker that helps you monitor pity, pull logs, and banner stats, with optional sync and backup workflows. This repo powers https://wuwapal.com.
+
+WuwaPal is not affiliated with or endorsed by Kuro Games.
+
+## Features
+
+- Track gacha pity, pull history, and banner statistics
+- Import convene history from PC, Android, or iOS workflows
+- Multi-account management and collector views
+- Local-first storage with file and Google Drive backups
+- Global stats and shareable summaries
+
+## Tech Stack
+
+- Next.js App Router + React 19
+- Tailwind CSS v4
+- Dexie (IndexedDB) + TanStack Query
 
 ## Getting Started
 
-First, run the development server:
+Prerequisites: Node.js 18+ and npm.
 
 ```bash
+npm install
+cp .env.example .env
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:5550 to see the app.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Set these in `.env.local`:
 
-## Learn More
+- `NEXT_PUBLIC_APP_NAME` - display name shown in the UI
+- `NEXT_PUBLIC_APP_DOMAIN` - display suffix (for example, `com`)
+- `NEXT_PUBLIC_NODE_ENV` - `dev`, `prod`, or `test`
+- `NEXT_PUBLIC_API_URL` - API base URL
+- `NEXT_PUBLIC_AUTH_REDIRECT_URL` - OAuth redirect URL
+- `NEXT_PUBLIC_GOOGLE_CLIENT_ID` - optional, required for Google Drive sync
 
-To learn more about Next.js, take a look at the following resources:
+## Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `npm run dev` - run the dev server on `localhost:5550`
+- `npm run build` - build the production bundle
+- `npm run start` - serve the production build
+- `npm run lint` - run ESLint
+- `npm run lint:fix` - apply safe ESLint fixes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Project Structure
 
-## Deploy on Vercel
+- `app/(routes)` - Next.js route entries
+- `app/features` - feature bundles
+- `app/shared` - shared UI, hooks, stores, utilities
+- `app/core` - metadata, env validation, API helpers, Dexie db
+- `app/data` - static lookup data powering UI state
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contributing
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Please read `CONTRIBUTING.md` and follow the repository conventions before opening a pull request.
+
+## Code of Conduct
+
+This project follows the Contributor Covenant in `CODE_OF_CONDUCT.md`.
+
+## Security
+
+If you discover a security issue, follow the guidance in `SECURITY.md`.
+
+## License
+
+Licensed under the MIT License. See `LICENSE`.

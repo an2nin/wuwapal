@@ -10,8 +10,8 @@ export interface PalRole {
 
 export const DEVELOPERS: Pal[] = [
   {
-    name: 'antonin686',
-    link: 'https://antonin686.github.io/',
+    name: 'an2nin',
+    link: 'https://an2nin.github.io/',
   },
 ];
 

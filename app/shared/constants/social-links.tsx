@@ -23,7 +23,7 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
   {
     title: 'Github',
-    path: 'https://github.com/antonin686/wuwapal',
+    path: 'https://github.com/an2nin/wuwapal',
     icon: <Github className="w-5 h-5" />,
     icon_big: <Github className="w-10 h-10" />,
     srOnly: 'GitHub',
@@ -68,7 +68,7 @@ export const SOCIAL_LINKS_OBJ: SocialLinksObj = {
   },
   github: {
     title: 'Github',
-    path: 'https://github.com/antonin686/wuwapal',
+    path: 'https://github.com/an2nin/wuwapal',
     icon: <Github className="w-5 h-5" />,
     icon_big: <Github className="w-10 h-10" />,
     srOnly: 'GitHub',

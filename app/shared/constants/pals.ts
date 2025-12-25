@@ -17,7 +17,7 @@ export const DEVELOPERS: Pal[] = [
 
 export const TESTERS: Pal[] = [
   {
-    name: 'garral322',
+    name: 'holovk0',
   },
   {
     name: 'cosmicray001',

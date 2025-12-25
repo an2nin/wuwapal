@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import { env } from '@/core/env';
+import HallOfFame from '@/shared/components/layout/hall-of-pals';
 import { SOCIAL_LINKS } from '@/shared/constants/social-links';
 
 export default function Footer() {
   return (
     <footer className="relative bg-card py-5 rounded-t-2xl lg:rounded-3xl px-7 mb-0 lg:mb-2 border text-xs font-bold text-muted-foreground">
-      <div className="flex flex-col lg:flex-row gap-5 justify-center lg:justify-between items-center">
-        <div>
+      <div className="flex flex-col lg:flex-row gap-6 justify-center lg:justify-between items-center">
+        <div className="text-center lg:text-left">
           <div>
             {env.NEXT_PUBLIC_APP_NAME}
             .
@@ -18,8 +19,11 @@ export default function Footer() {
           </div>
           <div>Game content is property of Kuro Games.</div>
         </div>
+        <div className="w-full max-w-sm lg:max-w-xs font-normal text-foreground">
+          <HallOfFame />
+        </div>
         <div className="flex gap-2 flex-col">
-          <div className="flex gap-3 items-center justify-end">
+          <div className="flex gap-3 items-center justify-center lg:justify-end">
             {SOCIAL_LINKS.map((link, idx) => (
               <a
                 key={idx}

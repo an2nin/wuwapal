@@ -14,14 +14,16 @@ import { convertToISOWithOffset } from '@/shared/utils';
 
 const items = {
   s5: [
-    { name: 'phrolova', rarity: 5, type: 'resonators' },
-    { name: 'lethean-elegy', rarity: 5, type: 'weapons' },
-    { name: 'cantarella', rarity: 5, type: 'resonators' },
-    { name: 'whispers-of-sirens', rarity: 5, type: 'weapons' },
+    { name: 'lynae', rarity: 5, type: 'resonators' },
+    { name: 'cartethyia', rarity: 5, type: 'resonators' },
+    { name: 'ciaccona', rarity: 5, type: 'resonators' },
+    { name: 'spectrum-blaster', rarity: 5, type: 'weapons' },
+    { name: 'defiers-thorn', rarity: 5, type: 'weapons' },
+    { name: 'woodland-aria', rarity: 5, type: 'weapons' },
   ],
   s4: ['buling', 'danjin', 'chixia'],
   img: `${IMAGE_PATH}/banners/showcase.webp`,
-  end_time: '2025-12-24 11:59',
+  end_time: '2026-01-15 09:59',
 };
 
 export default function CurrentBanner() {
@@ -39,7 +41,7 @@ export default function CurrentBanner() {
           />
           <div className="absolute bottom-0 left-0 h-full w-full">
             <div className="flex gap-5 h-full items-center ml-4">
-              <div className="grid grid-cols-2 justify-center gap-3">
+              <div className="grid grid-cols-3 justify-center gap-3">
                 {items.s5.map((item, idx) => (
                   <ResourceAvatar
                     key={idx}

@@ -19,6 +19,7 @@ export const fiveStarResonatorDefinitions: Record<string, Omit<Resonator, 'image
   'Jianxin': { element: ELEMENT_NAMES.AERO, weapon: WEAPON_TYPE_NAMES.GAUNTLETS },
   'Jinhsi': { element: ELEMENT_NAMES.SPECTRO, weapon: WEAPON_TYPE_NAMES.BROADBLADE },
   'Jiyan': { element: ELEMENT_NAMES.AERO, weapon: WEAPON_TYPE_NAMES.BROADBLADE },
+  'Lynae': { element: ELEMENT_NAMES.SPECTRO, weapon: WEAPON_TYPE_NAMES.PISTOLS },
   'Lingyang': { element: ELEMENT_NAMES.GLACIO, weapon: WEAPON_TYPE_NAMES.GAUNTLETS },
   'Lupa': { element: ELEMENT_NAMES.FUSION, weapon: WEAPON_TYPE_NAMES.BROADBLADE },
   'Phrolova': { element: ELEMENT_NAMES.HAVOC, weapon: WEAPON_TYPE_NAMES.RECTIFIER },

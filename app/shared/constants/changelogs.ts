@@ -1,5 +1,9 @@
 export const CHANGELOGS = [
   {
+    date: '2025-12-25',
+    changes: ['Adds 3.0 characters and weapons', 'Adds open-source related files', 'Adds hall of pals'],
+  },
+  {
     date: '2025-12-20',
     changes: ['Extends Collector\'s Hub with filters and external entry'],
   },

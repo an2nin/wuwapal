@@ -1,14 +1,18 @@
 import type { Account } from '../stores/account';
+import type { ExternalCollectionCounts } from '../stores/external-collection';
 import type { Profiles } from '../stores/profile';
 import type { BannerTable } from '@/core/db';
 import { resetDatabase, saveBanner } from '@/core/db/actions';
 import { useAccountStore } from '../stores/account';
+import { useExternalCollectionStore } from '../stores/external-collection';
 import { convertBannerToNewFormat } from './converter';
 
 export async function importV1PullsIntoTable(profiles: Profiles) {
   const accountStore = useAccountStore.getState();
+  const externalCollectionStore = useExternalCollectionStore.getState();
   await resetDatabase();
   accountStore.clearStore();
+  externalCollectionStore.setExternalCollections({});
 
   for (const [profileKey, profile] of Object.entries(profiles)) {
     if (profile.banners) {
@@ -36,10 +40,18 @@ export async function importV1PullsIntoTable(profiles: Profiles) {
   }
 }
 
-export async function importV2PullsIntoTable(banners: BannerTable[], accounts: Account[], active: string | null) {
+export async function importV2PullsIntoTable(
+  banners: BannerTable[],
+  accounts: Account[],
+  active: string | null,
+  externalCollections: Record<string, ExternalCollectionCounts> = {},
+) {
   const accountStore = useAccountStore.getState();
+  const externalCollectionStore = useExternalCollectionStore.getState();
   await resetDatabase();
   accountStore.clearStore();
+  externalCollectionStore.setExternalCollections({});
+  externalCollectionStore.setExternalCollections(externalCollections);
 
   if (banners.length === 0) {
     console.warn('No banners to import');

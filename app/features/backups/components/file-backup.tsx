@@ -10,10 +10,12 @@ import db from '@/core/db';
 import { Button } from '@/shared/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { useAccountStore } from '@/shared/stores/account';
+import { useExternalCollectionStore } from '@/shared/stores/external-collection';
 import { importV1PullsIntoTable, importV2PullsIntoTable } from '@/shared/utils/importer';
 
 export default function FileBackup() {
   const accountStore = useAccountStore(state => state);
+  const externalCollections = useExternalCollectionStore(state => state.externalCollections);
   const banners = useLiveQuery<BannerTable[]>(() => db.banners.toArray());
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -30,7 +32,12 @@ export default function FileBackup() {
           try {
             const importedData = JSON.parse(result); // Parse JSON data
             if (importedData.version === '2.0') {
-              await importV2PullsIntoTable(importedData.banners, importedData.accounts || [], importedData.active || null);
+              await importV2PullsIntoTable(
+                importedData.banners,
+                importedData.accounts || [],
+                importedData.active || null,
+                importedData.externalCollections || {},
+              );
               toast.success('Data imported successfully');
             }
             else {
@@ -63,6 +70,7 @@ export default function FileBackup() {
       date: format(new Date(), 'dd/MM/yyyy hh:mm a'),
       banners,
       accounts: accountStore.accounts,
+      externalCollections,
     };
 
     const dataStr = JSON.stringify(content, null, 2);

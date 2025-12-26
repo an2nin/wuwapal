@@ -1,5 +1,6 @@
 import type { BannerTable } from '@/core/db';
 import type { Account } from '@/shared/stores/account';
+import type { ExternalCollectionCounts } from '@/shared/stores/external-collection';
 import type { Profiles } from '@/shared/stores/profile';
 import { importV1PullsIntoTable, importV2PullsIntoTable } from '@/shared/utils';
 
@@ -10,6 +11,7 @@ interface gdriveFileContent {
   profiles?: Profiles;
   banners?: BannerTable[];
   accounts?: Account[];
+  externalCollections?: Record<string, ExternalCollectionCounts>;
 }
 
 export async function importPullsIntoTableFromGDrive(content: gdriveFileContent) {
@@ -17,6 +19,11 @@ export async function importPullsIntoTableFromGDrive(content: gdriveFileContent)
     return importV1PullsIntoTable(content.profiles);
   }
   else if (content.version === '2.0' && content.banners) {
-    return importV2PullsIntoTable(content.banners || [], content.accounts || [], content.active || null);
+    return importV2PullsIntoTable(
+      content.banners || [],
+      content.accounts || [],
+      content.active || null,
+      content.externalCollections || {},
+    );
   }
 }

@@ -19,6 +19,9 @@ export interface ExternalCollectionCounts {
 
 interface ExternalCollectionStore {
   externalCollections: Record<string, ExternalCollectionCounts>;
+  setExternalCollections: (
+    externalCollections: Record<string, ExternalCollectionCounts>,
+  ) => void;
   addExternalCount: (
     profileId: string | null,
     type: CollectionType,
@@ -96,10 +99,44 @@ function sanitizeMeta(value?: string) {
   return trimmed || undefined;
 }
 
+function normalizeCollectionCounts(
+  counts?: ExternalCollectionCounts,
+): ExternalCollectionCounts {
+  if (!counts) {
+    return { resonators: {}, weapons: {} };
+  }
+
+  const resonators: Record<string, ExternalCollectionEntry> = {};
+  const weapons: Record<string, ExternalCollectionEntry> = {};
+
+  if (counts.resonators) {
+    for (const [name, entry] of Object.entries(counts.resonators)) {
+      resonators[name] = normalizeEntry(entry);
+    }
+  }
+
+  if (counts.weapons) {
+    for (const [name, entry] of Object.entries(counts.weapons)) {
+      weapons[name] = normalizeEntry(entry);
+    }
+  }
+
+  return { resonators, weapons };
+}
+
 export const useExternalCollectionStore = create<ExternalCollectionStore>()(
   persist(
     (set, get) => ({
       externalCollections: {},
+      setExternalCollections: (externalCollections) => {
+        const normalized: Record<string, ExternalCollectionCounts> = {};
+
+        for (const [profileId, counts] of Object.entries(externalCollections)) {
+          normalized[profileId] = normalizeCollectionCounts(counts);
+        }
+
+        set({ externalCollections: normalized });
+      },
       addExternalCount: (profileId, type, name, count, note, date) => {
         const sanitizedNote = sanitizeMeta(note);
         const sanitizedDate = sanitizeMeta(date);

@@ -17,10 +17,12 @@ import { Button } from '@/shared/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { useAccountStore } from '@/shared/stores/account';
 import { useAuthStore } from '@/shared/stores/auth';
+import { useExternalCollectionStore } from '@/shared/stores/external-collection';
 
 export default function CloudSync() {
   const authStore = useAuthStore(state => state);
   const accountStore = useAccountStore(state => state);
+  const externalCollections = useExternalCollectionStore(state => state.externalCollections);
   const [pendingAction, setPendingAction] = useState<string | null>(null);
   const banners = useLiveQuery<BannerTable[]>(() => db.banners.toArray());
 
@@ -90,6 +92,7 @@ export default function CloudSync() {
       date: format(new Date(), 'dd/MM/yyyy hh:mm a'),
       banners,
       accounts: accountStore.accounts,
+      externalCollections,
     });
     updateGDriveFileMutation.mutate(fileContent);
   }

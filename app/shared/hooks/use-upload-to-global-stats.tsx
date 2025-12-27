@@ -10,7 +10,7 @@ import { API_SERVER_ENDPOINT } from '@/core/api/endpoints';
 
 function postGlobalStats(game: string, payload: UpdateGlobalStatsPayload) {
   return api.post<UpdateGlobalStatsResponse>(
-    `${API_SERVER_ENDPOINT}/api/global-stats/${game}`,
+    `${API_SERVER_ENDPOINT}/global-stats/${game}`,
     payload,
   );
 }

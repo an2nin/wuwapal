@@ -60,28 +60,30 @@ export default function HeaderSheet({ currentActiveRoute }: Props) {
                         </div>
                       </li>
                       <div className="flex flex-col gap-1">
-                        {[...NAVS.basic, ...NAVS.extra].map((item: any, idx: number) => (
-                          <div
-                            key={idx}
-                            className={`w-full rounded-lg hover:bg-gray-700/80 ${currentActiveRoute === item.path
-                              ? 'bg-primary text-primary-foreground'
-                              : 'opacity-50 hover:opacity-100'
-                            }`}
-                          >
-                            <Link
-                              className="inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 px-4 py-2 w-full justify-start h-10"
-                              data-state="closed"
-                              href={item.path}
+                        {[...NAVS.basic, ...NAVS.extra]
+                          .filter((item: any) => item.visible)
+                          .map((item: any, idx: number) => (
+                            <div
+                              key={idx}
+                              className={`w-full rounded-lg hover:bg-gray-700/80 ${currentActiveRoute === item.path
+                                ? 'bg-primary text-primary-foreground'
+                                : 'opacity-50 hover:opacity-100'
+                              }`}
                             >
-                              <span className="mr-4">
-                                <item.icon className="size-6" />
-                              </span>
-                              <p className="max-w-[200px] truncate translate-x-0 opacity-100">
-                                {item.title}
-                              </p>
-                            </Link>
-                          </div>
-                        ))}
+                              <Link
+                                className="inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 px-4 py-2 w-full justify-start h-10"
+                                data-state="closed"
+                                href={item.path}
+                              >
+                                <span className="mr-4">
+                                  <item.icon className="size-6" />
+                                </span>
+                                <p className="max-w-[200px] truncate translate-x-0 opacity-100">
+                                  {item.title}
+                                </p>
+                              </Link>
+                            </div>
+                          ))}
                       </div>
                     </ul>
                   </nav>

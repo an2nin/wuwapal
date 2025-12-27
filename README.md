@@ -1,3 +1,5 @@
+![WuwaPal banner](public/banner.png)
+
 # WuwaPal
 
 WuwaPal is a fan-made Wuthering Waves convene tracker that helps you monitor pity, pull logs, and banner stats, with optional sync and backup workflows. This repo powers https://wuwapal.com.

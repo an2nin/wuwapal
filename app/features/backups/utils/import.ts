@@ -1,4 +1,4 @@
-import type { BannerTable } from '@/core/db';
+import type { BannerTable } from '@/lib/db';
 import type { Account } from '@/shared/stores/account';
 import type { ExternalCollectionCounts } from '@/shared/stores/external-collection';
 import type { Profiles } from '@/shared/stores/profile';

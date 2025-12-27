@@ -1,4 +1,4 @@
-import type { BannerTable } from '@/core/db';
+import type { BannerTable } from '@/lib/db';
 import type {
   ExternalCollectionCounts,
   ExternalCollectionEntry,

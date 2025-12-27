@@ -1,5 +1,5 @@
 import { Space_Grotesk } from 'next/font/google';
-import { env } from '@/core/env';
+import { env } from '@/lib/env';
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],

@@ -1,4 +1,4 @@
-import type { BannerTable } from '@/core/db';
+import type { BannerTable } from '@/lib/db';
 import type { ProcessedBanner, ProcessedBannerItem, StarItem } from '@/shared/types';
 import { IMAGE_PATH } from '@/shared/constants/game/paths';
 import { STANDARD_RESONATORS } from '@/shared/constants/game/resonators';

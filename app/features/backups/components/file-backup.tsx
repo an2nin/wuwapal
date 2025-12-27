@@ -1,12 +1,12 @@
 'use client';
 
-import type { BannerTable } from '@/core/db';
+import type { BannerTable } from '@/lib/db';
 import { format } from 'date-fns';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { FileDown, FileUp } from 'lucide-react';
 import { useRef } from 'react';
 import { toast } from 'sonner';
-import db from '@/core/db';
+import db from '@/lib/db';
 import { Button } from '@/shared/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { useAccountStore } from '@/shared/stores/account';

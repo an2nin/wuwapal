@@ -3,10 +3,10 @@
 import { format } from 'date-fns';
 import { LockKeyhole, ShieldAlert } from 'lucide-react';
 import { useMemo, useState } from 'react';
-import { ApiError } from '@/core/api/client';
-import db from '@/core/db';
 import { fetchGDriveFile } from '@/features/backups/apis/fetch-gdrive-file';
 import { fetchRefreshedToken } from '@/features/backups/apis/fetch-refreshed-token';
+import { ApiError } from '@/lib/api/client';
+import db from '@/lib/db';
 import { Badge } from '@/shared/components/ui/badge';
 import { Button } from '@/shared/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card';

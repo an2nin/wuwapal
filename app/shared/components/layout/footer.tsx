@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { env } from '@/core/env';
+import { env } from '@/lib/env';
 import HallOfFame from '@/shared/components/layout/hall-of-pals';
 import { SOCIAL_LINKS } from '@/shared/constants/social-links';
 

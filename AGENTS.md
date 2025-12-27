@@ -2,7 +2,7 @@
 
 ## Project Structure & Module Organization
 
-Source lives in `app/` using the Next.js App Router. Route entries sit in `app/(routes)`, with feature bundles under `app/features/*` and shared UI/hooks/stores/utilities in `app/shared/*`. Core services (metadata, env validation, API helpers, Dexie db) live in `app/core/*`. Static lookup data sits in `app/data` and drives UI state; keep formats stable when updating definitions. Public assets live in `public/`, and global theme tokens are defined in `app/(routes)/globals.css`.
+Source lives in `app/` using the Next.js App Router. Route entries sit in `app/(routes)`, with feature bundles under `app/features/*` and shared UI/hooks/stores/utilities in `app/shared/*`. Core services (metadata, env validation, API helpers, Dexie db) live in `app/lib/*`. Static lookup data sits in `app/data` and drives UI state; keep formats stable when updating definitions. Public assets live in `public/`, and global theme tokens are defined in `app/(routes)/globals.css`.
 
 ## Build, Test, and Development Commands
 
@@ -22,4 +22,4 @@ Commit history follows a Conventional Commit style (`feat(scope): …`). Keep co
 
 ## Configuration & Environment Tips
 
-Environment variables are validated via `app/core/env.ts`; ensure `.env.local` includes required `NEXT_PUBLIC_*` values before running the app. Do not commit secrets or production data. When updating static data in `app/data`, keep ordering and shape consistent to avoid cache/state drift across features.
+Environment variables are validated via `app/lib/env.ts`; ensure `.env.local` includes required `NEXT_PUBLIC_*` values before running the app. Do not commit secrets or production data. When updating static data in `app/data`, keep ordering and shape consistent to avoid cache/state drift across features.

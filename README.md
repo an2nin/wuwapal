@@ -56,7 +56,7 @@ Set these in `.env.local`:
 - `app/(routes)` - Next.js route entries
 - `app/features` - feature bundles
 - `app/shared` - shared UI, hooks, stores, utilities
-- `app/core` - metadata, env validation, API helpers, Dexie db
+- `app/lib` - metadata, env validation, API helpers, Dexie db
 - `app/data` - static lookup data powering UI state
 
 ## Contributing

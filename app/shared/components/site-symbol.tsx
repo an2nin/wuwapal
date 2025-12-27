@@ -1,4 +1,4 @@
-import { env } from '@/core/env';
+import { env } from '@/lib/env';
 
 export default function SiteSymbol() {
   return (

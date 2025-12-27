@@ -1,4 +1,4 @@
-import type { BannerTable } from '@/core/db';
+import type { BannerTable } from '@/lib/db';
 import type { GenericBannerItem, StarItem, SummarizedBanner } from '@/shared/types';
 import { RESONATOR_IMAGE_PATH, WEAPON_IMAGE_PATH } from '@/shared/constants/game/paths';
 import { CategoryType } from '@/shared/types';

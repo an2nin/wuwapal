@@ -1,4 +1,4 @@
-import { env } from '@/core/env';
+import { env } from '@/lib/env';
 
 export const GOOGLE_OAUTH_ENDPOINT = 'https://www.googleapis.com/oauth2/v3';
 export const GOOGLE_DRIVE_ENDPOINT = 'https://content.googleapis.com/drive/v3/files';

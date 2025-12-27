@@ -1,5 +1,5 @@
-import type { BannerTable, BannerTable as TableBanner } from '@/core/db';
 import type { BannerItem, FetchBannerResponse, UploadGlobalBannerListPayload } from '@/features/import-pulls/apis/types';
+import type { BannerTable, BannerTable as TableBanner } from '@/lib/db';
 import type { GenericBannerItem, GenericGlobalBannerItem } from '@/shared/types';
 import { BANNERS } from '@/shared/constants/game/banners';
 import { CategoryType, SourceType } from '@/shared/types';

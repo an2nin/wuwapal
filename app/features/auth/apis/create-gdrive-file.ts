@@ -1,6 +1,6 @@
 import type { CreateGDriveFileResponse } from '@/features/auth/apis/types';
-import { api } from '@/core/api/client';
-import { GOOGLE_DRIVE_ENDPOINT } from '@/core/api/endpoints';
+import { api } from '@/lib/api/client';
+import { GOOGLE_DRIVE_ENDPOINT } from '@/lib/api/endpoints';
 import { useAuthStore } from '@/shared/stores/auth';
 
 export function createGDriveFile() {

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { deleteAllBannersForProfile } from '@/core/db/actions';
+import { deleteAllBannersForProfile } from '@/lib/db/actions';
 
 export interface Account {
   displayName: string;

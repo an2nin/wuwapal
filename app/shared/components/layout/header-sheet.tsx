@@ -2,7 +2,7 @@
 import { Menu } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
-import { env } from '@/core/env';
+import { env } from '@/lib/env';
 import { Sheet, SheetContent } from '@/shared/components/ui/sheet';
 import { NAVS } from '@/shared/constants/navs';
 

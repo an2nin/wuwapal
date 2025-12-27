@@ -1,8 +1,8 @@
 import type { Account } from '../stores/account';
 import type { ExternalCollectionCounts } from '../stores/external-collection';
 import type { Profiles } from '../stores/profile';
-import type { BannerTable } from '@/core/db';
-import { resetDatabase, saveBanner } from '@/core/db/actions';
+import type { BannerTable } from '@/lib/db';
+import { resetDatabase, saveBanner } from '@/lib/db/actions';
 import { useAccountStore } from '../stores/account';
 import { useExternalCollectionStore } from '../stores/external-collection';
 import { convertBannerToNewFormat } from './converter';

@@ -5,8 +5,8 @@ import type {
   UpdateGlobalStatsResponse,
 } from '@/features/import-pulls/apis/types';
 import { useMutation } from '@tanstack/react-query';
-import { api } from '@/core/api/client';
-import { env } from '@/core/env';
+import { api } from '@/lib/api/client';
+import { env } from '@/lib/env';
 
 function postGlobalStats(game: string, payload: UpdateGlobalStatsPayload) {
   return api.post<UpdateGlobalStatsResponse>(

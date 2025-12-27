@@ -1,4 +1,4 @@
-import type { FetchProfileResponse } from '@/core/api/types';
+import type { FetchProfileResponse } from '@/lib/api/types';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 

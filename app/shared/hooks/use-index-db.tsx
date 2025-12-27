@@ -1,8 +1,8 @@
 'use client';
 
-import type { BannerTable } from '@/core/db';
+import type { BannerTable } from '@/lib/db';
 import { useLiveQuery } from 'dexie-react-hooks';
-import db from '@/core/db';
+import db from '@/lib/db';
 
 function useIndexDB(profileId: string | null) {
   // only run a real query once we have a profileId

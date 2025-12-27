@@ -1,18 +1,18 @@
 'use client';
 
-import type { ApiError } from '@/core/api/client';
-import type { BannerTable } from '@/core/db';
+import type { ApiError } from '@/lib/api/client';
+import type { BannerTable } from '@/lib/db';
 import { useMutation } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import { useLiveQuery } from 'dexie-react-hooks';
 import { Download, Upload } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { toast } from 'sonner';
-import db from '@/core/db';
 import { fetchGDriveFile } from '@/features/backups/apis/fetch-gdrive-file';
 import { fetchRefreshedToken } from '@/features/backups/apis/fetch-refreshed-token';
 import { updateGDriveFile } from '@/features/backups/apis/update-gdrive-file';
 import { importPullsIntoTableFromGDrive } from '@/features/backups/utils/import';
+import db from '@/lib/db';
 import { Button } from '@/shared/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/shared/components/ui/card';
 import { useAccountStore } from '@/shared/stores/account';

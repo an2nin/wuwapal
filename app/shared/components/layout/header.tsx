@@ -3,7 +3,7 @@ import type { NavItem } from '@/shared/constants/navs';
 import { Settings } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { env } from '@/core/env';
+import { env } from '@/lib/env';
 import HeaderMenu from '@/shared/components/layout/header-menu';
 import HeaderSheet from '@/shared/components/layout/header-sheet';
 import { NAVS } from '@/shared/constants/navs';

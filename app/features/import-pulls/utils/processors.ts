@@ -74,6 +74,23 @@ export function processBannerForTable(
   };
 }
 
+export function calculatePityForGlobal(items: GenericGlobalBannerItem[]): number {
+  let total_pity = 0;
+  let total_from_last_5_star = 0;
+  items.forEach((it) => {
+    if (it.q === 5) {
+      total_pity += (it.p || 0) - total_from_last_5_star;
+      total_from_last_5_star = 0;
+    }
+    else {
+      total_pity += it.p || 0;
+      total_from_last_5_star += it.p || 0;
+    }
+  });
+
+  return total_pity;
+}
+
 export function processBannerForGlobal(table: TableBanner): GlobalBanner {
   let pity4_last_index = 0;
   let pity5_last_index = 0;
@@ -106,7 +123,7 @@ export function processBannerForGlobal(table: TableBanner): GlobalBanner {
 
   return {
     name: table.name,
-    total: globalItems.reduce((sum, item) => sum + (item.p ?? 0), 0),
+    total: calculatePityForGlobal(globalItems),
     items: globalItems,
   };
 }

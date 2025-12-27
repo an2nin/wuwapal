@@ -6,11 +6,11 @@ import type {
 } from '@/features/import-pulls/apis/types';
 import { useMutation } from '@tanstack/react-query';
 import { api } from '@/core/api/client';
-import { API_SERVER_ENDPOINT } from '@/core/api/endpoints';
+import { env } from '@/core/env';
 
 function postGlobalStats(game: string, payload: UpdateGlobalStatsPayload) {
   return api.post<UpdateGlobalStatsResponse>(
-    `${API_SERVER_ENDPOINT}/global-stats/${game}`,
+    `${env.NEXT_PUBLIC_NEW_API_URL}/global-stats/${game}`,
     payload,
   );
 }

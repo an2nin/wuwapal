@@ -60,7 +60,7 @@ export default function HeaderSheet({ currentActiveRoute }: Props) {
                         </div>
                       </li>
                       <div className="flex flex-col gap-1">
-                        {NAVS.basic.map((item: any, idx: number) => (
+                        {[...NAVS.basic, ...NAVS.extra].map((item: any, idx: number) => (
                           <div
                             key={idx}
                             className={`w-full rounded-lg hover:bg-gray-700/80 ${currentActiveRoute === item.path

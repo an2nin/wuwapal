@@ -33,7 +33,7 @@ export interface UploadGlobalBannerListPayload {
 
 export interface UpdateGlobalStatsPayload {
   player_id: number | string;
-  svr_id: number | string;
+  server_id: number | string;
   banners: UploadGlobalBannerListPayload;
 }
 

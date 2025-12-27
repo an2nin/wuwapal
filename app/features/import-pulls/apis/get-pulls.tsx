@@ -1,4 +1,7 @@
 import type { FetchBannerPayload, FetchBannerResponse } from '@/features/import-pulls/apis/types';
+import type {
+  GlobalBanner,
+} from '@/features/import-pulls/utils/processors';
 import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import { api } from '@/core/api/client';
@@ -7,8 +10,11 @@ import { getBanner, saveBanner } from '@/core/db/actions';
 import { BANNER_IDS } from '@/features/import-pulls/utils/config';
 import {
   getStoreIdById,
+  mapBannersForGlobalStats,
+  processBannerForGlobal,
   processBannerForTable,
 } from '@/features/import-pulls/utils/processors';
+import { useUploadToGlobalStats } from '@/shared/hooks/use-upload-to-global-stats';
 
 function fetchBannerData(payload: FetchBannerPayload) {
   return api.post<FetchBannerResponse>(WUWA_GACHA_ENDPOINT, payload);
@@ -17,8 +23,8 @@ function fetchBannerData(payload: FetchBannerPayload) {
 export function useGetPulls() {
   const [progress, setProgress] = useState(0);
   const [isAllBannerFetched, setIsAllBannerFetched] = useState(false);
-  // const [bannersForGlobalStat, setBannersForGlobalStat] = useState<any>([]);
-  // const { uploadToGlobalStats } = useUploadToGlobalStats();
+  const [bannersForGlobalStat, setBannersForGlobalStat] = useState<GlobalBanner[]>([]);
+  const { uploadToGlobalStats } = useUploadToGlobalStats('wuthering-waves');
   const [playerInfo, setPlayerInfo] = useState({ playerId: '', svrId: '' });
 
   const mutation = useMutation({
@@ -40,9 +46,9 @@ export function useGetPulls() {
           profileId,
         );
 
-        // const forGlobal = processBannerForGlobal(forTable);
+        const forGlobal = processBannerForGlobal(forTable);
 
-        // setBannersForGlobalStat((prev: GenericBannerItem[]) => [...prev, forGlobal]);
+        setBannersForGlobalStat((prev: GlobalBanner[]) => [...prev, forGlobal]);
         await saveBanner(forTable);
       }
 
@@ -55,12 +61,12 @@ export function useGetPulls() {
     onSettled: () => {
       if (progress + 1 === BANNER_IDS.length) {
         setIsAllBannerFetched(true);
-        /*  const mappedBannerData = mapBannersForGlobalStats(bannersForGlobalStat);
+        const mappedBannerData = mapBannersForGlobalStats(bannersForGlobalStat);
         uploadToGlobalStats.mutate({
-          player_id: +playerInfo.playerId,
-          svr_id: playerInfo.svrId,
+          player_id: playerInfo.playerId,
+          server_id: playerInfo.svrId,
           banners: mappedBannerData,
-        }); */
+        });
       }
     },
   });

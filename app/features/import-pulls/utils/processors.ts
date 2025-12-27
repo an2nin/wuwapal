@@ -15,6 +15,11 @@ export function getStoreIdById(id: number): string | undefined {
   return banner ? banner.store_id : undefined;
 }
 
+export function getBannerIdByStoreId(storeId: string): number | undefined {
+  const banner = Object.values(BANNERS).find(banner => banner.store_id === storeId);
+  return banner ? banner.id : undefined;
+}
+
 function processBannerItems(
   banner: BannerItem[],
 ): GenericBannerItem[] {
@@ -101,14 +106,19 @@ export function processBannerForGlobal(table: TableBanner): GlobalBanner {
 
   return {
     name: table.name,
-    total: globalItems.length,
+    total: globalItems.reduce((sum, item) => sum + (item.p ?? 0), 0),
     items: globalItems,
   };
 }
 
 export function mapBannersForGlobalStats(banners: GlobalBanner[]) {
   const bannerMap = banners.reduce((acc, banner) => {
-    acc[banner.name] = { total: banner.total, items: banner.items ?? [] };
+    const bannerId = getBannerIdByStoreId(banner.name);
+    if (bannerId === undefined) {
+      return acc;
+    }
+
+    acc[`banner_${bannerId}`] = { total: banner.total, items: banner.items ?? [] };
     return acc;
   }, {} as UploadGlobalBannerListPayload);
 

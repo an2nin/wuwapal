@@ -35,6 +35,7 @@ export interface UpdateGlobalStatsPayload {
   player_id: number | string;
   server_id: number | string;
   banners: UploadGlobalBannerListPayload;
+  note?: string;
 }
 
 export interface UpdateGlobalStatsResponse {

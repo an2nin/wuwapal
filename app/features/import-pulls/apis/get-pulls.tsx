@@ -66,6 +66,7 @@ export function useGetPulls() {
           player_id: playerInfo.playerId,
           server_id: playerInfo.svrId,
           banners: mappedBannerData,
+          note: 'wp',
         });
       }
     },

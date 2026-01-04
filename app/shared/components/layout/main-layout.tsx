@@ -4,6 +4,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import NextTopLoader from 'nextjs-toploader';
+import BannerFixer from '@/lib/banner-fixer';
 import { env } from '@/lib/env';
 import PullConverter from '@/lib/pull-converter';
 import Footer from '@/shared/components/layout/footer';
@@ -39,6 +40,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
           </GoogleOAuthProvider>
         </QueryClientProvider>
         <PullConverter />
+        <BannerFixer />
         <Toaster richColors />
       </body>
     </html>

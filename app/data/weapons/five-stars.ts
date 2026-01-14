@@ -23,6 +23,7 @@ export const fiveStarWeaponDefinitions: Record<string, Omit<Weapon, 'image' | 'i
   'Red Spring': { type: WEAPON_TYPE_NAMES.SWORD },
   'Rime-Draped Sprouts': { type: WEAPON_TYPE_NAMES.RECTIFIER },
   'Static Mist': { type: WEAPON_TYPE_NAMES.PISTOLS },
+  'Starfield Calibrator': { type: WEAPON_TYPE_NAMES.BROADBLADE },
   'Stellar Symphony': { type: WEAPON_TYPE_NAMES.RECTIFIER },
   'Stringmaster': { type: WEAPON_TYPE_NAMES.RECTIFIER },
   'The Last Dance': { type: WEAPON_TYPE_NAMES.PISTOLS },

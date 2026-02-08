@@ -1,4 +1,4 @@
-import type { Resonator, Weapon } from '@/data/types';
+import type { Resonator, Weapon } from '@/features/collectors-hub/types';
 
 export type CollectionType = 'resonator' | 'weapon';
 

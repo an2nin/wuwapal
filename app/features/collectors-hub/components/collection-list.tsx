@@ -1,6 +1,6 @@
 import type { CollectionCounts } from '../utils/processors';
 import type { FilterState } from './collection-filters';
-import type { Resonator, Weapon } from '@/data/types';
+import type { Resonator, Weapon } from '@/features/collectors-hub/types';
 import { Info } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import CollectionFilters from './collection-filters';

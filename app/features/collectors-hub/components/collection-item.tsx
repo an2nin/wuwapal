@@ -1,5 +1,5 @@
 import type { CollectionCounts } from '../utils/processors';
-import type { Resonator, Weapon } from '@/data/types';
+import type { Resonator, Weapon } from '@/features/collectors-hub/types';
 import { useMemo } from 'react';
 import { ELEMENTS } from '@/shared/constants/game/elements';
 import { WEAPON_TYPES } from '@/shared/constants/game/weapon-types';

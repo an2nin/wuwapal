@@ -1,4 +1,4 @@
-import type { Resonator, Weapon } from '@/data/types';
+import type { Resonator, Weapon } from '@/features/collectors-hub/types';
 import { api } from '@/lib/api/client';
 import { ELEMENT_NAMES } from '@/shared/constants/game/elements';
 import { WEAPON_TYPE_NAMES } from '@/shared/constants/game/weapon-types';

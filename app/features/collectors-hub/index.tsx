@@ -2,7 +2,6 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { useMemo, useState } from 'react';
-import { RESONATORS, WEAPONS_FOR_COLLECTION } from '@/data';
 import { getGachaItemsResources } from '@/features/collectors-hub/api/get-gacha-items';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui/tabs';
 import useIndexDB from '@/shared/hooks/use-index-db';
@@ -51,10 +50,6 @@ export default function CollectorsHub() {
     () => mergeCollectionCounts(bannerCollections, externalCollection),
     [bannerCollections, externalCollection],
   );
-  const hasRemoteResources = (remoteResources?.resonators && Object.keys(remoteResources.resonators).length > 0)
-    || (remoteResources?.weapons && Object.keys(remoteResources.weapons).length > 0);
-  const resonatorResources = hasRemoteResources ? remoteResources.resonators : RESONATORS;
-  const weaponResources = hasRemoteResources ? remoteResources.weapons : WEAPONS_FOR_COLLECTION;
 
   const [activeTab, setActiveTab] = useState<CollectionTab>('resonator');
 
@@ -87,7 +82,7 @@ export default function CollectorsHub() {
           >
             <CollectionList
               type="resonator"
-              resources={resonatorResources}
+              resources={remoteResources?.resonators ?? {}}
               collected={mergedCollections.resonators}
             />
           </TabsContent>
@@ -98,7 +93,7 @@ export default function CollectorsHub() {
           >
             <CollectionList
               type="weapon"
-              resources={weaponResources}
+              resources={remoteResources?.weapons ?? {}}
               collected={mergedCollections.weapons}
             />
           </TabsContent>

@@ -1,7 +1,9 @@
 'use client';
 
+import { useQuery } from '@tanstack/react-query';
 import { useMemo, useState } from 'react';
 import { RESONATORS, WEAPONS_FOR_COLLECTION } from '@/data';
+import { getGachaItemsResources } from '@/features/collectors-hub/api/get-gacha-items';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui/tabs';
 import useIndexDB from '@/shared/hooks/use-index-db';
 import { useAccountStore } from '@/shared/stores/account';
@@ -29,6 +31,11 @@ function isValidTab(value: string): value is CollectionTab {
 export default function CollectorsHub() {
   const activeProfileId = useAccountStore(state => state.active);
   const { banners } = useIndexDB(activeProfileId);
+  const { data: remoteResources } = useQuery({
+    queryKey: ['collectors-hub', 'wuwa-gacha-items'],
+    queryFn: getGachaItemsResources,
+    staleTime: 1000 * 60 * 30,
+  });
   const externalCollection = useExternalCollectionStore(state =>
     state.getCollectionForProfile(activeProfileId),
   );
@@ -44,6 +51,10 @@ export default function CollectorsHub() {
     () => mergeCollectionCounts(bannerCollections, externalCollection),
     [bannerCollections, externalCollection],
   );
+  const hasRemoteResources = (remoteResources?.resonators && Object.keys(remoteResources.resonators).length > 0)
+    || (remoteResources?.weapons && Object.keys(remoteResources.weapons).length > 0);
+  const resonatorResources = hasRemoteResources ? remoteResources.resonators : RESONATORS;
+  const weaponResources = hasRemoteResources ? remoteResources.weapons : WEAPONS_FOR_COLLECTION;
 
   const [activeTab, setActiveTab] = useState<CollectionTab>('resonator');
 
@@ -76,7 +87,7 @@ export default function CollectorsHub() {
           >
             <CollectionList
               type="resonator"
-              resources={RESONATORS}
+              resources={resonatorResources}
               collected={mergedCollections.resonators}
             />
           </TabsContent>
@@ -87,7 +98,7 @@ export default function CollectorsHub() {
           >
             <CollectionList
               type="weapon"
-              resources={WEAPONS_FOR_COLLECTION}
+              resources={weaponResources}
               collected={mergedCollections.weapons}
             />
           </TabsContent>

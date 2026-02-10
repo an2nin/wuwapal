@@ -14,16 +14,16 @@ import { convertToISOWithOffset } from '@/shared/utils';
 
 const items = {
   s5: [
-    { name: 'mornye', rarity: 5, type: 'resonators' },
-    { name: 'augusta', rarity: 5, type: 'resonators' },
-    { name: 'iuno', rarity: 5, type: 'resonators' },
-    { name: 'starfield-calibrator', rarity: 5, type: 'weapons' },
-    { name: 'thunderflare-dominion', rarity: 5, type: 'weapons' },
-    { name: 'moongazers-sigil', rarity: 5, type: 'weapons' },
+    { name: 'aemeath', rarity: 5, type: 'resonators' },
+    { name: 'chisa', rarity: 5, type: 'resonators' },
+    { name: 'lupa', rarity: 5, type: 'resonators' },
+    { name: 'everbright-polestar', rarity: 5, type: 'weapons' },
+    { name: 'kumokiri', rarity: 5, type: 'weapons' },
+    { name: 'wildfire-mark', rarity: 5, type: 'weapons' },
   ],
-  s4: ['chixia', 'sanhua', 'danjin'],
+  s4: ['mortefi', 'taoqi', 'aalto'],
   img: `${IMAGE_PATH}/banners/showcase.webp`,
-  end_time: '2026-02-04 11:59',
+  end_time: '2026-02-26 09:59',
 };
 
 export default function CurrentBanner() {

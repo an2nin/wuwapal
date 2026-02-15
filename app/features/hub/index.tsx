@@ -1,7 +1,6 @@
-import AlertOpenSource from './components/alert-open-source';
-import Changelogs from './components/changelogs';
 import CurrentBanner from './components/current-banner';
 import SocialLinks from './components/social-links';
+import TrackMyPullsCard from './components/track-my-pulls-card';
 import Welcome from './components/welcome';
 
 export default function Hub() {
@@ -11,7 +10,6 @@ export default function Hub() {
         Welcome to WuWaPal
         <span className="text-primary text-lg">.com</span>
       </h1>
-      <AlertOpenSource />
       <div className="grid lg:grid-cols-12 grid-cols-1 lg:gap-6 gap-4">
         <div className="lg:col-span-7">
           <Welcome />
@@ -25,7 +23,7 @@ export default function Hub() {
           <CurrentBanner />
         </div>
         <div className="lg:col-span-2">
-          <Changelogs />
+          <TrackMyPullsCard />
         </div>
       </div>
     </div>

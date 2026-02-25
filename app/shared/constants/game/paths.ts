@@ -1,4 +1,4 @@
-export const IMAGE_PATH = 'https://cdn.trackmypulls.com/wuwa';
+export const IMAGE_PATH = '/assets/images/wuwa';
 
 export const RESONATOR_IMAGE_PATH = `${IMAGE_PATH}/resonators`;
 export const WEAPON_IMAGE_PATH = `${IMAGE_PATH}/weapons`;

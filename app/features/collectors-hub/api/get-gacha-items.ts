@@ -1,9 +1,11 @@
 import type { Resonator, Weapon } from '@/features/collectors-hub/types';
 import { api } from '@/lib/api/client';
 import { ELEMENT_NAMES } from '@/shared/constants/game/elements';
+import { RESONATOR_IMAGE_PATH, WEAPON_IMAGE_PATH } from '@/shared/constants/game/paths';
 import { WEAPON_TYPE_NAMES } from '@/shared/constants/game/weapon-types';
+import { toFileName } from '@/shared/utils';
 
-const GACHA_ITEMS_URL = 'https://cdn.trackmypulls.com/data/wuwa-gacha-items.json';
+const GACHA_ITEMS_URL = '/assets/data/wuwa-gacha-items.json';
 
 interface CollectionResources {
   resonators: Record<string, Resonator>;
@@ -11,14 +13,12 @@ interface CollectionResources {
 }
 
 interface GachaResonatorItem {
-  icon: string;
   quality: number;
   element: string;
   weaponType: string;
 }
 
 interface GachaWeaponItem {
-  icon: string;
   quality: number;
   weaponType: string;
 }
@@ -46,6 +46,14 @@ function normalizeWeaponType(value: string | undefined): string | undefined {
   return Object.values(WEAPON_TYPE_NAMES).find(item => item === normalized);
 }
 
+function buildResonatorImagePath(name: string, quality: number): string {
+  return `${RESONATOR_IMAGE_PATH}/${quality}/${toFileName(name)}.webp`;
+}
+
+function buildWeaponImagePath(name: string, quality: number): string {
+  return `${WEAPON_IMAGE_PATH}/${quality}/${toFileName(name)}.webp`;
+}
+
 export async function getGachaItemsResources(): Promise<CollectionResources> {
   const payload = await api.get<GachaItemsPayload>(GACHA_ITEMS_URL);
 
@@ -57,7 +65,7 @@ export async function getGachaItemsResources(): Promise<CollectionResources> {
         {
           element: normalizeElement(item.element) ?? '',
           weapon: normalizeWeaponType(item.weaponType) ?? '',
-          image: item.icon,
+          image: buildResonatorImagePath(name, item.quality),
           quality: item.quality,
         } satisfies Resonator,
       ]),
@@ -70,7 +78,7 @@ export async function getGachaItemsResources(): Promise<CollectionResources> {
         name,
         {
           type: normalizeWeaponType(item.weaponType) ?? '',
-          image: item.icon,
+          image: buildWeaponImagePath(name, item.quality),
           quality: item.quality,
         } satisfies Weapon,
       ]),

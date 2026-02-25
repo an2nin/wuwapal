@@ -1,0 +1,360 @@
+{
+  "characters": {
+    "Ardelia": {
+      "quality": 6,
+      "icon": "https://cdn.trackmypulls.com/endfield/characters/6/ardelia.webp",
+      "element": "nature",
+      "weaponType": "arts unit",
+      "classType": "supporter"
+    },
+    "Ember": {
+      "quality": 6,
+      "icon": "https://cdn.trackmypulls.com/endfield/characters/6/ember.webp",
+      "element": "heat",
+      "weaponType": "greatsword",
+      "classType": "defender"
+    },
+    "Gilberta": {
+      "quality": 6,
+      "icon": "https://cdn.trackmypulls.com/endfield/characters/6/gilberta.webp",
+      "element": "nature",
+      "weaponType": "arts unit",
+      "classType": "supporter"
+    },
+    "Laevatain": {
+      "quality": 6,
+      "icon": "https://cdn.trackmypulls.com/endfield/characters/6/laevatain.webp",
+      "element": "heat",
+      "weaponType": "sword",
+      "classType": "striker"
+    },
+    "Last Rite": {
+      "quality": 6,
+      "icon": "https://cdn.trackmypulls.com/endfield/characters/6/last-rite.webp",
+      "element": "cyro",
+      "weaponType": "greatsword",
+      "classType": "striker"
+    },
+    "Lifeng": {
+      "quality": 6,
+      "icon": "https://cdn.trackmypulls.com/endfield/characters/6/lifeng.webp",
+      "element": "physical",
+      "weaponType": "polearm",
+      "classType": "guard"
+    },
+    "Pogranichnik": {
+      "quality": 6,
+      "icon": "https://cdn.trackmypulls.com/endfield/characters/6/pogranichnik.webp",
+      "element": "physical",
+      "weaponType": "sword",
+      "classType": "vanguard"
+    },
+    "Yvonne": {
+      "quality": 6,
+      "icon": "https://cdn.trackmypulls.com/endfield/characters/6/yvonne.webp",
+      "element": "cyro",
+      "weaponType": "handcannon",
+      "classType": "striker"
+    },
+    "Alesh": {
+      "quality": 5,
+      "icon": "https://cdn.trackmypulls.com/endfield/characters/5/alesh.webp",
+      "element": "cyro",
+      "weaponType": "sword",
+      "classType": "vanguard"
+    },
+    "Arclight": {
+      "quality": 5,
+      "icon": "https://cdn.trackmypulls.com/endfield/characters/5/arclight.webp",
+      "element": "electric",
+      "weaponType": "sword",
+      "classType": "vanguard"
+    },
+    "Avywenna": {
+      "quality": 5,
+      "icon": "https://cdn.trackmypulls.com/endfield/characters/5/avywenna.webp",
+      "element": "electric",
+      "weaponType": "polearm",
+      "classType": "striker"
+    },
+    "Chen Qianyu": {
+      "quality": 5,
+      "icon": "https://cdn.trackmypulls.com/endfield/characters/5/chen-qianyu.webp",
+      "element": "physical",
+      "weaponType": "sword",
+      "classType": "guard"
+    },
+    "Da Pan": {
+      "quality": 5,
+      "icon": "https://cdn.trackmypulls.com/endfield/characters/5/da-pan.webp",
+      "element": "physical",
+      "weaponType": "greatsword",
+      "classType": "striker"
+    },
+    "Perlica": {
+      "quality": 5,
+      "icon": "https://cdn.trackmypulls.com/endfield/characters/5/perlica.webp",
+      "element": "electric",
+      "weaponType": "arts unit",
+      "classType": "caster"
+    },
+    "Snowshine": {
+      "quality": 5,
+      "icon": "https://cdn.trackmypulls.com/endfield/characters/5/snowshine.webp",
+      "element": "cyro",
+      "weaponType": "greatsword",
+      "classType": "defender"
+    },
+    "Wulfgard": {
+      "quality": 5,
+      "icon": "https://cdn.trackmypulls.com/endfield/characters/5/wulfgard.webp",
+      "element": "heat",
+      "weaponType": "handcannon",
+      "classType": "caster"
+    },
+    "Xaihi": {
+      "quality": 5,
+      "icon": "https://cdn.trackmypulls.com/endfield/characters/5/xaihi.webp",
+      "element": "cyro",
+      "weaponType": "arts unit",
+      "classType": "supporter"
+    }
+  },
+  "weapons": {
+    "Artzy Tyrannical": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/artzy-tyrannical.webp",
+      "quality": 6,
+      "weaponType": "handcannon"
+    },
+    "Chivalric Virtues": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/chivalric-virtues.webp",
+      "quality": 6,
+      "weaponType": "arts unit"
+    },
+    "Clannibal": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/clannibal.webp",
+      "quality": 6,
+      "weaponType": "handcannon"
+    },
+    "Delivery Guaranteed": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/delivery-guaranteed.webp",
+      "quality": 6,
+      "weaponType": "arts unit"
+    },
+    "Detonation Unit": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/detonation-unit.webp",
+      "quality": 6,
+      "weaponType": "arts unit"
+    },
+    "Dreams of the Starry Beach": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/dreams-of-the-starry-beach.webp",
+      "quality": 6,
+      "weaponType": "arts unit"
+    },
+    "Eminent Repute": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/eminent-repute.webp",
+      "quality": 6,
+      "weaponType": "sword"
+    },
+    "Exemplar": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/exemplar.webp",
+      "quality": 6,
+      "weaponType": "greatsword"
+    },
+    "Forgeborn Scathe": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/forgeborn-scathe.webp",
+      "quality": 6,
+      "weaponType": "sword"
+    },
+    "Former Finery": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/former-finery.webp",
+      "quality": 6,
+      "weaponType": "greatsword"
+    },
+    "Grand Vision": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/grand-vision.webp",
+      "quality": 6,
+      "weaponType": "sword"
+    },
+    "JET": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/jet.webp",
+      "quality": 6,
+      "weaponType": "polearm"
+    },
+    "Khravengger": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/khravengger.webp",
+      "quality": 6,
+      "weaponType": "greatsword"
+    },
+    "Mountain Bearer": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/mountain-bearer.webp",
+      "quality": 6,
+      "weaponType": "polearm"
+    },
+    "Navigator": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/navigator.webp",
+      "quality": 6,
+      "weaponType": "handcannon"
+    },
+    "Never Rest": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/never-rest.webp",
+      "quality": 6,
+      "weaponType": "sword"
+    },
+    "Oblivion": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/oblivion.webp",
+      "quality": 6,
+      "weaponType": "arts unit"
+    },
+    "Opus: Etch Figure": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/opus-etch-figure.webp",
+      "quality": 6,
+      "weaponType": "arts unit"
+    },
+    "Rapid Ascent": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/rapid-ascent.webp",
+      "quality": 6,
+      "weaponType": "sword"
+    },
+    "Sundered Prince": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/sundered-prince.webp",
+      "quality": 6,
+      "weaponType": "greatsword"
+    },
+    "Thermite Cutter": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/thermite-cutter.webp",
+      "quality": 6,
+      "weaponType": "sword"
+    },
+    "Thunderberge": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/thunderberge.webp",
+      "quality": 6,
+      "weaponType": "greatsword"
+    },
+    "Umbral Torch": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/umbral-torch.webp",
+      "quality": 6,
+      "weaponType": "sword"
+    },
+    "Valiant": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/valiant.webp",
+      "quality": 6,
+      "weaponType": "polearm"
+    },
+    "Wedge": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/wedge.webp",
+      "quality": 6,
+      "weaponType": "handcannon"
+    },
+    "White Night Nova": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/6/white-night-nova.webp",
+      "quality": 6,
+      "weaponType": "sword"
+    },
+    "Ancient Canal": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/5/ancient-canal.webp",
+      "quality": 5,
+      "weaponType": "greatsword"
+    },
+    "Aspirant": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/5/aspirant.webp",
+      "quality": 5,
+      "weaponType": "sword"
+    },
+    "Chimeric Justice": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/5/chimeric-justice.webp",
+      "quality": 5,
+      "weaponType": "polearm"
+    },
+    "Cohesive Traction": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/5/cohesive-traction.webp",
+      "quality": 5,
+      "weaponType": "polearm"
+    },
+    "Finchaser 3.0": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/5/finchaser-3.0.webp",
+      "quality": 5,
+      "weaponType": "sword"
+    },
+    "Finishing Call": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/5/finishing-call.webp",
+      "quality": 5,
+      "weaponType": "greatsword"
+    },
+    "Fortmaker": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/5/fortmaker.webp",
+      "quality": 5,
+      "weaponType": "sword"
+    },
+    "Freedom to Proselytize": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/5/freedom-to-proselytize.webp",
+      "quality": 5,
+      "weaponType": "arts unit"
+    },
+    "Monaihe": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/5/monaihe.webp",
+      "quality": 5,
+      "weaponType": "arts unit"
+    },
+    "OBJ Arts Identifier": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/5/obj-arts-identifier.webp",
+      "quality": 5,
+      "weaponType": "arts unit"
+    },
+    "OBJ Edge of Lightness": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/5/obj-edge-of-lightness.webp",
+      "quality": 5,
+      "weaponType": "sword"
+    },
+    "OBJ Heavy Burden": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/5/obj-heavy-burden.webp",
+      "quality": 5,
+      "weaponType": "greatsword"
+    },
+    "OBJ Razohorn": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/5/obj-razohorn.webp",
+      "quality": 5,
+      "weaponType": "polearm"
+    },
+    "OBJ Velocitous": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/5/obj-velocitous.webp",
+      "quality": 5,
+      "weaponType": "handcannon"
+    },
+    "Opus: The Living": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/5/opus-the-living.webp",
+      "quality": 5,
+      "weaponType": "handcannon"
+    },
+    "Rational Farewell": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/5/rational-farewell.webp",
+      "quality": 5,
+      "weaponType": "handcannon"
+    },
+    "Seeker of Dark Lung": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/5/seeker-of-dark-lung.webp",
+      "quality": 5,
+      "weaponType": "greatsword"
+    },
+    "Stanza of Memorials": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/5/stanza-of-memorials.webp",
+      "quality": 5,
+      "weaponType": "arts unit"
+    },
+    "Sundering Steel": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/5/sundering-steel.webp",
+      "quality": 5,
+      "weaponType": "sword"
+    },
+    "Twelve Questions": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/5/twelve-questions.webp",
+      "quality": 5,
+      "weaponType": "sword"
+    },
+    "Wild Wanderer": {
+      "icon": "https://cdn.trackmypulls.com/endfield/weapons/5/wild-wanderer.webp",
+      "quality": 5,
+      "weaponType": "arts unit"
+    }
+  }
+}

@@ -1,0 +1,555 @@
+{
+  "resonators": {
+    "Aemeath": {
+      "icon": "/assets/images/wuwa/resonators/5/aemeath.webp",
+      "quality": 5,
+      "element": "fusion",
+      "weaponType": "sword"
+    },
+    "Augusta": {
+      "icon": "/assets/images/wuwa/resonators/5/augusta.webp",
+      "quality": 5,
+      "element": "electro",
+      "weaponType": "broadblade"
+    },
+    "Brant": {
+      "icon": "/assets/images/wuwa/resonators/5/brant.webp",
+      "quality": 5,
+      "element": "fusion",
+      "weaponType": "sword"
+    },
+    "Calcharo": {
+      "icon": "/assets/images/wuwa/resonators/5/calcharo.webp",
+      "quality": 5,
+      "element": "electro",
+      "weaponType": "broadblade"
+    },
+    "Camellya": {
+      "icon": "/assets/images/wuwa/resonators/5/camellya.webp",
+      "quality": 5,
+      "element": "havoc",
+      "weaponType": "sword"
+    },
+    "Cantarella": {
+      "icon": "/assets/images/wuwa/resonators/5/cantarella.webp",
+      "quality": 5,
+      "element": "havoc",
+      "weaponType": "rectifier"
+    },
+    "Carlotta": {
+      "icon": "/assets/images/wuwa/resonators/5/carlotta.webp",
+      "quality": 5,
+      "element": "glacio",
+      "weaponType": "pistols"
+    },
+    "Cartethyia": {
+      "icon": "/assets/images/wuwa/resonators/5/cartethyia.webp",
+      "quality": 5,
+      "element": "aero",
+      "weaponType": "sword"
+    },
+    "Changli": {
+      "icon": "/assets/images/wuwa/resonators/5/changli.webp",
+      "quality": 5,
+      "element": "fusion",
+      "weaponType": "sword"
+    },
+    "Chisa": {
+      "icon": "/assets/images/wuwa/resonators/5/chisa.webp",
+      "quality": 5,
+      "element": "havoc",
+      "weaponType": "broadblade"
+    },
+    "Ciaccona": {
+      "icon": "/assets/images/wuwa/resonators/5/ciaccona.webp",
+      "quality": 5,
+      "element": "glacio",
+      "weaponType": "pistols"
+    },
+    "Encore": {
+      "icon": "/assets/images/wuwa/resonators/5/encore.webp",
+      "quality": 5,
+      "element": "fusion",
+      "weaponType": "rectifier"
+    },
+    "Galbrena": {
+      "icon": "/assets/images/wuwa/resonators/5/galbrena.webp",
+      "quality": 5,
+      "element": "fusion",
+      "weaponType": "pistols"
+    },
+    "Iuno": {
+      "icon": "/assets/images/wuwa/resonators/5/iuno.webp",
+      "quality": 5,
+      "element": "aero",
+      "weaponType": "gauntlets"
+    },
+    "Jianxin": {
+      "icon": "/assets/images/wuwa/resonators/5/jianxin.webp",
+      "quality": 5,
+      "element": "aero",
+      "weaponType": "broadblade"
+    },
+    "Jinhsi": {
+      "icon": "/assets/images/wuwa/resonators/5/jinhsi.webp",
+      "quality": 5,
+      "element": "spectro",
+      "weaponType": "broadblade"
+    },
+    "Jiyan": {
+      "icon": "/assets/images/wuwa/resonators/5/jiyan.webp",
+      "quality": 5,
+      "element": "aero",
+      "weaponType": "broadblade"
+    },
+    "Lingyang": {
+      "icon": "/assets/images/wuwa/resonators/5/lingyang.webp",
+      "quality": 5,
+      "element": "glacio",
+      "weaponType": "broadblade"
+    },
+    "Lupa": {
+      "icon": "/assets/images/wuwa/resonators/5/lupa.webp",
+      "quality": 5,
+      "element": "fusion",
+      "weaponType": "broadblade"
+    },
+    "Luuk Herssen": {
+      "icon": "/assets/images/wuwa/resonators/5/luuk-herssen.webp",
+      "quality": 5,
+      "weaponType": "gauntlets",
+      "element": "spectro"
+    },
+    "Lynae": {
+      "icon": "/assets/images/wuwa/resonators/5/lynae.webp",
+      "quality": 5,
+      "element": "spectro",
+      "weaponType": "broadblade"
+    },
+    "Mornye": {
+      "icon": "/assets/images/wuwa/resonators/5/mornye.webp",
+      "quality": 5,
+      "element": "fusion",
+      "weaponType": "broadblade"
+    },
+    "Phoebe": {
+      "icon": "/assets/images/wuwa/resonators/5/phoebe.webp",
+      "quality": 5,
+      "element": "spectro",
+      "weaponType": "broadblade"
+    },
+    "Phrolova": {
+      "icon": "/assets/images/wuwa/resonators/5/phrolova.webp",
+      "quality": 5,
+      "element": "havoc",
+      "weaponType": "broadblade"
+    },
+    "Qiuyuan": {
+      "icon": "/assets/images/wuwa/resonators/5/qiuyuan.webp",
+      "quality": 5,
+      "element": "aero",
+      "weaponType": "broadblade"
+    },
+    "Roccia": {
+      "icon": "/assets/images/wuwa/resonators/5/roccia.webp",
+      "quality": 5,
+      "element": "havoc",
+      "weaponType": "broadblade"
+    },
+    "Shorekeeper": {
+      "icon": "/assets/images/wuwa/resonators/5/shorekeeper.webp",
+      "quality": 5,
+      "element": "spectro",
+      "weaponType": "broadblade"
+    },
+    "Verina": {
+      "icon": "/assets/images/wuwa/resonators/5/verina.webp",
+      "quality": 5,
+      "element": "spectro",
+      "weaponType": "broadblade"
+    },
+    "Xiangli Yao": {
+      "icon": "/assets/images/wuwa/resonators/5/xiangli-yao.webp",
+      "quality": 5,
+      "element": "electro",
+      "weaponType": "broadblade"
+    },
+    "Yinlin": {
+      "icon": "/assets/images/wuwa/resonators/5/yinlin.webp",
+      "quality": 5,
+      "element": "electro",
+      "weaponType": "broadblade"
+    },
+    "Zani": {
+      "icon": "/assets/images/wuwa/resonators/5/zani.webp",
+      "quality": 5,
+      "element": "spectro",
+      "weaponType": "broadblade"
+    },
+    "Zhezhi": {
+      "icon": "/assets/images/wuwa/resonators/5/zhezhi.webp",
+      "quality": 5,
+      "element": "glacio",
+      "weaponType": "broadblade"
+    },
+    "Aalto": {
+      "icon": "/assets/images/wuwa/resonators/4/aalto.webp",
+      "quality": 4,
+      "element": "aero",
+      "weaponType": "broadblade"
+    },
+    "Baizhi": {
+      "icon": "/assets/images/wuwa/resonators/4/baizhi.webp",
+      "quality": 4,
+      "element": "glacio",
+      "weaponType": "broadblade"
+    },
+    "Buling": {
+      "icon": "/assets/images/wuwa/resonators/4/buling.webp",
+      "quality": 4,
+      "element": "electro",
+      "weaponType": "broadblade"
+    },
+    "Chixia": {
+      "icon": "/assets/images/wuwa/resonators/4/chixia.webp",
+      "quality": 4,
+      "element": "fusion",
+      "weaponType": "broadblade"
+    },
+    "Danjin": {
+      "icon": "/assets/images/wuwa/resonators/4/danjin.webp",
+      "quality": 4,
+      "element": "havoc",
+      "weaponType": "broadblade"
+    },
+    "Lumi": {
+      "icon": "/assets/images/wuwa/resonators/4/lumi.webp",
+      "quality": 4,
+      "element": "electro",
+      "weaponType": "broadblade"
+    },
+    "Mortefi": {
+      "icon": "/assets/images/wuwa/resonators/4/mortefi.webp",
+      "quality": 4,
+      "element": "fusion",
+      "weaponType": "broadblade"
+    },
+    "Sanhua": {
+      "icon": "/assets/images/wuwa/resonators/4/sanhua.webp",
+      "quality": 4,
+      "element": "glacio",
+      "weaponType": "broadblade"
+    },
+    "Taoqi": {
+      "icon": "/assets/images/wuwa/resonators/4/taoqi.webp",
+      "quality": 4,
+      "element": "havoc",
+      "weaponType": "broadblade"
+    },
+    "Yangyang": {
+      "icon": "/assets/images/wuwa/resonators/4/yangyang.webp",
+      "quality": 4,
+      "element": "aero",
+      "weaponType": "broadblade"
+    },
+    "Youhu": {
+      "icon": "/assets/images/wuwa/resonators/4/youhu.webp",
+      "quality": 4,
+      "element": "glacio",
+      "weaponType": "broadblade"
+    },
+    "Yuanwu": {
+      "icon": "/assets/images/wuwa/resonators/4/yuanwu.webp",
+      "quality": 4,
+      "element": "electro",
+      "weaponType": "broadblade"
+    }
+  },
+  "weapons": {
+    "Abyss Surges": {
+      "icon": "/assets/images/wuwa/weapons/5/abyss-surges.webp",
+      "quality": 5,
+      "weaponType": "gauntlets"
+    },
+    "Ages of Harvest": {
+      "icon": "/assets/images/wuwa/weapons/5/ages-of-harvest.webp",
+      "quality": 5,
+      "weaponType": "broadblade"
+    },
+    "Blazing Brilliance": {
+      "icon": "/assets/images/wuwa/weapons/5/blazing-brilliance.webp",
+      "quality": 5,
+      "weaponType": "sword"
+    },
+    "Blazing Justice": {
+      "icon": "/assets/images/wuwa/weapons/5/blazing-justice.webp",
+      "quality": 5,
+      "weaponType": "gauntlets"
+    },
+    "Boson Astrolabe": {
+      "icon": "/assets/images/wuwa/weapons/5/boson-astrolabe.webp",
+      "quality": 5,
+      "weaponType": "rectifier"
+    },
+    "Cosmic Ripples": {
+      "icon": "/assets/images/wuwa/weapons/5/cosmic-ripples.webp",
+      "quality": 5,
+      "weaponType": "rectifier"
+    },
+    "Daybreaker's Spine": {
+      "icon": "/assets/images/wuwa/weapons/5/daybreakers-spine.webp",
+      "quality": 5,
+      "weaponType": "broadblade"
+    },
+    "Defier's Thorn": {
+      "icon": "/assets/images/wuwa/weapons/5/defiers-thorn.webp",
+      "quality": 5,
+      "weaponType": "sword"
+    },
+    "Emerald of Genesis": {
+      "icon": "/assets/images/wuwa/weapons/5/emerald-of-genesis.webp",
+      "quality": 5,
+      "weaponType": "sword"
+    },
+    "Emerald Sentence": {
+      "icon": "/assets/images/wuwa/weapons/5/emerald-sentence.webp",
+      "quality": 5,
+      "weaponType": "sword"
+    },
+    "Everbright Polestar": {
+      "icon": "/assets/images/wuwa/weapons/5/everbright-polestar.webp",
+      "quality": 5,
+      "weaponType": "sword"
+    },
+    "Kumokiri": {
+      "icon": "/assets/images/wuwa/weapons/5/kumokiri.webp",
+      "quality": 5,
+      "weaponType": "broadblade"
+    },
+    "Laser Shearer": {
+      "icon": "/assets/images/wuwa/weapons/5/laser-shearer.webp",
+      "quality": 5,
+      "weaponType": "sword"
+    },
+    "Lethean Elegy": {
+      "icon": "/assets/images/wuwa/weapons/5/lethean-elegy.webp",
+      "quality": 5,
+      "weaponType": "rectifier"
+    },
+    "Luminous Hymn": {
+      "icon": "/assets/images/wuwa/weapons/5/luminous-hymn.webp",
+      "quality": 5,
+      "weaponType": "rectifier"
+    },
+    "Lustrous Razor": {
+      "icon": "/assets/images/wuwa/weapons/5/lustrous-razor.webp",
+      "quality": 5,
+      "weaponType": "broadblade"
+    },
+    "Lux & Umbra": {
+      "icon": "/assets/images/wuwa/weapons/5/lux-n-umbra.webp",
+      "quality": 5,
+      "weaponType": "pistols"
+    },
+    "Moongazer's Sigil": {
+      "icon": "/assets/images/wuwa/weapons/5/moongazers-sigil.webp",
+      "quality": 5,
+      "weaponType": "rectifier"
+    },
+    "Phasic Homogenizer": {
+      "icon": "/assets/images/wuwa/weapons/5/phasic-homogenizer.webp",
+      "quality": 5,
+      "weaponType": "pistols"
+    },
+    "Pulsation Bracer": {
+      "icon": "/assets/images/wuwa/weapons/5/pulsation-bracer.webp",
+      "quality": 5,
+      "weaponType": "gauntlets"
+    },
+    "Radiance Cleaver": {
+      "icon": "/assets/images/wuwa/weapons/5/radiance-cleaver.webp",
+      "quality": 5,
+      "weaponType": "broadblade"
+    },
+    "Red Spring": {
+      "icon": "/assets/images/wuwa/weapons/5/red-spring.webp",
+      "quality": 5,
+      "weaponType": "sword"
+    },
+    "Rime-Draped Sprouts": {
+      "icon": "/assets/images/wuwa/weapons/5/rime-draped-sprouts.webp",
+      "quality": 5,
+      "weaponType": "rectifier"
+    },
+    "Spectrum Blaster": {
+      "icon": "/assets/images/wuwa/weapons/5/spectrum-blaster.webp",
+      "quality": 5,
+      "weaponType": "pistols"
+    },
+    "Starfield Calibrator": {
+      "icon": "/assets/images/wuwa/weapons/5/starfield-calibrator.webp",
+      "quality": 5,
+      "weaponType": "broadblade"
+    },
+    "Static Mist": {
+      "icon": "/assets/images/wuwa/weapons/5/static-mist.webp",
+      "quality": 5,
+      "weaponType": "pistols"
+    },
+    "Stellar Symphony": {
+      "icon": "/assets/images/wuwa/weapons/5/stellar-symphony.webp",
+      "quality": 5,
+      "weaponType": "rectifier"
+    },
+    "Stringmaster": {
+      "icon": "/assets/images/wuwa/weapons/5/stringmaster.webp",
+      "quality": 5,
+      "weaponType": "rectifier"
+    },
+    "The Last Dance": {
+      "icon": "/assets/images/wuwa/weapons/5/the-last-dance.webp",
+      "quality": 5,
+      "weaponType": "pistols"
+    },
+    "Thunderflare Dominion": {
+      "icon": "/assets/images/wuwa/weapons/5/thunderflare-dominion.webp",
+      "quality": 5,
+      "weaponType": "broadblade"
+    },
+    "Tragicomedy": {
+      "icon": "/assets/images/wuwa/weapons/5/tragicomedy.webp",
+      "quality": 5,
+      "weaponType": "gauntlets"
+    },
+    "Unflickering Valor": {
+      "icon": "/assets/images/wuwa/weapons/5/unflickering-valor.webp",
+      "quality": 5,
+      "weaponType": "sword"
+    },
+    "Verdant Summit": {
+      "icon": "/assets/images/wuwa/weapons/5/verdant-summit.webp",
+      "quality": 5,
+      "weaponType": "broadblade"
+    },
+    "Verity's Handle": {
+      "icon": "/assets/images/wuwa/weapons/5/veritys-handle.webp",
+      "quality": 5,
+      "weaponType": "gauntlets"
+    },
+    "Whispers of Sirens": {
+      "icon": "/assets/images/wuwa/weapons/5/whispers-of-sirens.webp",
+      "quality": 5,
+      "weaponType": "rectifier"
+    },
+    "Wildfire Mark": {
+      "icon": "/assets/images/wuwa/weapons/5/wildfire-mark.webp",
+      "quality": 5,
+      "weaponType": "broadblade"
+    },
+    "Woodland Aria": {
+      "icon": "/assets/images/wuwa/weapons/5/woodland-aria.webp",
+      "quality": 5,
+      "weaponType": "pistols"
+    },
+    "Amity Accord": {
+      "icon": "/assets/images/wuwa/weapons/4/amity-accord.webp",
+      "quality": 4,
+      "weaponType": "gauntlets"
+    },
+    "Cadenza": {
+      "icon": "/assets/images/wuwa/weapons/4/cadenza.webp",
+      "quality": 4,
+      "weaponType": "pistols"
+    },
+    "Celestial Spiral": {
+      "icon": "/assets/images/wuwa/weapons/4/celestial-spiral.webp",
+      "quality": 4,
+      "weaponType": "gauntlets"
+    },
+    "Comet Flare": {
+      "icon": "/assets/images/wuwa/weapons/4/comet-flare.webp",
+      "quality": 4,
+      "weaponType": "rectifier"
+    },
+    "Commando of Conviction": {
+      "icon": "/assets/images/wuwa/weapons/4/commando-of-conviction.webp",
+      "quality": 4,
+      "weaponType": "sword"
+    },
+    "Dauntless Evernight": {
+      "icon": "/assets/images/wuwa/weapons/4/dauntless-evernight.webp",
+      "quality": 4,
+      "weaponType": "broadblade"
+    },
+    "Discord": {
+      "icon": "/assets/images/wuwa/weapons/4/discord.webp",
+      "quality": 4,
+      "weaponType": "broadblade"
+    },
+    "Endless Collapse": {
+      "icon": "/assets/images/wuwa/weapons/4/endless-collapse.webp",
+      "quality": 4,
+      "weaponType": "sword"
+    },
+    "Fusion Accretion": {
+      "icon": "/assets/images/wuwa/weapons/4/fusion-accretion.webp",
+      "quality": 4,
+      "weaponType": "rectifier"
+    },
+    "Helios Cleaver": {
+      "icon": "/assets/images/wuwa/weapons/4/helios-cleaver.webp",
+      "quality": 4,
+      "weaponType": "broadblade"
+    },
+    "Hollow Mirage": {
+      "icon": "/assets/images/wuwa/weapons/4/hollow-mirage.webp",
+      "quality": 4,
+      "weaponType": "gauntlets"
+    },
+    "Jinzhou Keeper": {
+      "icon": "/assets/images/wuwa/weapons/4/jinzhou-keeper.webp",
+      "quality": 4,
+      "weaponType": "rectifier"
+    },
+    "Lunar Cutter": {
+      "icon": "/assets/images/wuwa/weapons/4/lunar-cutter.webp",
+      "quality": 4,
+      "weaponType": "sword"
+    },
+    "Marcato": {
+      "icon": "/assets/images/wuwa/weapons/4/marcato.webp",
+      "quality": 4,
+      "weaponType": "gauntlets"
+    },
+    "Novaburst": {
+      "icon": "/assets/images/wuwa/weapons/4/novaburst.webp",
+      "quality": 4,
+      "weaponType": "pistols"
+    },
+    "Overture": {
+      "icon": "/assets/images/wuwa/weapons/4/overture.webp",
+      "quality": 4,
+      "weaponType": "sword"
+    },
+    "Relativistic Jet": {
+      "icon": "/assets/images/wuwa/weapons/4/relativistic-jet.webp",
+      "quality": 4,
+      "weaponType": "pistols"
+    },
+    "Undying Flame": {
+      "icon": "/assets/images/wuwa/weapons/4/undying-flame.webp",
+      "quality": 4,
+      "weaponType": "pistols"
+    },
+    "Variation": {
+      "icon": "/assets/images/wuwa/weapons/4/variation.webp",
+      "quality": 4,
+      "weaponType": "rectifier"
+    },
+    "Waning Redshift": {
+      "icon": "/assets/images/wuwa/weapons/4/waning-redshift.webp",
+      "quality": 4,
+      "weaponType": "broadblade"
+    }
+  }
+}

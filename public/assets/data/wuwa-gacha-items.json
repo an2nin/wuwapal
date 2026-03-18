@@ -117,8 +117,8 @@
     "Luuk Herssen": {
       "icon": "/assets/images/wuwa/resonators/5/luuk-herssen.webp",
       "quality": 5,
-      "weaponType": "gauntlets",
-      "element": "spectro"
+      "element": "spectro",
+      "weaponType": "gauntlets"
     },
     "Lynae": {
       "icon": "/assets/images/wuwa/resonators/5/lynae.webp",
@@ -161,6 +161,12 @@
       "quality": 5,
       "element": "spectro",
       "weaponType": "broadblade"
+    },
+    "Sigrika": {
+      "icon": "/assets/images/wuwa/resonators/5/sigrika.webp",
+      "quality": 5,
+      "weaponType": "gauntlets",
+      "element": "aero"
     },
     "Verina": {
       "icon": "/assets/images/wuwa/resonators/5/verina.webp",
@@ -380,6 +386,11 @@
       "icon": "/assets/images/wuwa/weapons/5/rime-draped-sprouts.webp",
       "quality": 5,
       "weaponType": "rectifier"
+    },
+    "Solsworn Ciphers": {
+      "icon": "/assets/images/wuwa/weapons/5/solsworn-ciphers.webp",
+      "quality": 5,
+      "weaponType": "gauntlets"
     },
     "Spectrum Blaster": {
       "icon": "/assets/images/wuwa/weapons/5/spectrum-blaster.webp",

@@ -1,17 +1,30 @@
 'use client';
-import { Menu } from 'lucide-react';
+import { LogIn, LogOut, Menu } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useAuthLogout } from '@/features/auth/hooks/use-auth-logout';
+import { useGoogleAuthLogin } from '@/features/auth/hooks/use-google-auth-login';
 import { env } from '@/lib/env';
 import { Sheet, SheetContent } from '@/shared/components/ui/sheet';
 import { NAVS } from '@/shared/constants/navs';
+import { useAuthStore } from '@/shared/stores/auth';
 
 interface Props {
   currentActiveRoute: any;
 }
 
+const sheetNavItemClass
+  = 'inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 px-4 py-2 w-full justify-start h-10';
+
 export default function HeaderSheet({ currentActiveRoute }: Props) {
   const [isOpen, setIsOpen] = useState(false);
+  const access = useAuthStore(state => state.access);
+  const { login, isPending: isLoginPending } = useGoogleAuthLogin({
+    onAccessGranted: () => setIsOpen(false),
+  });
+  const revokeTokensMutation = useAuthLogout();
+  const showGoogleAuth = Boolean(env.NEXT_PUBLIC_GOOGLE_CLIENT_ID);
+
   return (
     <>
       <button
@@ -71,7 +84,7 @@ export default function HeaderSheet({ currentActiveRoute }: Props) {
                               }`}
                             >
                               <Link
-                                className="inline-flex items-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 px-4 py-2 w-full justify-start h-10"
+                                className={sheetNavItemClass}
                                 data-state="closed"
                                 href={item.path}
                               >
@@ -85,6 +98,41 @@ export default function HeaderSheet({ currentActiveRoute }: Props) {
                             </div>
                           ))}
                       </div>
+                      {showGoogleAuth && (
+                        <div className="mt-4 w-full border-t border-border pt-4 px-2">
+                          {access
+                            ? (
+                                <button
+                                  type="button"
+                                  className={`${sheetNavItemClass} rounded-lg hover:bg-gray-700/80 opacity-50 hover:opacity-100`}
+                                  disabled={revokeTokensMutation.isPending}
+                                  onClick={() => revokeTokensMutation.mutate()}
+                                >
+                                  <span className="mr-4">
+                                    <LogOut className="size-6" />
+                                  </span>
+                                  <p className="max-w-[200px] truncate translate-x-0 opacity-100">
+                                    Log out
+                                  </p>
+                                </button>
+                              )
+                            : (
+                                <button
+                                  type="button"
+                                  className={`${sheetNavItemClass} rounded-lg hover:bg-gray-700/80 opacity-50 hover:opacity-100`}
+                                  disabled={isLoginPending}
+                                  onClick={login}
+                                >
+                                  <span className="mr-4">
+                                    <LogIn className="size-6" />
+                                  </span>
+                                  <p className="max-w-[200px] truncate translate-x-0 opacity-100">
+                                    Log in
+                                  </p>
+                                </button>
+                              )}
+                        </div>
+                      )}
                     </ul>
                   </nav>
                 </div>

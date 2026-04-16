@@ -52,15 +52,15 @@
     "Rossi": {
       "icon": "/assets/images/endfield/characters/6/rossi.webp",
       "quality": 6,
-      "weaponType": "sword",
       "element": "physical",
+      "weaponType": "sword",
       "classType": "guard"
     },
     "Tangtang": {
       "icon": "/assets/images/endfield/characters/6/tangtang.webp",
       "quality": 6,
-      "weaponType": "handcannon",
       "element": "cyro",
+      "weaponType": "handcannon",
       "classType": "caster"
     },
     "Yvonne": {
@@ -68,6 +68,13 @@
       "quality": 6,
       "element": "cyro",
       "weaponType": "handcannon",
+      "classType": "striker"
+    },
+    "Zhuang Fangyi": {
+      "icon": "/assets/images/endfield/characters/6/zhuang-fangyi.webp",
+      "quality": 6,
+      "weaponType": "arts unit",
+      "element": "electric",
       "classType": "striker"
     },
     "Alesh": {
@@ -214,6 +221,11 @@
       "icon": "/assets/images/endfield/weapons/6/khravengger.webp",
       "quality": 6,
       "weaponType": "greatsword"
+    },
+    "Lone Barge": {
+      "icon": "/assets/images/endfield/weapons/6/lone-barge.webp",
+      "quality": 6,
+      "weaponType": "arts unit"
     },
     "Lupine Scarlet": {
       "icon": "/assets/images/endfield/weapons/6/lupine-scarlet.webp",

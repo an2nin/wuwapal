@@ -1,0 +1,35 @@
+[
+  {
+    "slug": "wuwa",
+    "name": "Wuthering Waves",
+    "description": "Open World Gacha Game",
+    "image": "",
+    "website": "https://wutheringwaves.kurogames.com/en/main",
+    "developer": "Kuro Games",
+    "item-types": [
+      { "name": "character", "label": "resonator", "rarity": ["5", "4"], "attrs": ["element", "weapon-type"] },
+      { "name": "weapon", "label": "weapon", "rarity": ["5", "4"], "attrs": ["weapon-type"] }
+    ],
+    "attr-types": [
+      { "name": "element", "label": "element", "values": ["aero", "electro", "fusion", "glacio", "havoc", "spectro"] },
+      { "name": "weapon-type", "label": "weapon type", "values": ["broadblade", "gauntlets", "pistols", "rectifier", "sword"] }
+    ]
+  },
+  {
+    "slug": "endfield",
+    "name": "Arknights: Endfield",
+    "description": "Open World Gacha Game",
+    "image": "",
+    "website": "https://endfield.gryphline.com/en-us",
+    "developer": "Gryphline",
+    "item-types": [
+      { "name": "character", "label": "operator", "rarity": ["6", "5"], "attrs": ["element", "weapon-type", "class-type"] },
+      { "name": "weapon", "label": "weapon", "rarity": ["6", "5"], "attrs": ["weapon-type"] }
+    ],
+    "attr-types": [
+      { "name": "element", "label": "element", "values": ["cyro", "electric", "heat", "nature", "physical"] },
+      { "name": "weapon-type", "label": "weapon type", "values": ["arts unit", "greatsword", "handcannon", "polearm", "sword"] },
+      { "name": "class-type", "label": "class type", "values": ["caster", "defender", "guard", "striker", "supporter", "vanguard"] }
+    ]
+  }
+]

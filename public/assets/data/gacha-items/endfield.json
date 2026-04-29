@@ -1,0 +1,334 @@
+{
+  "characters": {
+    "Ardelia": {
+      "quality": 6,
+      "element": "nature",
+      "weaponType": "arts unit",
+      "classType": "supporter"
+    },
+    "Ember": {
+      "quality": 6,
+      "element": "heat",
+      "weaponType": "greatsword",
+      "classType": "defender"
+    },
+    "Gilberta": {
+      "quality": 6,
+      "element": "nature",
+      "weaponType": "arts unit",
+      "classType": "supporter"
+    },
+    "Laevatain": {
+      "quality": 6,
+      "element": "heat",
+      "weaponType": "sword",
+      "classType": "striker"
+    },
+    "Last Rite": {
+      "quality": 6,
+      "element": "cyro",
+      "weaponType": "greatsword",
+      "classType": "striker"
+    },
+    "Lifeng": {
+      "quality": 6,
+      "element": "physical",
+      "weaponType": "polearm",
+      "classType": "guard"
+    },
+    "Pogranichnik": {
+      "quality": 6,
+      "element": "physical",
+      "weaponType": "sword",
+      "classType": "vanguard"
+    },
+    "Rossi": {
+      "quality": 6,
+      "element": "physical",
+      "weaponType": "sword",
+      "classType": "guard"
+    },
+    "Tangtang": {
+      "quality": 6,
+      "element": "cyro",
+      "weaponType": "handcannon",
+      "classType": "caster"
+    },
+    "Yvonne": {
+      "quality": 6,
+      "element": "cyro",
+      "weaponType": "handcannon",
+      "classType": "striker"
+    },
+    "Zhuang Fangyi": {
+      "quality": 6,
+      "weaponType": "arts unit",
+      "element": "electric",
+      "classType": "striker"
+    },
+    "Alesh": {
+      "quality": 5,
+      "element": "cyro",
+      "weaponType": "sword",
+      "classType": "vanguard"
+    },
+    "Arclight": {
+      "quality": 5,
+      "element": "electric",
+      "weaponType": "sword",
+      "classType": "vanguard"
+    },
+    "Avywenna": {
+      "quality": 5,
+      "element": "electric",
+      "weaponType": "polearm",
+      "classType": "striker"
+    },
+    "Chen Qianyu": {
+      "quality": 5,
+      "element": "physical",
+      "weaponType": "sword",
+      "classType": "guard"
+    },
+    "Da Pan": {
+      "quality": 5,
+      "element": "physical",
+      "weaponType": "greatsword",
+      "classType": "striker"
+    },
+    "Perlica": {
+      "quality": 5,
+      "element": "electric",
+      "weaponType": "arts unit",
+      "classType": "caster"
+    },
+    "Snowshine": {
+      "quality": 5,
+      "element": "cyro",
+      "weaponType": "greatsword",
+      "classType": "defender"
+    },
+    "Wulfgard": {
+      "quality": 5,
+      "element": "heat",
+      "weaponType": "handcannon",
+      "classType": "caster"
+    },
+    "Xaihi": {
+      "quality": 5,
+      "element": "cyro",
+      "weaponType": "arts unit",
+      "classType": "supporter"
+    }
+  },
+  "weapons": {
+    "Artzy Tyrannical": {
+      "quality": 6,
+      "weaponType": "handcannon"
+    },
+    "Brigand's Calling": {
+      "quality": 6,
+      "weaponType": "handcannon"
+    },
+    "Chivalric Virtues": {
+      "quality": 6,
+      "weaponType": "arts unit"
+    },
+    "Clannibal": {
+      "quality": 6,
+      "weaponType": "handcannon"
+    },
+    "Delivery Guaranteed": {
+      "quality": 6,
+      "weaponType": "arts unit"
+    },
+    "Detonation Unit": {
+      "quality": 6,
+      "weaponType": "arts unit"
+    },
+    "Dreams of the Starry Beach": {
+      "quality": 6,
+      "weaponType": "arts unit"
+    },
+    "Eminent Repute": {
+      "quality": 6,
+      "weaponType": "sword"
+    },
+    "Exemplar": {
+      "quality": 6,
+      "weaponType": "greatsword"
+    },
+    "Forgeborn Scathe": {
+      "quality": 6,
+      "weaponType": "sword"
+    },
+    "Former Finery": {
+      "quality": 6,
+      "weaponType": "greatsword"
+    },
+    "Glorious Memory": {
+      "quality": 6,
+      "weaponType": "sword"
+    },
+    "Grand Vision": {
+      "quality": 6,
+      "weaponType": "sword"
+    },
+    "Home Longing": {
+      "quality": 6,
+      "weaponType": "handcannon"
+    },
+    "JET": {
+      "quality": 6,
+      "weaponType": "polearm"
+    },
+    "Khravengger": {
+      "quality": 6,
+      "weaponType": "greatsword"
+    },
+    "Lone Barge": {
+      "quality": 6,
+      "weaponType": "arts unit"
+    },
+    "Lupine Scarlet": {
+      "quality": 6,
+      "weaponType": "sword"
+    },
+    "Mountain Bearer": {
+      "quality": 6,
+      "weaponType": "polearm"
+    },
+    "Navigator": {
+      "quality": 6,
+      "weaponType": "handcannon"
+    },
+    "Never Rest": {
+      "quality": 6,
+      "weaponType": "sword"
+    },
+    "Oblivion": {
+      "quality": 6,
+      "weaponType": "arts unit"
+    },
+    "Opus: Etch Figure": {
+      "quality": 6,
+      "weaponType": "arts unit"
+    },
+    "Rapid Ascent": {
+      "quality": 6,
+      "weaponType": "sword"
+    },
+    "Sundered Prince": {
+      "quality": 6,
+      "weaponType": "greatsword"
+    },
+    "Thermite Cutter": {
+      "quality": 6,
+      "weaponType": "sword"
+    },
+    "Thunderberge": {
+      "quality": 6,
+      "weaponType": "greatsword"
+    },
+    "Umbral Torch": {
+      "quality": 6,
+      "weaponType": "sword"
+    },
+    "Valiant": {
+      "quality": 6,
+      "weaponType": "polearm"
+    },
+    "Wedge": {
+      "quality": 6,
+      "weaponType": "handcannon"
+    },
+    "White Night Nova": {
+      "quality": 6,
+      "weaponType": "sword"
+    },
+    "Ancient Canal": {
+      "quality": 5,
+      "weaponType": "greatsword"
+    },
+    "Aspirant": {
+      "quality": 5,
+      "weaponType": "sword"
+    },
+    "Chimeric Justice": {
+      "quality": 5,
+      "weaponType": "polearm"
+    },
+    "Cohesive Traction": {
+      "quality": 5,
+      "weaponType": "polearm"
+    },
+    "Finchaser 3.0": {
+      "quality": 5,
+      "weaponType": "sword"
+    },
+    "Finishing Call": {
+      "quality": 5,
+      "weaponType": "greatsword"
+    },
+    "Fortmaker": {
+      "quality": 5,
+      "weaponType": "sword"
+    },
+    "Freedom to Proselytize": {
+      "quality": 5,
+      "weaponType": "arts unit"
+    },
+    "Monaihe": {
+      "quality": 5,
+      "weaponType": "arts unit"
+    },
+    "OBJ Arts Identifier": {
+      "quality": 5,
+      "weaponType": "arts unit"
+    },
+    "OBJ Edge of Lightness": {
+      "quality": 5,
+      "weaponType": "sword"
+    },
+    "OBJ Heavy Burden": {
+      "quality": 5,
+      "weaponType": "greatsword"
+    },
+    "OBJ Razohorn": {
+      "quality": 5,
+      "weaponType": "polearm"
+    },
+    "OBJ Velocitous": {
+      "quality": 5,
+      "weaponType": "handcannon"
+    },
+    "Opus: The Living": {
+      "quality": 5,
+      "weaponType": "handcannon"
+    },
+    "Rational Farewell": {
+      "quality": 5,
+      "weaponType": "handcannon"
+    },
+    "Seeker of Dark Lung": {
+      "quality": 5,
+      "weaponType": "greatsword"
+    },
+    "Stanza of Memorials": {
+      "quality": 5,
+      "weaponType": "arts unit"
+    },
+    "Sundering Steel": {
+      "quality": 5,
+      "weaponType": "sword"
+    },
+    "Twelve Questions": {
+      "quality": 5,
+      "weaponType": "sword"
+    },
+    "Wild Wanderer": {
+      "quality": 5,
+      "weaponType": "arts unit"
+    }
+  }
+}

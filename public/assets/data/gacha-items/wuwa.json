@@ -1,0 +1,15 @@
+{
+  "characters": {
+    "Aemeath": {
+      "quality": 5,
+      "element": "fusion",
+      "weaponType": "sword"
+    }
+  },
+  "weapons": {
+    "Abyss Surges": {
+      "quality": 5,
+      "weaponType": "gauntlets"
+    }
+  }
+}

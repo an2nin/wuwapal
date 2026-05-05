@@ -78,12 +78,6 @@
       "element": "fusion",
       "weaponType": "pistols"
     },
-    "Hiyuki": {
-      "icon": "/assets/images/wuwa/resonators/5/hiyuki.webp",
-      "quality": 5,
-      "weaponType": "sword",
-      "element": "glacio"
-    },
     "Iuno": {
       "icon": "/assets/images/wuwa/resonators/5/iuno.webp",
       "quality": 5,
@@ -171,8 +165,8 @@
     "Sigrika": {
       "icon": "/assets/images/wuwa/resonators/5/sigrika.webp",
       "quality": 5,
-      "element": "aero",
-      "weaponType": "gauntlets"
+      "weaponType": "gauntlets",
+      "element": "aero"
     },
     "Verina": {
       "icon": "/assets/images/wuwa/resonators/5/verina.webp",
@@ -330,11 +324,6 @@
     },
     "Everbright Polestar": {
       "icon": "/assets/images/wuwa/weapons/5/everbright-polestar.webp",
-      "quality": 5,
-      "weaponType": "sword"
-    },
-    "Frostburn": {
-      "icon": "/assets/images/wuwa/weapons/5/frostburn.webp",
       "quality": 5,
       "weaponType": "sword"
     },

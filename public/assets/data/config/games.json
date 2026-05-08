@@ -3,18 +3,60 @@
     "slug": "wuwa",
     "name": "Wuthering Waves",
     "description": "Open World Gacha Game",
-    "gacha-term": "convene",
+    "gachaTerm": "convene",
     "image": "",
     "website": "https://wutheringwaves.kurogames.com/en/main",
     "developer": "Kuro Games",
-    "item-types": [
-      { "name": "character", "label": "resonator", "rarity": ["5", "4"], "attrs": ["element", "weapon-type"] },
-      { "name": "weapon", "label": "weapon", "rarity": ["5", "4"], "attrs": ["weapon-type"] }
+    "itemTypes": [
+      {
+        "name": "characters",
+        "label": "Resonators",
+        "icon": "character",
+        "rarity": ["5", "4"],
+        "attrs": ["elements", "weapon-types"]
+      },
+      {
+        "name": "weapons",
+        "label": "Weapons",
+        "icon": "weapon",
+        "rarity": ["5", "4"],
+        "attrs": ["weapon-types"]
+      }
     ],
-    "attr-types": [
-      { "name": "element", "label": "element", "values": ["aero", "electro", "fusion", "glacio", "havoc", "spectro"] },
-      { "name": "weapon-type", "label": "weapon type", "values": ["broadblade", "gauntlets", "pistols", "rectifier", "sword"] }
+    "attrTypes": [
+      {
+        "name": "elements",
+        "label": "Elements",
+        "icon": "element",
+        "values": ["aero", "electro", "fusion", "glacio", "havoc", "spectro"]
+      },
+      {
+        "name": "weapon-types",
+        "label": "Weapon Types",
+        "icon": "weapon",
+        "values": ["broadblade", "gauntlets", "pistols", "rectifier", "sword"]
+      }
     ],
+    "collectionConfig": {
+      "characters": {
+        "countOffset": -1,
+        "countLabel": "S"
+      },
+      "weapons": {
+        "countOffset": 0,
+        "countLabel": "R"
+      }
+    },
+    "mappings": {
+      "characters": {
+        "matchedAs": "resonator",
+        "storedAs": "r"
+      },
+      "weapons": {
+        "matchedAs": "weapon",
+        "storedAs": "w"
+      }
+    },
     "rarities": {
       "5": {
         "text": "text-yellow-400",
@@ -46,19 +88,73 @@
     "slug": "endfield",
     "name": "Arknights: Endfield",
     "description": "Open World Gacha Game",
-    "gacha-term": "headhunt",
+    "gachaTerm": "headhunt",
     "image": "",
     "website": "https://endfield.gryphline.com/en-us",
     "developer": "Gryphline",
-    "item-types": [
-      { "name": "character", "label": "operator", "rarity": ["6", "5"], "attrs": ["element", "weapon-type", "class-type"] },
-      { "name": "weapon", "label": "weapon", "rarity": ["6", "5"], "attrs": ["weapon-type"] }
+    "itemTypes": [
+      {
+        "name": "characters",
+        "label": "operator",
+        "icon": "character",
+        "rarity": ["6", "5"],
+        "attrs": ["elements", "weapon-types", "classes"]
+      },
+      {
+        "name": "weapons",
+        "label": "weapon",
+        "icon": "weapon",
+        "rarity": ["6", "5"],
+        "attrs": ["weapon-types"]
+      }
     ],
-    "attr-types": [
-      { "name": "element", "label": "element", "values": ["cyro", "electric", "heat", "nature", "physical"] },
-      { "name": "weapon-type", "label": "weapon type", "values": ["arts unit", "greatsword", "handcannon", "polearm", "sword"] },
-      { "name": "class-type", "label": "class type", "values": ["caster", "defender", "guard", "striker", "supporter", "vanguard"] }
+    "attrTypes": [
+      {
+        "name": "elements",
+        "label": "Elements",
+        "icon": "element",
+        "values": ["cyro", "electric", "heat", "nature", "physical"]
+      },
+      {
+        "name": "weapon-types",
+        "label": "Weapon Types",
+        "icon": "weapon",
+        "values": ["arts unit", "greatsword", "handcannon", "polearm", "sword"]
+      },
+      {
+        "name": "classes",
+        "label": "Class Types",
+        "icon": "class",
+        "values": [
+          "caster",
+          "defender",
+          "guard",
+          "striker",
+          "supporter",
+          "vanguard"
+        ]
+      }
     ],
+    "collectionConfig": {
+      "characters": {
+        "countOffset": -1,
+        "countLabel": "P"
+      },
+      "weapons": {
+        "countOffset": 0,
+        "countLabel": "P"
+      }
+    },
+    "mappings": {
+      "characters": {
+        "matchedAs": "character",
+        "storedAs": "c"
+      },
+      "weapons": {
+        "matchedAs": "weapon",
+        "storedAs": "w"
+      }
+    },
     "rarities": {
       "6": {
         "text": "text-rose-400",

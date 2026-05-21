@@ -1,8 +1,7 @@
 import type { BannerTable } from '@/lib/db';
 import type { GenericBannerItem, StarItem, SummarizedBanner } from '@/shared/types';
-import { RESONATOR_IMAGE_PATH, WEAPON_IMAGE_PATH } from '@/shared/constants/game/paths';
 import { CategoryType } from '@/shared/types';
-import { toFileName } from '@/shared/utils';
+import { generateIconPath } from '@/shared/utils';
 
 export function processBannerForSummary(banner: BannerTable | null): SummarizedBanner | null {
   if (banner && banner.items.length > 0) {
@@ -20,8 +19,7 @@ export function processBannerForSummary(banner: BannerTable | null): SummarizedB
 
       else if (item.q === 5) {
         const pity = pity5_last_index === 0 ? idx - pity5_last_index + 1 : idx - pity5_last_index;
-        const icon_path = item.c === CategoryType.RESONATOR ? RESONATOR_IMAGE_PATH : WEAPON_IMAGE_PATH;
-        const icon = `${icon_path}/${item.q}/${toFileName(item.n)}.webp`;
+        const icon = generateIconPath(item.c === CategoryType.RESONATOR ? 'characters' : 'weapons', { name: item.n, quality: item.q.toString(), attributes: {} });
         summarizedBannerItems.push({
           name: item.n,
           pity,

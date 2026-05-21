@@ -1,8 +1,8 @@
 import type { BannerTable } from '@/lib/db';
 import type { ProcessedBanner, ProcessedBannerItem, StarItem } from '@/shared/types';
-import { IMAGE_PATH } from '@/shared/constants/game/paths';
 import { STANDARD_RESONATORS } from '@/shared/constants/game/resonators';
-import { toFileName } from '@/shared/utils';
+import { CategoryType } from '@/shared/types';
+import { generateIconPath } from '@/shared/utils';
 
 function parseResourceType(type: string | undefined) {
   if (type === 'Weapons' || type === 'w' || type === 'weapons')
@@ -41,8 +41,7 @@ export function processBannerForDetailed(banner: BannerTable | null): ProcessedB
         source: item.s || 'm',
       };
 
-      const icon_path = `${IMAGE_PATH}/${newItem.category}/${newItem.quality}/${toFileName(newItem.name)}.webp`;
-
+      const icon_path = generateIconPath(item.c === CategoryType.RESONATOR ? 'characters' : 'weapons', { name: item.n, quality: item.q.toString(), attributes: {} });
       if (newItem.quality === 4) {
         const pity = lastPity4Index === 0 ? idx - lastPity4Index + 1 : idx - lastPity4Index;
 

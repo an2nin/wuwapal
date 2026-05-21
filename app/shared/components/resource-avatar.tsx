@@ -1,5 +1,4 @@
-import { IMAGE_PATH } from '../constants/game/paths';
-import { cn } from '../utils';
+import { cn, generateIconPath } from '../utils';
 
 interface Props {
   item: {
@@ -11,6 +10,8 @@ interface Props {
 }
 
 export default function ResourceAvatar({ item, className }: Props) {
+  const icon = generateIconPath(item.type === 'resonators' ? 'characters' : 'weapons', { name: item.name, quality: item.quality.toString(), attributes: {} });
+
   return (
     <div
       className={cn(
@@ -26,7 +27,7 @@ export default function ResourceAvatar({ item, className }: Props) {
             'border-quality-4': item.quality === 4,
           },
         )}
-        src={`${IMAGE_PATH}/${item.type}/${item.quality}/${item.name}.webp`}
+        src={icon}
         alt={item.name}
       />
       {' '}

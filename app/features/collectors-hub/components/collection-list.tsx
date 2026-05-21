@@ -27,6 +27,9 @@ export default function CollectionList({ type, resources, collected }: Props) {
     }
 
     return resources.filter((resource) => {
+      const element = resource.attributes.elements;
+      const weaponType = resource.attributes.weaponTypes;
+
       // Search filter
       if (filters.searchQuery.trim()) {
         const query = filters.searchQuery.toLowerCase().trim();
@@ -36,23 +39,16 @@ export default function CollectionList({ type, resources, collected }: Props) {
       }
 
       // Element filter (for resonators)
-      if (type === 'resonator' && filters.selectedElementFilters.size > 0 && 'element' in resource) {
-        if (!filters.selectedElementFilters.has(resource.attributes.elements)) {
+      if (type === 'resonator' && filters.selectedElementFilters.size > 0) {
+        if (!element || !filters.selectedElementFilters.has(element)) {
           return false;
         }
       }
 
       // Weapon type filter
       if (filters.selectedWeaponTypeFilters.size > 0) {
-        if (type === 'resonator' && 'weapon' in resource) {
-          if (!filters.selectedWeaponTypeFilters.has(resource.attributes.weaponTypes)) {
-            return false;
-          }
-        }
-        else if (type === 'weapon' && 'type' in resource) {
-          if (!filters.selectedWeaponTypeFilters.has(resource.attributes.weaponTypes)) {
-            return false;
-          }
+        if (!weaponType || !filters.selectedWeaponTypeFilters.has(weaponType)) {
+          return false;
         }
       }
 

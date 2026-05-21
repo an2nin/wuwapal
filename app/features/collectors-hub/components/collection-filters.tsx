@@ -119,7 +119,7 @@ export default function CollectionFilters({ type, onFilterChange }: Props) {
                   type="button"
                   onClick={() => toggleElementFilter(element)}
                   className={cn(
-                    'relative flex items-center justify-center h-12 w-12 rounded-lg transition-all duration-200',
+                    'relative cursor-pointer flex items-center justify-center h-12 w-12 rounded-lg transition-all duration-200',
                     'border-2 shadow-sm',
                     isSelected
                       ? 'border-primary bg-primary/20 scale-105 shadow-md'
@@ -159,7 +159,7 @@ export default function CollectionFilters({ type, onFilterChange }: Props) {
                 type="button"
                 onClick={() => toggleWeaponTypeFilter(weaponType)}
                 className={cn(
-                  'relative flex items-center justify-center h-12 w-12 rounded-lg transition-all duration-200',
+                  'relative cursor-pointer flex items-center justify-center h-12 w-12 rounded-lg transition-all duration-200',
                   'border-2 shadow-sm',
                   isSelected
                     ? 'border-primary bg-primary/20 scale-105 shadow-md'

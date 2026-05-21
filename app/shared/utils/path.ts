@@ -15,7 +15,7 @@ export function toFileName(name: string): string {
 
 export function generateAttributeIconPath(attributeType: string, attribute: string) {
   const icon = toFileName(attribute);
-  return `${IMAGE_PATH}/${attributeType}/${icon}.webp`;
+  return `${IMAGE_PATH}/attributes/${attributeType}/${icon}.webp`;
 }
 
 export function generateIconPath(type: string, item: CollectionItem) {

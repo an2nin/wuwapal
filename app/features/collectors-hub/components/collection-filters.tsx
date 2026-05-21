@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Button } from '@/shared/components/ui/button';
 import { Input } from '@/shared/components/ui/input';
-import { ELEMENT_NAMES, ELEMENTS } from '@/shared/constants/game/elements';
-import { WEAPON_TYPE_NAMES, WEAPON_TYPES } from '@/shared/constants/game/weapon-types';
-import { cn } from '@/shared/utils';
+import { ELEMENT_NAMES } from '@/shared/constants/game/elements';
+import { WEAPON_TYPE_NAMES } from '@/shared/constants/game/weapon-types';
+import { cn, generateAttributeIconPath } from '@/shared/utils';
 
 type CollectionType = 'resonator' | 'weapon';
 
@@ -107,7 +107,7 @@ export default function CollectionFilters({ type, onFilterChange }: Props) {
         {type === 'resonator' && (
           <div className="flex flex-wrap gap-2">
             {Object.values(ELEMENT_NAMES).map((element) => {
-              const imageSrc = ELEMENTS[element]?.image;
+              const imageSrc = generateAttributeIconPath('elements', element);
               const isSelected = selectedElementFilters.has(element);
 
               if (!imageSrc)
@@ -147,7 +147,7 @@ export default function CollectionFilters({ type, onFilterChange }: Props) {
         {/* Weapon Type Filters */}
         <div className="flex flex-wrap gap-2">
           {Object.values(WEAPON_TYPE_NAMES).map((weaponType) => {
-            const imageSrc = WEAPON_TYPES[weaponType]?.image;
+            const imageSrc = generateAttributeIconPath('weapons', weaponType);
             const isSelected = selectedWeaponTypeFilters.has(weaponType);
 
             if (!imageSrc)

@@ -19,6 +19,7 @@ const CollectionDialogContext = createContext<DialogContextValue | null>(null);
 
 const getToday = () => new Date().toISOString().split('T')[0];
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useCollectionDialog() {
   const context = use(CollectionDialogContext);
   if (!context) {
@@ -31,7 +32,7 @@ export default function CollectionDialogProvider({ children }: PropsWithChildren
   const [selectedItem, setSelectedItem] = useState<SelectedItem | null>(null);
   const [open, setOpen] = useState(false);
   const [noteInput, setNoteInput] = useState('coral shop');
-  const [dateInput, setDateInput] = useState(getToday());
+  const [dateInput, setDateInput] = useState(() => getToday());
 
   const activeProfileId = useAccountStore(state => state.active);
   const addExternalCount = useExternalCollectionStore(state => state.addExternalCount);
@@ -41,9 +42,9 @@ export default function CollectionDialogProvider({ children }: PropsWithChildren
     if (!selectedItem)
       return null;
     const qualityText = `${selectedItem.resource.quality}★`;
-    const qualityClass = selectedItem.resource.quality >= 5
+    const qualityClass = selectedItem.resource.quality === '5'
       ? 'text-quality-5'
-      : selectedItem.resource.quality === 4
+      : selectedItem.resource.quality === '4'
         ? 'text-quality-4'
         : 'text-quality-3';
     if (selectedItem.type === 'resonator') {
@@ -52,8 +53,8 @@ export default function CollectionDialogProvider({ children }: PropsWithChildren
         typeLabel: 'Resonator',
         qualityText,
         qualityClass,
-        primary: resonator.element,
-        secondary: resonator.weapon,
+        primary: resonator.attributes.elements,
+        secondary: resonator.attributes.weaponTypes,
       };
     }
     const weapon = selectedItem.resource;
@@ -61,7 +62,7 @@ export default function CollectionDialogProvider({ children }: PropsWithChildren
       typeLabel: 'Weapon',
       qualityText,
       qualityClass,
-      primary: weapon.type,
+      primary: weapon.attributes.weaponTypes,
       secondary: null,
     };
   }, [selectedItem]);

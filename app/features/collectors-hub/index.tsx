@@ -1,8 +1,7 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
+import type { CollectionData } from '@/shared/types/collection';
 import { useMemo, useState } from 'react';
-import { getGachaItemsResources } from '@/features/collectors-hub/api/get-gacha-items';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui/tabs';
 import useIndexDB from '@/shared/hooks/use-index-db';
 import { useAccountStore } from '@/shared/stores/account';
@@ -19,22 +18,13 @@ function isValidTab(value: string): value is CollectionTab {
   return COLLECTION_TABS.includes(value as CollectionTab);
 }
 
-/**
- * CollectorsHub - Main component for managing and viewing game collections
- *
- * Features:
- * - View resonator and weapon collections
- * - Merge data from banners and external sources
- * - Tab-based navigation between collection types
- */
-export default function CollectorsHub() {
+interface Props {
+  data: CollectionData;
+}
+
+export default function CollectorsHub({ data }: Props) {
   const activeProfileId = useAccountStore(state => state.active);
   const { banners } = useIndexDB(activeProfileId);
-  const { data: remoteResources } = useQuery({
-    queryKey: ['collectors-hub', 'wuwa-gacha-items'],
-    queryFn: getGachaItemsResources,
-    staleTime: 1000 * 60 * 30,
-  });
   const externalCollection = useExternalCollectionStore(state =>
     state.getCollectionForProfile(activeProfileId),
   );
@@ -82,7 +72,7 @@ export default function CollectorsHub() {
           >
             <CollectionList
               type="resonator"
-              resources={remoteResources?.resonators ?? {}}
+              resources={data?.characters ?? {}}
               collected={mergedCollections.resonators}
             />
           </TabsContent>
@@ -93,7 +83,7 @@ export default function CollectorsHub() {
           >
             <CollectionList
               type="weapon"
-              resources={remoteResources?.weapons ?? {}}
+              resources={data?.weapons ?? {}}
               collected={mergedCollections.weapons}
             />
           </TabsContent>

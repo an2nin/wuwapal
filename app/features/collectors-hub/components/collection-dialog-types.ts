@@ -1,4 +1,4 @@
-import type { Resonator, Weapon } from '@/features/collectors-hub/types';
+import type { CollectionItem } from '@/shared/types';
 
 export type CollectionType = 'resonator' | 'weapon';
 
@@ -7,21 +7,15 @@ export interface CollectionEntry {
   note: string;
 }
 
-export type SelectedItem
-  = | {
-    type: 'resonator';
-    name: string;
-    resource: Resonator;
-    count: number;
-    entries: CollectionEntry[];
-  }
-  | {
-    type: 'weapon';
-    name: string;
-    resource: Weapon;
-    count: number;
-    entries: CollectionEntry[];
-  };
+export interface SelectedItem {
+  type: 'resonator' | 'weapon';
+  name: string;
+  resource: CollectionItem;
+  image: string;
+  count: number;
+  entries: CollectionEntry[];
+}
+;
 
 export interface CollectionDetails {
   typeLabel: 'Resonator' | 'Weapon';

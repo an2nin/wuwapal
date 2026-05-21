@@ -82,7 +82,7 @@ export default function CollectionDialog({
                 <div className="relative w-full sm:w-44 h-44 sm:h-44 rounded-xl overflow-hidden border border-border/50 bg-card/50 shadow-xl ring-1 ring-inset ring-white/5 group">
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <img
-                    src={selectedItem.resource.image}
+                    src={selectedItem.image}
                     alt={selectedItem.name}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                   />

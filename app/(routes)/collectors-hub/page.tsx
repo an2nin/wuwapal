@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import CollectorsHub from '@/features/collectors-hub';
+import { getCollectionData } from '@/features/collectors-hub/api/get-gacha-items';
 import PageHeader from '@/shared/components/page-header';
 
 export async function generateMetadata(
@@ -32,11 +33,13 @@ export async function generateMetadata(
   };
 }
 
-export default function CollectorsHubPage() {
+export default async function CollectorsHubPage() {
+  const collectionData = await getCollectionData();
+
   return (
     <div>
       <PageHeader title="Collectors Hub" />
-      <CollectorsHub />
+      <CollectorsHub data={collectionData} />
     </div>
   );
 }

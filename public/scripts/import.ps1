@@ -2,11 +2,11 @@
  🌊═══════════════════════════════════════════════════════════════════════════════🌊
                            🌟 WuWaPal Convene Extractor 🌟
  🌊═══════════════════════════════════════════════════════════════════════════════🌊
- 
+
    Unlock and export your Wuthering Waves Convene (gacha) history URL.
    This script searches for your game installation, reads the client log,
    and copies the Convene Record URL so you can import it into WuWaPal.
- 
+
    🎯 MAIN FEATURES
      • Scans registry hints (MuiCache, firewall rules, uninstall entries)
      • Searches common install paths across all available drives
@@ -15,298 +15,219 @@
      • Shows the exact log file path used for extraction
      • Copies the found URL directly to your clipboard
      • Offers a manual path input flow if automatic detection fails
- 
+
    🛠 SAFETY & REPAIR HELPERS
      • Detects and offers to fix Engine.ini when logging is disabled
      • Detects and can remove deny ACLs that block reading Client.log
      • Suggests relaunching as Administrator when access is limited
- 
+
    ⚠️ REQUIREMENTS / TIPS
      • Open the in‑game Convene History screen before running the script
      • Disable third‑party tools that might tamper with logs
- 
+
    🆘 Need help? Join our community: https://discord.gg/DFKG4nqUD4
- 
+
  🌊═══════════════════════════════════════════════════════════════════════════════🌊
    💡 Inspired by Luzefiru's wuwa gacha URL extraction work
    ❤️ Created by an2nin (Antonin) for the WuWaPal community
  🌊═══════════════════════════════════════════════════════════════════════════════🌊
  #>
 
-Set-StrictMode -Version Latest
-$ErrorActionPreference = 'SilentlyContinue'
+Add-Type -AssemblyName System.Web
 
-# Tracks which log file produced the final Convene URL (for user visibility)
-$script:LastLogSource = $null
+# Define registry paths to search
+$registryPaths = @(
+    "Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*",
+    "Registry::HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*"
+)
 
-function Write-Info([string]$msg)  { Write-Host $msg -ForegroundColor Cyan }
-function Write-Warn([string]$msg)  { Write-Host $msg -ForegroundColor Yellow }
-function Write-Err ([string]$msg)  { Write-Host $msg -ForegroundColor Red }
+# Attempt to find the game installation path automatically
+Write-Host "`n`nAttempting to locate the game installation directory..." -ForegroundColor Yellow
+$gamePath = $null
+$gachaLogPathExists = $false
 
-$isAdmin = ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]::Administrator)
-Write-Host ("Running as {0}" -f (if ($isAdmin) { "Administrator" } else { "Standard User" })) -ForegroundColor Magenta
+function Decrypt-ClientLog {
+    param (
+        [byte[]]$Data
+    )
 
-function Prompt-YesNo([string]$prompt, [bool]$defaultYes = $false) {
-    $suffix = if ($defaultYes) { "[Y/n]" } else { "[y/N]" }
-    $answer = Read-Host "$prompt $suffix"
-    if ([string]::IsNullOrWhiteSpace($answer)) { return $defaultYes }
-    return $answer.Trim().ToLower() -eq 'y'
-}
+    $result = New-Object byte[] $Data.Length
 
-function Remove-DenyAcls([string]$filePath) {
-    if (-not (Test-Path $filePath)) { return }
-    try {
-        $acl = Get-Acl -Path $filePath
-        $denyRules = $acl.Access | Where-Object { $_.AccessControlType -eq 'Deny' -and $_.FileSystemRights -match 'Read' }
-        if (-not $denyRules) { return }
+    for ($i = 0; $i -lt $Data.Length; $i++) {
+        $b = $Data[$i]
 
-        Write-Warn "Found $($denyRules.Count) deny ACE(s) on $filePath"
-        if (-not (Prompt-YesNo "Remove these deny ACEs and repair permissions?" $true)) { return }
-
-        foreach ($rule in $denyRules) {
-            $id = $rule.IdentityReference.Value
-            try {
-                if ($id -match '^S-\d-\d+-(\d+-){1,}\d+$') {
-                    $sid = New-Object System.Security.Principal.SecurityIdentifier($id)
-                    $id = $sid.Translate([System.Security.Principal.NTAccount]).Value
-                }
-            } catch { }
-
-            $cmd = "icacls `"$filePath`" /remove:d `"$id`" /C"
-            cmd.exe /c $cmd | Out-Null
+        if ((($b -band 0x0F) % 2) -eq 1) {
+            $result[$i] = $b -bxor 0xA5
         }
+        else {
+            $result[$i] = $b -bxor 0xEF
+        }
+    }
 
-        takeown /F "$filePath" | Out-Null
-        icacls "$filePath" /grant Administrators:F /C | Out-Null
-        Write-Info "Repaired permissions for $filePath"
-    }
-    catch {
-        Write-Warn ("ACL inspection failed for {0}: {1}" -f $filePath, $_)
-    }
+    return $result
 }
 
-function Fix-EngineIniIfLoggingOff([string]$iniPath) {
-    if (-not (Test-Path $iniPath)) { return $false }
+function Read-SharedFileBytes {
+    param (
+        [string]$Path
+    )
+
+    $stream = $null
+
     try {
-        $content = Get-Content $iniPath -Raw
-        if ($content -notmatch '\[Core\.Log\][\r\n]+Global=(off|none)') { return $false }
+        $stream = [System.IO.File]::Open(
+            $Path,
+            [System.IO.FileMode]::Open,
+            [System.IO.FileAccess]::Read,
+            [System.IO.FileShare]::ReadWrite
+        )
 
-        Write-Err "Logging disabled in Engine.ini at $iniPath"
-        Write-Warn "We can remove the [Core.Log] section to re-enable logging. A backup will be created."
-        if (-not $isAdmin) { Write-Warn "Editing Program Files may need elevation." }
-        if (-not (Prompt-YesNo "Proceed with fixing Engine.ini?")) { return $true }
-
-        $backup = "$iniPath.backup"
-        Copy-Item $iniPath $backup -Force
-        Write-Info "Backup saved to $backup"
-
-        $fixed = $content -replace '\[Core\.Log\][^\[]*', ''
-        Set-Content -Path $iniPath -Value $fixed
-        Write-Info "Logging re-enabled. Restart the game and open Convene History before retrying."
-        return $true
+        $memoryStream = New-Object System.IO.MemoryStream
+        $stream.CopyTo($memoryStream)
+        return $memoryStream.ToArray()
     }
-    catch {
-        Write-Warn "Could not modify Engine.ini: $_"
-        return $false
+    finally {
+        if ($stream) {
+            $stream.Dispose()
+        }
     }
 }
 
-function Get-UrlFromLogs([string]$root) {
-    $clientLog = Join-Path $root "Client\Saved\Logs\Client.log"
-    $engineIni = Join-Path $root "Client\Saved\Config\WindowsNoEditor\Engine.ini"
-
-    $logSeen = $false
-
-    if (Fix-EngineIniIfLoggingOff $engineIni) {
-        # user will rerun; stop further processing for this path
-        return $null, $true
-    }
-
-    if (Test-Path $clientLog) {
-        $logSeen = $true
-        Remove-DenyAcls $clientLog
-        $match = Select-String -Path $clientLog -Pattern "https://aki-gm-resources(-oversea)?\.aki-game\.(net|com)/aki/gacha/index\.html#/record[^`"]*" | Select-Object -Last 1
-        if ($match) {
-            $url = ($match.Line -replace '.*?(https://aki-gm-resources(-oversea)?\.aki-game\.(net|com)/aki/gacha/index\.html#/record[^`"]*).*', '$1')
-            if ($url) {
-                $script:LastLogSource = $clientLog
-                return $url, $true
+# Search registry entries for game installation path
+foreach ($regPath in $registryPaths) {
+    try {
+        $installedEntry = Get-ItemProperty -Path $regPath | Where-Object { $_.DisplayName -like "*wuthering*" }
+        if ($installedEntry) {
+            $gamePath = $installedEntry.InstallPath
+            if (Test-Path ($gamePath + '\Client\Saved\Logs\Client.log')) {
+                $gachaLogPathExists = $true
+                break
             }
         }
     }
-
-    return $null, $logSeen
+    catch {
+        # Continue searching other registry paths
+    }
 }
 
-function Check-GameFolder([string]$path, [ref]$errors) {
-    if ($path -like "*OneDrive*") {
-        $errors.Value += "Skipped OneDrive path: $path`n"
-        return $null, $false
+# Search MUI cache for game installation path
+if (!$gachaLogPathExists) {
+    $muiCachePath = "Registry::HKEY_CURRENT_USER\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\MuiCache"
+    $filteredEntries = (Get-ItemProperty -Path $muiCachePath).PSObject.Properties | Where-Object { $_.Value -like "*wuthering*" } | Where-Object { $_.Name -like "*client-win64-shipping.exe*" }
+    if ($filteredEntries.Count -ne 0) {
+        $gamePath = ($filteredEntries[0].Name -split '\\client\\')[0]
+        if (Test-Path ($gamePath + '\Client\Saved\Logs\Client.log')) {
+            $gachaLogPathExists = $true
+        }
     }
-    if (-not (Test-Path $path)) {
-        $errors.Value += "No installation at $path`n"
-        return $null, $false
+}
+
+# Search firewall rules for game installation path
+if (!$gachaLogPathExists) {
+    $firewallPath = "Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules"
+    $filteredEntries = (Get-ItemProperty -Path $firewallPath).PSObject.Properties | Where-Object { $_.Value -like "*wuthering*" } | Where-Object { $_.Name -like "*client-win64-shipping*" }
+    if ($filteredEntries.Count -ne 0) {
+        $gamePath = (($filteredEntries[0].Value -split 'App=')[1] -split '\\client\\')[0]
+        if (Test-Path ($gamePath + '\Client\Saved\Logs\Client.log')) {
+            $gachaLogPathExists = $true
+        }
     }
+}
 
-    Write-Info "Checking $path"
-    $url, $logsPresent = Get-UrlFromLogs $path
+# Search common installation paths
+if (!$gachaLogPathExists) {
+    $diskLetters = (Get-PSDrive).Name -match '^[a-z]$'
+    foreach ($diskLetter in $diskLetters) {
+        $commonPaths = @(
+            "$diskLetter`:\Wuthering Waves Game",
+            "$diskLetter`:\Wuthering Waves\Wuthering Waves Game",
+            "$diskLetter`:\Program Files\Epic Games\WutheringWavesj3oFh\Wuthering Waves Game",
+            "$diskLetter`:\SteamLibrary\steamapps\common\Wuthering Waves"
+        )
 
-    if ($url) {
-        return $url, $true
+        foreach ($path in $commonPaths) {
+            if (Test-Path ($path + '\Client\Saved\Logs\Client.log')) {
+                $gamePath = $path
+                $gachaLogPathExists = $true
+                break
+            }
+        }
+
+        if ($gachaLogPathExists) {
+            break
+        }
     }
+}
 
-    if ($logsPresent) {
-        $errors.Value += "Logs present at $path but no URL. Open Convene History and retry.`n"
+# Prompt user for manual input if game installation path not found
+while (!$gachaLogPathExists) {
+    Write-Host "Game installation directory not found or log files missing. Please enter the game installation path or join our Discord server for assistance: https://discord.gg/DFKG4nqUD4"
+    Write-Host "Common installation paths:" -ForegroundColor Yellow
+    Write-Host "  C:\Wuthering Waves"
+    Write-Host "  C:\Wuthering Waves\Wuthering Waves Game"
+    Write-Host "  C:\Program Files\Epic Games\WutheringWavesj3oFh"
+    $manualPath = Read-Host "Path"
+
+    if ($manualPath) {
+        $gamePath = $manualPath
+        if (Test-Path ($gamePath + '\Client\Saved\Logs\Client.log')) {
+            $gachaLogPathExists = $true
+        }
+        else {
+            Write-Host "Could not find log files in the specified path. Please try again or join our Discord server for assistance." -ForegroundColor Red
+        }
     }
     else {
-        $errors.Value += "No logs found at $path`n"
+        Write-Host "Invalid path entered. Please try again or join our Discord server for assistance." -ForegroundColor Red
     }
-
-    return $null, $false
 }
 
-function Scan-KnownPaths([ref]$errors) {
-    $driveLetters = (Get-PSDrive -PSProvider FileSystem | Select-Object -ExpandProperty Name)
-    $roots = @()
-    foreach ($letter in $driveLetters) {
-        $roots += @(
-            "$letter`:\SteamLibrary\steamapps\common\Wuthering Waves",
-            "$letter`:\SteamLibrary\steamapps\common\Wuthering Waves\Wuthering Waves Game",
-            "$letter`:\Program Files (x86)\Steam\steamapps\common\Wuthering Waves",
-            "$letter`:\Program Files (x86)\Steam\steamapps\common\Wuthering Waves\Wuthering Waves Game",
-            "$letter`:\Program Files\Steam\steamapps\common\Wuthering Waves",
-            "$letter`:\Program Files\Steam\steamapps\common\Wuthering Waves\Wuthering Waves Game",
-            "$letter`:\Program Files\Epic Games\WutheringWavesj3oFh",
-            "$letter`:\Program Files\Epic Games\WutheringWavesj3oFh\Wuthering Waves Game",
-            "$letter`:\Program Files (x86)\Epic Games\WutheringWavesj3oFh",
-            "$letter`:\Program Files (x86)\Epic Games\WutheringWavesj3oFh\Wuthering Waves Game",
-            "$letter`:\Wuthering Waves",
-            "$letter`:\Wuthering Waves Game",
-            "$letter`:\Games\Wuthering Waves",
-            "$letter`:\Games\Wuthering Waves Game"
-        )
-    }
+# Define log file paths
+$gachaLogPath = $gamePath + '\Client\Saved\Logs\Client.log'
 
-    foreach ($p in $roots) {
-        $url, $ok = Check-GameFolder $p ([ref]$errors.Value)
-        if ($url) { return $url }
-    }
-    return $null
-}
+# Search for Convene History URL in log files
+$gachaUrlEntry = $null
 
-function Scan-RegistryMuiCache([ref]$errors) {
-    $path = "Registry::HKEY_CURRENT_USER\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\MuiCache"
+if (Test-Path $gachaLogPath) {
     try {
-        $entries = (Get-ItemProperty -Path $path -ErrorAction SilentlyContinue).PSObject.Properties |
-                   Where-Object { $_.Value -like "*wuthering*" -and $_.Name -like "*client-win64-shipping.exe*" }
-        foreach ($entry in $entries) {
-            $candidate = ($entry.Name -split '\\client\\')[0]
-            $url, $ok = Check-GameFolder $candidate ([ref]$errors.Value)
-            if ($url) { return $url }
-        }
+        $encryptedBytes = Read-SharedFileBytes $gachaLogPath
+        $decryptedBytes = Decrypt-ClientLog $encryptedBytes
     }
     catch {
-        $errors.Value += "MuiCache access failed: $_`n"
+        Write-Host "`nUnable to read the log file while the game is running. Close the game and try again, or rerun after the log is flushed." -ForegroundColor Red
+        $decryptedBytes = $null
     }
-    return $null
-}
 
-function Scan-RegistryFirewall([ref]$errors) {
-    $path = "Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules"
-    try {
-        $entries = (Get-ItemProperty -Path $path -ErrorAction SilentlyContinue).PSObject.Properties |
-                   Where-Object { $_.Value -like "*wuthering*" -and $_.Name -like "*client-win64-shipping*" }
-        foreach ($entry in $entries) {
-            $candidate = (($entry.Value -split 'App=')[1] -split '\\client\\')[0]
-            $url, $ok = Check-GameFolder $candidate ([ref]$errors.Value)
-            if ($url) { return $url }
-        }
-    }
-    catch {
-        $errors.Value += "Firewall registry access failed: $_`n"
-    }
-    return $null
-}
+    if ($decryptedBytes) {
+        $text = [System.Text.Encoding]::UTF8.GetString($decryptedBytes)
 
-function Scan-RegistryUninstall([ref]$errors) {
-    $paths = @(
-        "Registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*",
-        "Registry::HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*"
-    )
-    try {
-        $installPaths = Get-ItemProperty -Path $paths |
-            Where-Object { $_.DisplayName -like "*wuthering*" } |
-            Select-Object -ExpandProperty InstallPath -ErrorAction SilentlyContinue
-        foreach ($candidate in $installPaths) {
-            $url, $ok = Check-GameFolder $candidate ([ref]$errors.Value)
-            if ($url) { return $url }
-        }
-    }
-    catch {
-        $errors.Value += "Uninstall registry access failed: $_`n"
-    }
-    return $null
-}
-
-function Prompt-Manual([ref]$errors) {
-    while ($true) {
-        Write-Warn "Automatic detection failed."
-        $path = Read-Host "Enter the game install path (or type 'exit' to quit)"
-        if ([string]::IsNullOrWhiteSpace($path)) { continue }
-        if ($path.Trim().ToLower() -eq 'exit') { break }
-
-        $url, $ok = Check-GameFolder $path ([ref]$errors.Value)
-        if ($url) { return $url }
-    }
-    return $null
-}
-
-$errorLog = ""
-
-Write-Info "Searching registry hints..."
-$url = Scan-RegistryMuiCache ([ref]$errorLog)
-if (-not $url) { $url = Scan-RegistryFirewall ([ref]$errorLog) }
-if (-not $url) { $url = Scan-RegistryUninstall ([ref]$errorLog) }
-
-if (-not $url) {
-    Write-Info "Scanning common install paths across available drives..."
-    $url = Scan-KnownPaths ([ref]$errorLog)
-}
-
-if (-not $url -and -not $isAdmin) {
-    Write-Warn "Some folders might require admin rights to read."
-    if (Prompt-YesNo "Relaunch with elevation and retry?") {
-        $cmd = '-NoProfile -Command "iwr -UseBasicParsing https://wuwapal.com/scripts/import.ps1 | iex"'
-        Start-Process powershell.exe -ArgumentList $cmd -Verb RunAs
-        exit
+        $gachaUrlEntry = [regex]::Matches(
+            $text,
+            'https://aki-gm-resources-oversea\.aki-game\.(?:net|com)[^\s"<>]+'
+        ) |
+            Select-Object -Last 1
     }
 }
 
-if (-not $url) {
-    Write-Info $errorLog
-    $url = Prompt-Manual ([ref]$errorLog)
+# Determine which URL to use and copy to clipboard
+if ($gachaUrlEntry) {
+    $urlToCopy = $gachaUrlEntry.Value
+
+    if ([string]::IsNullOrWhiteSpace($urlToCopy)) {
+        Write-Host "`nConvene History URL not found in the log files. Please ensure that Convene History is open in game" -ForegroundColor Red
+    }
+    else {
+        Write-Host "`nThe Convene History URL was found inside the game's log file:"
+        Write-Host "$gachaLogPath" -ForegroundColor Cyan
+
+        Write-Host "`nConvene History URL:"
+        Write-Host "$urlToCopy" -ForegroundColor Cyan
+        Set-Clipboard $urlToCopy
+        Write-Host "`nURL copied to clipboard. You can now paste it into https://wuwapal.com/convene/import and click the 'Import' button." -ForegroundColor Green
+    }
+}
+else {
+    Write-Host "`nConvene History URL not found in the log files. Please ensure that Convene History is open in game." -ForegroundColor Red
 }
 
-if ($url) {
-    Write-Host "`nConvene Record URL:" -ForegroundColor Green
-    Write-Host $url
-    if ($script:LastLogSource) {
-        Write-Info ("Source log file: {0}" -f $script:LastLogSource)
-    }
-    try {
-        Set-Clipboard $url
-        Write-Info "URL copied to clipboard. Paste into your importer."
-    }
-    catch {
-        Write-Warn "Could not copy to clipboard: $_"
-    }
-    Write-Host "Press any key to close..."
-    $null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
-    exit
-}
-
-Write-Err "Unable to locate the Convene History URL."
-Write-Info $errorLog
-Write-Info "Open the in-game Convene History, then rerun this script."
-Write-Host "Press any key to close..."
-$null = $Host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
+Write-Host "`n"

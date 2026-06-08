@@ -1,5 +1,9 @@
 export const CHANGELOGS = [
   {
+    date: '2026-06-08',
+    changes: ['Adds 3.4 characters, weapons and banners'],
+  },
+  {
     date: '2025-12-25',
     changes: ['Adds 3.0 characters and weapons', 'Adds open-source related files', 'Adds hall of pals'],
   },

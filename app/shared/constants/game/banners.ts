@@ -57,6 +57,26 @@ export const REGULAR_BANNERS: BannerInfoList = {
     icon: SwordsIcon,
     rate: 0.8,
   },
+  cp_collab_resonator: {
+    id: 10,
+    name: 'Collab Resonator',
+    store_id: 'cp_collab_resonator',
+    image: `${IMAGE_PATH}/banners/featured-resonator.webp`,
+    currency: 'lustrous_tide',
+    duration: 'limited',
+    icon: VenetianMaskIcon,
+    rate: 0.8,
+  },
+  cp_collab_weapon: {
+    id: 11,
+    name: 'Collab Weapon',
+    store_id: 'cp_collab_weapon',
+    image: `${IMAGE_PATH}/banners/featured-weapon.webp`,
+    currency: 'lustrous_tide',
+    duration: 'limited',
+    icon: SwordsIcon,
+    rate: 0.8,
+  },
 };
 
 export const SPECIAL_BANNERS: BannerInfoList = {

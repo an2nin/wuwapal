@@ -54,7 +54,7 @@ export default function TrackMyPullsCard() {
               {' '}
               <a
                 className="underline text-primary hover:text-primary/70 font-semibold"
-                href="https://trackmypulls.com/en/wuwa/tracker/import?platform=websites"
+                href="https://trackmypulls.com/en/wuwa/tracker/import?platform=web_export"
                 target="_blank"
                 rel="noopener"
               >

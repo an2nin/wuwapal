@@ -4,6 +4,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import NextTopLoader from 'nextjs-toploader';
+import { useState } from 'react';
 import BannerFixer from '@/lib/banner-fixer';
 import { env } from '@/lib/env';
 import PullConverter from '@/lib/pull-converter';
@@ -11,11 +12,16 @@ import Footer from '@/shared/components/layout/footer';
 import Header from '@/shared/components/layout/header';
 import { Toaster } from '@/shared/components/ui/sonner';
 
-export default function MainLayout({ children }: { children: React.ReactNode }) {
-  const queryClient = new QueryClient();
+interface Props {
+  children: React.ReactNode;
+  fontClassName?: string;
+}
+
+export default function MainLayout({ children, fontClassName }: Props) {
+  const [queryClient] = useState(() => new QueryClient());
 
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className={`dark ${fontClassName ?? ''}`}>
       <head>
         <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

@@ -26,7 +26,11 @@
   --destructive-foreground: hsl(0 0% 95%);
   --border: hsl(218 12.42% 30%);
   --input: #363636;
-  --ring: hsl(0, 0%, 3%);
+  --ring: hsl(346.8 77.2% 49.8%);
+  --success: hsl(142 70% 45%);
+  --success-foreground: hsl(144 80% 96%);
+  --warning: hsl(45 93% 55%);
+  --warning-foreground: hsl(40 90% 10%);
   --chart-1: hsl(220 70% 50%);
   --chart-2: hsl(160 60% 45%);
   --chart-3: hsl(30 80% 55%);
@@ -45,6 +49,7 @@
 }
 
 @theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --color-navbar: var(--navbar);
 
   --color-background: var(--background);
@@ -66,6 +71,10 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -80,12 +89,6 @@
   --color-quality-4: var(--quality-4);
   --color-quality-5: var(--quality-5);
 
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-
   --color-sidebar-background: var(--sidebar-background);
   --color-header-background: var(--header-background);
   --transition-speed: 600ms;
@@ -98,21 +101,9 @@
   body {
     @apply bg-background text-foreground;
   }
-}
-
-.overlay-no-pull-found {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.75);
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  pointer-events: auto;
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
 }
 
 .bg-pattern-stripped {

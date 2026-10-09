@@ -1,11 +1,13 @@
 import AccountManager from '@/features/account-manager';
 import AdvancedSettings from '@/features/advanced-settings';
 import Backups from '@/features/backups';
+import PageHeader from '@/shared/components/page-header';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/shared/components/ui/tabs';
 
 export default function SettingPage() {
   return (
     <div>
+      <PageHeader title="Settings" />
       <Tabs defaultValue="basic">
         <TabsList className="mb-6">
           <TabsTrigger value="basic">Basic</TabsTrigger>

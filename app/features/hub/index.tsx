@@ -5,7 +5,7 @@ import Welcome from './components/welcome';
 
 export default function Hub() {
   return (
-    <div className="flex flex-col items-start justify-center lg:gap-6 gap-4">
+    <div className="flex flex-col justify-center lg:gap-6 gap-4">
       <h1 className="scroll-m-20 text-3xl font-bold tracking-tight lg:text-4xl">
         Welcome to WuWaPal
         <span className="text-primary text-lg">.com</span>
@@ -18,7 +18,7 @@ export default function Hub() {
           <SocialLinks />
         </div>
       </div>
-      <div className="grid lg:grid-cols-4 grid-cols-1 gap-5">
+      <div className="grid lg:grid-cols-4 grid-cols-1 lg:gap-6 gap-4">
         <div className="lg:col-span-2">
           <CurrentBanner />
         </div>

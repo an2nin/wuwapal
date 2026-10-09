@@ -3,13 +3,13 @@ function getColorClass(pity: number, max: number) {
   const yellowThreshold = max * 0.75; // Next 37.5% of the range
 
   if (pity >= 1 && pity <= greenThreshold) {
-    return 'text-green-500';
+    return 'text-success';
   }
   else if (pity > greenThreshold && pity <= yellowThreshold) {
-    return 'text-yellow-500';
+    return 'text-warning';
   }
   else {
-    return 'text-red-500';
+    return 'text-destructive';
   }
 }
 

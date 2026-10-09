@@ -21,7 +21,7 @@ const Tooltip: React.FC<TooltipProps> = ({ visible, x, y, data, percentage }) =>
 
   return (
     <div
-      className="absolute z-10 bg-white rounded-lg shadow-xl border border-gray-200 p-3 pointer-events-none transform -translate-x-1/2 -translate-y-full"
+      className="absolute z-10 bg-popover text-popover-foreground rounded-lg shadow-xl border p-3 pointer-events-none transform -translate-x-1/2 -translate-y-full"
       style={{ left: x, top: y - 10 }}
     >
       <div className="flex items-center gap-2 mb-1">
@@ -29,9 +29,9 @@ const Tooltip: React.FC<TooltipProps> = ({ visible, x, y, data, percentage }) =>
           className="w-3 h-3 rounded-full"
           style={{ backgroundColor: data.color }}
         />
-        <span className="font-semibold text-gray-800">{data.label}</span>
+        <span className="font-semibold">{data.label}</span>
       </div>
-      <div className="text-sm text-gray-600">
+      <div className="text-sm text-muted-foreground">
         <div>
           Total:
           {data.value.toLocaleString()}
@@ -169,7 +169,7 @@ export default function PieChart({ data }: Props) {
               key={index}
               d={createPath(startAngle, endAngle, isHovered)}
               fill={isHovered ? item.hoverColor : item.color}
-              stroke="white"
+              stroke="var(--card)"
               strokeWidth="3"
               className="transition-all duration-300 ease-out cursor-pointer"
               style={{ filter: 'url(#shadow)' }}

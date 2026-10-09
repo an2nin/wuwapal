@@ -48,8 +48,8 @@ export default function PullConverter() {
           </AlertDialogDescription>
         </AlertDialogHeader>
         {isConverting
-          ? (<div className="animate-pulse text-lg text-center text-yellow-400">Please Wait ...</div>)
-          : (<div className="text-center text-lg text-green-400">Conversion Complete!</div>)}
+          ? (<div className="animate-pulse text-lg text-center text-warning">Please Wait ...</div>)
+          : (<div className="text-center text-lg text-success">Conversion Complete!</div>)}
         <AlertDialogFooter>
           <AlertDialogAction disabled={isConverting}>Close & Reload</AlertDialogAction>
         </AlertDialogFooter>

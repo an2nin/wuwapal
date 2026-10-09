@@ -159,7 +159,7 @@ export default function IOSMethodList({ setConveneRecordURL }: Props) {
             index={19}
           >
             <Textarea
-              className={`${!isRecordJsonInputValid && 'border-red-500'}`}
+              className={`${!isRecordJsonInputValid && 'border-destructive'}`}
               value={recordJson}
               onChange={handleRecordJsonChange}
             />

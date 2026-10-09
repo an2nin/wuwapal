@@ -75,6 +75,7 @@ export default function PCMethodList({
               index={inputSrNum}
             >
               <Input
+                aria-label="Convene record URL"
                 placeholder="Paste the text here"
                 value={conveneRecordURL}
                 onChange={handleRecordURLChange}

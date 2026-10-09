@@ -37,7 +37,7 @@ export default function AccountManager() {
         <CardHeader>
           <CardTitle className="flex gap-2 items-center text-lg">
             <User className="w-5 h-5 text-primary" />
-            <span className="text-xl font-semibold text-white">
+            <span className="text-xl font-semibold text-foreground">
               Account Manager
             </span>
           </CardTitle>

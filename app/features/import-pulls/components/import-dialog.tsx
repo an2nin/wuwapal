@@ -41,7 +41,7 @@ export default function ImportDialog({
           ? (
               <div className="flex flex-col gap-3 justify-center my-2">
                 <div className="text-center text-muted-foreground">
-                  <div className="text-red-500 font-bold text-2xl mb-2">
+                  <div className="text-destructive font-bold text-2xl mb-2">
                     ⚠️ Error fetching Convene data! ⚠️
                   </div>
                   {progress === 200
@@ -119,7 +119,7 @@ export default function ImportDialog({
               <div className="flex flex-col gap-3 justify-center my-2">
                 <Progress value={(progress / totalBanners) * 100} />
                 {isAllBannerFetched && (
-                  <div className="text-green-500 text-center">
+                  <div className="text-success text-center">
                     All Banners imported successfully
                   </div>
                 )}

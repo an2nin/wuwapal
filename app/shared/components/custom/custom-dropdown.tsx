@@ -67,7 +67,7 @@ export default function CustomDropdown({
       {/* Trigger Button */}
       <button
         type="button"
-        className="group relative inline-flex items-center justify-between min-w-[200px] p-3 rounded-xl transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
+        className="group relative inline-flex items-center justify-between min-w-[200px] p-3 rounded-xl transition-all duration-300 ease-out focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1"
       >
         <div className="flex items-center">
           <ThemedGradientText className="lg:text-3xl text-2xl hover:cursor-pointer animate-pulse">
@@ -75,7 +75,7 @@ export default function CustomDropdown({
           </ThemedGradientText>
         </div>
         <ChevronDown
-          className={`w-5 h-5 ml-3 text-white transition-transform duration-300 ${isOpen ? 'rotate-180' : ''} group-hover:text-white`}
+          className={`w-5 h-5 ml-3 text-foreground transition-transform duration-300 ${isOpen ? 'rotate-180' : ''} group-hover:text-foreground`}
         />
       </button>
 
@@ -95,8 +95,8 @@ export default function CustomDropdown({
                 onClick={() => handleSelect(option.id)}
                 className={`w-full px-6 py-3 text-left flex items-center cursor-pointer justify-between transition-all duration-200 group ${
                   selectedId === option.id
-                    ? 'bg-primary text-white font-bold'
-                    : 'text-gray-300 hover:bg-primary/10 hover:text-white'
+                    ? 'bg-primary text-primary-foreground font-bold'
+                    : 'text-muted-foreground hover:bg-primary/10 hover:text-foreground'
                 }`}
                 style={{
                   animationDelay: `${index * 50}ms`,
@@ -115,7 +115,7 @@ export default function CustomDropdown({
                   </span>
                 </div>
                 {selectedId === option.id && (
-                  <Check className="w-4 h-4 text-white" />
+                  <Check className="w-4 h-4 text-primary-foreground" />
                 )}
               </button>
             ))}

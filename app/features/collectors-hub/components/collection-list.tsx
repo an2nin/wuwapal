@@ -1,12 +1,23 @@
 import type { CollectionCounts } from '../utils/processors';
 import type { FilterState } from './collection-filters';
 import type { CollectionItem } from '@/shared/types';
-import { Info } from 'lucide-react';
+import { Info, SearchX } from 'lucide-react';
 import { useMemo, useState } from 'react';
+import { Button } from '@/shared/components/ui/button';
+import { Skeleton } from '@/shared/components/ui/skeleton';
+import { cn } from '@/shared/utils';
 import CollectionFilters from './collection-filters';
 import CollectionItemCard from './collection-item-card';
 
 type CollectionType = 'resonator' | 'weapon';
+
+function createDefaultFilters(): FilterState {
+  return {
+    selectedElementFilters: new Set(),
+    selectedWeaponTypeFilters: new Set(),
+    searchQuery: '',
+  };
+}
 
 interface Props {
   type: CollectionType;
@@ -15,11 +26,14 @@ interface Props {
 }
 
 export default function CollectionList({ type, resources, collected }: Props) {
-  const [filters, setFilters] = useState<FilterState>(() => ({
-    selectedElementFilters: new Set(),
-    selectedWeaponTypeFilters: new Set(),
-    searchQuery: '',
-  }));
+  const [filters, setFilters] = useState<FilterState>(createDefaultFilters);
+  // Bumping the key remounts the filters so their internal state resets too
+  const [filtersKey, setFiltersKey] = useState(0);
+
+  const resetFilters = () => {
+    setFilters(createDefaultFilters());
+    setFiltersKey(key => key + 1);
+  };
 
   const filteredItems = useMemo(() => {
     if (!resources || !collected) {
@@ -60,6 +74,7 @@ export default function CollectionList({ type, resources, collected }: Props) {
     <div className="space-y-4">
       {/* Filters and Search */}
       <CollectionFilters
+        key={filtersKey}
         type={type}
         onFilterChange={setFilters}
       />
@@ -74,7 +89,20 @@ export default function CollectionList({ type, resources, collected }: Props) {
         </span>
       </div>
       {/* Collection Grid */}
-      <div className="bg-pattern-stripped lg:p-6 p-3 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 lg:gap-6 gap-3 item-center rounded-xl">
+      {collected && filteredItems.length === 0 && (
+        <div className="flex flex-col items-center gap-3 rounded-xl border border-dashed px-4 py-12 text-center">
+          <SearchX className="size-10 text-muted-foreground" aria-hidden="true" />
+          <div>
+            <p className="font-bold">No results match your filters</p>
+            <p className="text-sm text-muted-foreground">Try a different name or clear the selected filters.</p>
+          </div>
+          <Button variant="outline" size="sm" onClick={resetFilters}>Reset filters</Button>
+        </div>
+      )}
+      <div className={cn('bg-pattern-stripped lg:p-6 p-3 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 lg:gap-6 gap-3 items-center rounded-xl', collected && filteredItems.length === 0 && 'hidden')}>
+        {!collected && Array.from({ length: 10 }, (_, idx) => (
+          <Skeleton key={idx} className="aspect-[3/4] w-full rounded-xl" />
+        ))}
         {filteredItems.map(resource => (
           <CollectionItemCard
             key={resource.name}

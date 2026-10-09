@@ -78,7 +78,20 @@ function Button({
     isLoading?: boolean;
     icon?: React.ReactNode;
   }) {
-  const Comp = asChild ? Slot : 'button';
+  if (asChild) {
+    // Slot requires a single child, so loading/icon decorations are skipped
+    return (
+      <Slot
+        data-slot="button"
+        className={cn(buttonVariants({ variant, size, className }))}
+        {...props}
+      >
+        {children}
+      </Slot>
+    );
+  }
+
+  const Comp = 'button';
 
   return (
     <Comp

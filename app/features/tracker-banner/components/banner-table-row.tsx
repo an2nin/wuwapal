@@ -1,39 +1,44 @@
 import type { ProcessedBannerItem } from '@/shared/types/banner';
+import { TableCell, TableRow } from '@/shared/components/ui/table';
 import { cn, formatDateToHumanReadable, getColorClassWithSeverity, getRarityTextColor } from '@/shared/utils';
 
 interface Props {
   item: ProcessedBannerItem;
 }
 
+const cellClass = 'px-3 sm:px-6 py-3';
+
 export default function BannerTableRow({ item }: Props) {
+  const date = formatDateToHumanReadable(new Date(item.time));
+
   return (
-    <tr key={item.roll} className={cn('hover:bg-background/50 transition-colors', item.quality === 5 && 'border-l-4 border-yellow-500 border-b-0')}>
-      <td className="px-6 py-3 whitespace-nowrap">
-        <span className="text-sm font-medium text-gray-300">
-          #
-          {item.roll}
-        </span>
-      </td>
-      <td className="px-6 py-3 whitespace-nowrap">
-        <div className="flex items-center">
+    <TableRow className={cn('hover:bg-background/50', item.quality === 5 && 'border-l-4 border-l-quality-5')}>
+      <TableCell className={cn(cellClass, 'font-medium text-foreground/90')}>
+        #
+        {item.roll}
+      </TableCell>
+      <TableCell className={cellClass}>
+        <div className="flex items-center gap-3">
           <img
-            className="size-10 rounded-full object-cover"
+            className="size-10 rounded-full object-cover shrink-0"
             src={item.icon || ''}
-            alt={item.name}
+            alt=""
+            aria-hidden="true"
           />
-          <div className="ml-3">
-            <p className={cn('text-sm font-bold', getRarityTextColor(item.quality))}>{item.name}</p>
+          <div className="min-w-0">
+            <p className={cn('font-bold truncate', getRarityTextColor(item.quality))}>{item.name}</p>
+            <p className="text-xs text-muted-foreground sm:hidden">{date}</p>
           </div>
         </div>
-      </td>
-      <td className="px-6 py-3 whitespace-nowrap">
-        <span className={cn('text-sm font-bold text-gray-300 capitalize', getColorClassWithSeverity(item.pity, item.quality === 4 ? 10 : item.quality === 5 ? 80 : 0))}>
+      </TableCell>
+      <TableCell className={cellClass}>
+        <span className={cn('font-bold', getColorClassWithSeverity(item.pity, item.quality === 4 ? 10 : item.quality === 5 ? 80 : 0))}>
           {item.pity}
         </span>
-      </td>
-      <td className="px-6 py-3 whitespace-nowrap text-sm text-gray-300">
-        {formatDateToHumanReadable(new Date(item.time))}
-      </td>
-    </tr>
+      </TableCell>
+      <TableCell className={cn(cellClass, 'hidden sm:table-cell text-foreground/90')}>
+        {date}
+      </TableCell>
+    </TableRow>
   );
 }

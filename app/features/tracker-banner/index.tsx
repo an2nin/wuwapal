@@ -16,7 +16,7 @@ export default function TrackerBanner() {
   const bannerId = searchParams.get('id') || 'featured_resonator';
   const accountStore = useAccountStore(state => state);
 
-  const { getBannerById, banners } = useIndexDB(accountStore.active);
+  const { getBannerById, banners, isLoading } = useIndexDB(accountStore.active);
 
   const processedBanner = useMemo(() => {
     if (!bannerId || !banners)
@@ -30,20 +30,20 @@ export default function TrackerBanner() {
   }, [bannerId, banners]);
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col lg:gap-6 gap-4">
       <BannerStatsSection
         processedBanner={processedBanner || null}
         bannerInfo={BANNERS[bannerId || 'featured_resonator']}
       />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-6 gap-3">
-        <div className="flex flex-col lg:gap-6 gap-3 h-full">
+      <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-6 gap-4">
+        <div className="flex flex-col lg:gap-6 gap-4 h-full">
           {/* <BannerFFStat processedBanner={processedBanner} /> */}
           <BannerLuckStats processedBanner={processedBanner} />
           <BannerPullBreakdown processedBanner={processedBanner} />
         </div>
         <div className="lg:col-span-2">
-          <BannerTable processedBanner={processedBanner || null} />
+          <BannerTable processedBanner={processedBanner || null} isLoading={isLoading} />
         </div>
       </div>
     </div>

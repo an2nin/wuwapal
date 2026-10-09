@@ -74,7 +74,7 @@ export default function BannerPullBreakdown({ processedBanner }: Props) {
     <Card>
       <CardContent className="pt-5">
         <div className="flex flex-col gap-2 ">
-          <div className="flex justify-between items-center border-b border-white pb-1">
+          <div className="flex justify-between items-center border-b border-border pb-1">
             <div className="font-bold text-sm md:text-lg">Pull Breakdown</div>
             <div className="grid grid-cols-3 w-48 text-xs md:text-sm">
               <div className="flex justify-end">Total</div>

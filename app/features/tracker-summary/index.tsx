@@ -13,16 +13,16 @@ export default function TrackerSummary() {
   const layoutStore = useLayoutStore(state => state);
 
   const isNoPullFound = useMemo(() => {
-  // Don't say "no pulls" until data is actually loaded
+    // Don't say "no pulls" until data is actually loaded
     if (isLoading)
       return false;
     return banners.length === 0;
   }, [banners, isLoading]);
 
   return (
-    <>
+    <div className="flex flex-col gap-4 lg:gap-6">
       {isNoPullFound && <NoPullFound />}
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid gap-4 lg:gap-6 lg:grid-cols-2">
         {Object.entries(REGULAR_BANNERS).map(([bannerId, bannerInfo]) => (
           <SummaryCard key={bannerId} bannerId={bannerId} bannerInfo={bannerInfo} />
         ))}
@@ -30,6 +30,6 @@ export default function TrackerSummary() {
           <SummaryCard key={bannerId} bannerId={bannerId} bannerInfo={bannerInfo} />
         ))}
       </div>
-    </>
+    </div>
   );
 }

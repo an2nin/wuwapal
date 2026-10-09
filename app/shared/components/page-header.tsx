@@ -17,19 +17,20 @@ export default function PageHeader({ title, backRoute, icon: Icon, children }: P
     <div className="flex flex-col lg:flex-row items-center justify-between gap-3 font-bold lg:mb-6 mb-4">
       <div className="flex items-center gap-3">
         {Icon
-          ? <Icon className="text-primary size-12" />
+          ? <Icon className="text-primary size-10 lg:size-12" aria-hidden="true" />
           : backRoute && (
             <button
               type="button"
-              className="cursor-pointer hover:scale-110 hover:opacity-70 transform transition-transform"
+              aria-label="Go back"
+              className="cursor-pointer rounded-lg hover:scale-110 hover:opacity-70 transform transition-transform"
               onClick={() => backRoute ? router.push(backRoute) : router.back()}
             >
-              <ChevronsLeft className="text-primary size-12" />
+              <ChevronsLeft className="text-primary size-10 lg:size-12" aria-hidden="true" />
             </button>
           )}
         {typeof title === 'string'
           ? (
-              <h1 className="lg:text-3xl text-2xl bg-gradient-to-r from-primary w-fit to-white bg-clip-text text-transparent">
+              <h1 className="lg:text-3xl text-2xl bg-gradient-to-r from-primary w-fit to-foreground bg-clip-text text-transparent">
                 {title}
               </h1>
             )

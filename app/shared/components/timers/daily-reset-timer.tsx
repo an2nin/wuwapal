@@ -19,7 +19,7 @@ function DailyResetTimer() {
 
   if (!isClient) {
     return (
-      <div className="flex gap-2 p-3 text-white font-bold w-56 justify-center">
+      <div className="flex gap-2 p-3 text-foreground font-bold w-56 justify-center">
         <h4>Daily Reset In: </h4>
         <p>Loading...</p>
       </div>
@@ -27,7 +27,7 @@ function DailyResetTimer() {
   }
 
   return (
-    <div className="flex gap-2 p-3 text-white font-bold w-56 justify-center">
+    <div className="flex gap-2 p-3 text-foreground font-bold w-56 justify-center">
       <h4>Daily Reset In: </h4>
       <p>{formatTimeLeft(timeLeft)}</p>
     </div>

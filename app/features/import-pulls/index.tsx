@@ -30,21 +30,20 @@ export default function ImportPulls() {
 
   return (
     <div>
-      <h3 className="text-lg my-2">
-        🚀 Choose your platform and follow the steps to start tracking your
-        Convene Record! 📈
-      </h3>
+      <p className="text-muted-foreground mb-4">
+        Choose your platform and follow the steps to start tracking your
+        Convene Record.
+      </p>
       <Tabs defaultValue="pc" className="w-full">
-        <TabsList className="grid grid-cols-3">
+        <TabsList className="grid grid-cols-3 w-full sm:w-fit">
           <TabsTrigger value="pc">PC</TabsTrigger>
           <TabsTrigger value="android">Android</TabsTrigger>
-          <TabsTrigger value="ios">IOS</TabsTrigger>
+          <TabsTrigger value="ios">iOS</TabsTrigger>
         </TabsList>
         <Alert className="mt-4" variant="warning">
-          <AlertTitle className="flex items-center gap-2 font-bold text-lg">
-            <TriangleAlert className="size-5" />
-            Important Update on the Convene Record History!
-            <TriangleAlert className="size-5" />
+          <TriangleAlert aria-hidden="true" />
+          <AlertTitle className="font-bold">
+            Important update on Convene Record history
           </AlertTitle>
           <AlertDescription>
             <p>
@@ -61,7 +60,7 @@ export default function ImportPulls() {
               .
             </p>
             <p>
-              🗓️ For example, if you are a Day 1 player and pulled on
+              For example, if you are a Day 1 player and pulled on
               {' '}
               <strong>May 22, 2024</strong>
               , those pulls will be
@@ -73,14 +72,14 @@ export default function ImportPulls() {
               .
             </p>
             <p>
-              <strong>✨ WuWaPal</strong>
+              <strong>WuWaPal</strong>
               {' '}
-              will handle this issue for you. but
+              will handle this issue for you, but
               keeping a
               {' '}
               <strong>backup</strong>
               {' '}
-              is always a smart move! 💾✔️.
+              is always a smart move.
             </p>
             <p>
               You can do it from
@@ -89,7 +88,7 @@ export default function ImportPulls() {
                 Settings
               </Link>
               {' '}
-              page 👈.
+              page.
             </p>
           </AlertDescription>
         </Alert>

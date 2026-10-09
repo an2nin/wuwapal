@@ -91,7 +91,7 @@ export default function AddNewAccountDialog() {
               placeholder="Enter profile name"
             />
             {displayNameErr && (
-              <div className="text-red-500 text-xs">{displayNameErr}</div>
+              <div className="text-destructive text-xs">{displayNameErr}</div>
             )}
           </div>
           <div className="flex flex-col gap-2">
@@ -104,7 +104,7 @@ export default function AddNewAccountDialog() {
               placeholder="Enter player ID"
             />
             {playerIdErr && (
-              <div className="text-red-500 text-xs">{playerIdErr}</div>
+              <div className="text-destructive text-xs">{playerIdErr}</div>
             )}
           </div>
         </div>

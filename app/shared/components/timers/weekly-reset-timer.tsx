@@ -14,7 +14,7 @@ function WeeklyResetTimer() {
   }, []);
 
   return (
-    <div className="flex gap-2 p-3 text-white font-bold w-[16.5rem] justify-center">
+    <div className="flex gap-2 p-3 text-foreground font-bold w-[16.5rem] justify-center">
       <h4>Weekly Reset In: </h4>
       <p>{formatTimeLeft(timeLeft)}</p>
     </div>

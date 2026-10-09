@@ -103,7 +103,11 @@ export default function CloudSync() {
         ? (
             <div className="flex flex-wrap items-center gap-2">
               <p className="text-primary font-bold">Signed in with:</p>
-              <div className="bg-black px-4 py-1 rounded-lg font-bold text-black hover:text-white cursor-default">
+              <div
+                tabIndex={0}
+                title="Hover to reveal"
+                className="bg-muted px-4 py-1 rounded-lg font-bold text-transparent hover:text-foreground focus:text-foreground transition-colors cursor-default"
+              >
                 {authStore.profile?.email}
               </div>
             </div>
@@ -145,7 +149,7 @@ export default function CloudSync() {
                 </Button>
               </div>
             )
-          : <div className="text-red-500">Please log in to access cloud features!</div>}
+          : <div className="text-destructive">Please log in to access cloud features!</div>}
       </CardContent>
     </Card>
   );

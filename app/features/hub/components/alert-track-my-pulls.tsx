@@ -28,6 +28,10 @@ export default function AlertTrackMyPulls() {
           It currently supports
           {' '}
           <strong>Endfield</strong>
+          {' '}
+          and
+          {' '}
+          <strong>Zenless Zone Zero</strong>
           , with more game support coming next.
         </p>
       </AlertDescription>

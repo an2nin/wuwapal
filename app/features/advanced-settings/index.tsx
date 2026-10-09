@@ -167,16 +167,16 @@ export default function AdvancedSettings() {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-lg text-white">
-          <ShieldAlert className="size-5 text-amber-400" />
+        <CardTitle className="flex items-center gap-2 text-lg">
+          <ShieldAlert className="size-5 text-warning" />
           Advanced Settings
           <Badge
             variant={layoutStore.advancedSettingsUnlocked ? 'default' : 'outline'}
             className={cn(
-              'border-amber-500/40 text-xs',
+              'border-warning/40 text-xs',
               layoutStore.advancedSettingsUnlocked
-                ? 'bg-emerald-500 text-white border-emerald-500'
-                : 'text-amber-400',
+                ? 'bg-success text-success-foreground border-success'
+                : 'text-warning',
             )}
           >
             {layoutStore.advancedSettingsUnlocked ? 'Unlocked' : 'Locked'}
@@ -239,7 +239,7 @@ export default function AdvancedSettings() {
               >
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <p className="text-sm font-semibold text-white">
+                    <p className="text-sm font-semibold text-foreground">
                       {action.label}
                     </p>
                     <Badge variant="secondary" className="text-[10px] uppercase tracking-wide">

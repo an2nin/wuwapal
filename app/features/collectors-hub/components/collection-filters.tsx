@@ -83,7 +83,8 @@ export default function CollectionFilters({ type, onFilterChange }: Props) {
       {/* Search Input */}
       <div className="flex gap-2 items-center">
         <Input
-          type="text"
+          type="search"
+          aria-label="Search by name"
           placeholder="Search..."
           value={searchQuery}
           onChange={e => handleSearchChange(e.target.value)}

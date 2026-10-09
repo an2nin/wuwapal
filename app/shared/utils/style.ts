@@ -40,13 +40,13 @@ export function getColorClassWithSeverity(pity: number, max: number) {
   }
 
   if (pity >= 1 && pity <= greenThreshold) {
-    return 'text-green-500';
+    return 'text-success';
   }
   else if (pity > greenThreshold && pity <= yellowThreshold) {
-    return 'text-yellow-500';
+    return 'text-warning';
   }
   else {
-    return 'text-red-500';
+    return 'text-destructive';
   }
 }
 

@@ -4,7 +4,7 @@ import PageHeader from '@/shared/components/page-header';
 export default function PrivacyPolicy() {
   return (
     <div className="flex flex-col gap-5 justify-center items-center">
-      <div className="max-w-2xl flex flex-col gap-3">
+      <div className="max-w-2xl w-full flex flex-col gap-3">
         <PageHeader title="Privacy Policy" />
         <p className="text-muted-foreground text-sm">
           Your privacy is of utmost importance to us. This privacy
@@ -13,8 +13,8 @@ export default function PrivacyPolicy() {
           information is utilized.
         </p>
       </div>
-      <div className="max-w-2xl flex flex-col gap-3">
-        <h2 className="text-3xl font-bold">Browser Local Storage</h2>
+      <div className="max-w-2xl w-full flex flex-col gap-3">
+        <h2 className="text-2xl font-bold">Browser Local Storage</h2>
         <p className="text-muted-foreground text-sm flex flex-col">
           WuWa Pal uses browser local storage to store application
           data. This allows us to save data directly on your device,
@@ -32,7 +32,7 @@ export default function PrivacyPolicy() {
             browser&apos;s local storage at any time via the
             {' '}
             <Link
-              className="text-white font-bold underline"
+              className="link"
               href="/settings"
             >
               Settings
@@ -43,8 +43,8 @@ export default function PrivacyPolicy() {
           </span>
         </p>
       </div>
-      <div className="max-w-2xl flex flex-col gap-3">
-        <h2 className="text-3xl font-bold">Analytics</h2>
+      <div className="max-w-2xl w-full flex flex-col gap-3">
+        <h2 className="text-2xl font-bold">Analytics</h2>
         <p className="text-muted-foreground text-sm flex flex-col">
           WuWa Pal uses Cloudflare Analytics to gather and analyze
           data regarding how our application is utilized. This
@@ -66,8 +66,8 @@ export default function PrivacyPolicy() {
           </span>
         </p>
       </div>
-      <div className="max-w-2xl flex flex-col gap-3">
-        <h2 className="text-3xl font-bold">Supabase Database</h2>
+      <div className="max-w-2xl w-full flex flex-col gap-3">
+        <h2 className="text-2xl font-bold">Supabase Database</h2>
         <p className="text-muted-foreground text-sm flex flex-col">
           WuWa Pal utilizes Supabase for database services to store
           user&apos;s Convene data. This information serves backup
@@ -90,8 +90,8 @@ export default function PrivacyPolicy() {
           </span>
         </p>
       </div>
-      <div className="max-w-2xl flex flex-col gap-3">
-        <h2 className="text-3xl font-bold">
+      <div className="max-w-2xl w-full flex flex-col gap-3">
+        <h2 className="text-2xl font-bold">
           Changes to This Privacy Policy
         </h2>
         <p className="text-muted-foreground text-sm flex flex-col">

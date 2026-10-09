@@ -17,7 +17,7 @@ export default function BannerStatsSection({
       <div className="relative lg:h-44 h-72">
         <img
           src={bannerInfo.image}
-          alt="banner"
+          alt={bannerInfo.name}
           className="w-full h-full object-cover rounded-xl"
         />
         <BannerBasicStats
